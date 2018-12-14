@@ -1,0 +1,21 @@
+{
+  "name": "frosh/plugin-uploader",
+  "description": "A tool for deploying shopware plugins to store.shopware.com",
+  "license": "MIT",
+  "require": {
+    "php": "^7.1",
+    "ext-curl": "*",
+    "symfony/console": "^4.2",
+    "symfony/config": "~4.2",
+    "symfony/dependency-injection": "~4.2"
+  },
+  "require-dev": {
+    "ext-phar": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "FroshPluginUploader\\": "src/"
+    }
+  },
+  "bin": ["bin/pluginupload"]
+}
