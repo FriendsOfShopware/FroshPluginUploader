@@ -15,6 +15,8 @@ class DependencyInjection
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/Resources'));
         $loader->load('services.xml');
 
+        $container->compile();
+
         return $container;
     }
 }
