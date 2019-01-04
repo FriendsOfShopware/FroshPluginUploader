@@ -20,15 +20,25 @@ class UploadPluginCommand extends Command implements ContainerAwareInterface
         $this
             ->setName('frosh:plugin:upload')
             ->setDescription('Uploads a plugin binary to store.shopware.com')
-            ->addArgument('zipPath', InputArgument::REQUIRED, 'Path to to the plugin binary')
-            ->addArgument('pluginPath', InputArgument::REQUIRED, 'Path to to the plugin root directory');
+            ->addArgument('zipPath', InputArgument::REQUIRED, 'Path to to the plugin binary');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): void
     {
         $this->validateInput($input);
 
-        $this->container->get(PluginBinaryUploader::class)->upload($input->getArgument('zipPath'), $input->getArgument('pluginPath'));
+        $zipPath = $input->getArgument('zipPath');
+        $zip = new \ZipArchive();
+        $zip->open($zipPath);
+        $tmpFolder = sys_get_temp_dir() . '/' . uniqid(basename($zipPath), true);
+
+        if (!mkdir($tmpFolder) && !is_dir($tmpFolder)) {
+            throw new \RuntimeException(sprintf('Directory "%s" was not created', $tmpFolder));
+        }
+
+        $zip->extractTo($tmpFolder);
+
+        $this->container->get(PluginBinaryUploader::class)->upload($input->getArgument('zipPath'), $this->getPluginPath($tmpFolder));
 
         $io = new SymfonyStyle($input, $output);
         $io->success('Plugin zip successfully uploaded');
@@ -37,16 +47,24 @@ class UploadPluginCommand extends Command implements ContainerAwareInterface
     private function validateInput(InputInterface $input): void
     {
         $zipPath = $input->getArgument('zipPath');
-        $pluginPath = $input->getArgument('pluginPath');
 
         if (!file_exists($zipPath)) {
             throw new \RuntimeException(sprintf('Given path "%s" does not exists', $zipPath));
         }
+    }
 
-        if (!file_exists($pluginPath)) {
-            throw new \RuntimeException(sprintf('Given path "%s" does not exists', $pluginPath));
+    private function getPluginPath(string $tmpFolder): string
+    {
+        $dir = current(array_filter(scandir($tmpFolder, SCANDIR_SORT_NONE), function($value) {
+            return $value[0] !== '.';
+        }));
+
+        $pluginXmlPath = $tmpFolder . '/' . $dir . '/plugin.xml';
+
+        if (!file_exists($pluginXmlPath)) {
+            throw new \RuntimeException('Cannot find a plugin.xml in zip file');
         }
 
-
+        return $tmpFolder . '/' . $dir;
     }
 }
