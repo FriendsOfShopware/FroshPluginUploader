@@ -3,6 +3,7 @@
 namespace FroshPluginUploader\Commands;
 
 use FroshPluginUploader\Components\PluginBinaryUploader;
+use FroshPluginUploader\Components\Util;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -18,7 +19,7 @@ class UploadPluginCommand extends Command implements ContainerAwareInterface
     protected function configure(): void
     {
         $this
-            ->setName('frosh:plugin:upload')
+            ->setName('plugin:upload')
             ->setDescription('Uploads a plugin binary to store.shopware.com')
             ->addArgument('zipPath', InputArgument::REQUIRED, 'Path to to the plugin binary');
     }
@@ -30,11 +31,7 @@ class UploadPluginCommand extends Command implements ContainerAwareInterface
         $zipPath = $input->getArgument('zipPath');
         $zip = new \ZipArchive();
         $zip->open($zipPath);
-        $tmpFolder = sys_get_temp_dir() . '/' . uniqid(basename($zipPath), true);
-
-        if (!mkdir($tmpFolder) && !is_dir($tmpFolder)) {
-            throw new \RuntimeException(sprintf('Directory "%s" was not created', $tmpFolder));
-        }
+        $tmpFolder = Util::mkTempDir(basename($zipPath));
 
         $zip->extractTo($tmpFolder);
 

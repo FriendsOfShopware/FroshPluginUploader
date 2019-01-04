@@ -19,4 +19,19 @@ class Util
 
         return $var;
     }
+
+    public static function mkTempDir(?string $prefix = null): string
+    {
+        if ($prefix === null) {
+            $prefix = (string) random_int(PHP_INT_MIN, PHP_INT_MAX);
+        }
+
+        $tmpFolder = sys_get_temp_dir() . '/' . uniqid($prefix, true);
+
+        if (!mkdir($tmpFolder) && !is_dir($tmpFolder)) {
+            throw new \RuntimeException(sprintf('Directory "%s" was not created', $tmpFolder));
+        }
+
+        return $tmpFolder;
+    }
 }
