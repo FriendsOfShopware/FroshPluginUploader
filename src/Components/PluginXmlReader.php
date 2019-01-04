@@ -29,6 +29,29 @@ class PluginXmlReader
             }
         }
 
+        throw new \RuntimeException(sprintf('Changelog is missing for version %s', $this->data['version']));
+    }
+
+    public function getVersion(): string
+    {
+        return $this->data['version'];
+    }
+
+    public function getMinVersion(): string
+    {
+        if (isset($this->data['compatibility']['@attributes']['minVersion'])) {
+            return $this->data['compatibility']['@attributes']['minVersion'];
+        }
+
+        return '5.2.0';
+    }
+
+    public function getMaxVersion(): ?string
+    {
+        if (isset($this->data['compatibility']['@attributes']['maxVersion'])) {
+            return $this->data['compatibility']['@attributes']['maxVersion'];
+        }
+
         return null;
     }
 
@@ -39,9 +62,11 @@ class PluginXmlReader
     private function processChangelog(array $changelog): array
     {
         $formattedChangelog = [];
+
         if (isset($changelog['@attributes'])) {
             $changelog = [$changelog];
         }
+
         foreach ($changelog as $item) {
             $formattedChangelog[] = [
                 'version' => $item['@attributes']['version'],

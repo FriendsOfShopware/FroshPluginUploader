@@ -7,6 +7,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
@@ -28,6 +29,9 @@ class UploadPluginCommand extends Command implements ContainerAwareInterface
         $this->validateInput($input);
 
         $this->container->get(PluginBinaryUploader::class)->upload($input->getArgument('zipPath'), $input->getArgument('pluginPath'));
+
+        $io = new SymfonyStyle($input, $output);
+        $io->success('Plugin zip successfully uploaded');
     }
 
     private function validateInput(InputInterface $input): void
