@@ -67,7 +67,7 @@ class Client
     private function createClient(?string $token): \GuzzleHttp\Client
     {
         $options = [
-            'base_uri' => 'https://sbp-next-core.shopware.in',
+            'base_uri' => Util::getEnv('API_ENDPOINT', 'https://api.shopware.com'),
             'timeout' => 5.0
         ];
 
