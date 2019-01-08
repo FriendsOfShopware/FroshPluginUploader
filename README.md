@@ -22,7 +22,7 @@ Requirements of the Plugin
 
 ## plugin:upload
 
-Will upload the zip to the store and triggers are code review
+Will upload the zip to the store and triggers a code review
 
 Valid arguments are:
 
