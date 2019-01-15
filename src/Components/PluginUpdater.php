@@ -39,5 +39,30 @@ class PluginUpdater
         unset($infoTranslation);
 
         $this->client->put(sprintf('/plugins/%d', Util::getEnv('PLUGIN_ID')), ['json' => $pluginInformation]);
+
+        $imageDir = $folder . '/images';
+
+        if (file_exists($imageDir)) {
+            $images = json_decode((string) $this->client->get(sprintf('/plugins/%d/pictures', Util::getEnv('PLUGIN_ID')))->getBody(), true);
+
+            foreach ($images as $image) {
+                $this->client->delete(sprintf('/plugins/%d/pictures/%d', Util::getEnv('PLUGIN_ID'), $image['id']));
+            }
+
+            foreach (scandir($imageDir, SCANDIR_SORT_ASCENDING) as $image) {
+                if ($image[0] === '.') {
+                    continue;
+                }
+
+                $this->client->post(sprintf('/plugins/%d/pictures', Util::getEnv('PLUGIN_ID')), [
+                    'multipart' => [
+                        [
+                            'name' => 'file',
+                            'contents' => fopen($imageDir . '/' . $image, 'rb')
+                        ]
+                    ]
+                ]);
+            }
+        }
     }
 }
