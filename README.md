@@ -45,3 +45,4 @@ Currently supported files:
 
 * [lang].html (e.g de.html) for Description
 * [lang]_manual.html (e.g de_manual.html) for Install Instruction
+* images/0.(png|jpg|jpeg) will be used for Images. First image will be used as preview image.

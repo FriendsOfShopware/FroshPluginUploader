@@ -25,7 +25,13 @@ class UpdatePluginCommand extends Command implements ContainerAwareInterface
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->container->get(PluginUpdater::class)->sync(realpath($input->getArgument('path')));
+        $path = realpath($input->getArgument('path'));
+
+        if (!file_exists($path)) {
+            throw new \RuntimeException(sprintf('Folder by path %s does not exist', $input->getArgument('path')));
+        }
+
+        $this->container->get(PluginUpdater::class)->sync($path);
 
         $io = new SymfonyStyle($input, $output);
         $io->success('Store folder has been applied to plugin page');
