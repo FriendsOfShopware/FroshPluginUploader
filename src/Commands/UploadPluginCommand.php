@@ -28,7 +28,7 @@ class UploadPluginCommand extends Command implements ContainerAwareInterface
     {
         $this->validateInput($input);
 
-        $zipPath = $input->getArgument('zipPath');
+        $zipPath = realpath($input->getArgument('zipPath'));
         $zip = new \ZipArchive();
         $zip->open($zipPath);
         $tmpFolder = Util::mkTempDir(basename($zipPath));

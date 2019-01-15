@@ -29,3 +29,19 @@ Valid arguments are:
 ```
 pathToZip - path to the zip file
 ```
+
+
+## plugin:update
+
+Will update some informations about the plugin like description, images (later)
+
+Valid arguments are:
+
+```
+path - path to the /Resources/store
+```
+
+Currently supported files:
+
+* [lang].html (e.g de.html) for Description
+* [lang]_manual.html (e.g de_manual.html) for Install Instruction

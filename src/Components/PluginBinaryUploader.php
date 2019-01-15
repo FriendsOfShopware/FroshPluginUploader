@@ -50,7 +50,7 @@ class PluginBinaryUploader
         ]);
 
         // Trigger a review
-//        $this->client->post(sprintf('/plugins/%d/reviews', Util::getEnv('PLUGIN_ID')), []);
+        $this->client->post(sprintf('/plugins/%d/reviews', Util::getEnv('PLUGIN_ID')), []);
     }
 
     private function validatePluginRequirements(string $pluginDirectory): void

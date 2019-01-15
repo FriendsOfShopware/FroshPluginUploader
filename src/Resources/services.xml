@@ -9,8 +9,14 @@
             <tag name="console.command"/>
         </service>
 
+        <service id="FroshPluginUploader\Commands\UpdatePluginCommand" class="FroshPluginUploader\Commands\UpdatePluginCommand">
+            <tag name="console.command"/>
+        </service>
+
+
         <service id="FroshPluginUploader\Components\SBP\Client"/>
 
         <service id="FroshPluginUploader\Components\PluginBinaryUploader"/>
+        <service id="FroshPluginUploader\Components\PluginUpdater"/>
     </services>
 </container>
