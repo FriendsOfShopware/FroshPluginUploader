@@ -68,7 +68,7 @@ class Client
     {
         $options = [
             'base_uri' => Util::getEnv('API_ENDPOINT', 'https://api.shopware.com'),
-            'timeout' => 5.0,
+            'timeout' => 30.0,
         ];
 
         if ($token) {
