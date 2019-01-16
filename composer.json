@@ -12,7 +12,8 @@
     "ext-json": "*",
     "ext-simplexml": "*",
     "ext-libxml": "*",
-    "ext-zip": "*"
+    "ext-zip": "*",
+    "ext-dom": "*"
   },
   "require-dev": {
     "ext-phar": "*"

@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 
 namespace FroshPluginUploader\Commands;
 
@@ -25,6 +24,10 @@ class UpdatePluginCommand extends Command implements ContainerAwareInterface
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        if (!Util::getEnv('PLUGIN_ID')) {
+            throw new \RuntimeException('The enviroment variable $PLUGIN_ID is required');
+        }
+
         $path = realpath($input->getArgument('path'));
 
         if (!file_exists($path)) {

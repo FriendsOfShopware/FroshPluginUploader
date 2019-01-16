@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace FroshPluginUploader\Components;
 
@@ -22,8 +22,8 @@ class PluginUpdater
 
         foreach ($pluginInformation['infos'] as &$infoTranslation) {
             $language = substr($infoTranslation['locale']['name'], 0, 2);
-            $languageFile = $folder . '/' . $language  . '.html';
-            $languageManualFile = $folder . '/' . $language  . '_manual.html';
+            $languageFile = $folder . '/' . $language . '.html';
+            $languageManualFile = $folder . '/' . $language . '_manual.html';
 
             if (file_exists($languageFile)) {
                 $infoTranslation['description'] = file_get_contents($languageFile);
@@ -58,9 +58,9 @@ class PluginUpdater
                     'multipart' => [
                         [
                             'name' => 'file',
-                            'contents' => fopen($imageDir . '/' . $image, 'rb')
-                        ]
-                    ]
+                            'contents' => fopen($imageDir . '/' . $image, 'rb'),
+                        ],
+                    ],
                 ]);
             }
         }

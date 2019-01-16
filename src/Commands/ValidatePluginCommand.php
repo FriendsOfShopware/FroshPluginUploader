@@ -2,7 +2,7 @@
 
 namespace FroshPluginUploader\Commands;
 
-use FroshPluginUploader\Components\PluginBinaryUploader;
+use FroshPluginUploader\Components\PluginReader;
 use FroshPluginUploader\Components\Util;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -12,37 +12,33 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
-class UploadPluginCommand extends Command implements ContainerAwareInterface
+class ValidatePluginCommand extends Command implements ContainerAwareInterface
 {
     use ContainerAwareTrait;
 
-    protected function configure(): void
+    protected function configure()
     {
         $this
-            ->setName('plugin:upload')
-            ->setDescription('Uploads a plugin binary to store.shopware.com')
+            ->setName('plugin:validate')
+            ->setDescription('Validate the plugin for the community store')
             ->addArgument('zipPath', InputArgument::REQUIRED, 'Path to to the plugin binary');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output)
     {
-        if (!Util::getEnv('PLUGIN_ID')) {
-            throw new \RuntimeException('The enviroment variable $PLUGIN_ID is required');
-        }
-
         $this->validateInput($input);
 
         $zipPath = realpath($input->getArgument('zipPath'));
         $zip = new \ZipArchive();
         $zip->open($zipPath);
         $tmpFolder = Util::mkTempDir(basename($zipPath));
-
         $zip->extractTo($tmpFolder);
 
-        $this->container->get(PluginBinaryUploader::class)->upload($input->getArgument('zipPath'), $this->getPluginPath($tmpFolder));
+        $reader = new PluginReader($this->getPluginPath($tmpFolder));
+        $reader->validate();
 
         $io = new SymfonyStyle($input, $output);
-        $io->success('Plugin zip successfully uploaded');
+        $io->success('Plugin has been successfully validated');
     }
 
     private function validateInput(InputInterface $input): void

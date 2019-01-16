@@ -13,6 +13,10 @@
             <tag name="console.command"/>
         </service>
 
+        <service id="FroshPluginUploader\Commands\ValidatePluginCommand" class="FroshPluginUploader\Commands\ValidatePluginCommand">
+            <tag name="console.command"/>
+        </service>
+
 
         <service id="FroshPluginUploader\Components\SBP\Client"/>
 

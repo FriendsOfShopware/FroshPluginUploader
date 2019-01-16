@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace FroshPluginUploader\Components\SBP;
 
@@ -14,12 +14,12 @@ use Psr\Http\Message\UriInterface;
  * @method ResponseInterface post(string|UriInterface $uri, array $options = [])
  * @method ResponseInterface patch(string|UriInterface $uri, array $options = [])
  * @method ResponseInterface delete(string|UriInterface $uri, array $options = [])
- * @method PromiseInterface getAsync(string|UriInterface $uri, array $options = [])
- * @method PromiseInterface headAsync(string|UriInterface $uri, array $options = [])
- * @method PromiseInterface putAsync(string|UriInterface $uri, array $options = [])
- * @method PromiseInterface postAsync(string|UriInterface $uri, array $options = [])
- * @method PromiseInterface patchAsync(string|UriInterface $uri, array $options = [])
- * @method PromiseInterface deleteAsync(string|UriInterface $uri, array $options = [])
+ * @method PromiseInterface  getAsync(string|UriInterface $uri, array $options = [])
+ * @method PromiseInterface  headAsync(string|UriInterface $uri, array $options = [])
+ * @method PromiseInterface  putAsync(string|UriInterface $uri, array $options = [])
+ * @method PromiseInterface  postAsync(string|UriInterface $uri, array $options = [])
+ * @method PromiseInterface  patchAsync(string|UriInterface $uri, array $options = [])
+ * @method PromiseInterface  deleteAsync(string|UriInterface $uri, array $options = [])
  */
 class Client
 {
@@ -41,13 +41,18 @@ class Client
         $this->login($user, $password);
     }
 
+    public function __call($name, $arguments)
+    {
+        return call_user_func_array([$this->apiClient, $name], $arguments);
+    }
+
     public function login(string $username, string $password): void
     {
         $response = $this->apiClient->post('/accesstokens', [
             'json' => [
                 'shopwareId' => $username,
-                'password' => $password
-            ]
+                'password' => $password,
+            ],
         ]);
 
         $data = json_decode($response->getBody()->__toString(), true);
@@ -59,21 +64,16 @@ class Client
         $this->apiClient = $this->createClient($data['token']);
     }
 
-    public function __call($name, $arguments)
-    {
-        return call_user_func_array([$this->apiClient, $name], $arguments);
-    }
-
     private function createClient(?string $token): \GuzzleHttp\Client
     {
         $options = [
             'base_uri' => Util::getEnv('API_ENDPOINT', 'https://api.shopware.com'),
-            'timeout' => 5.0
+            'timeout' => 5.0,
         ];
 
         if ($token) {
             $options['headers'] = [
-                'X-Shopware-Token' => $token
+                'X-Shopware-Token' => $token,
             ];
         }
 

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace FroshPluginUploader\Components;
 
@@ -18,18 +18,18 @@ class PluginBinaryUploader
 
     public function upload(string $binaryPath, string $pluginDirectory): void
     {
-        $this->validatePluginRequirements($pluginDirectory);
-
-        $xml = new PluginXmlReader($pluginDirectory . '/plugin.xml');
+        $pluginId = Util::getEnv('PLUGIN_ID');
+        $xml = new PluginReader($pluginDirectory);
+        $xml->validate();
 
         // Upload the binary
-        $response = $this->client->post(sprintf('/plugins/%d/binaries', Util::getEnv('PLUGIN_ID')), [
+        $response = $this->client->post(sprintf('/plugins/%d/binaries', $pluginId), [
             'multipart' => [
                 [
                     'name' => 'file',
-                    'contents' => fopen($binaryPath, 'rb')
-                ]
-            ]
+                    'contents' => fopen($binaryPath, 'rb'),
+                ],
+            ],
         ]);
 
         if ($response->getStatusCode() !== 200) {
@@ -38,30 +38,19 @@ class PluginBinaryUploader
 
         $responseJson = json_decode((string) $response->getBody(), true)[0];
         $responseJson['version'] = $xml->getVersion();
-        $responseJson['changelogs'][0]['text'] = $xml->getNewestChangelog();
-        $responseJson['changelogs'][1]['text'] = $xml->getNewestChangelog();
+        $responseJson['changelogs'][0]['text'] = $xml->getNewestChangelogEnglish();
+        $responseJson['changelogs'][1]['text'] = $xml->getNewestChangelogGerman();
         $responseJson['ionCubeEncrypted'] = false;
         $responseJson['licenseCheckRequired'] = false;
         $responseJson['compatibleSoftwareVersions'] = iterator_to_array($this->getCompatibleShopwareVersions($xml->getMinVersion(), $xml->getMaxVersion()), false);
 
         // Patch the binary changelog and version
-        $this->client->put(sprintf('/plugins/%d/binaries/%d', Util::getEnv('PLUGIN_ID'), $responseJson['id']), [
-            'json' => $responseJson
+        $this->client->put(sprintf('/plugins/%d/binaries/%d', $pluginId, $responseJson['id']), [
+            'json' => $responseJson,
         ]);
 
         // Trigger a review
-        $this->client->post(sprintf('/plugins/%d/reviews', Util::getEnv('PLUGIN_ID')), []);
-    }
-
-    private function validatePluginRequirements(string $pluginDirectory): void
-    {
-        if (!file_exists($pluginDirectory . '/plugin.xml')) {
-            throw new \RuntimeException('Plugin must have a plugin.xml');
-        }
-
-        if (!Util::getEnv('PLUGIN_ID')) {
-            throw new \RuntimeException('The enviroment variable $PLUGIN_ID is required');
-        }
+        $this->client->post(sprintf('/plugins/%d/reviews', $pluginId), []);
     }
 
     private function getCompatibleShopwareVersions(string $minVersion, ?string $maxVersion): \Generator
@@ -69,6 +58,10 @@ class PluginBinaryUploader
         $versions = json_decode((string) $this->client->get('/pluginstatics/all')->getBody(), true)['softwareVersions'];
 
         foreach ($versions as $version) {
+            if (!$version['selectable']) {
+                continue;
+            }
+
             if (version_compare($version['name'], $minVersion, '>=') && ($maxVersion === null || version_compare($version['name'], $maxVersion, '<='))) {
                 $version['children'] = [];
                 yield $version;
