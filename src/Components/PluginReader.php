@@ -87,12 +87,24 @@ class PluginReader
 
     public function getNewestChangelogGerman(): string
     {
-        return $this->xml['changelog'][$this->xml['version']]['de'];
+        $data = $this->xml['changelog'][$this->xml['version']]['de'];
+
+        if (is_array($data)) {
+            $data = implode('', $data);
+        }
+
+        return $data;
     }
 
     public function getNewestChangelogEnglish(): string
     {
-        return $this->xml['changelog'][$this->xml['version']]['en'];
+        $data = $this->xml['changelog'][$this->xml['version']]['en'];
+
+        if (is_array($data)) {
+            $data = implode('', $data);
+        }
+
+        return $data;
     }
 
     public function getMinVersion(): string
