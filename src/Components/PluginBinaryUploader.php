@@ -38,8 +38,8 @@ class PluginBinaryUploader
 
         $responseJson = json_decode((string) $response->getBody(), true)[0];
         $responseJson['version'] = $xml->getVersion();
-        $responseJson['changelogs'][0]['text'] = $xml->getNewestChangelogEnglish();
-        $responseJson['changelogs'][1]['text'] = $xml->getNewestChangelogGerman();
+        $responseJson['changelogs'][0]['text'] = $xml->getNewestChangelogGerman();
+        $responseJson['changelogs'][1]['text'] = $xml->getNewestChangelogEnglish();
         $responseJson['ionCubeEncrypted'] = false;
         $responseJson['licenseCheckRequired'] = false;
         $responseJson['compatibleSoftwareVersions'] = iterator_to_array($this->getCompatibleShopwareVersions($xml->getMinVersion(), $xml->getMaxVersion()), false);
