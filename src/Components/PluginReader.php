@@ -107,6 +107,26 @@ class PluginReader
         return $data;
     }
 
+    public function getLabelGerman(): string
+    {
+        return $this->xml['label']['de'];
+    }
+
+    public function getLabelEnglish(): string
+    {
+        return $this->xml['label']['en'];
+    }
+
+    public function getDescriptionGerman(): string
+    {
+        return $this->xml['description']['de'];
+    }
+
+    public function getDescriptionEnglish(): string
+    {
+        return $this->xml['description']['en'];
+    }
+
     public function getMinVersion(): string
     {
         if (!empty($this->xml['compatibility']['minVersion'])) {

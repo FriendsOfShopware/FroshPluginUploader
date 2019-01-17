@@ -19,6 +19,12 @@ class PluginUpdater
     public function sync(string $folder): void
     {
         $pluginInformation = json_decode((string) $this->client->get(sprintf('/plugins/%d', Util::getEnv('PLUGIN_ID')))->getBody(), true);
+        $pluginFolder = dirname($folder, 2);
+        $plugin = null;
+
+        if (file_exists($pluginFolder . '/plugin.xml')) {
+            $plugin = new PluginReader($pluginFolder);
+        }
 
         foreach ($pluginInformation['infos'] as &$infoTranslation) {
             $language = substr($infoTranslation['locale']['name'], 0, 2);
@@ -33,6 +39,16 @@ class PluginUpdater
                 $infoTranslation['installationManual'] = file_get_contents($languageManualFile);
             } else {
                 $infoTranslation['installationManual'] = '';
+            }
+
+            if ($plugin) {
+                if ($language === 'de') {
+                    $infoTranslation['shortDescription'] = $plugin->getDescriptionGerman();
+                    $infoTranslation['name'] = $plugin->getLabelGerman();
+                } else {
+                    $infoTranslation['shortDescription'] = $plugin->getDescriptionEnglish();
+                    $infoTranslation['name'] = $plugin->getLabelEnglish();
+                }
             }
         }
 
