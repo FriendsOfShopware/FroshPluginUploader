@@ -22,7 +22,8 @@ Requirements of the Plugin
 
 ## plugin:upload
 
-Will upload the zip to the store and triggers a code review
+Will upload the zip to the store and triggers a code review.
+**Plugin version can be deployed multiple times. It will be updated then**
 
 Valid arguments are:
 
