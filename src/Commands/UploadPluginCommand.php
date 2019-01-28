@@ -39,7 +39,7 @@ class UploadPluginCommand extends Command implements ContainerAwareInterface
 
         $zip->extractTo($tmpFolder);
 
-        $this->container->get(PluginBinaryUploader::class)->upload($input->getArgument('zipPath'), $this->getPluginPath($tmpFolder));
+        $this->container->get(PluginBinaryUploader::class)->upload($input->getArgument('zipPath'), Util::getPluginPath($tmpFolder));
 
         $io = new SymfonyStyle($input, $output);
         $io->success('Plugin zip successfully uploaded');
@@ -52,20 +52,5 @@ class UploadPluginCommand extends Command implements ContainerAwareInterface
         if (!file_exists($zipPath)) {
             throw new \RuntimeException(sprintf('Given path "%s" does not exists', $zipPath));
         }
-    }
-
-    private function getPluginPath(string $tmpFolder): string
-    {
-        $dir = current(array_filter(scandir($tmpFolder, SCANDIR_SORT_NONE), function ($value) {
-            return $value[0] !== '.';
-        }));
-
-        $pluginXmlPath = $tmpFolder . '/' . $dir . '/plugin.xml';
-
-        if (!file_exists($pluginXmlPath)) {
-            throw new \RuntimeException('Cannot find a plugin.xml in zip file');
-        }
-
-        return $tmpFolder . '/' . $dir;
     }
 }

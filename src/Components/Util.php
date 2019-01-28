@@ -35,4 +35,19 @@ class Util
 
         return $tmpFolder;
     }
+
+    public static function getPluginPath(string $tmpFolder): string
+    {
+        $dir = current(array_filter(scandir($tmpFolder, SCANDIR_SORT_NONE), function ($value) {
+            return $value[0] !== '.';
+        }));
+
+        $pluginXmlPath = $tmpFolder . '/' . $dir . '/plugin.xml';
+
+        if (!file_exists($pluginXmlPath)) {
+            throw new \RuntimeException('Cannot find a plugin.xml in zip file');
+        }
+
+        return $tmpFolder . '/' . $dir;
+    }
 }
