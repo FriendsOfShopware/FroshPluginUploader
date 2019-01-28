@@ -2,6 +2,7 @@
 
 namespace FroshPluginUploader\Components\SBP;
 
+use FroshPluginUploader\Components\SBP\Components\General;
 use FroshPluginUploader\Components\SBP\Components\Plugin;
 use FroshPluginUploader\Components\SBP\Components\Producer;
 use FroshPluginUploader\Components\Util;
@@ -72,6 +73,7 @@ class Client
 
         $this->components['plugins'] = new Plugin($this);
         $this->components['producer'] = new Producer($this);
+        $this->components['general'] = new General($this);
     }
 
     public function Plugins(): Plugin
@@ -82,6 +84,11 @@ class Client
     public function Producer(): Producer
     {
         return $this->components['producer'];
+    }
+
+    public function General(): General
+    {
+        return $this->components['general'];
     }
 
     private function createClient(?string $token): \GuzzleHttp\Client

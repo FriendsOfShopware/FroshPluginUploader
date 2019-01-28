@@ -3,7 +3,7 @@
   "description": "A tool for deploying shopware plugins to store.shopware.com",
   "license": "MIT",
   "require": {
-    "php": "^7.1",
+    "php": "^7.2",
     "ext-curl": "*",
     "symfony/console": "^4.2",
     "symfony/config": "~4.2",

@@ -28,28 +28,28 @@ class PluginUpdater
             $plugin = new PluginReader($pluginFolder);
         }
 
-        foreach ($pluginInformation['infos'] as &$infoTranslation) {
-            $language = substr($infoTranslation['locale']['name'], 0, 2);
+        foreach ($pluginInformation->infos as &$infoTranslation) {
+            $language = substr($infoTranslation->locale->name, 0, 2);
             $languageFile = $folder . '/' . $language . '.html';
             $languageManualFile = $folder . '/' . $language . '_manual.html';
 
             if (file_exists($languageFile)) {
-                $infoTranslation['description'] = file_get_contents($languageFile);
+                $infoTranslation->description = file_get_contents($languageFile);
             }
 
             if (file_exists($languageManualFile)) {
-                $infoTranslation['installationManual'] = file_get_contents($languageManualFile);
+                $infoTranslation->installationManual = file_get_contents($languageManualFile);
             } else {
-                $infoTranslation['installationManual'] = '';
+                $infoTranslation->installationManual = '';
             }
 
             if ($plugin) {
                 if ($language === 'de') {
-                    $infoTranslation['shortDescription'] = $plugin->getDescriptionGerman();
-                    $infoTranslation['name'] = $plugin->getLabelGerman();
+                    $infoTranslation->shortDescription = $plugin->getDescriptionGerman();
+                    $infoTranslation->name = $plugin->getLabelGerman();
                 } else {
-                    $infoTranslation['shortDescription'] = $plugin->getDescriptionEnglish();
-                    $infoTranslation['name'] = $plugin->getLabelEnglish();
+                    $infoTranslation->shortDescription = $plugin->getDescriptionEnglish();
+                    $infoTranslation->name = $plugin->getLabelEnglish();
                 }
             }
         }
@@ -64,7 +64,7 @@ class PluginUpdater
             $images = $this->client->Plugins()->getImages($pluginId);
 
             foreach ($images as $image) {
-                $this->client->Plugins()->deleteImage($pluginId, $image['id']);
+                $this->client->Plugins()->deleteImage($pluginId, $image->id);
             }
 
             foreach (scandir($imageDir, SCANDIR_SORT_ASCENDING) as $image) {
