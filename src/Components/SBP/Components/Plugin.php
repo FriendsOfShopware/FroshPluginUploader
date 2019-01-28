@@ -3,6 +3,7 @@
 namespace FroshPluginUploader\Components\SBP\Components;
 
 use FroshPluginUploader\Structs\Binary;
+use FroshPluginUploader\Structs\CodeReview\CodeReview;
 use FroshPluginUploader\Structs\Picture;
 
 class Plugin extends AbstractComponent
@@ -104,5 +105,15 @@ class Plugin extends AbstractComponent
     public function hasVersion(array $binaries, string $version): bool
     {
         return (bool) $this->getVersion($binaries, $version);
+    }
+
+    /**
+     * @param int $pluginId
+     * @param int $binaryId
+     * @return CodeReview[]
+     */
+    public function getCodeReviewResults(int $pluginId, int $binaryId): array
+    {
+        return CodeReview::mapList(json_decode((string) $this->client->get(sprintf('/plugins/%d/binaries/%d/checkresults', $pluginId, $binaryId))->getBody()));
     }
 }

@@ -31,6 +31,12 @@ Valid arguments are:
 pathToZip - path to the zip file
 ```
 
+Valid options are:
+
+```
+--skipCodeReviewResult - Skip waiting for Code-Review Result
+```
+
 
 ## plugin:update
 

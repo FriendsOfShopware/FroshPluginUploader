@@ -4,6 +4,8 @@ namespace FroshPluginUploader\Structs;
 
 class Struct
 {
+    public static $mappedFields = [];
+
     /**
      * @param \stdClass $object
      *
@@ -19,7 +21,7 @@ class Struct
                 continue;
             }
 
-            if (isset(static::$mappedFields) && isset(static::$mappedFields[$key])) {
+            if (isset(static::$mappedFields[$key])) {
                 if (is_array($value) && is_object($value[0])) {
                     $data = [];
 

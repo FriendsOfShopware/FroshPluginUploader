@@ -7,6 +7,7 @@ use FroshPluginUploader\Components\Util;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -21,7 +22,8 @@ class UploadPluginCommand extends Command implements ContainerAwareInterface
         $this
             ->setName('plugin:upload')
             ->setDescription('Uploads a plugin binary to store.shopware.com')
-            ->addArgument('zipPath', InputArgument::REQUIRED, 'Path to to the plugin binary');
+            ->addArgument('zipPath', InputArgument::REQUIRED, 'Path to to the plugin binary')
+            ->addOption('skipCodeReviewResult', 's', InputOption::VALUE_NONE, 'Dont wait for code-review result');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): void
@@ -39,10 +41,18 @@ class UploadPluginCommand extends Command implements ContainerAwareInterface
 
         $zip->extractTo($tmpFolder);
 
-        $this->container->get(PluginBinaryUploader::class)->upload($input->getArgument('zipPath'), $this->getPluginPath($tmpFolder));
+        $result = $this->container->get(PluginBinaryUploader::class)->upload($input->getArgument('zipPath'), $this->getPluginPath($tmpFolder), $input->getOption('skipCodeReviewResult'));
 
         $io = new SymfonyStyle($input, $output);
-        $io->success('Plugin zip successfully uploaded');
+
+        if ($result === true) {
+            $io->success('Plugin zip successfully uploaded');
+        } elseif ($result === false) {
+            $io->warning('Code-Review check took to long');
+        } else {
+            $io->error(strip_tags($result));
+        }
+
     }
 
     private function validateInput(InputInterface $input): void

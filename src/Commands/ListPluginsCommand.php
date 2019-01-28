@@ -23,8 +23,7 @@ class ListPluginsCommand extends Command implements ContainerAwareInterface
 
     protected function execute(InputInterface $input, OutputInterface $output): void
     {
-        /** @var Client $client */
-        $client = $this->container->get('FroshPluginUploader\Components\SBP\Client');
+        $client = $this->container->get(Client::class);
 
         $plugins = $client->Producer()->getPlugins($client->Producer()->getProducer()->id);
 
