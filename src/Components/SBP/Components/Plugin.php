@@ -7,12 +7,7 @@ use FroshPluginUploader\Structs\Picture;
 
 class Plugin extends AbstractComponent
 {
-    /**
-     * @param int $pluginId
-     *
-     * @return \FroshPluginUploader\Structs\Plugin
-     */
-    public function get(int $pluginId)
+    public function get(int $pluginId): \FroshPluginUploader\Structs\Plugin
     {
         return \FroshPluginUploader\Structs\Plugin::map(json_decode((string) $this->client->get(sprintf('/plugins/%d', $pluginId))->getBody()));
     }
@@ -27,7 +22,7 @@ class Plugin extends AbstractComponent
      *
      * @return Picture[]
      */
-    public function getImages(int $pluginId)
+    public function getImages(int $pluginId): array
     {
         return Picture::mapList(json_decode((string) $this->client->get(sprintf('/plugins/%d/pictures', $pluginId))->getBody()));
     }
@@ -54,18 +49,12 @@ class Plugin extends AbstractComponent
      *
      * @return Binary[]
      */
-    public function getAvailableBinaries(int $pluginId)
+    public function getAvailableBinaries(int $pluginId): array
     {
         return Binary::mapList(json_decode((string) $this->client->get(sprintf('/plugins/%d/binaries', $pluginId))->getBody()));
     }
 
-    /**
-     * @param string $binaryPath
-     * @param int    $pluginId
-     *
-     * @return Binary
-     */
-    public function createBinaryFile(string $binaryPath, int $pluginId)
+    public function createBinaryFile(string $binaryPath, int $pluginId): Binary
     {
         $response = $this->client->post(sprintf('/plugins/%d/binaries', $pluginId), [
             'multipart' => [
@@ -79,11 +68,6 @@ class Plugin extends AbstractComponent
         return Binary::map(json_decode((string) $response->getBody())[0]);
     }
 
-    /**
-     * @param int    $binaryId
-     * @param string $binaryPath
-     * @param int    $pluginId
-     */
     public function updateBinaryFile(int $binaryId, string $binaryPath, int $pluginId): void
     {
         $this->client->post(sprintf('/plugins/%d/binaries/%d/file', $pluginId, $binaryId), [
@@ -96,10 +80,6 @@ class Plugin extends AbstractComponent
         ]);
     }
 
-    /**
-     * @param Binary $binary
-     * @param int    $pluginId
-     */
     public function updateBinary($binary, int $pluginId): void
     {
         $this->client->put(sprintf('/plugins/%d/binaries/%d', $pluginId, $binary->id), [
@@ -112,13 +92,7 @@ class Plugin extends AbstractComponent
         $this->client->post(sprintf('/plugins/%d/reviews', $pluginId));
     }
 
-    /**
-     * @param Binary[] $binaries
-     * @param string   $version
-     *
-     * @return Binary|null
-     */
-    public function getVersion(array $binaries, string $version)
+    public function getVersion(array $binaries, string $version): ?Binary
     {
         $versionArray = array_values(array_filter($binaries, function (Binary $binary) use ($version) {
             return $binary->version === $version;

@@ -6,10 +6,7 @@ use FroshPluginUploader\Structs\Plugin;
 
 class Producer extends AbstractComponent
 {
-    /**
-     * @return \FroshPluginUploader\Structs\Producer
-     */
-    public function getProducer()
+    public function getProducer(): \FroshPluginUploader\Structs\Producer
     {
         return \FroshPluginUploader\Structs\Producer::map(json_decode((string) $this->client->get('/producers')->getBody())[0]);
     }
@@ -19,7 +16,7 @@ class Producer extends AbstractComponent
      *
      * @return Plugin[]
      */
-    public function getPlugins(int $producerId)
+    public function getPlugins(int $producerId): array
     {
         $query = [
             'limit' => 100,
