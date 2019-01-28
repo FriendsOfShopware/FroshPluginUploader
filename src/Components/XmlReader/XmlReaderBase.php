@@ -1,12 +1,6 @@
 <?php declare(strict_types=1);
-/**
- * Created by PhpStorm.
- * User: shyim
- * Date: 16.01.19
- * Time: 17:53
- */
 
-namespace FroshPluginUploader\XmlReader;
+namespace FroshPluginUploader\Components\XmlReader;
 
 use DOMDocument;
 use DOMElement;

@@ -2,9 +2,9 @@
 
 namespace FroshPluginUploader\Components;
 
+use FroshPluginUploader\Components\XmlReader\XmlConfigReader;
+use FroshPluginUploader\Components\XmlReader\XmlPluginReader;
 use FroshPluginUploader\Exception\PluginValidationException;
-use FroshPluginUploader\XmlReader\XmlConfigReader;
-use FroshPluginUploader\XmlReader\XmlPluginReader;
 
 class PluginReader
 {

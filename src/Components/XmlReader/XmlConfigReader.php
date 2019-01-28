@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace FroshPluginUploader\XmlReader;
+namespace FroshPluginUploader\Components\XmlReader;
 
 use DOMDocument;
 use DOMElement;

@@ -1,0 +1,41 @@
+{
+  "id": 2120,
+  "prefix": "Frosh",
+  "contract": {
+    "id": 2120,
+    "path": "\/producers\/2120\/contracts\/2120"
+  },
+  "name": "FriendsOfShopware",
+  "details": [
+    {
+      "id": 4233,
+      "locale": {
+        "id": 1,
+        "name": "de_DE"
+      },
+      "description": "<div>sdgsgssff<span style=\"font-size: 0.9375rem; font-family: &quot;Brandon Text&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;\">sdgsgssff<\/span><span style=\"font-size: 0.9375rem; font-family: &quot;Brandon Text&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;\">sdgsgssff<\/span><span style=\"font-size: 0.9375rem; font-family: &quot;Brandon Text&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;\">sdgsgssff<\/span><span style=\"font-size: 0.9375rem; font-family: &quot;Brandon Text&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;\">sdgsgssff<\/span><span style=\"font-size: 0.9375rem; font-family: &quot;Brandon Text&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;\">sdgsgssff<\/span><span style=\"font-size: 0.9375rem; font-family: &quot;Brandon Text&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;\">sdgsgssff<\/span><span style=\"font-size: 0.9375rem; font-family: &quot;Brandon Text&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;\">sdgsgssff<\/span><\/div>"
+    },
+    {
+      "id": 4234,
+      "locale": {
+        "id": 2,
+        "name": "en_GB"
+      },
+      "description": "<div>sdgsgssff<span style=\"font-size: 0.9375rem; font-family: &quot;Brandon Text&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;\">sdgsgssff<\/span><span style=\"font-size: 0.9375rem; font-family: &quot;Brandon Text&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;\">sdgsgssff<\/span><span style=\"font-size: 0.9375rem; font-family: &quot;Brandon Text&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;\">sdgsgssff<\/span><span style=\"font-size: 0.9375rem; font-family: &quot;Brandon Text&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;\">sdgsgssff<\/span><\/div>"
+    }
+  ],
+  "website": "",
+  "fixed": true,
+  "hasCancelledContract": false,
+  "iconPath": "\/producers\/2120\/icon",
+  "iconIsSet": false,
+  "shopwareId": "FriendsOfShopware",
+  "userId": 120692,
+  "companyId": 120692,
+  "companyName": "FriendsOfShopware",
+  "saleMail": "foo@bar.com",
+  "supportMail": "foo@bar.com",
+  "ratingMail": "foo@bar.com",
+  "iconUrl": "",
+  "cancelledContract": null
+}
