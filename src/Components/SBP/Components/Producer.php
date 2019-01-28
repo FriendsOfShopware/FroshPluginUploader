@@ -2,14 +2,23 @@
 
 namespace FroshPluginUploader\Components\SBP\Components;
 
+use FroshPluginUploader\Structs\Plugin;
+
 class Producer extends AbstractComponent
 {
-    public function getProducer(): array
+    /**
+     * @return \FroshPluginUploader\Structs\Producer
+     */
+    public function getProducer()
     {
-        return json_decode((string) $this->client->get('/producers')->getBody(), true)[0];
+        return json_decode((string) $this->client->get('/producers')->getBody())[0];
     }
 
-    public function getPlugins(int $producerId): array
+    /**
+     * @param int $producerId
+     * @return Plugin[]
+     */
+    public function getPlugins(int $producerId)
     {
         $query = [
             'limit' => 100,
@@ -19,6 +28,6 @@ class Producer extends AbstractComponent
             'producerId' => $producerId,
         ];
 
-        return json_decode((string) $this->client->get('/plugins?' . http_build_query($query))->getBody(), true);
+        return json_decode((string) $this->client->get('/plugins?' . http_build_query($query))->getBody());
     }
 }

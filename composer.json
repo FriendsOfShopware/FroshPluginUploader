@@ -16,7 +16,8 @@
     "ext-dom": "*"
   },
   "require-dev": {
-    "ext-phar": "*"
+    "ext-phar": "*",
+    "nette/php-generator": "^3.2"
   },
   "autoload": {
     "psr-4": {

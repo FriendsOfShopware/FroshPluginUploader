@@ -26,13 +26,13 @@ class ListPluginsCommand extends Command implements ContainerAwareInterface
         /** @var Client $client */
         $client = $this->container->get('FroshPluginUploader\Components\SBP\Client');
 
-        $plugins = $client->Producer()->getPlugins($client->Producer()->getProducer()['id']);
+        $plugins = $client->Producer()->getPlugins($client->Producer()->getProducer()->id);
 
         $table = new Table($output);
         $table->setHeaders(['Id', 'Name', 'Status', 'Latest Version', 'Last Change']);
 
         foreach ($plugins as $plugin) {
-            $table->addRow([$plugin['id'], $plugin['name'], $plugin['activationStatus']['description'], $plugin['latestBinary']['version'], $plugin['lastChange']]);
+            $table->addRow([$plugin->id, $plugin->name, $plugin->activationStatus->description, $plugin->latestBinary->version, $plugin->lastChange]);
         }
 
         $table->render();
