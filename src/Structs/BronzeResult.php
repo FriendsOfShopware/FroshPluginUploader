@@ -1,10 +1,12 @@
-<?php
+<?php declare(strict_types=1);
+
 namespace FroshPluginUploader\Structs;
 
-/**
- * @property Items[] $items
- * @property boolean $fulfilled
- */
-class BronzeResult
+class BronzeResult extends Struct
 {
+    /** @var Items[] */
+    public $items;
+
+    /** @var bool */
+    public $fulfilled;
 }

@@ -1,14 +1,26 @@
-<?php
+<?php declare(strict_types=1);
+
 namespace FroshPluginUploader\Structs;
 
-/**
- * @property integer $id
- * @property integer $baseValue
- * @property integer $resultValue
- * @property string $comment
- * @property Factors $factors
- * @property string $assessmentDate
- */
-class Assessment
+class Assessment extends Struct
 {
+    /** @var int */
+    public $id;
+
+    /** @var int */
+    public $baseValue;
+
+    /** @var int */
+    public $resultValue;
+
+    /** @var string */
+    public $comment;
+
+    public static $mappedFields = [];
+
+    /** @var Factors */
+    public $factors;
+
+    /** @var string */
+    public $assessmentDate;
 }

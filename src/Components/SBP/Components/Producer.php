@@ -11,11 +11,12 @@ class Producer extends AbstractComponent
      */
     public function getProducer()
     {
-        return json_decode((string) $this->client->get('/producers')->getBody())[0];
+        return \FroshPluginUploader\Structs\Producer::map(json_decode((string) $this->client->get('/producers')->getBody())[0]);
     }
 
     /**
      * @param int $producerId
+     *
      * @return Plugin[]
      */
     public function getPlugins(int $producerId)
@@ -28,6 +29,6 @@ class Producer extends AbstractComponent
             'producerId' => $producerId,
         ];
 
-        return json_decode((string) $this->client->get('/plugins?' . http_build_query($query))->getBody());
+        return Plugin::mapList(json_decode((string) $this->client->get('/plugins?' . http_build_query($query))->getBody()));
     }
 }

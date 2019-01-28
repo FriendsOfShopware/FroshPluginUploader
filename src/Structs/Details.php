@@ -1,11 +1,17 @@
-<?php
+<?php declare(strict_types=1);
+
 namespace FroshPluginUploader\Structs;
 
-/**
- * @property integer $id
- * @property Locale $locale
- * @property string $description
- */
-class Details
+class Details extends Struct
 {
+    /** @var int */
+    public $id;
+
+    public static $mappedFields = [];
+
+    /** @var Locale */
+    public $locale;
+
+    /** @var string */
+    public $description;
 }

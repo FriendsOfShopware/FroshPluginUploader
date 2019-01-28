@@ -1,13 +1,21 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace FroshPluginUploader\Structs;
 
-/**
- * @property integer $id
- * @property string  $remoteLink
- * @property integer $priority
- */
-class Picture
+class Picture extends Struct
 {
+    /**
+     * @var int
+     */
+    public $id;
 
+    /**
+     * @var string
+     */
+    public $remoteLink;
+
+    /**
+     * @var int
+     */
+    public $priority;
 }

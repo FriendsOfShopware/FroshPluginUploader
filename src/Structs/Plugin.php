@@ -1,51 +1,156 @@
-<?php
+<?php declare(strict_types=1);
+
 namespace FroshPluginUploader\Structs;
 
-/**
- * @property integer $id
- * @property Producer $producer
- * @property Type $type
- * @property string $name
- * @property string $code
- * @property string $moduleKey
- * @property LifecycleStatus $lifecycleStatus
- * @property ActivationStatus $activationStatus
- * @property ApprovalStatus $approvalStatus
- * @property StandardLocale $standardLocale
- * @property License $license
- * @property Infos[] $infos
- * @property PriceModels $priceModels
- * @property Variants $variants
- * @property StoreAvailabilities[] $storeAvailabilities
- * @property Categories $categories
- * @property Addons $addons
- * @property boolean $useContactForm
- * @property string $lastChange
- * @property string $creationDate
- * @property boolean $support
- * @property boolean $supportOnlyCommercial
- * @property string $iconPath
- * @property boolean $iconIsSet
- * @property string $examplePageUrl
- * @property Demos $demos
- * @property Localizations $localizations
- * @property LatestBinary $latestBinary
- * @property boolean $responsive
- * @property boolean $automaticBugfixVersionCompatibility
- * @property boolean $hiddenInStore
- * @property Certification $certification
- * @property NULL $productType
- * @property Status $status
- * @property string $statusComment
- * @property NULL $minimumMarketingSoftwareVersion
- * @property boolean $isSubscriptionEnabled
- * @property string $iconUrl
- * @property string $pictures
- * @property boolean $hasPictures
- * @property string $binaries
- * @property string $comments
- * @property string $reviews
- */
-class Plugin
+class Plugin extends Struct
 {
+    /** @var int */
+    public $id;
+
+    public static $mappedFields = [
+        'producer' => 'FroshPluginUploader\Structs\Producer',
+        'type' => 'FroshPluginUploader\Structs\Type',
+        'lifecycleStatus' => 'FroshPluginUploader\Structs\LifecycleStatus',
+        'activationStatus' => 'FroshPluginUploader\Structs\ActivationStatus',
+        'approvalStatus' => 'FroshPluginUploader\Structs\ApprovalStatus',
+        'standardLocale' => 'FroshPluginUploader\Structs\StandardLocale',
+        'license' => 'FroshPluginUploader\Structs\License',
+        'infos' => 'FroshPluginUploader\Structs\Infos',
+        'priceModels' => 'FroshPluginUploader\Structs\PriceModels',
+        'variants' => 'FroshPluginUploader\Structs\Variants',
+        'storeAvailabilities' => 'FroshPluginUploader\Structs\StoreAvailabilities',
+        'categories' => 'FroshPluginUploader\Structs\Categories',
+        'addons' => 'FroshPluginUploader\Structs\Addons',
+        'demos' => 'FroshPluginUploader\Structs\Demos',
+        'localizations' => 'FroshPluginUploader\Structs\Localizations',
+        'latestBinary' => 'FroshPluginUploader\Structs\Binary',
+        'certification' => 'FroshPluginUploader\Structs\Certification',
+        'status' => 'FroshPluginUploader\Structs\Status',
+    ];
+
+    /** @var Producer */
+    public $producer;
+
+    /** @var Type */
+    public $type;
+
+    /** @var string */
+    public $name;
+
+    /** @var string */
+    public $code;
+
+    /** @var string */
+    public $moduleKey;
+
+    /** @var LifecycleStatus */
+    public $lifecycleStatus;
+
+    /** @var ActivationStatus */
+    public $activationStatus;
+
+    /** @var ApprovalStatus */
+    public $approvalStatus;
+
+    /** @var StandardLocale */
+    public $standardLocale;
+
+    /** @var License */
+    public $license;
+
+    /** @var Infos[] */
+    public $infos;
+
+    /** @var PriceModels */
+    public $priceModels;
+
+    /** @var Variants */
+    public $variants;
+
+    /** @var StoreAvailabilities[] */
+    public $storeAvailabilities;
+
+    /** @var Categories */
+    public $categories;
+
+    /** @var Addons */
+    public $addons;
+
+    /** @var bool */
+    public $useContactForm;
+
+    /** @var string */
+    public $lastChange;
+
+    /** @var string */
+    public $creationDate;
+
+    /** @var bool */
+    public $support;
+
+    /** @var bool */
+    public $supportOnlyCommercial;
+
+    /** @var string */
+    public $iconPath;
+
+    /** @var bool */
+    public $iconIsSet;
+
+    /** @var string */
+    public $examplePageUrl;
+
+    /** @var Demos */
+    public $demos;
+
+    /** @var Localizations */
+    public $localizations;
+
+    /** @var Binary */
+    public $latestBinary;
+
+    /** @var bool */
+    public $responsive;
+
+    /** @var bool */
+    public $automaticBugfixVersionCompatibility;
+
+    /** @var bool */
+    public $hiddenInStore;
+
+    /** @var Certification */
+    public $certification;
+
+    /** @var null */
+    public $productType;
+
+    /** @var Status */
+    public $status;
+
+    /** @var string */
+    public $statusComment;
+
+    /** @var null */
+    public $minimumMarketingSoftwareVersion;
+
+    /** @var bool */
+    public $isSubscriptionEnabled;
+
+    /** @var string */
+    public $iconUrl;
+
+    /** @var string */
+    public $pictures;
+
+    /** @var bool */
+    public $hasPictures;
+
+    /** @var string */
+    public $binaries;
+
+    /** @var string */
+    public $comments;
+
+    /** @var string */
+    public $reviews;
 }

@@ -1,6 +1,7 @@
-<?php
+<?php declare(strict_types=1);
+
 namespace FroshPluginUploader\Structs;
 
-class Categories
+class Categories extends Struct
 {
 }

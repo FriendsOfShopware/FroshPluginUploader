@@ -1,9 +1,9 @@
-<?php
+<?php declare(strict_types=1);
+
 namespace FroshPluginUploader\Structs;
 
-/**
- * @property string $name
- */
-class Status
+class Status extends Struct
 {
+    /** @var string */
+    public $name;
 }

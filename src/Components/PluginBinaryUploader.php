@@ -3,7 +3,7 @@
 namespace FroshPluginUploader\Components;
 
 use FroshPluginUploader\Components\SBP\Client;
-use FroshPluginUploader\Structs\LatestBinary;
+use FroshPluginUploader\Structs\Binary;
 
 class PluginBinaryUploader
 {
@@ -46,11 +46,12 @@ class PluginBinaryUploader
     }
 
     /**
-     * @param array $binaries
+     * @param array  $binaries
      * @param string $version
      * @param string $binaryPath
-     * @param int $pluginId
-     * @return LatestBinary
+     * @param int    $pluginId
+     *
+     * @return Binary
      */
     private function updateBinary(array $binaries, string $version, string $binaryPath, int $pluginId)
     {

@@ -2,18 +2,19 @@
 
 namespace FroshPluginUploader\Components\SBP\Components;
 
-use FroshPluginUploader\Structs\LatestBinary;
+use FroshPluginUploader\Structs\Binary;
 use FroshPluginUploader\Structs\Picture;
 
 class Plugin extends AbstractComponent
 {
     /**
      * @param int $pluginId
+     *
      * @return \FroshPluginUploader\Structs\Plugin
      */
     public function get(int $pluginId)
     {
-        return json_decode((string) $this->client->get(sprintf('/plugins/%d', $pluginId))->getBody());
+        return \FroshPluginUploader\Structs\Plugin::map(json_decode((string) $this->client->get(sprintf('/plugins/%d', $pluginId))->getBody()));
     }
 
     public function put(int $pluginId, object $data): void
@@ -23,11 +24,12 @@ class Plugin extends AbstractComponent
 
     /**
      * @param int $pluginId
+     *
      * @return Picture[]
      */
     public function getImages(int $pluginId)
     {
-        return json_decode((string) $this->client->get(sprintf('/plugins/%d/pictures', $pluginId))->getBody());
+        return Picture::mapList(json_decode((string) $this->client->get(sprintf('/plugins/%d/pictures', $pluginId))->getBody()));
     }
 
     public function deleteImage(int $pluginId, int $imageId): void
@@ -49,17 +51,19 @@ class Plugin extends AbstractComponent
 
     /**
      * @param int $pluginId
-     * @return LatestBinary[]
+     *
+     * @return Binary[]
      */
     public function getAvailableBinaries(int $pluginId)
     {
-        return json_decode((string) $this->client->get(sprintf('/plugins/%d/binaries', $pluginId))->getBody());
+        return Binary::mapList(json_decode((string) $this->client->get(sprintf('/plugins/%d/binaries', $pluginId))->getBody()));
     }
 
     /**
      * @param string $binaryPath
-     * @param int $pluginId
-     * @return LatestBinary
+     * @param int    $pluginId
+     *
+     * @return Binary
      */
     public function createBinaryFile(string $binaryPath, int $pluginId)
     {
@@ -72,13 +76,13 @@ class Plugin extends AbstractComponent
             ],
         ]);
 
-        return json_decode((string) $response->getBody())[0];
+        return Binary::map(json_decode((string) $response->getBody())[0]);
     }
 
     /**
-     * @param int $binaryId
+     * @param int    $binaryId
      * @param string $binaryPath
-     * @param int $pluginId
+     * @param int    $pluginId
      */
     public function updateBinaryFile(int $binaryId, string $binaryPath, int $pluginId): void
     {
@@ -93,13 +97,13 @@ class Plugin extends AbstractComponent
     }
 
     /**
-     * @param LatestBinary $binary
-     * @param int          $pluginId
+     * @param Binary $binary
+     * @param int    $pluginId
      */
     public function updateBinary($binary, int $pluginId): void
     {
         $this->client->put(sprintf('/plugins/%d/binaries/%d', $pluginId, $binary->id), [
-            'json' => $binary
+            'json' => $binary,
         ]);
     }
 
@@ -109,13 +113,14 @@ class Plugin extends AbstractComponent
     }
 
     /**
-     * @param LatestBinary[] $binaries
-     * @param string $version
-     * @return LatestBinary|null
+     * @param Binary[] $binaries
+     * @param string   $version
+     *
+     * @return Binary|null
      */
     public function getVersion(array $binaries, string $version)
     {
-        $versionArray = array_values(array_filter($binaries, function ($binary) use ($version) {
+        $versionArray = array_values(array_filter($binaries, function (Binary $binary) use ($version) {
             return $binary->version === $version;
         }));
 

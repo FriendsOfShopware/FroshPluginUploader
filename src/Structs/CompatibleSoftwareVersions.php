@@ -1,15 +1,27 @@
-<?php
+<?php declare(strict_types=1);
+
 namespace FroshPluginUploader\Structs;
 
-/**
- * @property integer $id
- * @property string $name
- * @property integer $parent
- * @property boolean $selectable
- * @property string $major
- * @property NULL $releaseDate
- * @property boolean $public
- */
-class CompatibleSoftwareVersions
+class CompatibleSoftwareVersions extends Struct
 {
+    /** @var int */
+    public $id;
+
+    /** @var string */
+    public $name;
+
+    /** @var int */
+    public $parent;
+
+    /** @var bool */
+    public $selectable;
+
+    /** @var string */
+    public $major;
+
+    /** @var null */
+    public $releaseDate;
+
+    /** @var bool */
+    public $public;
 }

@@ -1,13 +1,21 @@
-<?php
+<?php declare(strict_types=1);
+
 namespace FroshPluginUploader\Structs;
 
-/**
- * @property string $name
- * @property string $label
- * @property boolean $actual
- * @property boolean $expected
- * @property boolean $fulfilled
- */
-class Items
+class Items extends Struct
 {
+    /** @var string */
+    public $name;
+
+    /** @var string */
+    public $label;
+
+    /** @var bool */
+    public $actual;
+
+    /** @var bool */
+    public $expected;
+
+    /** @var bool */
+    public $fulfilled;
 }

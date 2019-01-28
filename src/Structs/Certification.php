@@ -1,14 +1,26 @@
-<?php
+<?php declare(strict_types=1);
+
 namespace FroshPluginUploader\Structs;
 
-/**
- * @property integer $pluginId
- * @property string $creationDate
- * @property BronzeResult $bronzeResult
- * @property SilverResult $silverResult
- * @property GoldResult $goldResult
- * @property Type $type
- */
-class Certification
+class Certification extends Struct
 {
+    /** @var int */
+    public $pluginId;
+
+    /** @var string */
+    public $creationDate;
+
+    public static $mappedFields = [];
+
+    /** @var BronzeResult */
+    public $bronzeResult;
+
+    /** @var SilverResult */
+    public $silverResult;
+
+    /** @var GoldResult */
+    public $goldResult;
+
+    /** @var Type */
+    public $type;
 }

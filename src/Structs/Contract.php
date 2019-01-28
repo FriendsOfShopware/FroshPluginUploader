@@ -1,10 +1,12 @@
-<?php
+<?php declare(strict_types=1);
+
 namespace FroshPluginUploader\Structs;
 
-/**
- * @property integer $id
- * @property string $path
- */
-class Contract
+class Contract extends Struct
 {
+    /** @var int */
+    public $id;
+
+    /** @var string */
+    public $path;
 }

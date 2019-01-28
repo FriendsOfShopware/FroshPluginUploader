@@ -1,10 +1,12 @@
-<?php
+<?php declare(strict_types=1);
+
 namespace FroshPluginUploader\Structs;
 
-/**
- * @property string $name
- * @property string $description
- */
-class Type
+class Type extends Struct
 {
+    /** @var string */
+    public $name;
+
+    /** @var string */
+    public $description;
 }
