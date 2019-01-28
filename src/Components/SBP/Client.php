@@ -2,6 +2,8 @@
 
 namespace FroshPluginUploader\Components\SBP;
 
+use FroshPluginUploader\Components\SBP\Components\Plugin;
+use FroshPluginUploader\Components\SBP\Components\Producer;
 use FroshPluginUploader\Components\Util;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -27,6 +29,11 @@ class Client
      * @var \GuzzleHttp\Client
      */
     private $apiClient;
+
+    /**
+     * @var array
+     */
+    private $components;
 
     public function __construct()
     {
@@ -62,6 +69,19 @@ class Client
         }
 
         $this->apiClient = $this->createClient($data['token']);
+
+        $this->components['plugins'] = new Plugin($this);
+        $this->components['producer'] = new Producer($this);
+    }
+
+    public function Plugins(): Plugin
+    {
+        return $this->components['plugins'];
+    }
+
+    public function Producer(): Producer
+    {
+        return $this->components['producer'];
     }
 
     private function createClient(?string $token): \GuzzleHttp\Client

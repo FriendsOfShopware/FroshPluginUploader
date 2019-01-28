@@ -69,7 +69,7 @@ class PluginBinaryUploader
 
     private function getVersion(array $binaries, string $version): ?array
     {
-        $versionArray = array_values(array_filter($binaries, function($binary) use($version) {
+        $versionArray = array_values(array_filter($binaries, function ($binary) use ($version) {
             return $binary['version'] === $version;
         }));
 
@@ -83,7 +83,8 @@ class PluginBinaryUploader
 
     /**
      * @param string $binaryPath
-     * @param int $pluginId
+     * @param int    $pluginId
+     *
      * @return array
      */
     private function createBinary(string $binaryPath, int $pluginId): array

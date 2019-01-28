@@ -1,0 +1,1699 @@
+[
+  {
+    "id": 7940,
+    "producer": {
+      "id": 2120,
+      "prefix": "Frosh",
+      "contract": {
+        "id": 2120,
+        "path": "\/producers\/2120\/contracts\/2120"
+      },
+      "name": "FriendsOfShopware",
+      "details": [
+        {
+          "id": 4233,
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          },
+          "description": "<div>sdgsgssff<span style=\"font-size: 0.9375rem; font-family: &quot;Brandon Text&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;\">sdgsgssff<\/span><span style=\"font-size: 0.9375rem; font-family: &quot;Brandon Text&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;\">sdgsgssff<\/span><span style=\"font-size: 0.9375rem; font-family: &quot;Brandon Text&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;\">sdgsgssff<\/span><span style=\"font-size: 0.9375rem; font-family: &quot;Brandon Text&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;\">sdgsgssff<\/span><span style=\"font-size: 0.9375rem; font-family: &quot;Brandon Text&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;\">sdgsgssff<\/span><span style=\"font-size: 0.9375rem; font-family: &quot;Brandon Text&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;\">sdgsgssff<\/span><span style=\"font-size: 0.9375rem; font-family: &quot;Brandon Text&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;\">sdgsgssff<\/span><\/div>"
+        },
+        {
+          "id": 4234,
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          },
+          "description": "<div>sdgsgssff<span style=\"font-size: 0.9375rem; font-family: &quot;Brandon Text&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;\">sdgsgssff<\/span><span style=\"font-size: 0.9375rem; font-family: &quot;Brandon Text&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;\">sdgsgssff<\/span><span style=\"font-size: 0.9375rem; font-family: &quot;Brandon Text&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;\">sdgsgssff<\/span><span style=\"font-size: 0.9375rem; font-family: &quot;Brandon Text&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;\">sdgsgssff<\/span><\/div>"
+        }
+      ],
+      "website": "",
+      "fixed": true,
+      "hasCancelledContract": false,
+      "iconPath": "\/producers\/2120\/icon",
+      "iconIsSet": false,
+      "shopwareId": "FriendsOfShopware",
+      "userId": 120692,
+      "companyId": 120692,
+      "companyName": "FriendsOfShopware",
+      "saleMail": "foo@bar.com",
+      "supportMail": "foo@bar.com",
+      "ratingMail": "foo@bar.com",
+      "iconUrl": "",
+      "cancelledContract": null
+    },
+    "type": {
+      "id": 1,
+      "name": "plugin",
+      "description": "normal plugin with price models"
+    },
+    "name": "FroshMailArchive",
+    "code": "Frosh31548930887",
+    "moduleKey": "FroshMailArchive",
+    "lifecycleStatus": {
+      "id": 4,
+      "name": "waitingforapproval",
+      "description": "Waiting for approval"
+    },
+    "activationStatus": {
+      "id": 2,
+      "name": "deactivated",
+      "description": "Deactivated"
+    },
+    "approvalStatus": {
+      "id": 1,
+      "name": "unchecked",
+      "description": "Unchecked"
+    },
+    "standardLocale": {
+      "id": 1,
+      "name": "de_DE"
+    },
+    "license": {
+      "id": 1,
+      "name": "proprietary",
+      "description": "Proprietary licence"
+    },
+    "infos": [
+      {
+        "id": 11533,
+        "locale": {
+          "id": 1,
+          "name": "de_DE"
+        },
+        "name": "",
+        "description": "",
+        "installationManual": "",
+        "shortDescription": "",
+        "tags": [],
+        "videos": []
+      },
+      {
+        "id": 11534,
+        "locale": {
+          "id": 2,
+          "name": "en_GB"
+        },
+        "name": "",
+        "description": "",
+        "installationManual": "",
+        "shortDescription": "",
+        "tags": [],
+        "videos": []
+      }
+    ],
+    "priceModels": [],
+    "variants": [],
+    "storeAvailabilities": [
+      {
+        "id": 1,
+        "name": "German",
+        "description": "only available in german store"
+      },
+      {
+        "id": 2,
+        "name": "International",
+        "description": "available in international store"
+      }
+    ],
+    "categories": [],
+    "addons": [],
+    "useContactForm": false,
+    "lastChange": "2019-01-18 14:04:48",
+    "creationDate": "2019-01-18 13:40:00",
+    "support": true,
+    "supportOnlyCommercial": false,
+    "iconPath": "\/plugins\/7940\/icon",
+    "iconIsSet": false,
+    "examplePageUrl": "",
+    "demos": [],
+    "localizations": [],
+    "latestBinary": {
+      "id": 34616,
+      "name": "FroshMailArchive",
+      "version": "1.0.1",
+      "creationDate": "2019-01-18 13:59:34",
+      "lastChangeDate": "2019-01-18 14:04:47",
+      "status": {
+        "id": 4,
+        "name": "codereviewsucceeded",
+        "description": "Code review succeeded"
+      },
+      "assessment": {
+        "id": 32888,
+        "baseValue": 75,
+        "resultValue": 75,
+        "comment": "",
+        "factors": [],
+        "assessmentDate": "2019-01-18 14:04:48"
+      },
+      "compatibleSoftwareVersions": [
+        {
+          "id": 67,
+          "name": "5.2.0",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 69,
+          "name": "5.2.1",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 78,
+          "name": "5.2.10",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 79,
+          "name": "5.2.11",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 80,
+          "name": "5.2.12",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 81,
+          "name": "5.2.13",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 82,
+          "name": "5.2.14",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 83,
+          "name": "5.2.15",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 84,
+          "name": "5.2.16",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 85,
+          "name": "5.2.17",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 86,
+          "name": "5.2.18",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 87,
+          "name": "5.2.19",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 70,
+          "name": "5.2.2",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 88,
+          "name": "5.2.20",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 89,
+          "name": "5.2.21",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 90,
+          "name": "5.2.22",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 91,
+          "name": "5.2.23",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 92,
+          "name": "5.2.24",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 95,
+          "name": "5.2.25",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 96,
+          "name": "5.2.26",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 97,
+          "name": "5.2.27",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 71,
+          "name": "5.2.3",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 72,
+          "name": "5.2.4",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": {
+            "date": "2016-08-09 22:00:00.000000",
+            "timezone_type": 3,
+            "timezone": "Europe\/Berlin"
+          },
+          "public": true
+        },
+        {
+          "id": 73,
+          "name": "5.2.5",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 74,
+          "name": "5.2.6",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 75,
+          "name": "5.2.7",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 76,
+          "name": "5.2.8",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 77,
+          "name": "5.2.9",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 93,
+          "name": "5.3.0",
+          "parent": 94,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 98,
+          "name": "5.3.1",
+          "parent": 94,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 99,
+          "name": "5.3.2",
+          "parent": 94,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 100,
+          "name": "5.3.3",
+          "parent": 94,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 101,
+          "name": "5.3.4",
+          "parent": 94,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 102,
+          "name": "5.3.5",
+          "parent": 94,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": {
+            "date": "2017-12-04 23:00:00.000000",
+            "timezone_type": 3,
+            "timezone": "Europe\/Berlin"
+          },
+          "public": true
+        },
+        {
+          "id": 103,
+          "name": "5.3.6",
+          "parent": 94,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 104,
+          "name": "5.3.7",
+          "parent": 94,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 106,
+          "name": "5.4.0",
+          "parent": 105,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 107,
+          "name": "5.4.1",
+          "parent": 105,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 108,
+          "name": "5.4.2",
+          "parent": 105,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 109,
+          "name": "5.4.3",
+          "parent": 105,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 112,
+          "name": "5.4.4",
+          "parent": 105,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 113,
+          "name": "5.4.5",
+          "parent": 105,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 114,
+          "name": "5.4.6",
+          "parent": 105,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 110,
+          "name": "5.5.0",
+          "parent": 111,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 115,
+          "name": "5.5.1",
+          "parent": 111,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 116,
+          "name": "5.5.4",
+          "parent": 111,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        }
+      ],
+      "changelogs": [
+        {
+          "id": 67641,
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          },
+          "text": "Verbesserte Vorschau"
+        },
+        {
+          "id": 67642,
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          },
+          "text": "Optimize preview"
+        }
+      ],
+      "ionCubeEncrypted": false,
+      "licenseCheckRequired": false
+    },
+    "responsive": false,
+    "automaticBugfixVersionCompatibility": false,
+    "hiddenInStore": false,
+    "certification": {
+      "pluginId": 7940,
+      "creationDate": "2019-01-18 13:40:00",
+      "bronzeResult": {
+        "items": [
+          {
+            "name": "producerSinceDays",
+            "label": "Hersteller seit (in Tagen)",
+            "actual": 34,
+            "expected": 180,
+            "fulfilled": false
+          },
+          {
+            "name": "compatibleWithNewestSoftwasreVersion",
+            "label": "Kompatibel mit neuester Shopware-Version",
+            "actual": "0.0.0",
+            "expected": "5.5.4",
+            "fulfilled": false
+          },
+          {
+            "name": "updatesCounter",
+            "label": "Zur Verf\u00fcgung gestellte Updates",
+            "actual": 0,
+            "expected": 1,
+            "fulfilled": false
+          },
+          {
+            "name": "codeReviewSucceeded",
+            "label": "CodeReview ist bei allen Binaries erfolgreich",
+            "actual": false,
+            "expected": true,
+            "fulfilled": false
+          },
+          {
+            "name": "salesCounter",
+            "label": "Pluginverk\u00e4ufe",
+            "actual": "0",
+            "expected": 25,
+            "fulfilled": false
+          },
+          {
+            "name": "ratingAverage",
+            "label": "Durchschnittsbewertung f\u00fcr Plugin",
+            "actual": 0,
+            "expected": 4,
+            "fulfilled": false
+          },
+          {
+            "name": "documentationAvailable",
+            "label": "Dokumentation steht zur Verf\u00fcgung",
+            "actual": false,
+            "expected": true,
+            "fulfilled": false
+          }
+        ],
+        "fulfilled": false
+      },
+      "silverResult": {
+        "items": [
+          {
+            "name": "bronzeIsValid",
+            "label": "Bronze bestanden",
+            "actual": false,
+            "expected": true,
+            "fulfilled": false
+          },
+          {
+            "name": "salesCounter",
+            "label": "Pluginverk\u00e4ufe",
+            "actual": "0",
+            "expected": 75,
+            "fulfilled": false
+          },
+          {
+            "name": "producerSinceDays",
+            "label": "Hersteller seit (in Tagen)",
+            "actual": 34,
+            "expected": 365,
+            "fulfilled": false
+          },
+          {
+            "name": "updatesCounter",
+            "label": "Zur Verf\u00fcgung gestellte Updates",
+            "actual": 0,
+            "expected": 2,
+            "fulfilled": false
+          },
+          {
+            "name": "ratingCounter",
+            "label": "Anzahl Bewertungen",
+            "actual": "0",
+            "expected": 5,
+            "fulfilled": false
+          },
+          {
+            "name": "ratingAverage",
+            "label": "Durchschnittsbewertung f\u00fcr Plugin",
+            "actual": 0,
+            "expected": 4,
+            "fulfilled": false
+          },
+          {
+            "name": "overallRatingAverage",
+            "label": "Durchschnittsbewertung f\u00fcr alle Plugin",
+            "actual": 0,
+            "expected": 3.5,
+            "fulfilled": false
+          },
+          {
+            "name": "pluginCounter",
+            "label": "Angebotene Plugins",
+            "actual": "2",
+            "expected": 3,
+            "fulfilled": false
+          },
+          {
+            "name": "certifiedDeveloper",
+            "label": "Zertifizierter Entwickler (oder 10 Plugins)",
+            "actual": false,
+            "expected": true,
+            "fulfilled": false
+          }
+        ],
+        "fulfilled": false
+      },
+      "goldResult": {
+        "items": [
+          {
+            "name": "silverIsValid",
+            "label": "Silber bestanden",
+            "actual": false,
+            "expected": true,
+            "fulfilled": false
+          },
+          {
+            "name": "producerSinceDays",
+            "label": "Hersteller seit (in Tagen)",
+            "actual": 34,
+            "expected": 540,
+            "fulfilled": false
+          },
+          {
+            "name": "pluginCounter",
+            "label": "Angebotene Plugins",
+            "actual": "2",
+            "expected": 5,
+            "fulfilled": false
+          },
+          {
+            "name": "updatesCounter",
+            "label": "Zur Verf\u00fcgung gestellte Updates",
+            "actual": 0,
+            "expected": 4,
+            "fulfilled": false
+          },
+          {
+            "name": "salesCounter",
+            "label": "Pluginverk\u00e4ufe",
+            "actual": "0",
+            "expected": 115,
+            "fulfilled": false
+          },
+          {
+            "name": "ratingCounter",
+            "label": "Anzahl Bewertungen",
+            "actual": "0",
+            "expected": 10,
+            "fulfilled": false
+          },
+          {
+            "name": "overallRatingAverage",
+            "label": "Durchschnittsbewertung f\u00fcr alle Plugin",
+            "actual": 0,
+            "expected": 4,
+            "fulfilled": false
+          },
+          {
+            "name": "ratingAverage",
+            "label": "Durchschnittsbewertung f\u00fcr Plugin",
+            "actual": 0,
+            "expected": 4,
+            "fulfilled": false
+          },
+          {
+            "name": "isAdvancedDeveloper",
+            "label": "Advanced Developer (oder mehr als 20 Plugins und 2 Jahre Hersteller)",
+            "actual": false,
+            "expected": true,
+            "fulfilled": false
+          }
+        ],
+        "fulfilled": false
+      },
+      "type": {
+        "name": "none",
+        "description": "Nichts"
+      }
+    },
+    "productType": null,
+    "status": {
+      "name": "waitingforapproval"
+    },
+    "statusComment": "",
+    "minimumMarketingSoftwareVersion": null,
+    "isSubscriptionEnabled": false,
+    "iconUrl": "",
+    "pictures": "\/plugins\/7940\/pictures",
+    "hasPictures": false,
+    "binaries": "\/plugins\/7940\/binaries",
+    "comments": "\/plugins\/7940\/comments",
+    "reviews": "\/plugins\/7940\/reviews"
+  },
+  {
+    "id": 7926,
+    "producer": {
+      "id": 2120,
+      "prefix": "Frosh",
+      "contract": {
+        "id": 2120,
+        "path": "\/producers\/2120\/contracts\/2120"
+      },
+      "name": "FriendsOfShopware",
+      "details": [
+        {
+          "id": 4233,
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          },
+          "description": "<div>sdgsgssff<span style=\"font-size: 0.9375rem; font-family: &quot;Brandon Text&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;\">sdgsgssff<\/span><span style=\"font-size: 0.9375rem; font-family: &quot;Brandon Text&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;\">sdgsgssff<\/span><span style=\"font-size: 0.9375rem; font-family: &quot;Brandon Text&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;\">sdgsgssff<\/span><span style=\"font-size: 0.9375rem; font-family: &quot;Brandon Text&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;\">sdgsgssff<\/span><span style=\"font-size: 0.9375rem; font-family: &quot;Brandon Text&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;\">sdgsgssff<\/span><span style=\"font-size: 0.9375rem; font-family: &quot;Brandon Text&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;\">sdgsgssff<\/span><span style=\"font-size: 0.9375rem; font-family: &quot;Brandon Text&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;\">sdgsgssff<\/span><\/div>"
+        },
+        {
+          "id": 4234,
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          },
+          "description": "<div>sdgsgssff<span style=\"font-size: 0.9375rem; font-family: &quot;Brandon Text&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;\">sdgsgssff<\/span><span style=\"font-size: 0.9375rem; font-family: &quot;Brandon Text&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;\">sdgsgssff<\/span><span style=\"font-size: 0.9375rem; font-family: &quot;Brandon Text&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;\">sdgsgssff<\/span><span style=\"font-size: 0.9375rem; font-family: &quot;Brandon Text&quot;, -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;\">sdgsgssff<\/span><\/div>"
+        }
+      ],
+      "website": "",
+      "fixed": true,
+      "hasCancelledContract": false,
+      "iconPath": "\/producers\/2120\/icon",
+      "iconIsSet": false,
+      "shopwareId": "FriendsOfShopware",
+      "userId": 120692,
+      "companyId": 120692,
+      "companyName": "FriendsOfShopware",
+      "saleMail": "foo@bar.com",
+      "supportMail": "foo@bar.com",
+      "ratingMail": "foo@bar.com",
+      "iconUrl": "",
+      "cancelledContract": null
+    },
+    "type": {
+      "id": 1,
+      "name": "plugin",
+      "description": "normal plugin with price models"
+    },
+    "name": "FroshVariantSwitch",
+    "code": "Frosh78716386787",
+    "moduleKey": "FroshVariantSwitch",
+    "lifecycleStatus": {
+      "id": 6,
+      "name": "rejected",
+      "description": "Rejected"
+    },
+    "activationStatus": {
+      "id": 1,
+      "name": "activated",
+      "description": "Activated"
+    },
+    "approvalStatus": {
+      "id": 2,
+      "name": "approved",
+      "description": "Approveed"
+    },
+    "standardLocale": {
+      "id": 1,
+      "name": "de_DE"
+    },
+    "license": {
+      "id": 2,
+      "name": "mit",
+      "description": "MIT licence"
+    },
+    "infos": [
+      {
+        "id": 11507,
+        "locale": {
+          "id": 1,
+          "name": "de_DE"
+        },
+        "name": "FroshVariantSwitch",
+        "description": "<p>\n    Mit diesem Plugin erhalten Sie ein einfaches durchsuchbares Archiv f\u00fcr E-Mails, die aus Shopware versendet werden.<br>\n    Die E-Mails sind \u00fcber den Men\u00fcpunkt \"Einstellungen\" -> \"MailArchive\" auffindbar.\n<\/p>\n\n<p>\n    <a href=\"https:\/\/github.com\/FriendsOfShopware\/FroshMailArchive\" target=\"_blank\"><img src=\"https:\/\/img.shields.io\/badge\/Github-FroshMailArchive-green.svg\"><\/a>\n    Dieses Plugin wird von <a href=\"https:\/\/store.shopware.com\/friends-of-shopware.html\" target=\"_blank\">@FriendsOfShopware<\/a> entwickelt.\n    Maintainer dieses Plugins ist: <a href=\"https:\/\/github.com\/tinect\" target=\"_blank\">Sebastian K\u00f6nig<\/a>\n<\/p>\n\n<p>\n    Bei Fragen \/ Fehlern bitte ein <a href=\"https:\/\/github.com\/FriendsOfShopware\/FroshMailArchive\/issues\/new\" target=\"_blank\">Github Issue<\/a> erstellen\n<\/p>",
+        "installationManual": "",
+        "shortDescription": "FroshVariantSwitch",
+        "tags": [],
+        "videos": []
+      },
+      {
+        "id": 11508,
+        "locale": {
+          "id": 2,
+          "name": "en_GB"
+        },
+        "name": "",
+        "description": "<p>\n    This plugins adds an MailArchive to your Shopware-Backend stored in Database.\n<\/p>\n\n<p>\n    <a href=\"https:\/\/github.com\/FriendsOfShopware\/FroshMailArchive\" target=\"_blank\"><img src=\"https:\/\/img.shields.io\/badge\/Github-FroshMailArchive-green.svg\"><\/a>\n    This plugin is part of <a href=\"https:\/\/store.shopware.com\/en\/friends-of-shopware.html\" target=\"_blank\">@FriendsOfShopware<\/a>.\n    Maintainer from the plugin is: <a href=\"https:\/\/github.com\/tinect\" target=\"_blank\">Sebastian K\u00f6nig<\/a>\n<\/p>\n\n<p>\n    For questions or bugs please create a <a href=\"https:\/\/github.com\/FriendsOfShopware\/FroshMailArchive\/issues\/new\" target=\"_blank\">Github Issue<\/a>\n<\/p>",
+        "installationManual": "",
+        "shortDescription": "",
+        "tags": [],
+        "videos": []
+      }
+    ],
+    "priceModels": [
+      {
+        "id": 154162,
+        "type": "free",
+        "bookingKey": "Frosh78716386787",
+        "bookingText": "FroshVariantSwitch"
+      }
+    ],
+    "variants": [
+      {
+        "id": 72575,
+        "priceModel": {
+          "id": 154162,
+          "type": "free",
+          "bookingKey": "Frosh78716386787",
+          "bookingText": "FroshVariantSwitch"
+        },
+        "name": "free",
+        "description": ""
+      }
+    ],
+    "storeAvailabilities": [
+      {
+        "id": 1,
+        "name": "German",
+        "description": "only available in german store"
+      }
+    ],
+    "categories": [
+      {
+        "id": 62,
+        "name": "Einkaufswelten",
+        "description": "",
+        "parent": 69,
+        "position": 0,
+        "public": true,
+        "visible": true,
+        "suggested": true,
+        "applicable": true,
+        "details": [
+          {
+            "id": 239,
+            "name": "Einkaufswelten",
+            "description": "",
+            "locale": {
+              "id": 1,
+              "name": "de_DE"
+            }
+          },
+          {
+            "id": 240,
+            "name": "Shopping Worlds",
+            "description": "",
+            "locale": {
+              "id": 2,
+              "name": "en_GB"
+            }
+          }
+        ],
+        "active": true
+      }
+    ],
+    "addons": [],
+    "useContactForm": false,
+    "lastChange": "2019-01-22 11:50:03",
+    "creationDate": "2018-12-14 16:01:02",
+    "support": false,
+    "supportOnlyCommercial": false,
+    "iconPath": "\/plugins\/7926\/icon",
+    "iconIsSet": true,
+    "examplePageUrl": "",
+    "demos": [],
+    "localizations": [
+      {
+        "id": 1,
+        "name": "de_DE"
+      }
+    ],
+    "latestBinary": {
+      "id": 34615,
+      "name": "FroshVariantSwitch",
+      "version": "1.0.1",
+      "creationDate": "2019-01-18 13:58:44",
+      "lastChangeDate": "2019-01-18 13:58:44",
+      "status": {
+        "id": 3,
+        "name": "codereviewfailed",
+        "description": "Code review failed"
+      },
+      "assessment": false,
+      "compatibleSoftwareVersions": [
+        {
+          "id": 67,
+          "name": "5.2.0",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 69,
+          "name": "5.2.1",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 78,
+          "name": "5.2.10",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 79,
+          "name": "5.2.11",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 80,
+          "name": "5.2.12",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 81,
+          "name": "5.2.13",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 82,
+          "name": "5.2.14",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 83,
+          "name": "5.2.15",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 84,
+          "name": "5.2.16",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 85,
+          "name": "5.2.17",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 86,
+          "name": "5.2.18",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 87,
+          "name": "5.2.19",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 70,
+          "name": "5.2.2",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 88,
+          "name": "5.2.20",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 89,
+          "name": "5.2.21",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 90,
+          "name": "5.2.22",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 91,
+          "name": "5.2.23",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 92,
+          "name": "5.2.24",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 95,
+          "name": "5.2.25",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 96,
+          "name": "5.2.26",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 97,
+          "name": "5.2.27",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 71,
+          "name": "5.2.3",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 72,
+          "name": "5.2.4",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": {
+            "date": "2016-08-09 22:00:00.000000",
+            "timezone_type": 3,
+            "timezone": "Europe\/Berlin"
+          },
+          "public": true
+        },
+        {
+          "id": 73,
+          "name": "5.2.5",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 74,
+          "name": "5.2.6",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 75,
+          "name": "5.2.7",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 76,
+          "name": "5.2.8",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 77,
+          "name": "5.2.9",
+          "parent": 66,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 93,
+          "name": "5.3.0",
+          "parent": 94,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 98,
+          "name": "5.3.1",
+          "parent": 94,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 99,
+          "name": "5.3.2",
+          "parent": 94,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 100,
+          "name": "5.3.3",
+          "parent": 94,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 101,
+          "name": "5.3.4",
+          "parent": 94,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 102,
+          "name": "5.3.5",
+          "parent": 94,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": {
+            "date": "2017-12-04 23:00:00.000000",
+            "timezone_type": 3,
+            "timezone": "Europe\/Berlin"
+          },
+          "public": true
+        },
+        {
+          "id": 103,
+          "name": "5.3.6",
+          "parent": 94,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 104,
+          "name": "5.3.7",
+          "parent": 94,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 106,
+          "name": "5.4.0",
+          "parent": 105,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 107,
+          "name": "5.4.1",
+          "parent": 105,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 108,
+          "name": "5.4.2",
+          "parent": 105,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 109,
+          "name": "5.4.3",
+          "parent": 105,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 112,
+          "name": "5.4.4",
+          "parent": 105,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 113,
+          "name": "5.4.5",
+          "parent": 105,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 114,
+          "name": "5.4.6",
+          "parent": 105,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 110,
+          "name": "5.5.0",
+          "parent": 111,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 115,
+          "name": "5.5.1",
+          "parent": 111,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        },
+        {
+          "id": 116,
+          "name": "5.5.4",
+          "parent": 111,
+          "selectable": true,
+          "major": "Shopware 5",
+          "releaseDate": null,
+          "public": true
+        }
+      ],
+      "changelogs": [
+        {
+          "id": 67639,
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          },
+          "text": "Verbesserte Vorschau"
+        },
+        {
+          "id": 67640,
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          },
+          "text": "Optimize preview"
+        }
+      ],
+      "ionCubeEncrypted": false,
+      "licenseCheckRequired": false
+    },
+    "responsive": false,
+    "automaticBugfixVersionCompatibility": false,
+    "hiddenInStore": false,
+    "certification": {
+      "pluginId": 7926,
+      "creationDate": "2018-12-14 16:01:02",
+      "bronzeResult": {
+        "items": [
+          {
+            "name": "producerSinceDays",
+            "label": "Hersteller seit (in Tagen)",
+            "actual": 0,
+            "expected": 180,
+            "fulfilled": false
+          },
+          {
+            "name": "compatibleWithNewestSoftwasreVersion",
+            "label": "Kompatibel mit neuester Shopware-Version",
+            "actual": "0.0.0",
+            "expected": "5.5.1",
+            "fulfilled": false
+          },
+          {
+            "name": "updatesCounter",
+            "label": "Zur Verf\u00fcgung gestellte Updates",
+            "actual": 0,
+            "expected": 1,
+            "fulfilled": false
+          },
+          {
+            "name": "codeReviewSucceeded",
+            "label": "CodeReview ist bei allen Binaries erfolgreich",
+            "actual": false,
+            "expected": true,
+            "fulfilled": false
+          },
+          {
+            "name": "salesCounter",
+            "label": "Pluginverk\u00e4ufe",
+            "actual": "0",
+            "expected": 25,
+            "fulfilled": false
+          },
+          {
+            "name": "ratingAverage",
+            "label": "Durchschnittsbewertung f\u00fcr Plugin",
+            "actual": 0,
+            "expected": 4,
+            "fulfilled": false
+          },
+          {
+            "name": "documentationAvailable",
+            "label": "Dokumentation steht zur Verf\u00fcgung",
+            "actual": false,
+            "expected": true,
+            "fulfilled": false
+          }
+        ],
+        "fulfilled": false
+      },
+      "silverResult": {
+        "items": [
+          {
+            "name": "bronzeIsValid",
+            "label": "Bronze bestanden",
+            "actual": false,
+            "expected": true,
+            "fulfilled": false
+          },
+          {
+            "name": "salesCounter",
+            "label": "Pluginverk\u00e4ufe",
+            "actual": "0",
+            "expected": 75,
+            "fulfilled": false
+          },
+          {
+            "name": "producerSinceDays",
+            "label": "Hersteller seit (in Tagen)",
+            "actual": 0,
+            "expected": 365,
+            "fulfilled": false
+          },
+          {
+            "name": "updatesCounter",
+            "label": "Zur Verf\u00fcgung gestellte Updates",
+            "actual": 0,
+            "expected": 2,
+            "fulfilled": false
+          },
+          {
+            "name": "ratingCounter",
+            "label": "Anzahl Bewertungen",
+            "actual": "0",
+            "expected": 5,
+            "fulfilled": false
+          },
+          {
+            "name": "ratingAverage",
+            "label": "Durchschnittsbewertung f\u00fcr Plugin",
+            "actual": 0,
+            "expected": 4,
+            "fulfilled": false
+          },
+          {
+            "name": "overallRatingAverage",
+            "label": "Durchschnittsbewertung f\u00fcr alle Plugin",
+            "actual": 0,
+            "expected": 3.5,
+            "fulfilled": false
+          },
+          {
+            "name": "pluginCounter",
+            "label": "Angebotene Plugins",
+            "actual": "1",
+            "expected": 3,
+            "fulfilled": false
+          },
+          {
+            "name": "certifiedDeveloper",
+            "label": "Zertifizierter Entwickler (oder 10 Plugins)",
+            "actual": false,
+            "expected": true,
+            "fulfilled": false
+          }
+        ],
+        "fulfilled": false
+      },
+      "goldResult": {
+        "items": [
+          {
+            "name": "silverIsValid",
+            "label": "Silber bestanden",
+            "actual": false,
+            "expected": true,
+            "fulfilled": false
+          },
+          {
+            "name": "producerSinceDays",
+            "label": "Hersteller seit (in Tagen)",
+            "actual": 0,
+            "expected": 540,
+            "fulfilled": false
+          },
+          {
+            "name": "pluginCounter",
+            "label": "Angebotene Plugins",
+            "actual": "1",
+            "expected": 5,
+            "fulfilled": false
+          },
+          {
+            "name": "updatesCounter",
+            "label": "Zur Verf\u00fcgung gestellte Updates",
+            "actual": 0,
+            "expected": 4,
+            "fulfilled": false
+          },
+          {
+            "name": "salesCounter",
+            "label": "Pluginverk\u00e4ufe",
+            "actual": "0",
+            "expected": 115,
+            "fulfilled": false
+          },
+          {
+            "name": "ratingCounter",
+            "label": "Anzahl Bewertungen",
+            "actual": "0",
+            "expected": 10,
+            "fulfilled": false
+          },
+          {
+            "name": "overallRatingAverage",
+            "label": "Durchschnittsbewertung f\u00fcr alle Plugin",
+            "actual": 0,
+            "expected": 4,
+            "fulfilled": false
+          },
+          {
+            "name": "ratingAverage",
+            "label": "Durchschnittsbewertung f\u00fcr Plugin",
+            "actual": 0,
+            "expected": 4,
+            "fulfilled": false
+          },
+          {
+            "name": "isAdvancedDeveloper",
+            "label": "Advanced Developer (oder mehr als 20 Plugins und 2 Jahre Hersteller)",
+            "actual": false,
+            "expected": true,
+            "fulfilled": false
+          }
+        ],
+        "fulfilled": false
+      },
+      "type": {
+        "name": "none",
+        "description": "Nichts"
+      }
+    },
+    "productType": {
+      "id": 1,
+      "name": "extension",
+      "description": "",
+      "mainCategory": {
+        "id": 69,
+        "name": "Extensions",
+        "description": "",
+        "parent": false,
+        "position": 0,
+        "public": true,
+        "visible": true,
+        "suggested": true,
+        "applicable": false,
+        "details": [
+          {
+            "id": 253,
+            "name": "Erweiterungen",
+            "description": "",
+            "locale": {
+              "id": 1,
+              "name": "de_DE"
+            }
+          },
+          {
+            "id": 254,
+            "name": "Extensions",
+            "description": "",
+            "locale": {
+              "id": 2,
+              "name": "en_GB"
+            }
+          }
+        ],
+        "active": true
+      }
+    },
+    "status": {
+      "name": "instore"
+    },
+    "statusComment": "",
+    "minimumMarketingSoftwareVersion": null,
+    "isSubscriptionEnabled": false,
+    "iconUrl": "https:\/\/sbp-testingmachine.s3.eu-west-1.amazonaws.com\/phpNP89Fn",
+    "pictures": "\/plugins\/7926\/pictures",
+    "hasPictures": true,
+    "binaries": "\/plugins\/7926\/binaries",
+    "comments": "\/plugins\/7926\/comments",
+    "reviews": "\/plugins\/7926\/reviews"
+  }
+]

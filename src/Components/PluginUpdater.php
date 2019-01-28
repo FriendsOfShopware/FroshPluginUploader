@@ -18,7 +18,9 @@ class PluginUpdater
 
     public function sync(string $folder): void
     {
-        $pluginInformation = json_decode((string) $this->client->get(sprintf('/plugins/%d', Util::getEnv('PLUGIN_ID')))->getBody(), true);
+        $pluginId = (int) Util::getEnv('PLUGIN_ID');
+
+        $pluginInformation = $this->client->Plugins()->get($pluginId);
         $pluginFolder = dirname($folder, 2);
         $plugin = null;
 
@@ -54,15 +56,15 @@ class PluginUpdater
 
         unset($infoTranslation);
 
-        $this->client->put(sprintf('/plugins/%d', Util::getEnv('PLUGIN_ID')), ['json' => $pluginInformation]);
+        $this->client->Plugins()->put($pluginId, $pluginInformation);
 
         $imageDir = $folder . '/images';
 
         if (file_exists($imageDir)) {
-            $images = json_decode((string) $this->client->get(sprintf('/plugins/%d/pictures', Util::getEnv('PLUGIN_ID')))->getBody(), true);
+            $images = $this->client->Plugins()->getImages($pluginId);
 
             foreach ($images as $image) {
-                $this->client->delete(sprintf('/plugins/%d/pictures/%d', Util::getEnv('PLUGIN_ID'), $image['id']));
+                $this->client->Plugins()->deleteImage($pluginId, $image['id']);
             }
 
             foreach (scandir($imageDir, SCANDIR_SORT_ASCENDING) as $image) {
@@ -70,14 +72,7 @@ class PluginUpdater
                     continue;
                 }
 
-                $this->client->post(sprintf('/plugins/%d/pictures', Util::getEnv('PLUGIN_ID')), [
-                    'multipart' => [
-                        [
-                            'name' => 'file',
-                            'contents' => fopen($imageDir . '/' . $image, 'rb'),
-                        ],
-                    ],
-                ]);
+                $this->client->Plugins()->addImage($pluginId, $imageDir . '/' . $image);
             }
         }
     }
