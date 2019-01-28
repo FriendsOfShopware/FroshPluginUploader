@@ -3,6 +3,7 @@
 namespace FroshPluginUploader\Commands;
 
 use FroshPluginUploader\Components\PluginReader;
+use FroshPluginUploader\Components\SBP\Client;
 use FroshPluginUploader\Components\Util;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -37,6 +38,8 @@ class ValidatePluginCommand extends Command implements ContainerAwareInterface
         $reader = new PluginReader($this->getPluginPath($tmpFolder));
         $reader->validate();
 
+        $this->validateTechnicalName($tmpFolder);
+
         $io = new SymfonyStyle($input, $output);
         $io->success('Plugin has been successfully validated');
     }
@@ -63,5 +66,21 @@ class ValidatePluginCommand extends Command implements ContainerAwareInterface
         }
 
         return $tmpFolder . '/' . $dir;
+    }
+
+    private function validateTechnicalName(string $tmpFolder)
+    {
+        $pluginId = (int) Util::getEnv('PLUGIN_ID');
+
+        if (empty($pluginId)) {
+            return;
+        }
+
+        $plugin = $this->container->get(Client::class)->Plugins()->get($pluginId);
+        $zipPluginName = Util::getPluginName($tmpFolder);
+
+        if ($plugin->moduleKey !== $zipPluginName) {
+            throw new \RuntimeException(sprintf('Plugin name in zip does not match account plugin technical name, Account: %s, Zip: %s', $plugin->moduleKey, $zipPluginName));
+        }
     }
 }

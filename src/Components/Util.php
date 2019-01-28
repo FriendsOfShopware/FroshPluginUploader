@@ -35,4 +35,11 @@ class Util
 
         return $tmpFolder;
     }
+
+    public static function getPluginName(string $tmpFolder)
+    {
+        return current(array_filter(scandir($tmpFolder, SCANDIR_SORT_NONE), function ($value) {
+            return $value[0] !== '.';
+        }));
+    }
 }
