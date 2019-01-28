@@ -57,3 +57,7 @@ Valid arguments are:
 ```
 pathToZip - path to the zip file
 ```
+
+## plugin:list
+
+Shows all plugins in the account with the id, name, latest version and last changed.

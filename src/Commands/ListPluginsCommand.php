@@ -29,10 +29,10 @@ class ListPluginsCommand extends Command implements ContainerAwareInterface
         $plugins = $client->Producer()->getPlugins($client->Producer()->getProducer()['id']);
 
         $table = new Table($output);
-        $table->setHeaders(['Name', 'Status', 'Latest Version', 'Last Change']);
+        $table->setHeaders(['Id', 'Name', 'Status', 'Latest Version', 'Last Change']);
 
         foreach ($plugins as $plugin) {
-            $table->addRow([$plugin['name'], $plugin['activationStatus']['description'], $plugin['latestBinary']['version'], $plugin['lastChange']]);
+            $table->addRow([$plugin['id'], $plugin['name'], $plugin['activationStatus']['description'], $plugin['latestBinary']['version'], $plugin['lastChange']]);
         }
 
         $table->render();
