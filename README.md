@@ -67,3 +67,7 @@ pathToZip - path to the zip file
 ## plugin:list
 
 Shows all plugins in the account with the id, name, latest version and last changed.
+
+## plugin:download:resources
+
+Downloads all store resources from store to the given folder

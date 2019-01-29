@@ -21,9 +21,14 @@
             <tag name="console.command"/>
         </service>
 
+        <service id="FroshPluginUploader\Commands\DownloadPluginResourcesCommand" class="FroshPluginUploader\Commands\DownloadPluginResourcesCommand">
+            <tag name="console.command"/>
+        </service>
+
 
         <service id="FroshPluginUploader\Components\SBP\Client"/>
         <service id="FroshPluginUploader\Components\PluginBinaryUploader"/>
         <service id="FroshPluginUploader\Components\PluginUpdater"/>
+        <service id="FroshPluginUploader\Components\ResourcesDownloader"/>
     </services>
 </container>
