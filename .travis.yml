@@ -14,6 +14,7 @@ install:
   - wget https://github.com/humbug/box/releases/download/3.4.0/box.phar
 
 script:
+  - if [ -n "$TRAVIS_TAG" ]; then sed -i -e "s/__VERSION__/$TRAVIS_TAG/g" src/Application.php; else sed -i -e "s/__VERSION__/$TRAVIS_COMMIT/g" src/Application.php; fi
   - php box.phar compile
   - mkdir deploy
   - mv frosh-plugin-upload.phar deploy

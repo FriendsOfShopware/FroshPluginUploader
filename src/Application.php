@@ -16,7 +16,7 @@ class Application extends \Symfony\Component\Console\Application
 
     public function __construct()
     {
-        parent::__construct('FroshPluginUploader', '1.0.0');
+        parent::__construct('FroshPluginUploader', '__VERSION__');
         $this->container = DependencyInjection::getContainer();
 
         foreach (array_keys($this->container->findTaggedServiceIds('console.command')) as $command) {
