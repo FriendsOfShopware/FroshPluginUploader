@@ -1,0 +1,36 @@
+language: php
+
+php:
+  - 7.3
+
+sudo: false
+
+cache:
+  directories:
+    - "${HOME}/.composer/cache/files"
+
+install:
+  - composer install --no-dev
+  - wget https://github.com/humbug/box/releases/download/3.4.0/box.phar
+
+script:
+  - php box.phar compile
+  - mkdir deploy
+  - mv frosh-plugin-upload.phar deploy
+
+deploy:
+  - provider: releases
+    skip_cleanup: true
+    api_key:
+      secure: WBK9AbzMu2Klo0c/TgqU6ZYKRybH0EKYbkhCLs7b+2St3PU77AaCCv/73IQl5rMD7oj9IbQ1guYI2w6LshGDDr9ogEh1+MIKX5Js0UqzdhGpeU4RQ8AdNWtlQ0TZZ+n7h1mj2NIzTEg5lmAvw/MY6x76zDe86zRt/SVdwOv/KO4CzEwIcDO2aWMjRuBjbOT4awx5cnkaSN1k1upEXblAClrYE3wc3JsCb6IqG3juJHjz/cZ4v7dOWUAg4HqgjntHnWyrkGizQJ6Drn9kQy8MswKua5EDlO/564agb1qy6pcL4+DcHmABpgWZWMvpHqGnF7AOWv2j1cFqwf8NcazE95xTzLH0bzbI7McQkr4ABYW0gbSDWpl21i9HNbDleJXWP+w0gyH46Aoox6yuK1L/x8ASqEFLDw3vCYWXIqbkNKg8OnEa1cxNa37AwIXCqq1KDD8XP/QU6cWnIUfvyOjLsq2/pPo1pcGRunxofg3Wp3l9AenVlXq5yCnA7jG9YQitlxK6vpggeSRUji1gn6hiphgJxWPon4Zmh1LaDg9qNs9UjWC5zBWZ6CoTQTBSHz98osKFedtuc1nukbv+/hlI7/K/aQRlvoTL4IHlo9W6nuL+DP0Jo3z4RqYNy+idP+4JWNmXprdMyZi2rbSpBMo7hqZWMYyM3vhkmAw3oFf/lz8=
+    file: deploy/frosh-plugin-upload.phar
+    on:
+      repo: FriendsOfShopware/FroshPluginUploader
+      tags: true
+  - provider: pages
+    skip_cleanup: true
+    keep-history: false
+    github-token: $GITHUB_TOKEN
+    local_dir: deploy/
+    on:
+      branch: master
