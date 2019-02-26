@@ -11,9 +11,15 @@ class PluginUpdater
      */
     private $client;
 
+    /**
+     * @var \Parsedown
+     */
+    private $markdownParser;
+
     public function __construct(Client $client)
     {
         $this->client = $client;
+        $this->markdownParser = new \Parsedown();
     }
 
     public function sync(string $folder): void
@@ -31,16 +37,26 @@ class PluginUpdater
         foreach ($pluginInformation->infos as &$infoTranslation) {
             $language = substr($infoTranslation->locale->name, 0, 2);
             $languageFile = $folder . '/' . $language . '.html';
+            $languageFileMarkdown = $folder . '/' . $language . '.md';
             $languageManualFile = $folder . '/' . $language . '_manual.html';
+            $languageManualFileMarkdown = $folder . '/' . $language . '_manual.md';
 
             if (file_exists($languageFile)) {
                 $infoTranslation->description = file_get_contents($languageFile);
             }
 
+            if (file_exists($languageFileMarkdown)) {
+                $infoTranslation->description = $this->markdownParser->parse(file_get_contents($languageFileMarkdown));
+            }
+
+            $infoTranslation->installationManual = '';
+
             if (file_exists($languageManualFile)) {
                 $infoTranslation->installationManual = file_get_contents($languageManualFile);
-            } else {
-                $infoTranslation->installationManual = '';
+            }
+
+            if (file_exists($languageManualFileMarkdown)) {
+                $infoTranslation->installationManual = $this->markdownParser->parse(file_get_contents($languageManualFileMarkdown));
             }
 
             if ($plugin) {

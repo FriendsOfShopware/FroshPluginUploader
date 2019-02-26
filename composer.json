@@ -13,7 +13,8 @@
     "ext-simplexml": "*",
     "ext-libxml": "*",
     "ext-zip": "*",
-    "ext-dom": "*"
+    "ext-dom": "*",
+    "erusev/parsedown": "^1.7"
   },
   "require-dev": {
     "ext-phar": "*",

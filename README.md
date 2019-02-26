@@ -50,8 +50,8 @@ path - path to the /Resources/store
 
 Currently supported files:
 
-* [lang].html (e.g de.html) for Description
-* [lang]_manual.html (e.g de_manual.html) for Install Instruction
+* [lang].(html|md) (e.g de.html) for Description
+* [lang]_manual.(html|md) (e.g de_manual.html) for Install Instruction
 * images/*.(png|jpg|jpeg) will be used for Images. First image will be used as preview image.
 
 ## plugin:validate
