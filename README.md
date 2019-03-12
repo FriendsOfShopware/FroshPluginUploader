@@ -71,3 +71,7 @@ Shows all plugins in the account with the id, name, latest version and last chan
 ## plugin:download:resources
 
 Downloads all store resources from store to the given folder
+
+# FAQ
+
+[Exception-Codes](https://github.com/FriendsOfShopware/FroshPluginUploader/wiki/PluginsException-Codes)
