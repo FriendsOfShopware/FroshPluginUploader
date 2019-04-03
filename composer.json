@@ -18,7 +18,8 @@
   },
   "require-dev": {
     "ext-phar": "*",
-    "nette/php-generator": "^3.2"
+    "nette/php-generator": "^3.2",
+    "symfony/dotenv": "^4.2"
   },
   "autoload": {
     "psr-4": {
