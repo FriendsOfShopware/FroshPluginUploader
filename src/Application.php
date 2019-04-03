@@ -20,7 +20,7 @@ class Application extends \Symfony\Component\Console\Application
         $env = dirname(__DIR__) . '/.env';
         if(file_exists($env)){
             $dotenv = new Dotenv();
-            $dotenv->load($env);
+            $dotenv->overload($env);
         }
 
         parent::__construct('FroshPluginUploader', '__VERSION__');
