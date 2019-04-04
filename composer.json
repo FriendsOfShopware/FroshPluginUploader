@@ -14,7 +14,8 @@
     "ext-libxml": "*",
     "ext-zip": "*",
     "ext-dom": "*",
-    "erusev/parsedown": "^1.7"
+    "erusev/parsedown": "^1.7",
+    "symfony/dotenv": "^4.2"
   },
   "require-dev": {
     "ext-phar": "*",

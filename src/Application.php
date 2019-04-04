@@ -6,6 +6,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Dotenv\Dotenv;
 
 class Application extends \Symfony\Component\Console\Application
 {
@@ -16,6 +17,12 @@ class Application extends \Symfony\Component\Console\Application
 
     public function __construct()
     {
+        $env = getcwd() . '/.env';
+        if(file_exists($env)){
+            $dotenv = new Dotenv();
+            $dotenv->overload($env);
+        }
+
         parent::__construct('FroshPluginUploader', '__VERSION__');
         $this->container = DependencyInjection::getContainer();
 
