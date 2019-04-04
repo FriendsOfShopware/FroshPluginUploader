@@ -68,9 +68,21 @@ pathToZip - path to the zip file
 
 Shows all plugins in the account with the id, name, latest version and last changed.
 
-## plugin:download:resources
+## plugin:download:resources [required:path]
 
-Downloads all store resources from store to the given folder
+Downloads all store resources from store to the given folder.
+
+Path should be the Plugin-Resources-Folder of your plugin. e.g. absolute/path/to/plugin/Resources/store
+
+If folder Store does not exists and you specify it in the param of this command the folder will be created as well.
+
+##### Run plugin:create:config before to set configs and automate download for all available plugins.
+
+
+## plugin:create:config
+
+This will retrieve all information from uploaded plugins and will store them to yaml config files. This
+gives your the possibility to handle several plugins.
 
 # FAQ
 

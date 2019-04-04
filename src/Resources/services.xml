@@ -25,6 +25,9 @@
             <tag name="console.command"/>
         </service>
 
+        <service id="FroshPluginUploader\Commands\ConfigurePluginsCommand" class="FroshPluginUploader\Commands\ConfigurePluginsCommand">
+            <tag name="console.command"/>
+        </service>
 
         <service id="FroshPluginUploader\Components\SBP\Client"/>
         <service id="FroshPluginUploader\Components\PluginBinaryUploader"/>
