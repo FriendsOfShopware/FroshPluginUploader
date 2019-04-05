@@ -5,7 +5,7 @@ namespace FroshPluginUploader\Components;
 class Util
 {
     /**
-     * @param $name
+     * @param      $name
      * @param bool $default
      *
      * @return array|bool|false|string
@@ -21,10 +21,32 @@ class Util
         return $var;
     }
 
+    /**
+     * @param string $name
+     * @param string $value
+     * @param bool   $remove
+     *
+     * @return bool
+     */
+    public static function setEnv($name, $value, $remove = false)
+    {
+        $bOk = putenv("{$name}={$value}");
+
+        if (!$bOk) {
+            $sEnv = "{$name}="; //set env to empty
+            if ($remove) {
+                $sEnv = "{$name}"; //remove env
+            }
+            putenv($sEnv);
+        }
+
+        return $bOk;
+    }
+
     public static function mkTempDir(?string $prefix = null): string
     {
         if ($prefix === null) {
-            $prefix = (string) random_int(PHP_INT_MIN, PHP_INT_MAX);
+            $prefix = (string)random_int(PHP_INT_MIN, PHP_INT_MAX);
         }
 
         $tmpFolder = sys_get_temp_dir() . '/' . uniqid($prefix, true);
@@ -38,8 +60,13 @@ class Util
 
     public static function getPluginName(string $tmpFolder)
     {
-        return current(array_filter(scandir($tmpFolder, SCANDIR_SORT_NONE), function ($value) {
-            return $value[0] !== '.';
-        }));
+        return current(
+            array_filter(
+                scandir($tmpFolder, SCANDIR_SORT_NONE),
+                function ($value) {
+                    return $value[0] !== '.';
+                }
+            )
+        );
     }
 }
