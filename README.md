@@ -52,6 +52,8 @@ Currently supported files:
 
 * [lang].(html|md) (e.g de.html) for Description
 * [lang]_manual.(html|md) (e.g de_manual.html) for Install Instruction
+* [lang]_features.txt (e.g de_features.txt) for Features
+* [lang]_highlights.txt (e.g de_highlights.txt) for Highlights
 * images/*.(png|jpg|jpeg) will be used for Images. First image will be used as preview image.
 
 ## plugin:validate
