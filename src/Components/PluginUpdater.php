@@ -40,6 +40,8 @@ class PluginUpdater
             $languageFileMarkdown = $folder . '/' . $language . '.md';
             $languageManualFile = $folder . '/' . $language . '_manual.html';
             $languageManualFileMarkdown = $folder . '/' . $language . '_manual.md';
+            $languageHighlightsFile = $folder . '/' . $language . '_highlights.txt';
+            $languageFeaturesFile = $folder . '/' . $language . '_features.txt';
 
             if (file_exists($languageFile)) {
                 $infoTranslation->description = file_get_contents($languageFile);
@@ -57,6 +59,14 @@ class PluginUpdater
 
             if (file_exists($languageManualFileMarkdown)) {
                 $infoTranslation->installationManual = $this->markdownParser->parse(file_get_contents($languageManualFileMarkdown));
+            }
+
+            if (file_exists($languageHighlightsFile)) {
+                $infoTranslation->highlights = file_get_contents($languageHighlightsFile);
+            }
+
+            if (file_exists($languageFeaturesFile)) {
+                $infoTranslation->features = file_get_contents($languageFeaturesFile);
             }
 
             if ($plugin) {
