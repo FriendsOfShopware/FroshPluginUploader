@@ -23,6 +23,7 @@ class Plugin extends Struct
         'categories' => 'FroshPluginUploader\Structs\Categories',
         'addons' => 'FroshPluginUploader\Structs\Addons',
         'demos' => 'FroshPluginUploader\Structs\Demos',
+        'latestBinary' => 'FroshPluginUploader\Structs\Binary',
         'localizations' => 'FroshPluginUploader\Structs\Localizations',
         'certification' => 'FroshPluginUploader\Structs\Certification',
         'productType' => 'FroshPluginUploader\Structs\ProductType',
@@ -110,7 +111,7 @@ class Plugin extends Struct
     /** @var Localizations */
     public $localizations;
 
-    /** @var null */
+    /** @var Binary */
     public $latestBinary;
 
     /** @var bool */
