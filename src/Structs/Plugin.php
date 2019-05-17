@@ -11,6 +11,7 @@ class Plugin extends Struct
         'producer' => 'FroshPluginUploader\Structs\Producer',
         'type' => 'FroshPluginUploader\Structs\Type',
         'lifecycleStatus' => 'FroshPluginUploader\Structs\LifecycleStatus',
+        'generation' => 'FroshPluginUploader\Structs\Generation',
         'activationStatus' => 'FroshPluginUploader\Structs\ActivationStatus',
         'approvalStatus' => 'FroshPluginUploader\Structs\ApprovalStatus',
         'standardLocale' => 'FroshPluginUploader\Structs\StandardLocale',
@@ -23,8 +24,8 @@ class Plugin extends Struct
         'addons' => 'FroshPluginUploader\Structs\Addons',
         'demos' => 'FroshPluginUploader\Structs\Demos',
         'localizations' => 'FroshPluginUploader\Structs\Localizations',
-        'latestBinary' => 'FroshPluginUploader\Structs\Binary',
         'certification' => 'FroshPluginUploader\Structs\Certification',
+        'productType' => 'FroshPluginUploader\Structs\ProductType',
         'status' => 'FroshPluginUploader\Structs\Status',
     ];
 
@@ -45,6 +46,9 @@ class Plugin extends Struct
 
     /** @var LifecycleStatus */
     public $lifecycleStatus;
+
+    /** @var Generation */
+    public $generation;
 
     /** @var ActivationStatus */
     public $activationStatus;
@@ -70,7 +74,7 @@ class Plugin extends Struct
     /** @var StoreAvailabilities[] */
     public $storeAvailabilities;
 
-    /** @var Categories */
+    /** @var Categories[] */
     public $categories;
 
     /** @var Addons */
@@ -106,11 +110,14 @@ class Plugin extends Struct
     /** @var Localizations */
     public $localizations;
 
-    /** @var Binary */
+    /** @var null */
     public $latestBinary;
 
     /** @var bool */
     public $responsive;
+
+    /** @var bool */
+    public $migrationSupport;
 
     /** @var bool */
     public $automaticBugfixVersionCompatibility;
@@ -121,7 +128,7 @@ class Plugin extends Struct
     /** @var Certification */
     public $certification;
 
-    /** @var null */
+    /** @var ProductType */
     public $productType;
 
     /** @var Status */
@@ -135,6 +142,12 @@ class Plugin extends Struct
 
     /** @var bool */
     public $isSubscriptionEnabled;
+
+    /** @var null */
+    public $releaseDate;
+
+    /** @var string */
+    public $plannedReleaseDate;
 
     /** @var string */
     public $iconUrl;
@@ -153,4 +166,10 @@ class Plugin extends Struct
 
     /** @var string */
     public $reviews;
+
+    /** @var null */
+    public $successor;
+
+    /** @var null */
+    public $pluginPreview;
 }

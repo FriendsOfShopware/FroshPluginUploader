@@ -2,7 +2,7 @@
 
 namespace FroshPluginUploader\Structs;
 
-class Details extends Struct
+class ProductType extends Struct
 {
     /** @var int */
     public $id;
@@ -13,8 +13,8 @@ class Details extends Struct
     /** @var string */
     public $description;
 
-    public static $mappedFields = [];
+    public static $mappedFields = ['details' => 'FroshPluginUploader\Structs\Details'];
 
-    /** @var Locale */
-    public $locale;
+    /** @var MainCategory */
+    public $mainCategory;
 }

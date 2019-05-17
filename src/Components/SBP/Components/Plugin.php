@@ -110,6 +110,7 @@ class Plugin extends AbstractComponent
     /**
      * @param int $pluginId
      * @param int $binaryId
+     *
      * @return CodeReview[]
      */
     public function getCodeReviewResults(int $pluginId, int $binaryId): array

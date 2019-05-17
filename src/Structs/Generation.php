@@ -2,7 +2,7 @@
 
 namespace FroshPluginUploader\Structs;
 
-class Details extends Struct
+class Generation extends Struct
 {
     /** @var int */
     public $id;
@@ -12,9 +12,4 @@ class Details extends Struct
 
     /** @var string */
     public $description;
-
-    public static $mappedFields = [];
-
-    /** @var Locale */
-    public $locale;
 }

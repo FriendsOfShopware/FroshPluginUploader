@@ -1,8 +1,6 @@
-<?php
-
+<?php declare(strict_types=1);
 
 namespace FroshPluginUploader\Components;
-
 
 use FroshPluginUploader\Components\SBP\Client;
 
@@ -54,7 +52,7 @@ class ResourcesDownloader
         $i = 0;
         foreach ($pictures as $picture) {
             copy($picture->remoteLink, $imagesPath . '/' . $i . '.png');
-            $i++;
+            ++$i;
         }
     }
 }

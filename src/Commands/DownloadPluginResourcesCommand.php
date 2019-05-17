@@ -2,7 +2,6 @@
 
 namespace FroshPluginUploader\Commands;
 
-use FroshPluginUploader\Components\PluginUpdater;
 use FroshPluginUploader\Components\ResourcesDownloader;
 use FroshPluginUploader\Components\Util;
 use Symfony\Component\Console\Command\Command;

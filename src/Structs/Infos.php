@@ -24,6 +24,12 @@ class Infos extends Struct
     /** @var string */
     public $shortDescription;
 
+    /** @var string */
+    public $highlights;
+
+    /** @var string */
+    public $features;
+
     /** @var Tags */
     public $tags;
 

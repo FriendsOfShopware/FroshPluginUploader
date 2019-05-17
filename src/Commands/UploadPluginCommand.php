@@ -52,7 +52,6 @@ class UploadPluginCommand extends Command implements ContainerAwareInterface
         } else {
             $io->error(strip_tags($result));
         }
-
     }
 
     private function validateInput(InputInterface $input): void

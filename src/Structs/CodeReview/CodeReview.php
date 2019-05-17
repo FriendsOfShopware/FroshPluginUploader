@@ -1,8 +1,6 @@
-<?php
-
+<?php declare(strict_types=1);
 
 namespace FroshPluginUploader\Structs\CodeReview;
-
 
 use FroshPluginUploader\Structs\Struct;
 
@@ -11,7 +9,7 @@ class CodeReview extends Struct
     public static $mappedFields = ['type' => Type::class];
 
     /**
-     * @var integer
+     * @var int
      */
     public $id;
 
@@ -21,7 +19,7 @@ class CodeReview extends Struct
     public $message;
 
     /**
-     * @var integer
+     * @var int
      */
     public $binaryId;
 

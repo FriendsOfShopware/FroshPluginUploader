@@ -1,7 +1,6 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace FroshPluginUploader\Structs\CodeReview;
-
 
 use FroshPluginUploader\Structs\Struct;
 

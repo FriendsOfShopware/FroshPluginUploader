@@ -18,7 +18,7 @@ class Application extends \Symfony\Component\Console\Application
     public function __construct()
     {
         $env = getcwd() . '/.env';
-        if(file_exists($env)){
+        if (file_exists($env)) {
             $dotenv = new Dotenv();
             $dotenv->overload($env);
         }

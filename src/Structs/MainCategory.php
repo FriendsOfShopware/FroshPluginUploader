@@ -2,7 +2,7 @@
 
 namespace FroshPluginUploader\Structs;
 
-class Categories extends Struct
+class MainCategory extends Struct
 {
     /** @var int */
     public $id;
@@ -13,7 +13,7 @@ class Categories extends Struct
     /** @var string */
     public $description;
 
-    /** @var int */
+    /** @var bool */
     public $parent;
 
     /** @var int */

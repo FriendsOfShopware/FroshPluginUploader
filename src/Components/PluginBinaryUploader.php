@@ -76,14 +76,13 @@ class PluginBinaryUploader
     {
         $tries = 0;
 
-
         sleep(5);
 
         while (true) {
             $results = $this->client->Plugins()->getCodeReviewResults($pluginId, $binaryId);
 
             if ($counter !== count($results)) {
-                $result = $results[count($results) -1];
+                $result = $results[count($results) - 1];
 
                 if ($result->type->id === 3) {
                     return true;
@@ -94,7 +93,7 @@ class PluginBinaryUploader
 
             sleep(5);
 
-            $tries++;
+            ++$tries;
 
             if ($tries === 15) {
                 return false;

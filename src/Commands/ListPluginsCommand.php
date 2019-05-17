@@ -24,13 +24,12 @@ class ListPluginsCommand extends Command implements ContainerAwareInterface
 
     protected function execute(InputInterface $input, OutputInterface $output): void
     {
-        $client     = $this->container->get(Client::class);
-        $plugins    = $client->Producer()->getPlugins($client->Producer()->getProducer()->id);
-        $table      = new Table($output);
-        $tblStyle   = new TableStyle();
+        $client = $this->container->get(Client::class);
+        $plugins = $client->Producer()->getPlugins($client->Producer()->getProducer()->id);
+        $table = new Table($output);
+        $tblStyle = new TableStyle();
         $alignRight = $tblStyle->setPadType(STR_PAD_LEFT);
         $table->setHeaders(['Id', 'Name', 'Status', 'Latest Version', 'Version Compatibility', 'Last Change']);
-
 
         foreach ($plugins as $plugin) {
             $fromVersion = reset($plugin->latestBinary->compatibleSoftwareVersions);
@@ -39,6 +38,5 @@ class ListPluginsCommand extends Command implements ContainerAwareInterface
         }
         $table->setColumnStyle(3, $alignRight);
         $table->render();
-
     }
 }
