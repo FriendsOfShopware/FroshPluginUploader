@@ -10,6 +10,8 @@ interface PluginInterface
 
     public function getReader(): PluginReaderInterface;
 
+    public function getStoreJson(): StoreJsonLoader;
+
     public function getResourcesFolderPath(): string;
 
     public function getRootDir(): string;

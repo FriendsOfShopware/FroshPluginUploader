@@ -76,13 +76,17 @@ class PluginUpdater
 
         unset($infoTranslation);
 
-        if ($resourcesFolderPath . '/icon.png') {
+        if (file_exists($resourcesFolderPath . '/icon.png')) {
             $this->client->Plugins()->addIcon($pluginId, $resourcesFolderPath . '/icon.png');
         }
 
         if (count($pluginInformation->localizations) < 2) {
             $this->addDefaultLocales($pluginInformation);
         }
+
+        $this->setLicense($pluginInformation, $plugin->getReader()->getLicense());
+
+        $plugin->getStoreJson()->applyToPlugin($pluginInformation, $this->client->General()->all());
 
         $this->client->Plugins()->put($pluginId, $pluginInformation);
 
@@ -111,11 +115,24 @@ class PluginUpdater
         $plugin->localizations = [];
 
         foreach ($allLocales as $allLocale) {
-            $shortLocale = substr($allLocale->name, 0, 2);
+            $shortLocale = substr($allLocale['name'], 0, 2);
             if ($shortLocale === 'de' || $shortLocale === 'en') {
                 $plugin->localizations[] = $allLocale;
             }
         }
+    }
+
+    private function setLicense(Plugin $plugin, string $license)
+    {
+        $availableLicenses = $this->client->General()->all()['licenses'];
+        foreach ($availableLicenses as $licenseItem) {
+            if ($licenseItem['name'] === $license) {
+                $plugin->license = $licenseItem;
+                return;
+            }
+        }
+
+        throw new \RuntimeException(sprintf('Invalid license given "%s". Following are available %s', $license, implode(',', array_column($availableLicenses, 'name'))));
     }
 
     private function convertDescription(string $content): string

@@ -4,6 +4,7 @@ namespace FroshPluginUploader\Components\Generation\ShopwarePlatform;
 
 use FroshPluginUploader\Components\PluginInterface;
 use FroshPluginUploader\Components\PluginReaderInterface;
+use FroshPluginUploader\Components\StoreJsonLoader;
 
 class Plugin implements PluginInterface
 {
@@ -30,6 +31,11 @@ class Plugin implements PluginInterface
     public function getReader(): PluginReaderInterface
     {
         return new PluginReader($this->rootFolder);
+    }
+
+    public function getStoreJson(): StoreJsonLoader
+    {
+        return new StoreJsonLoader($this->getResourcesFolderPath() . 'store.json');
     }
 
     public function getResourcesFolderPath(): string

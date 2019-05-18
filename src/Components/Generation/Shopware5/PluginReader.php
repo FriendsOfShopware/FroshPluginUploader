@@ -146,6 +146,11 @@ class PluginReader implements PluginReaderInterface
         return null;
     }
 
+    public function getLicense(): string
+    {
+        return strtolower($this->xml['license']);
+    }
+
     private function validateConfig(): void
     {
         if (empty($this->config)) {

@@ -6,9 +6,14 @@ use FroshPluginUploader\Structs\Localizations;
 
 class General extends AbstractComponent
 {
+    /**
+     * @var array
+     */
+    private $allData;
+
     public function getCompatibleShopwareVersions(string $minVersion, ?string $maxVersion): \Generator
     {
-        $versions = json_decode((string) $this->client->get('/pluginstatics/all')->getBody(), true)['softwareVersions'];
+        $versions = $this->getData()['softwareVersions'];
 
         foreach ($versions as $version) {
             if (!$version['selectable']) {
@@ -22,11 +27,22 @@ class General extends AbstractComponent
         }
     }
 
-    /**
-     * @return Localizations[]
-     */
     public function getLocalizations(): array
     {
-        return Localizations::mapList(json_decode((string) $this->client->get('/pluginstatics/all')->getBody())->localizations);
+        return $this->getData()['localizations'];
+    }
+
+    public function all(): array
+    {
+        return $this->getData();
+    }
+
+    private function getData(): array
+    {
+        if ($this->allData === null) {
+            $this->allData = json_decode((string) $this->client->get('/pluginstatics/all')->getBody(), true);
+        }
+
+        return $this->allData;
     }
 }

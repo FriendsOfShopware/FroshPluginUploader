@@ -3,6 +3,7 @@
 namespace FroshPluginUploader\Components;
 
 use FroshPluginUploader\Components\SBP\Client;
+use FroshPluginUploader\Structs\Plugin;
 
 class ResourcesDownloader
 {
@@ -47,6 +48,8 @@ class ResourcesDownloader
             }
         }
 
+        file_put_contents($path . '/store.json', json_encode($this->generateStoreJson($plugin), JSON_PRETTY_PRINT));
+
         $pictures = $this->client->Plugins()->getImages($pluginId);
 
         $i = 0;
@@ -54,5 +57,22 @@ class ResourcesDownloader
             copy($picture->remoteLink, $imagesPath . '/' . $i . '.png');
             ++$i;
         }
+    }
+
+    private function generateStoreJson(Plugin $plugin)
+    {
+        return [
+            'storeAvailabilities' => array_map([$this, 'getNames'], $plugin->storeAvailabilities),
+            'localizations' => array_map([$this, 'getNames'], $plugin->localizations),
+            'categories' => array_map([$this, 'getNames'], $plugin->categories),
+            'productType' => $plugin->productType->name,
+            'responsive' => $plugin->responsive,
+            'standardLocale' => $plugin->standardLocale->name,
+        ];
+    }
+
+    private function getNames($someStruct)
+    {
+        return $someStruct->name;
     }
 }

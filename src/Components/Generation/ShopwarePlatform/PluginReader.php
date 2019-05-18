@@ -103,12 +103,12 @@ class PluginReader implements PluginReaderInterface
 
     public function getDescriptionGerman(): string
     {
-        return $this->composerJson['extra']['label']['de-DE'];
+        return $this->composerJson['extra']['description']['de-DE'];
     }
 
     public function getDescriptionEnglish(): string
     {
-        return $this->composerJson['extra']['label']['en-GB'];
+        return $this->composerJson['extra']['description']['en-GB'];
     }
 
     public function getMinVersion(): string
@@ -119,5 +119,10 @@ class PluginReader implements PluginReaderInterface
     public function getMaxVersion(): ?string
     {
         return $this->composerJson['extra']['shopware-max-version'] ?? null;
+    }
+
+    public function getLicense(): string
+    {
+        return strtolower($this->composerJson['license']);
     }
 }
