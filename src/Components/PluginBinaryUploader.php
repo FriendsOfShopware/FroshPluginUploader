@@ -17,26 +17,26 @@ class PluginBinaryUploader
         $this->client = $client;
     }
 
-    public function upload(string $binaryPath, string $pluginDirectory, bool $skipCodeReviewResult = false)
+    public function upload(string $binaryPath, PluginInterface $plugin, bool $skipCodeReviewResult = false)
     {
         $pluginId = (int) Util::getEnv('PLUGIN_ID');
-        $xml = new PluginReader($pluginDirectory);
-        $xml->validate();
+
+        $plugin->getReader()->validate();
 
         $binaries = $this->client->Plugins()->getAvailableBinaries($pluginId);
 
-        if (!$this->client->Plugins()->hasVersion($binaries, $xml->getVersion())) {
+        if (!$this->client->Plugins()->hasVersion($binaries, $plugin->getReader()->getVersion())) {
             $binary = $this->client->Plugins()->createBinaryFile($binaryPath, $pluginId);
         } else {
-            $binary = $this->updateBinary($binaries, $xml->getVersion(), $binaryPath, $pluginId);
+            $binary = $this->updateBinary($binaries, $plugin->getReader()->getVersion(), $binaryPath, $pluginId);
         }
 
-        $binary->version = $xml->getVersion();
-        $binary->changelogs[0]->text = $xml->getNewestChangelogGerman();
-        $binary->changelogs[1]->text = $xml->getNewestChangelogEnglish();
+        $binary->version = $plugin->getReader()->getVersion();
+        $binary->changelogs[0]->text = $plugin->getReader()->getNewestChangelogGerman();
+        $binary->changelogs[1]->text = $plugin->getReader()->getNewestChangelogEnglish();
         $binary->ionCubeEncrypted = false;
         $binary->licenseCheckRequired = false;
-        $binary->compatibleSoftwareVersions = iterator_to_array($this->client->General()->getCompatibleShopwareVersions($xml->getMinVersion(), $xml->getMaxVersion()), false);
+        $binary->compatibleSoftwareVersions = iterator_to_array($this->client->General()->getCompatibleShopwareVersions($plugin->getReader()->getMinVersion(), $plugin->getReader()->getMaxVersion()), false);
 
         // Patch the binary changelog and version
         $this->client->Plugins()->updateBinary($binary, $pluginId);

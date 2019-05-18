@@ -2,6 +2,7 @@
 
 namespace FroshPluginUploader\Commands;
 
+use FroshPluginUploader\Components\PluginFinder;
 use FroshPluginUploader\Components\PluginUpdater;
 use FroshPluginUploader\Components\Util;
 use Symfony\Component\Console\Command\Command;
@@ -21,7 +22,7 @@ class UpdatePluginCommand extends Command implements ContainerAwareInterface
         $this
             ->setName('plugin:update')
             ->setDescription('Synchronize the Resources/store to the account')
-            ->addArgument('path', InputArgument::REQUIRED, 'Path to /Resources/store folder');
+            ->addArgument('path', InputArgument::REQUIRED, 'Path to plugin folder');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -36,7 +37,9 @@ class UpdatePluginCommand extends Command implements ContainerAwareInterface
             throw new \RuntimeException(sprintf('Folder by path %s does not exist', $input->getArgument('path')));
         }
 
-        $this->container->get(PluginUpdater::class)->sync($path);
+        $plugin = PluginFinder::findPluginByRootFolder($path);
+
+        $this->container->get(PluginUpdater::class)->sync($plugin);
 
         $io = new SymfonyStyle($input, $output);
         $io->success('Store folder has been applied to plugin page');

@@ -2,19 +2,19 @@
 
 Tool for uploading new plugin releases to Shopware Store
 
-**This Tool works only for the new plugin system**
+**This Tool works only for the new plugin system or Shopware Platform**
 
 Required Enviroment variables
 
 | Name             	| Default 	| Description                                                         	|
 |------------------	|---------	|---------------------------------------------------------------------	|
-| PLUGIN_ID        	|         	| Plugin ID from account2.shopware.com. Can be obtained from the link 	|
+| PLUGIN_ID        	|         	| Plugin ID from account.shopware.com. Can be obtained from the link 	|
 | ACCOUNT_USER     	|         	| Shopware ID                                                         	|
 | ACCOUNT_PASSWORD 	|         	| Shopware ID password                                                	|
 
-Requirements of the Plugin
+Requirements for Plugin
 
-* 5.2 Plugin System
+* 5.2 Plugin System or Shopware Platform plugin
 * compability tag in plugin.xml
 * changelogs filled in plugin.xml (german and english)
 

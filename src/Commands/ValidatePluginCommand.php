@@ -2,7 +2,7 @@
 
 namespace FroshPluginUploader\Commands;
 
-use FroshPluginUploader\Components\PluginReader;
+use FroshPluginUploader\Components\PluginFinder;
 use FroshPluginUploader\Components\SBP\Client;
 use FroshPluginUploader\Components\Util;
 use Symfony\Component\Console\Command\Command;
@@ -35,10 +35,10 @@ class ValidatePluginCommand extends Command implements ContainerAwareInterface
         $tmpFolder = Util::mkTempDir(basename($zipPath));
         $zip->extractTo($tmpFolder);
 
-        $reader = new PluginReader($this->getPluginPath($tmpFolder));
-        $reader->validate();
+        $plugin = PluginFinder::findPluginByZipFile($tmpFolder);
+        $plugin->getReader()->validate();
 
-        $this->validateTechnicalName($tmpFolder);
+        $this->validateTechnicalName($plugin->getName());
 
         $io = new SymfonyStyle($input, $output);
         $io->success('Plugin has been successfully validated');
@@ -51,21 +51,6 @@ class ValidatePluginCommand extends Command implements ContainerAwareInterface
         if (!file_exists($zipPath)) {
             throw new \RuntimeException(sprintf('Given path "%s" does not exists', $zipPath));
         }
-    }
-
-    private function getPluginPath(string $tmpFolder): string
-    {
-        $dir = current(array_filter(scandir($tmpFolder, SCANDIR_SORT_NONE), function ($value) {
-            return $value[0] !== '.';
-        }));
-
-        $pluginXmlPath = $tmpFolder . '/' . $dir . '/plugin.xml';
-
-        if (!file_exists($pluginXmlPath)) {
-            throw new \RuntimeException('Cannot find a plugin.xml in zip file');
-        }
-
-        return $tmpFolder . '/' . $dir;
     }
 
     private function validateTechnicalName(string $tmpFolder)

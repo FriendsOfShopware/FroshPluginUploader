@@ -22,26 +22,21 @@ class PluginUpdater
         $this->markdownParser = new \Parsedown();
     }
 
-    public function sync(string $folder): void
+    public function sync(PluginInterface $plugin): void
     {
         $pluginId = (int) Util::getEnv('PLUGIN_ID');
 
         $pluginInformation = $this->client->Plugins()->get($pluginId);
-        $pluginFolder = dirname($folder, 2);
-        $plugin = null;
-
-        if (file_exists($pluginFolder . '/plugin.xml')) {
-            $plugin = new PluginReader($pluginFolder);
-        }
+        $resourcesFolderPath = $plugin->getResourcesFolderPath();
 
         foreach ($pluginInformation->infos as &$infoTranslation) {
             $language = substr($infoTranslation->locale->name, 0, 2);
-            $languageFile = $folder . '/' . $language . '.html';
-            $languageFileMarkdown = $folder . '/' . $language . '.md';
-            $languageManualFile = $folder . '/' . $language . '_manual.html';
-            $languageManualFileMarkdown = $folder . '/' . $language . '_manual.md';
-            $languageHighlightsFile = $folder . '/' . $language . '_highlights.txt';
-            $languageFeaturesFile = $folder . '/' . $language . '_features.txt';
+            $languageFile = $resourcesFolderPath . '/' . $language . '.html';
+            $languageFileMarkdown = $resourcesFolderPath . '/' . $language . '.md';
+            $languageManualFile = $resourcesFolderPath . '/' . $language . '_manual.html';
+            $languageManualFileMarkdown = $resourcesFolderPath . '/' . $language . '_manual.md';
+            $languageHighlightsFile = $resourcesFolderPath . '/' . $language . '_highlights.txt';
+            $languageFeaturesFile = $resourcesFolderPath . '/' . $language . '_features.txt';
 
             if (file_exists($languageFile)) {
                 $infoTranslation->description = file_get_contents($languageFile);
@@ -69,14 +64,12 @@ class PluginUpdater
                 $infoTranslation->features = file_get_contents($languageFeaturesFile);
             }
 
-            if ($plugin) {
-                if ($language === 'de') {
-                    $infoTranslation->shortDescription = $plugin->getDescriptionGerman();
-                    $infoTranslation->name = $plugin->getLabelGerman();
-                } else {
-                    $infoTranslation->shortDescription = $plugin->getDescriptionEnglish();
-                    $infoTranslation->name = $plugin->getLabelEnglish();
-                }
+            if ($language === 'de') {
+                $infoTranslation->shortDescription = $plugin->getReader()->getDescriptionGerman();
+                $infoTranslation->name = $plugin->getReader()->getLabelGerman();
+            } else {
+                $infoTranslation->shortDescription = $plugin->getReader()->getDescriptionEnglish();
+                $infoTranslation->name = $plugin->getReader()->getLabelEnglish();
             }
         }
 
@@ -84,7 +77,7 @@ class PluginUpdater
 
         $this->client->Plugins()->put($pluginId, $pluginInformation);
 
-        $imageDir = $folder . '/images';
+        $imageDir = $resourcesFolderPath . '/images';
 
         if (file_exists($imageDir)) {
             $images = $this->client->Plugins()->getImages($pluginId);

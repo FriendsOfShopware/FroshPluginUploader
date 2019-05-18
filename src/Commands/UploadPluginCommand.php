@@ -3,6 +3,7 @@
 namespace FroshPluginUploader\Commands;
 
 use FroshPluginUploader\Components\PluginBinaryUploader;
+use FroshPluginUploader\Components\PluginFinder;
 use FroshPluginUploader\Components\Util;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -41,7 +42,9 @@ class UploadPluginCommand extends Command implements ContainerAwareInterface
 
         $zip->extractTo($tmpFolder);
 
-        $result = $this->container->get(PluginBinaryUploader::class)->upload($input->getArgument('zipPath'), $this->getPluginPath($tmpFolder), $input->getOption('skipCodeReviewResult'));
+        $plugin = PluginFinder::findPluginByZipFile($tmpFolder);
+
+        $result = $this->container->get(PluginBinaryUploader::class)->upload($input->getArgument('zipPath'), $plugin, $input->getOption('skipCodeReviewResult'));
 
         $io = new SymfonyStyle($input, $output);
 
@@ -61,20 +64,5 @@ class UploadPluginCommand extends Command implements ContainerAwareInterface
         if (!file_exists($zipPath)) {
             throw new \RuntimeException(sprintf('Given path "%s" does not exists', $zipPath));
         }
-    }
-
-    private function getPluginPath(string $tmpFolder): string
-    {
-        $dir = current(array_filter(scandir($tmpFolder, SCANDIR_SORT_NONE), function ($value) {
-            return $value[0] !== '.';
-        }));
-
-        $pluginXmlPath = $tmpFolder . '/' . $dir . '/plugin.xml';
-
-        if (!file_exists($pluginXmlPath)) {
-            throw new \RuntimeException('Cannot find a plugin.xml in zip file');
-        }
-
-        return $tmpFolder . '/' . $dir;
     }
 }

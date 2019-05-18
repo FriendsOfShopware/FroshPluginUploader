@@ -8,14 +8,15 @@
     "symfony/console": "^4.2",
     "symfony/config": "~4.2",
     "symfony/dependency-injection": "~4.2",
+    "symfony/dotenv": "^4.2",
+    "symfony/finder": "^4.2",
     "guzzlehttp/guzzle": "~6.0",
     "ext-json": "*",
     "ext-simplexml": "*",
     "ext-libxml": "*",
     "ext-zip": "*",
     "ext-dom": "*",
-    "erusev/parsedown": "^1.7",
-    "symfony/dotenv": "^4.2"
+    "erusev/parsedown": "^1.7"
   },
   "require-dev": {
     "ext-phar": "*",

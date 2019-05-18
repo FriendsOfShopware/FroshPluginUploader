@@ -1,12 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace FroshPluginUploader\Components;
+namespace FroshPluginUploader\Components\Generation\Shopware5;
 
+use FroshPluginUploader\Components\PluginReaderInterface;
 use FroshPluginUploader\Components\XmlReader\XmlConfigReader;
 use FroshPluginUploader\Components\XmlReader\XmlPluginReader;
 use FroshPluginUploader\Exception\PluginValidationException;
 
-class PluginReader
+class PluginReader implements PluginReaderInterface
 {
     private const REQUIRED_KEYS = [
         'compatibility',
@@ -80,7 +81,7 @@ class PluginReader
         $this->validateConfig();
     }
 
-    public function getVersion()
+    public function getVersion(): string
     {
         return $this->xml['version'];
     }
