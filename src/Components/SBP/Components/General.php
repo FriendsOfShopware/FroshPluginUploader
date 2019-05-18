@@ -2,6 +2,8 @@
 
 namespace FroshPluginUploader\Components\SBP\Components;
 
+use FroshPluginUploader\Structs\Localizations;
+
 class General extends AbstractComponent
 {
     public function getCompatibleShopwareVersions(string $minVersion, ?string $maxVersion): \Generator
@@ -18,5 +20,13 @@ class General extends AbstractComponent
                 yield $version;
             }
         }
+    }
+
+    /**
+     * @return Localizations[]
+     */
+    public function getLocalizations(): array
+    {
+        return Localizations::mapList(json_decode((string) $this->client->get('/pluginstatics/all')->getBody())->localizations);
     }
 }

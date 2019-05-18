@@ -4,4 +4,9 @@ namespace FroshPluginUploader\Structs;
 
 class Localizations extends Struct
 {
+    /** @var int */
+    public $id;
+
+    /** @var string */
+    public $name;
 }

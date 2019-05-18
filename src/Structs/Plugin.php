@@ -108,7 +108,7 @@ class Plugin extends Struct
     /** @var Demos */
     public $demos;
 
-    /** @var Localizations */
+    /** @var Localizations[] */
     public $localizations;
 
     /** @var Binary */

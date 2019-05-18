@@ -3,6 +3,7 @@
 namespace FroshPluginUploader\Components;
 
 use FroshPluginUploader\Components\SBP\Client;
+use FroshPluginUploader\Structs\Plugin;
 
 class PluginUpdater
 {
@@ -39,21 +40,21 @@ class PluginUpdater
             $languageFeaturesFile = $resourcesFolderPath . '/' . $language . '_features.txt';
 
             if (file_exists($languageFile)) {
-                $infoTranslation->description = file_get_contents($languageFile);
+                $infoTranslation->description = $this->convertDescription(file_get_contents($languageFile));
             }
 
             if (file_exists($languageFileMarkdown)) {
-                $infoTranslation->description = $this->markdownParser->parse(file_get_contents($languageFileMarkdown));
+                $infoTranslation->description = $this->convertDescription($this->markdownParser->parse(file_get_contents($languageFileMarkdown)));
             }
 
             $infoTranslation->installationManual = '';
 
             if (file_exists($languageManualFile)) {
-                $infoTranslation->installationManual = file_get_contents($languageManualFile);
+                $infoTranslation->installationManual = $this->convertDescription(file_get_contents($languageManualFile));
             }
 
             if (file_exists($languageManualFileMarkdown)) {
-                $infoTranslation->installationManual = $this->markdownParser->parse(file_get_contents($languageManualFileMarkdown));
+                $infoTranslation->installationManual = $this->convertDescription($this->markdownParser->parse(file_get_contents($languageManualFileMarkdown)));
             }
 
             if (file_exists($languageHighlightsFile)) {
@@ -75,6 +76,14 @@ class PluginUpdater
 
         unset($infoTranslation);
 
+        if ($resourcesFolderPath . '/icon.png') {
+            $this->client->Plugins()->addIcon($pluginId, $resourcesFolderPath . '/icon.png');
+        }
+
+        if (count($pluginInformation->localizations) < 2) {
+            $this->addDefaultLocales($pluginInformation);
+        }
+
         $this->client->Plugins()->put($pluginId, $pluginInformation);
 
         $imageDir = $resourcesFolderPath . '/images';
@@ -94,5 +103,23 @@ class PluginUpdater
                 $this->client->Plugins()->addImage($pluginId, $imageDir . '/' . $image);
             }
         }
+    }
+
+    private function addDefaultLocales(Plugin $plugin)
+    {
+        $allLocales = $this->client->General()->getLocalizations();
+        $plugin->localizations = [];
+
+        foreach ($allLocales as $allLocale) {
+            $shortLocale = substr($allLocale->name, 0, 2);
+            if ($shortLocale === 'de' || $shortLocale === 'en') {
+                $plugin->localizations[] = $allLocale;
+            }
+        }
+    }
+
+    private function convertDescription(string $content): string
+    {
+        return strip_tags($content, '<a><b><i><em><strong><ul><ol><li><p><br><h2><h3><h4>');
     }
 }

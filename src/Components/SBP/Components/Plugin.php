@@ -45,6 +45,18 @@ class Plugin extends AbstractComponent
         ]);
     }
 
+    public function addIcon(int $pluginId, string $path): void
+    {
+        $this->client->post(sprintf('/plugins/%d/icon', $pluginId), [
+            'multipart' => [
+                [
+                    'name' => 'file',
+                    'contents' => fopen($path, 'rb'),
+                ],
+            ],
+        ]);
+    }
+
     /**
      * @param int $pluginId
      *
