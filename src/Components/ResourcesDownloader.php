@@ -61,18 +61,39 @@ class ResourcesDownloader
 
     private function generateStoreJson(Plugin $plugin)
     {
-        return [
+        $json = [
             'storeAvailabilities' => array_map([$this, 'getNames'], $plugin->storeAvailabilities),
             'localizations' => array_map([$this, 'getNames'], $plugin->localizations),
             'categories' => array_map([$this, 'getNames'], $plugin->categories),
             'productType' => $plugin->productType->name,
             'responsive' => $plugin->responsive,
             'standardLocale' => $plugin->standardLocale->name,
+            'tags' => [],
+            'videos' => [],
         ];
+
+        foreach ($plugin->infos as $info) {
+            if (!empty($info->tags)) {
+                $json['tags'][substr($info->locale->name, 0, 2)] = array_map([$this, 'getNames'], $info->tags);
+            }
+        }
+
+        foreach ($plugin->infos as $info) {
+            if (!empty($info->videos)) {
+                $json['videos'][substr($info->locale->name, 0, 2)] = array_map([$this, 'getUrls'], $info->videos);
+            }
+        }
+
+        return $json;
     }
 
     private function getNames($someStruct)
     {
         return $someStruct->name;
+    }
+
+    private function getUrls($someStruct)
+    {
+        return $someStruct->url;
     }
 }

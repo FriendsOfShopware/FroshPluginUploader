@@ -42,6 +42,16 @@ class StoreJsonLoader
      */
     private $responsive = true;
 
+    /**
+     * @var array
+     */
+    private $tags;
+
+    /**
+     * @var array
+     */
+    private $videos;
+
     public function __construct(string $path)
     {
         if (file_exists($path)) {
@@ -64,6 +74,14 @@ class StoreJsonLoader
 
             $this->mapData($plugin, $globalInformation['categories'], 'categories', 'name');
         }
+
+        if ($this->tags) {
+            $this->assignTags($plugin);
+        }
+
+        if ($this->videos) {
+            $this->assignVideos($plugin);
+        }
     }
 
     private function loadFile(string $path): void
@@ -80,6 +98,14 @@ class StoreJsonLoader
 
         if (isset($data['categories']) && is_array($data['categories'])) {
             $this->categories = $data['categories'];
+        }
+
+        if (isset($data['tags']) && is_array($data['tags'])) {
+            $this->tags = $data['tags'];
+        }
+
+        if (isset($data['videos']) && is_array($data['videos'])) {
+            $this->videos = $data['videos'];
         }
 
         if (isset($data['standardLocale']) && is_string($data['standardLocale'])) {
@@ -126,6 +152,44 @@ class StoreJsonLoader
                 }
 
                 throw new \RuntimeException(sprintf('Unable to map field "%s" with value "%s". Allowed values are %s', $pluginField, $newValue, implode(',', array_column($data, $sourceField))));
+            }
+        }
+    }
+
+    private function assignTags(Plugin $plugin)
+    {
+        foreach ($this->tags as $lang => $tags) {
+            if (count($tags) > 5) {
+                throw new \RuntimeException('Only 5 tags are allowed');
+            }
+
+            foreach ($plugin->infos as $infoTranslation) {
+                $language = substr($infoTranslation->locale->name, 0, 2);
+
+                if ($language === $lang) {
+                    $infoTranslation->tags = array_map(function(string $name) {
+                        return ['name' => $name];
+                    }, $tags);
+                }
+            }
+        }
+    }
+
+    private function assignVideos(Plugin $plugin)
+    {
+        foreach ($this->videos as $lang => $videos) {
+            if (count($videos) > 2) {
+                throw new \RuntimeException('Only 2 videos are allowed');
+            }
+
+            foreach ($plugin->infos as $infoTranslation) {
+                $language = substr($infoTranslation->locale->name, 0, 2);
+
+                if ($language === $lang) {
+                    $infoTranslation->videos = array_map(function(string $name) {
+                        return ['url' => $name];
+                    }, $videos);
+                }
             }
         }
     }
