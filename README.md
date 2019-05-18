@@ -14,9 +14,8 @@ Required Enviroment variables
 
 Requirements for Plugin
 
-* 5.2 Plugin System or Shopware Platform plugin
-* compability tag in plugin.xml
-* changelogs filled in plugin.xml (german and english)
+* [Shopware 5](https://github.com/FriendsOfShopware/FroshPluginUploader/wiki/Shopware-5-Plugins)
+* [Shopware Platform](https://github.com/FriendsOfShopware/FroshPluginUploader/wiki/Shopware-Platform-Plugin)
 
 # Using the Commands
 
@@ -48,13 +47,7 @@ Valid arguments are:
 path - path to the /Resources/store
 ```
 
-Currently supported files:
-
-* [lang].(html|md) (e.g de.html) for Description
-* [lang]_manual.(html|md) (e.g de_manual.html) for Install Instruction
-* [lang]_features.txt (e.g de_features.txt) for Features
-* [lang]_highlights.txt (e.g de_highlights.txt) for Highlights
-* images/*.(png|jpg|jpeg) will be used for Images. First image will be used as preview image.
+For more Information about the Resources/store folder checkout [this](https://github.com/FriendsOfShopware/FroshPluginUploader/wiki/Resources-store-Folder)
 
 ## plugin:validate
 
