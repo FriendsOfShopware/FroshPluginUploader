@@ -28,8 +28,9 @@ class PluginFinder
         }
 
         $data = json_decode(file_get_contents($pluginComposerJsonPath), true);
+        $type = $data['type'] ?? null;
 
-        if ($data['type'] !== 'shopware-platform-plugin') {
+        if ($type !== 'shopware-platform-plugin') {
             throw new PluginGenerationException('Cannot detect plugin generation by composer.json');
         }
 

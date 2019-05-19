@@ -10,7 +10,8 @@ cache:
     - "${HOME}/.composer/cache/files"
 
 install:
-  - composer install --no-dev
+  - composer install
+  - php vendor/bin/phpunit
   - wget https://github.com/humbug/box/releases/download/3.4.0/box.phar
 
 script:

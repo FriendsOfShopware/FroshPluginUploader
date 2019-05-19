@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../engine/Shopware/Components/Plugin/schema/plugin.xsd">
+    <label lang="de">Label DE</label>
+    <label lang="en">Label EN</label>
+    <version>1.0.0</version>
+    <copyright>Friends of Shopware</copyright>
+    <license>MIT</license>
+    <link>https://friendsofshopware.github.io/</link>
+    <author>Friends of Shopware</author>
+    <compatibility minVersion="5.4.0"/>
+    <description>Description EN</description>
+    <description lang="de">Description DE</description>
+
+    <changelog version="1.0.0">
+        <changes lang="en">Changelog EN</changes>
+        <changes lang="de">Changelog DE</changes>
+    </changelog>
+</plugin>

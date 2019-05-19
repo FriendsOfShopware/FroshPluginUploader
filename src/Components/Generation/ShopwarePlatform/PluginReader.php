@@ -36,6 +36,11 @@ class PluginReader implements PluginReaderInterface
     private $composerJson = [];
 
     /**
+     * @var string
+     */
+    private $rootDir;
+
+    /**
      * @var ChangelogReader
      */
     private $changelogReader;
@@ -43,7 +48,7 @@ class PluginReader implements PluginReaderInterface
     public function __construct(string $path)
     {
         $this->composerJson = json_decode(file_get_contents($path . '/composer.json'), true);
-        $this->changelogReader = new ChangelogReader($path);
+        $this->rootDir = $path;
     }
 
     public function validate(): void
@@ -83,12 +88,12 @@ class PluginReader implements PluginReaderInterface
 
     public function getNewestChangelogGerman(): string
     {
-        return $this->changelogReader->getChangelog('de-DE', $this->getVersion());
+        return $this->getChangelogReader()->getChangelog('de-DE', $this->getVersion());
     }
 
     public function getNewestChangelogEnglish(): string
     {
-        return $this->changelogReader->getChangelog('en-GB', $this->getVersion());
+        return $this->getChangelogReader()->getChangelog('en-GB', $this->getVersion());
     }
 
     public function getLabelGerman(): string
@@ -124,5 +129,14 @@ class PluginReader implements PluginReaderInterface
     public function getLicense(): string
     {
         return strtolower($this->composerJson['license']);
+    }
+
+    private function getChangelogReader(): ChangelogReader
+    {
+        if ($this->changelogReader === null) {
+            $this->changelogReader = new ChangelogReader($this->rootDir);
+        }
+
+        return $this->changelogReader;
     }
 }

@@ -1,0 +1,27 @@
+{
+  "name": "frosh/platform-performance",
+  "version": "1.0.0",
+  "keywords": ["shopware", "performance", "minify", "http2"],
+  "description": "Performance improvements for Shopware",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Frosh\\Performance\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "Frosh\\Performance\\Performance",
+    "copyright": "FriendsOfShopware",
+    "label": {
+      "de-DE": "Performance Optimierungen",
+      "en-GB": "Performance Improvements"
+    },
+    "description": {
+      "de-DE": "Komprimiert HTML, erlaubt die Nutzung mit HTTP2 Push",
+      "en-GB": "Minify HTML output, Allow pushing resources using HTTP2 Push"
+    }
+  },
+  "require": {
+    "symfony/web-link": "^4.2"
+  }
+}

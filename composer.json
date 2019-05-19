@@ -20,7 +20,8 @@
   },
   "require-dev": {
     "ext-phar": "*",
-    "nette/php-generator": "^3.2"
+    "nette/php-generator": "^3.2",
+    "phpunit/phpunit": "^8.0"
   },
   "autoload": {
     "psr-4": {
