@@ -128,6 +128,7 @@ class PluginUpdater
         foreach ($availableLicenses as $licenseItem) {
             if ($licenseItem['name'] === $license) {
                 $plugin->license = $licenseItem;
+
                 return;
             }
         }

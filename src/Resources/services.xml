@@ -25,10 +25,15 @@
             <tag name="console.command"/>
         </service>
 
+        <service id="FroshPluginUploader\Commands\ZipDirPluginCommand" class="FroshPluginUploader\Commands\ZipDirPluginCommand">
+            <tag name="console.command"/>
+        </service>
+
 
         <service id="FroshPluginUploader\Components\SBP\Client"/>
         <service id="FroshPluginUploader\Components\PluginBinaryUploader"/>
         <service id="FroshPluginUploader\Components\PluginUpdater"/>
         <service id="FroshPluginUploader\Components\ResourcesDownloader"/>
+        <service id="FroshPluginUploader\Components\PluginZip"/>
     </services>
 </container>

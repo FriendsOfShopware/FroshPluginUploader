@@ -67,6 +67,19 @@ Shows all plugins in the account with the id, name, latest version and last chan
 
 Downloads all store resources from store to the given folder
 
+## plugin:zip:dir
+
+Allows to zip the git repository of the plugin
+
+```
+gitPath - path to the git repository
+branch - Optional: will detect the latest tag, otherwise will use master
+```
+
+A .sw-zip-blacklist file can be used to define which files should be deleted before creating the zip
+
+
+
 # FAQ
 
 [Exception-Codes](https://github.com/FriendsOfShopware/FroshPluginUploader/wiki/PluginsException-Codes)

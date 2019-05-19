@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace FroshPluginUploader\Components;
 
@@ -8,36 +8,42 @@ class StoreJsonLoader
 {
     /**
      * Available in following stores
+     *
      * @var array
      */
     private $storeAvailabilities = ['German', 'International'];
 
     /**
      * Main language
+     *
      * @var string
      */
     private $standardLocale = 'en_GB';
 
     /**
      * Available in following languages
+     *
      * @var array
      */
     private $localizations = ['de_DE', 'en_GB'];
 
     /**
      * Is listed in following categories
+     *
      * @var array
      */
     private $categories;
 
     /**
      * Extension or Theme?
+     *
      * @var string
      */
     private $productType = 'extension';
 
     /**
      * Plugin is responsive?
+     *
      * @var bool
      */
     private $responsive = true;
@@ -127,6 +133,7 @@ class StoreJsonLoader
             foreach ($data as $item) {
                 if ($item[$sourceField] === $this->$pluginField) {
                     $plugin->$pluginField = $item;
+
                     return;
                 }
             }
@@ -167,7 +174,7 @@ class StoreJsonLoader
                 $language = substr($infoTranslation->locale->name, 0, 2);
 
                 if ($language === $lang) {
-                    $infoTranslation->tags = array_map(function(string $name) {
+                    $infoTranslation->tags = array_map(function (string $name) {
                         return ['name' => $name];
                     }, $tags);
                 }
@@ -186,7 +193,7 @@ class StoreJsonLoader
                 $language = substr($infoTranslation->locale->name, 0, 2);
 
                 if ($language === $lang) {
-                    $infoTranslation->videos = array_map(function(string $name) {
+                    $infoTranslation->videos = array_map(function (string $name) {
                         return ['url' => $name];
                     }, $videos);
                 }

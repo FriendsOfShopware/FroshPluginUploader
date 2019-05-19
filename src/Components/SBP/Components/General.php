@@ -2,8 +2,6 @@
 
 namespace FroshPluginUploader\Components\SBP\Components;
 
-use FroshPluginUploader\Structs\Localizations;
-
 class General extends AbstractComponent
 {
     /**
