@@ -17,8 +17,12 @@ class General extends AbstractComponent
             if (!$version['selectable']) {
                 continue;
             }
+            
+            $versionName = $version['name'];
+            $versionSplit = explode('-', $versionName);
+            $versionName = $versionSplit[0];
 
-            if (version_compare($version['name'], $minVersion, '>=') && ($maxVersion === null || version_compare($version['name'], $maxVersion, '<='))) {
+            if (version_compare($versionName, $minVersion, '>=') && ($maxVersion === null || version_compare($versionName, $maxVersion, '<='))) {
                 $version['children'] = [];
                 yield $version;
             }
