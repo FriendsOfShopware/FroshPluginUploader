@@ -13,6 +13,7 @@ class PluginReader implements PluginReaderInterface
         'description',
         'license',
         'version',
+        'authors'
     ];
 
     private const REQUIRED_KEYS_EXTRA = [
