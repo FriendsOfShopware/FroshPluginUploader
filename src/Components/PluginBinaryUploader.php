@@ -36,7 +36,7 @@ class PluginBinaryUploader
         $binary->changelogs[1]->text = $plugin->getReader()->getNewestChangelogEnglish();
         $binary->ionCubeEncrypted = false;
         $binary->licenseCheckRequired = false;
-        $binary->compatibleSoftwareVersions = iterator_to_array($this->client->General()->getCompatibleShopwareVersions($plugin->getReader()->getMinVersion(), $plugin->getReader()->getMaxVersion()), false);
+        $binary->compatibleSoftwareVersions = iterator_to_array($this->client->General()->getCompatibleShopwareVersions($plugin), false);
 
         // Patch the binary changelog and version
         $this->client->Plugins()->updateBinary($binary, $pluginId);
