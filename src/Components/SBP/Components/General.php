@@ -2,6 +2,8 @@
 
 namespace FroshPluginUploader\Components\SBP\Components;
 
+use FroshPluginUploader\Components\PluginInterface;
+
 class General extends AbstractComponent
 {
     /**
@@ -9,12 +11,19 @@ class General extends AbstractComponent
      */
     private $allData;
 
-    public function getCompatibleShopwareVersions(string $minVersion, ?string $maxVersion): \Generator
+    public function getCompatibleShopwareVersions(PluginInterface $plugin): \Generator
     {
+        $minVersion = $plugin->getReader()->getMinVersion();
+        $maxVersion = $plugin->getReader()->getMaxVersion();
+
         $versions = $this->getData()['softwareVersions'];
 
         foreach ($versions as $version) {
             if (!$version['selectable']) {
+                continue;
+            }
+            
+            if ($version['major'] != $plugin->getCompatibleMajorVersion()) {
                 continue;
             }
             

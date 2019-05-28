@@ -47,4 +47,9 @@ class Plugin implements PluginInterface
     {
         return $this->rootFolder;
     }
+
+    public function getCompatibleMajorVersion(): string
+    {
+        return 'Shopware 6';
+    }
 }

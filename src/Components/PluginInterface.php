@@ -15,4 +15,6 @@ interface PluginInterface
     public function getResourcesFolderPath(): string;
 
     public function getRootDir(): string;
+
+    public function getCompatibleMajorVersion(): string;
 }
