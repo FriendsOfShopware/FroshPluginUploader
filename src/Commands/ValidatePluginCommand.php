@@ -53,7 +53,7 @@ class ValidatePluginCommand extends Command implements ContainerAwareInterface
         }
     }
 
-    private function validateTechnicalName(string $tmpFolder)
+    private function validateTechnicalName(string $pluginName)
     {
         $pluginId = (int) Util::getEnv('PLUGIN_ID');
 
@@ -62,10 +62,9 @@ class ValidatePluginCommand extends Command implements ContainerAwareInterface
         }
 
         $plugin = $this->container->get(Client::class)->Plugins()->get($pluginId);
-        $zipPluginName = Util::getPluginName($tmpFolder);
 
-        if ($plugin->moduleKey !== $zipPluginName) {
-            throw new \RuntimeException(sprintf('Plugin name in zip does not match account plugin technical name, Account: %s, Zip: %s', $plugin->moduleKey, $zipPluginName));
+        if ($plugin->moduleKey !== $pluginName) {
+            throw new \RuntimeException(sprintf('Plugin name in zip does not match account plugin technical name, Account: %s, Zip: %s', $plugin->moduleKey, $pluginName));
         }
     }
 }
