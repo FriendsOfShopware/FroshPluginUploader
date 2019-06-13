@@ -28,6 +28,7 @@ class PluginUpdater
         $pluginId = (int) Util::getEnv('PLUGIN_ID');
 
         $pluginInformation = $this->client->Plugins()->get($pluginId);
+        
         $resourcesFolderPath = $plugin->getResourcesFolderPath();
 
         foreach ($pluginInformation->infos as &$infoTranslation) {
@@ -86,7 +87,9 @@ class PluginUpdater
 
         $this->setLicense($pluginInformation, $plugin->getReader()->getLicense());
 
-        $plugin->getStoreJson()->applyToPlugin($pluginInformation, $this->client->General()->all());
+        if($plugin->hasStoreJson()) {
+            $plugin->getStoreJson()->applyToPlugin($pluginInformation, $this->client->General()->all());
+        }
 
         $this->client->Plugins()->put($pluginId, $pluginInformation);
 

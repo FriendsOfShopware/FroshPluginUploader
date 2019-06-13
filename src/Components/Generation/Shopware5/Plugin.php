@@ -34,6 +34,11 @@ class Plugin implements PluginInterface
         return new PluginReader($this->rootDir);
     }
 
+    public function hasStoreJson(): bool
+    {
+        return file_exists($this->getResourcesFolderPath() . 'store.json');
+    }
+
     public function getStoreJson(): StoreJsonLoader
     {
         return new StoreJsonLoader($this->getResourcesFolderPath() . 'store.json');
