@@ -84,7 +84,7 @@ class PluginBinaryUploader
             if ($counter !== count($results)) {
                 $result = $results[count($results) - 1];
 
-                if ($result->type->id === 3) {
+                if ($result->type->id === 3 || $result->type->name === 'automaticcodereviewsucceeded') {
                     return true;
                 }
 

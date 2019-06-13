@@ -20,7 +20,10 @@ class Plugin implements PluginInterface
     public function __construct(string $rootFolder, string $pluginName)
     {
         $this->rootFolder = $rootFolder;
-        $this->pluginName = $pluginName;
+        $composerJson = json_decode(file_get_contents($rootFolder . '/composer.json'), true)['extra'];
+        $className = explode('\\', $composerJson['shopware-plugin-class']);
+
+        $this->pluginName = end($className);
     }
 
     public function getName(): string
