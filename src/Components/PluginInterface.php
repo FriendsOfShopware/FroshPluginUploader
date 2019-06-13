@@ -10,6 +10,8 @@ interface PluginInterface
 
     public function getReader(): PluginReaderInterface;
 
+    public function hasStoreJson(): bool;
+    
     public function getStoreJson(): StoreJsonLoader;
 
     public function getResourcesFolderPath(): string;
