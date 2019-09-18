@@ -52,8 +52,11 @@ class PluginZip
 
         $this->exec(sprintf('zip -r %s %s -x *.git*', escapeshellarg($fileName), escapeshellarg($pluginName)));
 
-        $this->exec('rm -rf ' . escapeshellarg($currentCwd . '/' . $fileName));
-        $this->exec(sprintf('mv %s %s', escapeshellarg($fileName), escapeshellarg($currentCwd)));
+        $this->exec('rm -rf ' . escapeshellarg($currentCwd . '/' . $pluginName));
+
+        if ($currentCwd !== getcwd()) {
+            $this->exec(sprintf('mv %s %s', escapeshellarg($fileName), escapeshellarg($currentCwd)));
+        }
 
         chdir($currentCwd);
 
