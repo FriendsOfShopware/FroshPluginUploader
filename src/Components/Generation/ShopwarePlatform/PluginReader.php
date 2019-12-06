@@ -9,7 +9,6 @@ class PluginReader implements PluginReaderInterface
     private const REQUIRED_KEYS_COMPOSER_JSON = [
         'name',
         'type',
-        'keywords',
         'description',
         'license',
         'version',
