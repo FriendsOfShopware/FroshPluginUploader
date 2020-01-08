@@ -99,6 +99,13 @@ class PluginZip
 
         $json = json_decode(file_get_contents($composerJsonPath), true);
 
+        $keys = ['shopware/platform', 'shopware/core', 'shopware/storefront', 'shopware/administration'];
+        foreach ($keys as $key) {
+            if (isset($json['require'][$key])) {
+                unset($json['require'][$key]);
+            }
+        }
+
         // Plugin does not require something
         if (empty($json['require'])) {
             return false;

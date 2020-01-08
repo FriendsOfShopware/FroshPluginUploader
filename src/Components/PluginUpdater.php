@@ -28,7 +28,7 @@ class PluginUpdater
         $pluginId = (int) Util::getEnv('PLUGIN_ID');
 
         $pluginInformation = $this->client->Plugins()->get($pluginId);
-        
+
         $resourcesFolderPath = $plugin->getResourcesFolderPath();
 
         foreach ($pluginInformation->infos as &$infoTranslation) {
@@ -67,10 +67,10 @@ class PluginUpdater
             }
 
             if ($language === 'de') {
-                $infoTranslation->shortDescription = $plugin->getReader()->getDescriptionGerman();
+                $infoTranslation->shortDescription = str_pad($plugin->getReader()->getDescriptionGerman(), 150);
                 $infoTranslation->name = $plugin->getReader()->getLabelGerman();
             } else {
-                $infoTranslation->shortDescription = $plugin->getReader()->getDescriptionEnglish();
+                $infoTranslation->shortDescription = str_pad($plugin->getReader()->getDescriptionEnglish(), 150);
                 $infoTranslation->name = $plugin->getReader()->getLabelEnglish();
             }
         }
