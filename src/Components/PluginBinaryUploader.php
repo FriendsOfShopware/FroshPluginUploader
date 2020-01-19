@@ -4,6 +4,7 @@ namespace FroshPluginUploader\Components;
 
 use FroshPluginUploader\Components\SBP\Client;
 use FroshPluginUploader\Structs\Binary;
+use function GuzzleHttp\Psr7\copy_to_stream;
 
 class PluginBinaryUploader
 {
@@ -36,7 +37,7 @@ class PluginBinaryUploader
         $binary->changelogs[1]->text = $plugin->getReader()->getNewestChangelogEnglish();
         $binary->ionCubeEncrypted = false;
         $binary->licenseCheckRequired = false;
-        $binary->compatibleSoftwareVersions = iterator_to_array($this->client->General()->getCompatibleShopwareVersions($plugin), false);
+        $binary->compatibleSoftwareVersions = $plugin->getCompatibleVersions($this->client->General()->getShopwareVersions());
 
         // Patch the binary changelog and version
         $this->client->Plugins()->updateBinary($binary, $pluginId);
@@ -88,6 +89,13 @@ class PluginBinaryUploader
                     return true;
                 }
 
+                // Still pending (basic completed)
+                if ($result->type->id === 4) {
+                    sleep(5);
+                    $tries++;
+                    continue;
+                }
+
                 return $results[count($results) - 1]->message;
             }
 
@@ -95,7 +103,7 @@ class PluginBinaryUploader
 
             ++$tries;
 
-            if ($tries === 15) {
+            if ($tries === 100) {
                 return false;
             }
         }

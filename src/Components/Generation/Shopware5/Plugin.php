@@ -54,8 +54,32 @@ class Plugin implements PluginInterface
         return $this->rootDir;
     }
 
-    public function getCompatibleMajorVersion(): string
+    public function getCompatibleVersions(array $versions): array
     {
-        return 'Shopware 5';
+        $reader = $this->getReader();
+        $minVersion = $reader->getMinVersion();
+        $maxVersion = $reader->getMaxVersion();
+        $matches = [];
+
+        foreach ($versions as $version) {
+            if (!$version['selectable']) {
+                continue;
+            }
+
+            if ($version['major'] !== 'Shopware 5') {
+                continue;
+            }
+
+            $versionName = $version['name'];
+            $versionSplit = explode('-', $versionName);
+            $versionName = $versionSplit[0];
+
+            if (version_compare($versionName, $minVersion, '>=') && ($maxVersion === null || version_compare($versionName, $maxVersion, '<='))) {
+                $version['children'] = [];
+                $matches[] = $version;
+            }
+        }
+
+        return $matches;
     }
 }

@@ -2,6 +2,10 @@
 
 namespace FroshPluginUploader\Components\Generation\ShopwarePlatform;
 
+use Composer\DependencyResolver\Pool;
+use Composer\Package\Package;
+use Composer\Repository\InstalledArrayRepository;
+use Composer\Semver\Semver;
 use FroshPluginUploader\Components\PluginInterface;
 use FroshPluginUploader\Components\PluginReaderInterface;
 use FroshPluginUploader\Components\StoreJsonLoader;
@@ -56,8 +60,22 @@ class Plugin implements PluginInterface
         return $this->rootFolder;
     }
 
-    public function getCompatibleMajorVersion(): string
+    public function getCompatibleVersions(array $versions): array
     {
-        return 'Shopware 6';
+        $constraints = $this->getReader()->getCoreConstraint();
+        $versions = array_filter($versions, function ($version) use ($constraints) {
+            if ($version['major'] !== 'Shopware 6') {
+                return null;
+            }
+
+            try {
+                return Semver::satisfies($version['name'], $constraints);
+            } catch (\UnexpectedValueException $e) {
+                // EA is not semver compatible
+                return null;
+            }
+        });
+
+        return $versions;
     }
 }

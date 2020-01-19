@@ -127,6 +127,11 @@ class PluginReader implements PluginReaderInterface
         return $this->composerJson['extra']['shopware-max-version'] ?? null;
     }
 
+    public function getCoreConstraint()
+    {
+        return $this->composerJson['require']['shopware/core'];
+    }
+
     public function getLicense(): string
     {
         return strtolower($this->composerJson['license']);

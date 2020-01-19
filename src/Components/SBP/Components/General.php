@@ -11,31 +11,9 @@ class General extends AbstractComponent
      */
     private $allData;
 
-    public function getCompatibleShopwareVersions(PluginInterface $plugin): \Generator
+    public function getShopwareVersions(): array
     {
-        $minVersion = $plugin->getReader()->getMinVersion();
-        $maxVersion = $plugin->getReader()->getMaxVersion();
-
-        $versions = $this->getData()['softwareVersions'];
-
-        foreach ($versions as $version) {
-            if (!$version['selectable']) {
-                continue;
-            }
-            
-            if ($version['major'] != $plugin->getCompatibleMajorVersion()) {
-                continue;
-            }
-            
-            $versionName = $version['name'];
-            $versionSplit = explode('-', $versionName);
-            $versionName = $versionSplit[0];
-
-            if (version_compare($versionName, $minVersion, '>=') && ($maxVersion === null || version_compare($versionName, $maxVersion, '<='))) {
-                $version['children'] = [];
-                yield $version;
-            }
-        }
+        return $this->getData()['softwareVersions'];
     }
 
     public function getLocalizations(): array

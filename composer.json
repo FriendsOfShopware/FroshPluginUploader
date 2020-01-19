@@ -11,6 +11,7 @@
     "symfony/dotenv": "^4.2",
     "symfony/finder": "^4.2",
     "guzzlehttp/guzzle": "~6.0",
+    "composer/semver": "*",
     "ext-json": "*",
     "ext-simplexml": "*",
     "ext-libxml": "*",
