@@ -15,13 +15,11 @@ jobs:
       run: php vendor/bin/phpunit
     
     - name: Download box
-      run: wget https://github.com/humbug/box/releases/download/3.4.0/box.phar
+      run: wget https://github.com/humbug/box/releases/download/3.8.4/box.phar
     
     - name: Remove dev deps
       run: composer install --no-dev
   
-    - name: Test
-      run: php -v
     - name: Build phar
       run: php box.phar compile
 
