@@ -1,0 +1,46 @@
+name: Release
+on:
+  push:
+    tags:
+    - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Download box
+      run: wget https://github.com/humbug/box/releases/download/3.8.4/box.phar
+    
+    - name: Remove dev deps
+      run: composer install --no-dev
+      
+    - name: Set version string
+      run: sed -i -e "s/__VERSION__/${{ github.ref }}/g" src/Application.php
+  
+    - name: Build phar
+      run: php box.phar compile
+      
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1.0.0
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+      
+     - name: Upload Release Asset
+       id: upload-release-asset 
+       uses: actions/upload-release-asset@v1.0.1
+       env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+       with:
+         upload_url: ${{ steps.create_release.outputs.upload_url }}
+         asset_path: frosh-plugin-upload.phar
+         asset_name: frosh-plugin-upload.phar
+         asset_content_type: application/octet-stream
