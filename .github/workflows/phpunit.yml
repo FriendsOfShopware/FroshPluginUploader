@@ -13,3 +13,18 @@ jobs:
 
     - name: Run test suite
       run: php vendor/bin/phpunit
+    
+    - name: Download box
+      run: wget https://github.com/humbug/box/releases/download/3.4.0/box.phar
+    
+    - name: Remove dev deps
+      run: composer install --no-dev
+
+    - name: Build phar
+      run: php box.phar compile
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: frosh-plugin-upload.phar
+        path: frosh-plugin-upload.phar
