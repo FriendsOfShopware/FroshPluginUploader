@@ -4,7 +4,6 @@ namespace FroshPluginUploader\Components;
 
 use FroshPluginUploader\Components\SBP\Client;
 use FroshPluginUploader\Structs\Binary;
-use function GuzzleHttp\Psr7\copy_to_stream;
 
 class PluginBinaryUploader
 {
