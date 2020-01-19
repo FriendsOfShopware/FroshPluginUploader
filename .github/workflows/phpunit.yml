@@ -1,0 +1,30 @@
+name: PHPUnit
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest
+
+    - name: Run test suite
+      run: php vendor/bin/phpunit
+    
+    - name: Download box
+      run: wget https://github.com/humbug/box/releases/download/3.8.4/box.phar
+    
+    - name: Remove dev deps
+      run: composer install --no-dev
+  
+    - name: Build phar
+      run: php box.phar compile
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v1.0.0
+      with:
+        name: frosh-plugin-upload.zip
+        path: frosh-plugin-upload.phar
