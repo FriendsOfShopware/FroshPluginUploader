@@ -26,5 +26,5 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
       with:
-        name: frosh-plugin-upload.phar
+        name: frosh-plugin-upload.zip
         path: frosh-plugin-upload.phar
