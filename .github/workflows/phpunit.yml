@@ -19,7 +19,9 @@ jobs:
     
     - name: Remove dev deps
       run: composer install --no-dev
-
+  
+    - name: Test
+      run: php -v
     - name: Build phar
       run: php box.phar compile
 
