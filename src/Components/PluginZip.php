@@ -47,7 +47,10 @@ class PluginZip
             $this->exec('rm -rf ' . escapeshellarg($pluginName . '/' . $item));
         }
 
-        $fileName = $pluginName . '-' . $branch . '.zip';
+        // Clean branch name for filename
+        $branchClean = preg_replace('/[^a-z0-9]+/', '-', strtolower($branch));
+
+        $fileName = $pluginName . '-' . $branchClean . '.zip';
         $filePath = $directory . '/' . $pluginName;
 
         $this->exec(sprintf('zip -r %s %s -x *.git*', escapeshellarg($fileName), escapeshellarg($pluginName)));
