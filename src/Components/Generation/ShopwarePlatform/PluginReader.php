@@ -119,7 +119,7 @@ class PluginReader implements PluginReaderInterface
 
     public function getMinVersion(): string
     {
-        return '6.0.0';
+        return $this->composerJson['extra']['shopware-min-version'] ?? '6.0.0';
     }
 
     public function getMaxVersion(): ?string
