@@ -31,9 +31,18 @@ class PluginZip
         // Extract the git repository there
         $this->exec(sprintf('git archive %s | tar -x -C %s', escapeshellarg($branch), escapeshellarg($pluginName)));
 
-        // Install composer dependencies
-        if ($this->needComposerToRun($directory)) {
-            $this->exec('composer install --no-dev -n -o -d ' . escapeshellarg($pluginName));
+        $composerJson = $directory . '/' . $pluginName . '/composer.json';
+        $composerJsonBackup = $composerJson . '.bak';
+
+        if (file_exists($composerJson)) {
+            copy($composerJson, $composerJsonBackup);
+            $this->filterShopwareDependencies($composerJson);
+            // Install composer dependencies
+            if ($this->needComposerToRun($composerJson)) {
+                $this->exec('composer install --no-dev -n -o -d ' . escapeshellarg($pluginName));
+            }
+
+            rename($composerJsonBackup, $composerJson);
         }
 
         if (file_exists($directory . '/.sw-zip-blacklist')) {
@@ -92,14 +101,26 @@ class PluginZip
         }
     }
 
-    private function needComposerToRun(string $directory): bool
+    private function needComposerToRun(string $composerJsonPath): bool
     {
-        $composerJsonPath = $directory . '/composer.json';
+        $json = json_decode(file_get_contents($composerJsonPath), true);
 
-        if (!file_exists($composerJsonPath)) {
+        // Plugin does not require anything
+        if (empty($json['require'])) {
             return false;
         }
 
+        return true;
+    }
+
+    /**
+     * Remove Shopware base packages from composer.json
+     * so they aren't bundled with the plugin.
+     *
+     * @param string $composerJsonPath
+     */
+    private function filterShopwareDependencies(string $composerJsonPath): void
+    {
         $json = json_decode(file_get_contents($composerJsonPath), true);
 
         $keys = ['shopware/platform', 'shopware/core', 'shopware/storefront', 'shopware/administration'];
@@ -109,11 +130,9 @@ class PluginZip
             }
         }
 
-        // Plugin does not require something
-        if (empty($json['require'])) {
-            return false;
-        }
-
-        return true;
+        file_put_contents(
+            $composerJsonPath,
+            json_encode($json, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
+        );
     }
 }
