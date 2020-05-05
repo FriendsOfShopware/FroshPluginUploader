@@ -39,12 +39,12 @@ Valid options are:
 
 ## plugin:update
 
-Will update some informations about the plugin like description and images
+Will update informations about the plugin from you `Resources/store`-folder
 
 Valid arguments are:
 
 ```
-path - path to the /Resources/store
+path - path to the plugin folder
 ```
 
 For more Information about the Resources/store folder checkout [this](https://github.com/FriendsOfShopware/FroshPluginUploader/wiki/Resources-store-Folder)
