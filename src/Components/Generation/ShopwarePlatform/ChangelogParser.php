@@ -47,11 +47,11 @@ class ChangelogParser
 
     private function parseTitle($line): string
     {
-        return strtolower(trim(substr($line, 1)));
+        return strtolower(trim(ltrim($line, '#')));
     }
 
     private function parseItem($line): string
     {
-        return trim(substr($line, 1));
+        return trim(ltrim($line, '*-'));
     }
 }

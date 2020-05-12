@@ -26,6 +26,23 @@ class ShopwarePlatformReaderTest extends TestCase
         $pluginReader->validate();
     }
 
+    public function testReadingIndentedChangelogs(): void
+    {
+        $pluginReader = new PluginReader(__DIR__ . '/testPlugins/ShopwareMultiIndentedChangelogPlatformPlugin');
+
+        $this->assertEquals('Label DE', $pluginReader->getLabelGerman());
+        $this->assertEquals('Label EN', $pluginReader->getLabelEnglish());
+        $this->assertEquals('Description EN', $pluginReader->getDescriptionEnglish());
+        $this->assertEquals('Description DE', $pluginReader->getDescriptionGerman());
+        $this->assertEquals('1.1.0', $pluginReader->getVersion());
+        $this->assertEquals('6.0.0', $pluginReader->getMinVersion());
+        $this->assertNull($pluginReader->getMaxVersion());
+        $this->assertEquals('<ul><li>Second release in store</li></ul>', $pluginReader->getNewestChangelogEnglish());
+        $this->assertEquals('<ul><li>Zweiter Release im Store</li></ul>', $pluginReader->getNewestChangelogGerman());
+
+        $pluginReader->validate();
+    }
+
     public function testInvalidComposerType(): void
     {
         $this->expectException(\RuntimeException::class);
