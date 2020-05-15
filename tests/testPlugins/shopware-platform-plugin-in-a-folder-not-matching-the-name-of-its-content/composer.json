@@ -6,18 +6,18 @@
   "description": "Performance improvements for Shopware",
   "license": "MIT",
   "authors": [
-        {
-            "name": "Example Company",
-            "homepage": "https://my.example.com"
-        }
-    ],
+    {
+      "name": "Example Company",
+      "homepage": "https://my.example.com"
+    }
+  ],
   "autoload": {
     "psr-4": {
       "Frosh\\Performance\\": "src/"
     }
   },
   "extra": {
-    "shopware-plugin-class": "Frosh\\Performance\\ShopwarePlatformPlugin",
+    "shopware-plugin-class": "Frosh\\Performance\\Performance",
     "copyright": "FriendsOfShopware",
     "label": {
       "de-DE": "Label DE",

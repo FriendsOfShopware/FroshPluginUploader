@@ -77,6 +77,13 @@ class PluginReader implements PluginReaderInterface
             }
         }
 
+        $wrappingFolderName = basename($this->rootDir);
+        $pluginClassName = $this->getName();
+
+        if ($wrappingFolderName !== $pluginClassName) {
+            throw new \RuntimeException(sprintf('The folder is not wrapped inside a folder having the plugins name %s but %s instead', $pluginClassName, $wrappingFolderName));
+        }
+
         // Call the changelog methods, it will throw a exception if they are missing
         $this->getNewestChangelogGerman();
         $this->getNewestChangelogEnglish();
@@ -135,6 +142,13 @@ class PluginReader implements PluginReaderInterface
     public function getLicense(): string
     {
         return strtolower($this->composerJson['license']);
+    }
+
+    public function getName(): string
+    {
+        $fullyQualifiedPluginClassName = $this->composerJson['extra']['shopware-plugin-class'];
+
+        return array_reverse(explode('\\', $fullyQualifiedPluginClassName))[0];
     }
 
     private function getChangelogReader(): ChangelogReader

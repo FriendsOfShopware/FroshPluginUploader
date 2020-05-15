@@ -37,6 +37,11 @@ class PluginReader implements PluginReaderInterface
      */
     private $config;
 
+    /**
+     * @var string
+     */
+    private $name;
+
     public function __construct(string $path)
     {
         if (!file_exists($path . '/plugin.xml')) {
@@ -50,6 +55,8 @@ class PluginReader implements PluginReaderInterface
             $configReader = new XmlConfigReader();
             $this->config = $configReader->read($path . '/Resources/config.xml');
         }
+
+        $this->name = basename($path);
     }
 
     public function validate(): void
@@ -149,6 +156,11 @@ class PluginReader implements PluginReaderInterface
     public function getLicense(): string
     {
         return strtolower($this->xml['license']);
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
     }
 
     private function validateConfig(): void
