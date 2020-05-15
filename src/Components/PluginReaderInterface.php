@@ -25,4 +25,6 @@ interface PluginReaderInterface
     public function getMaxVersion(): ?string;
 
     public function getLicense(): string;
+
+    public function getName(): string;
 }

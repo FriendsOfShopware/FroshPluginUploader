@@ -2,6 +2,8 @@
 
 namespace FroshPluginUploader\Components;
 
+use FroshPluginUploader\Components\XmlReader\XmlPluginReader;
+
 class PluginZip
 {
     private $defaultBlacklist = [
@@ -20,18 +22,18 @@ class PluginZip
     {
         $currentCwd = getcwd();
         $branch = $this->getCheckoutBranch($directory, $branch);
-        $pluginName = basename($directory);
+        $plugin = PluginFinder::findPluginByRootFolder($directory);
 
         // Cleanup old releases
-        $this->exec(sprintf('rm -rf %s %s', escapeshellarg($pluginName), escapeshellarg($pluginName . '-*.zip')));
+        $this->exec(sprintf('rm -rf %s %s', escapeshellarg($plugin->getName()), escapeshellarg($plugin->getName() . '-*.zip')));
 
         // Create a new folder
-        $this->exec('mkdir ' . escapeshellarg($pluginName));
+        $this->exec('mkdir ' . escapeshellarg($plugin->getName()));
 
         // Extract the git repository there
-        $this->exec(sprintf('git archive %s | tar -x -C %s', escapeshellarg($branch), escapeshellarg($pluginName)));
+        $this->exec(sprintf('git archive %s | tar -x -C %s', escapeshellarg($branch), escapeshellarg($plugin->getName())));
 
-        $composerJson = $directory . '/' . $pluginName . '/composer.json';
+        $composerJson = $directory . '/' . $plugin->getName() . '/composer.json';
         $composerJsonBackup = $composerJson . '.bak';
 
         if (file_exists($composerJson)) {
@@ -39,7 +41,7 @@ class PluginZip
             $this->filterShopwareDependencies($composerJson);
             // Install composer dependencies
             if ($this->needComposerToRun($composerJson)) {
-                $this->exec('composer install --no-dev -n -o -d ' . escapeshellarg($pluginName));
+                $this->exec('composer install --no-dev -n -o -d ' . escapeshellarg($plugin->getName()));
             }
 
             rename($composerJsonBackup, $composerJson);
@@ -53,18 +55,18 @@ class PluginZip
 
         // Cleanup directory using blacklist
         foreach ($this->defaultBlacklist as $item) {
-            $this->exec('rm -rf ' . escapeshellarg($pluginName . '/' . $item));
+            $this->exec('rm -rf ' . escapeshellarg($plugin->getName() . '/' . $item));
         }
 
         // Clean branch name for filename
         $branchClean = preg_replace('/[^a-z0-9]+/', '-', strtolower($branch));
 
-        $fileName = $pluginName . '-' . $branchClean . '.zip';
-        $filePath = $directory . '/' . $pluginName;
+        $fileName = $plugin->getName() . '-' . $branchClean . '.zip';
+        $filePath = $directory . '/' . $plugin->getName();
 
-        $this->exec(sprintf('zip -r %s %s -x *.git*', escapeshellarg($fileName), escapeshellarg($pluginName)));
+        $this->exec(sprintf('zip -r %s %s -x *.git*', escapeshellarg($fileName), escapeshellarg($plugin->getName())));
 
-        $this->exec('rm -rf ' . escapeshellarg($currentCwd . '/' . $pluginName));
+        $this->exec('rm -rf ' . escapeshellarg($currentCwd . '/' . $plugin->getName()));
 
         if ($currentCwd !== getcwd()) {
             $this->exec(sprintf('mv %s %s', escapeshellarg($fileName), escapeshellarg($currentCwd)));

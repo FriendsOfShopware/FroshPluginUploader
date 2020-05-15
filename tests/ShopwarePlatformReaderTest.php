@@ -44,4 +44,13 @@ class ShopwarePlatformReaderTest extends TestCase
         $pluginReader = new PluginReader(__DIR__ . '/testPlugins/ShopwareInvalidComposerJson');
         $pluginReader->getNewestChangelogGerman();
     }
+
+    public function testPluginIsWrappedProperly(): void
+    {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('The folder is not wrapped inside a folder having the plugins name Performance but shopware-platform-plugin-in-a-folder-not-matching-the-name-of-its-content instead');
+
+        $pluginReader = new PluginReader(__DIR__ . '/testPlugins/shopware-platform-plugin-in-a-folder-not-matching-the-name-of-its-content');
+        $pluginReader->validate();
+    }
 }
