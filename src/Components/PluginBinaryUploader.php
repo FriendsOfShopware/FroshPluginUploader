@@ -102,7 +102,7 @@ class PluginBinaryUploader
 
             ++$tries;
 
-            if ($tries === 100) {
+            if ($tries === 200) {
                 return false;
             }
         }
