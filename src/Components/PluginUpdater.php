@@ -77,10 +77,6 @@ class PluginUpdater
 
         unset($infoTranslation);
 
-        if (file_exists($resourcesFolderPath . '/icon.png')) {
-            $this->client->Plugins()->addIcon($pluginId, $resourcesFolderPath . '/icon.png');
-        }
-
         if (count($pluginInformation->localizations) < 2) {
             $this->addDefaultLocales($pluginInformation);
         }
@@ -92,6 +88,10 @@ class PluginUpdater
         }
 
         $this->client->Plugins()->put($pluginId, $pluginInformation);
+
+        if (file_exists($resourcesFolderPath . '/icon.png')) {
+            $this->client->Plugins()->addIcon($pluginId, $resourcesFolderPath . '/icon.png');
+        }
 
         $imageDir = $resourcesFolderPath . '/images';
 
