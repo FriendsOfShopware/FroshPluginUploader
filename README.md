@@ -17,6 +17,17 @@ Requirements for Plugin
 * [Shopware 5](https://github.com/FriendsOfShopware/FroshPluginUploader/wiki/Shopware-5-Plugins)
 * [Shopware Platform](https://github.com/FriendsOfShopware/FroshPluginUploader/wiki/Shopware-Platform-Plugin)
 
+## Docker
+
+You can use it also using Docker. Don't forget to pass your credentials as env variables.
+
+Example: 
+```
+❯ docker run --rm -v (pwd):/storage friendsofshopware/plugin-uploader plugin:validate /storage/FroshAppGoogleSheet.zip
+
+ [OK] Has been successfully validated                                           
+```
+
 # Using the Commands
 
 ## ext:upload
