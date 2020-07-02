@@ -5,6 +5,7 @@ namespace FroshPluginUploader\Components;
 use FroshPluginUploader\Components\SBP\Client;
 use FroshPluginUploader\Structs\Binary;
 use FroshPluginUploader\Structs\Input\UploadPluginInput;
+use FroshPluginUploader\Structs\Input\UploadPluginResult;
 
 class PluginBinaryUploader
 {
@@ -43,14 +44,14 @@ class PluginBinaryUploader
         $currentReviews = count($this->client->Plugins()->getCodeReviewResults($input->getStorePlugin()->id, $binary->id));
 
         if ($input->isSkipCodeReview()) {
-            return true;
+            return new UploadPluginResult(true, false);
         }
 
         // Trigger a review
         $this->client->Plugins()->triggerCodeReview($input->getStorePlugin()->id);
 
         if ($input->isSkipWaitingForCodeReview()) {
-            return true;
+            return new UploadPluginResult(true, false);
         }
 
         return $this->waitForResult($currentReviews, $input->getStorePlugin()->id, $binary->id);
@@ -70,7 +71,7 @@ class PluginBinaryUploader
         return $this->client->Plugins()->getVersion($binaries, $version);
     }
 
-    private function waitForResult(int $counter, int $pluginId, int $binaryId)
+    private function waitForResult(int $counter, int $pluginId, int $binaryId): UploadPluginResult
     {
         $tries = 0;
 
@@ -82,18 +83,14 @@ class PluginBinaryUploader
             if ($counter !== count($results)) {
                 $result = $results[count($results) - 1];
 
-                if ($result->type->id === 3 || $result->type->name === 'automaticcodereviewsucceeded') {
-                    return true;
-                }
-
-                // Still pending (basic completed)
+                // Still pending
                 if ($result->type->id === 4) {
                     sleep(5);
-                    $tries++;
+                    ++$tries;
                     continue;
                 }
 
-                return $results[count($results) - 1]->message;
+                return CodeReviewFormatter::format($result);
             }
 
             sleep(5);
@@ -101,7 +98,7 @@ class PluginBinaryUploader
             ++$tries;
 
             if ($tries === 200) {
-                return false;
+                return new UploadPluginResult(true, false, 'Code-Review check took to long');
             }
         }
     }

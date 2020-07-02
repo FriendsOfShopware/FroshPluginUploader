@@ -3,6 +3,7 @@
 namespace FroshPluginUploader\Components;
 
 use FroshPluginUploader\Components\Generation\Shopware5\Plugin as Plugin5;
+use FroshPluginUploader\Components\Generation\ShopwareApp\App;
 use FroshPluginUploader\Components\Generation\ShopwarePlatform\Plugin as PluginPlatform;
 use FroshPluginUploader\Exception\PluginGenerationException;
 
@@ -21,6 +22,10 @@ class PluginFinder
     {
         if (file_exists($pluginXmlPath = $rootFolder . '/plugin.xml')) {
             return new Plugin5($rootFolder, basename($rootFolder));
+        }
+
+        if (file_exists($pluginXmlPath = $rootFolder . '/manifest.xml')) {
+            return new App($rootFolder, basename($rootFolder));
         }
 
         if (!file_exists($pluginComposerJsonPath = $rootFolder . '/composer.json')) {

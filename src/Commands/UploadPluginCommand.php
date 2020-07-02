@@ -56,15 +56,16 @@ class UploadPluginCommand extends Command implements ContainerAwareInterface
 
         $io = new SymfonyStyle($input, $output);
 
-        if ($result === true) {
+        if ($result->isPassed() && !$result->hasWarnings()) {
             $io->success('Plugin zip successfully uploaded');
-        } elseif ($result === false) {
-            $io->warning('Code-Review check took to long');
+        } elseif ($result->isPassed()) {
+            $io->success('Plugin uploaded but with Warnings');
+            $io->warning($result->getMessage());
         } else {
-            $io->error(strip_tags($result));
+            $io->error($result->getMessage());
         }
 
-        return 0;
+        return $result->isPassed() ? 0 : -1;
     }
 
     private function validateInput(InputInterface $input): void
