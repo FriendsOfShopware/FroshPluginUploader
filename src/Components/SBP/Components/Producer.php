@@ -23,7 +23,7 @@ class Producer extends AbstractComponent
             'offset' => 0,
             'orderBy' => 'creationDate',
             'orderSequence' => 'desc',
-            'producerId' => $this->client->getProducer()->id
+            'producerId' => $this->client->getProducer()->id,
         ];
 
         if ($search) {

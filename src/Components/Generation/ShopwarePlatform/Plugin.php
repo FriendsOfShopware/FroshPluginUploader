@@ -2,9 +2,6 @@
 
 namespace FroshPluginUploader\Components\Generation\ShopwarePlatform;
 
-use Composer\DependencyResolver\Pool;
-use Composer\Package\Package;
-use Composer\Repository\InstalledArrayRepository;
 use Composer\Semver\Semver;
 use FroshPluginUploader\Components\PluginInterface;
 use FroshPluginUploader\Components\PluginReaderInterface;

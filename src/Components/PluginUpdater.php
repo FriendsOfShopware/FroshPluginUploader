@@ -79,7 +79,7 @@ class PluginUpdater
 
         $this->setLicense($storePlugin, $plugin->getReader()->getLicense());
 
-        if($plugin->hasStoreJson()) {
+        if ($plugin->hasStoreJson()) {
             $plugin->getStoreJson()->applyToPlugin($storePlugin, $this->client->General()->all());
         }
 
@@ -103,7 +103,12 @@ class PluginUpdater
                     continue;
                 }
 
-                $this->client->Plugins()->addImage($storePlugin->id, $imageDir . '/' . $image);
+                $storeImage = $this->client->Plugins()->addImage($storePlugin->id, $imageDir . '/' . $image);
+
+                if ($plugin->hasStoreJson() && $plugin->getStoreJson()->applyImageUpdate($storeImage, $image)) {
+                    var_dump($storeImage);
+                    $this->client->Plugins()->updateImage($storePlugin->id, $storeImage);
+                }
             }
         }
     }

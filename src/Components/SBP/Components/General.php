@@ -2,8 +2,6 @@
 
 namespace FroshPluginUploader\Components\SBP\Components;
 
-use FroshPluginUploader\Components\PluginInterface;
-
 class General extends AbstractComponent
 {
     /**

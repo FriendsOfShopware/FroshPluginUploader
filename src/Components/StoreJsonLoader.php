@@ -2,6 +2,7 @@
 
 namespace FroshPluginUploader\Components;
 
+use FroshPluginUploader\Structs\Image;
 use FroshPluginUploader\Structs\Plugin;
 
 class StoreJsonLoader
@@ -58,6 +59,11 @@ class StoreJsonLoader
      */
     private $videos;
 
+    /**
+     * @var array
+     */
+    private $images = [];
+
     public function __construct(string $path)
     {
         if (file_exists($path)) {
@@ -88,6 +94,41 @@ class StoreJsonLoader
         if ($this->videos) {
             $this->assignVideos($plugin);
         }
+    }
+
+    public function applyImageUpdate(Image $image, string $imageName): bool
+    {
+        if (!isset($this->images[$imageName])) {
+            return false;
+        }
+
+        $config = $this->images[$imageName];
+
+        if (isset($config['priority'])) {
+            $image->priority = (int) $config['priority'];
+        }
+
+        foreach ($image->details as $detail) {
+            if ($detail->locale->name === 'de_DE' && isset($config['de'])) {
+                if (isset($config['de']['activated'])) {
+                    $detail->activated = $config['de']['activated'];
+                }
+
+                if (isset($config['de']['preview'])) {
+                    $detail->activated = $config['de']['preview'];
+                }
+            } elseif ($detail->locale->name === 'en_GB' && isset($config['en'])) {
+                if (isset($config['de']['activated'])) {
+                    $detail->activated = $config['de']['activated'];
+                }
+
+                if (isset($config['de']['preview'])) {
+                    $detail->activated = $config['de']['preview'];
+                }
+            }
+        }
+
+        return true;
     }
 
     private function loadFile(string $path): void
@@ -124,6 +165,10 @@ class StoreJsonLoader
 
         if (isset($data['responsive']) && is_bool($data['responsive'])) {
             $this->responsive = $data['responsive'];
+        }
+
+        if (isset($data['images']) && is_array($data['images'])) {
+            $this->images = $data['images'];
         }
     }
 
