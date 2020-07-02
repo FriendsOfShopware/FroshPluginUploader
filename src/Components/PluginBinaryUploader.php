@@ -4,6 +4,7 @@ namespace FroshPluginUploader\Components;
 
 use FroshPluginUploader\Components\SBP\Client;
 use FroshPluginUploader\Structs\Binary;
+use FroshPluginUploader\Structs\Input\UploadPluginInput;
 
 class PluginBinaryUploader
 {
@@ -17,40 +18,42 @@ class PluginBinaryUploader
         $this->client = $client;
     }
 
-    public function upload(string $binaryPath, PluginInterface $plugin, bool $skipCodeReviewResult = false)
+    public function upload(UploadPluginInput $input)
     {
-        $pluginId = (int) Util::getEnv('PLUGIN_ID');
+        $input->getPlugin()->getReader()->validate();
 
-        $plugin->getReader()->validate();
+        $binaries = $this->client->Plugins()->getAvailableBinaries($input->getStorePlugin()->id);
 
-        $binaries = $this->client->Plugins()->getAvailableBinaries($pluginId);
-
-        if (!$this->client->Plugins()->hasVersion($binaries, $plugin->getReader()->getVersion())) {
-            $binary = $this->client->Plugins()->createBinaryFile($binaryPath, $pluginId);
+        if (!$this->client->Plugins()->hasVersion($binaries, $input->getPlugin()->getReader()->getVersion())) {
+            $binary = $this->client->Plugins()->createBinaryFile($input->getZipPath(), $input->getStorePlugin()->id);
         } else {
-            $binary = $this->updateBinary($binaries, $plugin->getReader()->getVersion(), $binaryPath, $pluginId);
+            $binary = $this->updateBinary($binaries, $input->getPlugin()->getReader()->getVersion(), $input->getZipPath(), $input->getStorePlugin()->id);
         }
 
-        $binary->version = $plugin->getReader()->getVersion();
-        $binary->changelogs[0]->text = $plugin->getReader()->getNewestChangelogGerman();
-        $binary->changelogs[1]->text = $plugin->getReader()->getNewestChangelogEnglish();
+        $binary->version = $input->getPlugin()->getReader()->getVersion();
+        $binary->changelogs[0]->text = $input->getPlugin()->getReader()->getNewestChangelogGerman();
+        $binary->changelogs[1]->text = $input->getPlugin()->getReader()->getNewestChangelogEnglish();
         $binary->ionCubeEncrypted = false;
         $binary->licenseCheckRequired = false;
-        $binary->compatibleSoftwareVersions = $plugin->getCompatibleVersions($this->client->General()->getShopwareVersions());
+        $binary->compatibleSoftwareVersions = $input->getPlugin()->getCompatibleVersions($this->client->General()->getShopwareVersions());
 
         // Patch the binary changelog and version
-        $this->client->Plugins()->updateBinary($binary, $pluginId);
+        $this->client->Plugins()->updateBinary($binary, $input->getStorePlugin()->id);
 
-        $currentReviews = count($this->client->Plugins()->getCodeReviewResults($pluginId, $binary->id));
+        $currentReviews = count($this->client->Plugins()->getCodeReviewResults($input->getStorePlugin()->id, $binary->id));
 
-        // Trigger a review
-        $this->client->Plugins()->triggerCodeReview($pluginId);
-
-        if ($skipCodeReviewResult) {
+        if ($input->isSkipCodeReview()) {
             return true;
         }
 
-        return $this->waitForResult($currentReviews, $pluginId, $binary->id);
+        // Trigger a review
+        $this->client->Plugins()->triggerCodeReview($input->getStorePlugin()->id);
+
+        if ($input->isSkipWaitingForCodeReview()) {
+            return true;
+        }
+
+        return $this->waitForResult($currentReviews, $input->getStorePlugin()->id, $binary->id);
     }
 
     /**

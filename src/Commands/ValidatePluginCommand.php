@@ -5,6 +5,7 @@ namespace FroshPluginUploader\Commands;
 use FroshPluginUploader\Components\PluginFinder;
 use FroshPluginUploader\Components\SBP\Client;
 use FroshPluginUploader\Components\Util;
+use FroshPluginUploader\Exception\PluginNotFoundInAccount;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -57,16 +58,14 @@ class ValidatePluginCommand extends Command implements ContainerAwareInterface
 
     private function validateTechnicalName(string $pluginName): void
     {
-        $pluginId = (int) Util::getEnv('PLUGIN_ID');
-
-        if (empty($pluginId)) {
+        if (!isset($_SERVER['ACCOUNT_USER'])) {
             return;
         }
 
-        $plugin = $this->container->get(Client::class)->Plugins()->get($pluginId);
+        $plugin = $this->container->get(Client::class)->Producer()->getPlugin($pluginName);
 
-        if ($plugin->moduleKey !== $pluginName) {
-            throw new \RuntimeException(sprintf('Plugin name in zip does not match account plugin technical name, Account: %s, Zip: %s', $plugin->moduleKey, $pluginName));
+        if ($plugin === null) {
+            throw new PluginNotFoundInAccount($pluginName);
         }
     }
 }

@@ -23,15 +23,11 @@ class PluginUpdater
         $this->markdownParser = new \Parsedown();
     }
 
-    public function sync(PluginInterface $plugin): void
+    public function sync(PluginInterface $plugin, Plugin $storePlugin): void
     {
-        $pluginId = (int) Util::getEnv('PLUGIN_ID');
-
-        $pluginInformation = $this->client->Plugins()->get($pluginId);
-
         $resourcesFolderPath = $plugin->getResourcesFolderPath();
 
-        foreach ($pluginInformation->infos as &$infoTranslation) {
+        foreach ($storePlugin->infos as &$infoTranslation) {
             $language = substr($infoTranslation->locale->name, 0, 2);
             $languageFile = $resourcesFolderPath . '/' . $language . '.html';
             $languageFileMarkdown = $resourcesFolderPath . '/' . $language . '.md';
@@ -77,29 +73,29 @@ class PluginUpdater
 
         unset($infoTranslation);
 
-        if (count($pluginInformation->localizations) < 2) {
-            $this->addDefaultLocales($pluginInformation);
+        if (count($storePlugin->localizations) < 2) {
+            $this->addDefaultLocales($storePlugin);
         }
 
-        $this->setLicense($pluginInformation, $plugin->getReader()->getLicense());
+        $this->setLicense($storePlugin, $plugin->getReader()->getLicense());
 
         if($plugin->hasStoreJson()) {
-            $plugin->getStoreJson()->applyToPlugin($pluginInformation, $this->client->General()->all());
+            $plugin->getStoreJson()->applyToPlugin($storePlugin, $this->client->General()->all());
         }
 
-        $this->client->Plugins()->put($pluginId, $pluginInformation);
+        $this->client->Plugins()->put($storePlugin->id, $storePlugin);
 
         if (file_exists($resourcesFolderPath . '/icon.png')) {
-            $this->client->Plugins()->addIcon($pluginId, $resourcesFolderPath . '/icon.png');
+            $this->client->Plugins()->addIcon($storePlugin->id, $resourcesFolderPath . '/icon.png');
         }
 
         $imageDir = $resourcesFolderPath . '/images';
 
         if (file_exists($imageDir)) {
-            $images = $this->client->Plugins()->getImages($pluginId);
+            $images = $this->client->Plugins()->getImages($storePlugin->id);
 
             foreach ($images as $image) {
-                $this->client->Plugins()->deleteImage($pluginId, $image->id);
+                $this->client->Plugins()->deleteImage($storePlugin->id, $image->id);
             }
 
             foreach (scandir($imageDir, SCANDIR_SORT_ASCENDING) as $image) {
@@ -107,12 +103,12 @@ class PluginUpdater
                     continue;
                 }
 
-                $this->client->Plugins()->addImage($pluginId, $imageDir . '/' . $image);
+                $this->client->Plugins()->addImage($storePlugin->id, $imageDir . '/' . $image);
             }
         }
     }
 
-    private function addDefaultLocales(Plugin $plugin)
+    private function addDefaultLocales(Plugin $plugin): void
     {
         $allLocales = $this->client->General()->getLocalizations();
         $plugin->localizations = [];
@@ -125,7 +121,7 @@ class PluginUpdater
         }
     }
 
-    private function setLicense(Plugin $plugin, string $license)
+    private function setLicense(Plugin $plugin, string $license): void
     {
         $availableLicenses = $this->client->General()->all()['licenses'];
         foreach ($availableLicenses as $licenseItem) {

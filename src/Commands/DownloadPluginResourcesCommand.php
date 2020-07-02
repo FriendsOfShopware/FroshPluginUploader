@@ -21,16 +21,13 @@ class DownloadPluginResourcesCommand extends Command implements ContainerAwareIn
         $this
             ->setName('plugin:download:resources')
             ->setDescription('Downloads the resources from account to given folder. Needed for plugin:upload')
+            ->addArgument('name', InputArgument::REQUIRED, 'Technical plugin name')
             ->addArgument('path', InputArgument::REQUIRED, 'Path to /Resources/store folder');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        if (!Util::getEnv('PLUGIN_ID')) {
-            throw new \RuntimeException('The enviroment variable $PLUGIN_ID is required');
-        }
-
-        $this->container->get(ResourcesDownloader::class)->download($input->getArgument('path'));
+        $this->container->get(ResourcesDownloader::class)->download($input->getArgument('name'), $input->getArgument('path'));
 
         $io = new SymfonyStyle($input, $output);
         $io->success('Downloaded store data to given folder');

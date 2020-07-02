@@ -6,6 +6,7 @@ use FroshPluginUploader\Components\SBP\Components\General;
 use FroshPluginUploader\Components\SBP\Components\Plugin;
 use FroshPluginUploader\Components\SBP\Components\Producer;
 use FroshPluginUploader\Components\Util;
+use FroshPluginUploader\Structs\Producer as ProducerStruct;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\UriInterface;
@@ -40,6 +41,11 @@ class Client
      * @var int
      */
     private $userId;
+
+    /**
+     * @var ProducerStruct
+     */
+    private $producer;
 
     public function __construct()
     {
@@ -80,6 +86,8 @@ class Client
         $this->components['plugins'] = new Plugin($this);
         $this->components['producer'] = new Producer($this);
         $this->components['general'] = new General($this);
+
+        $this->producer = $this->Producer()->getProducer();
     }
 
     public function Plugins(): Plugin
@@ -100,6 +108,11 @@ class Client
     public function getUserId(): int
     {
         return $this->userId;
+    }
+
+    public function getProducer(): ProducerStruct
+    {
+        return $this->producer;
     }
 
     private function createClient(?string $token): \GuzzleHttp\Client

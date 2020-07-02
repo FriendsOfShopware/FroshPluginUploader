@@ -17,10 +17,8 @@ class ResourcesDownloader
         $this->client = $client;
     }
 
-    public function download(string $path): void
+    public function download(string $pluginName, string $path): void
     {
-        $pluginId = (int) Util::getEnv('PLUGIN_ID');
-
         if (!file_exists($path)) {
             if (!mkdir($path) && !is_dir($path)) {
                 throw new \RuntimeException(sprintf('Directory "%s" was not created', $path));
@@ -34,7 +32,7 @@ class ResourcesDownloader
             }
         }
 
-        $plugin = $this->client->Plugins()->get($pluginId);
+        $plugin = $this->client->Producer()->getPlugin($pluginName);
 
         foreach ($plugin->infos as $info) {
             $locale = substr($info->locale->name, 0, 2);
@@ -50,7 +48,7 @@ class ResourcesDownloader
 
         file_put_contents($path . '/store.json', json_encode($this->generateStoreJson($plugin), JSON_PRETTY_PRINT));
 
-        $pictures = $this->client->Plugins()->getImages($pluginId);
+        $pictures = $this->client->Plugins()->getImages($plugin->id);
 
         $i = 0;
         foreach ($pictures as $picture) {
@@ -59,7 +57,7 @@ class ResourcesDownloader
         }
     }
 
-    private function generateStoreJson(Plugin $plugin)
+    private function generateStoreJson(Plugin $plugin): array
     {
         $json = [
             'storeAvailabilities' => array_map([$this, 'getNames'], $plugin->storeAvailabilities),

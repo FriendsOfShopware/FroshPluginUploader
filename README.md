@@ -4,13 +4,13 @@ Tool for uploading new plugin releases to Shopware Store
 
 **This Tool works only for the new plugin system or Shopware Platform**
 
-Required Enviroment variables
+Required Environment variables
 
 | Name             	| Default 	| Description                                                         	|
 |------------------	|---------	|---------------------------------------------------------------------	|
-| PLUGIN_ID        	|         	| Plugin ID from account.shopware.com. Can be obtained from the link 	|
 | ACCOUNT_USER     	|         	| Shopware ID                                                         	|
 | ACCOUNT_PASSWORD 	|         	| Shopware ID password                                                	|
+| ~~PLUGIN_ID~~    	|         	| Removed with Version 0.3.0 	                                        |
 
 Requirements for Plugin
 
@@ -77,8 +77,6 @@ branch - Optional: will detect the latest tag, otherwise will use master
 ```
 
 A .sw-zip-blacklist file can be used to define which files should be deleted before creating the zip
-
-
 
 # FAQ
 
