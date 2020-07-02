@@ -2,7 +2,7 @@
 
 Tool for uploading new plugin releases to Shopware Store
 
-**This Tool works only for the new plugin system or Shopware Platform**
+**This Tool works only for the new plugin system, Shopware Platform and app system**
 
 Required Environment variables
 
@@ -19,10 +19,10 @@ Requirements for Plugin
 
 # Using the Commands
 
-## plugin:upload
+## ext:upload
 
 Will upload the zip to the store and triggers a code review.
-**Plugin version can be deployed multiple times. It will be updated then**
+**Plugin version can be deployed multiple times, which updates the version**
 
 Valid arguments are:
 
@@ -31,15 +31,15 @@ pathToZip - path to the zip file
 ```
 
 Valid options are:
-
 ```
+--skipCodeReview - Skip the Code-Review
 --skipCodeReviewResult - Skip waiting for Code-Review Result
 ```
 
 
-## plugin:update
+## ext:update
 
-Will update informations about the plugin from you `Resources/store`-folder
+Will update informations about the plugin from the `Resources/store`-folder
 
 Valid arguments are:
 
@@ -49,7 +49,7 @@ path - path to the plugin folder
 
 For more Information about the Resources/store folder checkout [this](https://github.com/FriendsOfShopware/FroshPluginUploader/wiki/Resources-store-Folder)
 
-## plugin:validate
+## ext:validate
 
 Will check the plugin for validation exceptions for Code Review
 
@@ -59,21 +59,32 @@ Valid arguments are:
 pathToZip - path to the zip file
 ```
 
-## plugin:list
+Valid options are:
+```
+--create - Create the plugin in account, if it doesn't exist
+```
+
+## ext:list
 
 Shows all plugins in the account with the id, name, latest version and last changed.
 
-## plugin:download:resources
+## ext:download:resources
 
 Downloads all store resources from store to the given folder
 
-## plugin:zip:dir
+## ext:zip
 
-Allows to zip the git repository of the plugin
+Allows to zip the git repository or folder of the plugin
 
+Valid arguments are:
 ```
-gitPath - path to the git repository
+path - path to the directory
 branch - Optional: will detect the latest tag, otherwise will use master
+```
+
+Valid options are:
+```
+--strategy - default `git`. `plain` will zip the folder as it is.
 ```
 
 A .sw-zip-blacklist file can be used to define which files should be deleted before creating the zip
