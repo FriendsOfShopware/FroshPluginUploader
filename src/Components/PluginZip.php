@@ -16,6 +16,7 @@ class PluginZip
         'tests',
         'Resources/store',
         'src/Resources/store',
+        '.github',
     ];
 
     public function zip(string $directory, ?string $branch = null): string
@@ -24,16 +25,18 @@ class PluginZip
         $branch = $this->getCheckoutBranch($directory, $branch);
         $plugin = PluginFinder::findPluginByRootFolder($directory);
 
+        $tmpDir = sys_get_temp_dir() . '/' . uniqid('uploaderPacking', true);
+        $pluginTmpDir = $tmpDir . '/' . $plugin->getName();
+
+        $this->exec(sprintf('mkdir -p %s', escapeshellarg($pluginTmpDir)));
+
         // Cleanup old releases
         $this->exec(sprintf('rm -rf %s %s', escapeshellarg($plugin->getName()), escapeshellarg($plugin->getName() . '-*.zip')));
 
-        // Create a new folder
-        $this->exec('mkdir ' . escapeshellarg($plugin->getName()));
-
         // Extract the git repository there
-        $this->exec(sprintf('git archive %s | tar -x -C %s', escapeshellarg($branch), escapeshellarg($plugin->getName())));
+        $this->exec(sprintf('git archive %s | tar -x -C %s', escapeshellarg($branch), escapeshellarg($pluginTmpDir)));
 
-        $composerJson = $directory . '/' . $plugin->getName() . '/composer.json';
+        $composerJson = $tmpDir . '/composer.json';
         $composerJsonBackup = $composerJson . '.bak';
 
         if (file_exists($composerJson)) {
@@ -47,7 +50,7 @@ class PluginZip
             rename($composerJsonBackup, $composerJson);
         }
 
-        if (file_exists($directory . '/.sw-zip-blacklist')) {
+        if (file_exists($tmpDir . '/.sw-zip-blacklist')) {
             $blackList = file_get_contents($directory . '/.sw-zip-blacklist');
             $blackList = array_filter(explode("\n", $blackList));
             $this->defaultBlacklist = array_merge($this->defaultBlacklist, $blackList);
@@ -55,7 +58,7 @@ class PluginZip
 
         // Cleanup directory using blacklist
         foreach ($this->defaultBlacklist as $item) {
-            $this->exec('rm -rf ' . escapeshellarg($plugin->getName() . '/' . $item));
+            $this->exec('rm -rf ' . escapeshellarg($pluginTmpDir . '/' . $item));
         }
 
         // Clean branch name for filename
@@ -64,15 +67,11 @@ class PluginZip
         $fileName = $plugin->getName() . '-' . $branchClean . '.zip';
         $filePath = $directory . '/' . $plugin->getName();
 
-        $this->exec(sprintf('zip -r %s %s -x *.git*', escapeshellarg($fileName), escapeshellarg($plugin->getName())));
+        $this->exec(sprintf('cd %s; zip -r %s %s -x *.git*', escapeshellarg($tmpDir), escapeshellarg($fileName), escapeshellarg($plugin->getName())));
 
-        $this->exec('rm -rf ' . escapeshellarg($currentCwd . '/' . $plugin->getName()));
+        $this->exec(sprintf('mv %s %s', escapeshellarg($tmpDir . '/' . $fileName) , escapeshellarg($currentCwd)));
 
-        if ($currentCwd !== getcwd()) {
-            $this->exec(sprintf('mv %s %s', escapeshellarg($fileName), escapeshellarg($currentCwd)));
-        }
-
-        chdir($currentCwd);
+        $this->exec('rm -rf ' . escapeshellarg($tmpDir));
 
         return $filePath . '/' . $fileName;
     }
