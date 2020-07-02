@@ -1,5 +1,7 @@
-.idea
-.env
-vendor
-box.phar
-composer.lock
+/.idea
+/.env
+/vendor
+/box.phar
+/composer.lock
+/test
+/*.zip
