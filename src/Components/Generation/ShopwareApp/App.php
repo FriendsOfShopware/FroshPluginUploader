@@ -58,4 +58,9 @@ class App implements PluginInterface
     {
         return [];
     }
+
+    public function getStoreType(): string
+    {
+        return 'apps';
+    }
 }

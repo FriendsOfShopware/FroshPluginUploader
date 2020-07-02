@@ -19,4 +19,6 @@ interface PluginInterface
     public function getRootDir(): string;
 
     public function getCompatibleVersions(array $versions): array;
+
+    public function getStoreType(): string;
 }

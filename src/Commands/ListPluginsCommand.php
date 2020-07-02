@@ -20,7 +20,8 @@ class ListPluginsCommand extends Command implements ContainerAwareInterface
     protected function configure(): void
     {
         $this
-            ->setName('plugin:list')
+            ->setName('ext:list')
+            ->setAliases(['plugin:list'])
             ->setDescription('Shows all plugins from the account');
     }
 

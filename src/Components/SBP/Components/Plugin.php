@@ -6,17 +6,18 @@ use FroshPluginUploader\Structs\Binary;
 use FroshPluginUploader\Structs\CodeReview\CodeReview;
 use FroshPluginUploader\Structs\Image;
 use FroshPluginUploader\Structs\Picture;
+use FroshPluginUploader\Structs\Plugin as StorePlugin;
 
 class Plugin extends AbstractComponent
 {
-    public function get(int $pluginId): \FroshPluginUploader\Structs\Plugin
+    public function get(int $pluginId): StorePlugin
     {
-        return \FroshPluginUploader\Structs\Plugin::map(json_decode((string) $this->client->get(sprintf('/plugins/%d', $pluginId))->getBody()));
+        return StorePlugin::map(json_decode((string) $this->client->get(sprintf('/plugins/%d', $pluginId))->getBody()));
     }
 
-    public function put(int $pluginId, object $data): void
+    public function put(int $pluginId, object $data): StorePlugin
     {
-        $this->client->put(sprintf('/plugins/%d', $pluginId), ['json' => $data]);
+        return StorePlugin::map(json_decode((string) $this->client->put(sprintf('/plugins/%d', $pluginId), ['json' => $data])->getBody()));
     }
 
     /**

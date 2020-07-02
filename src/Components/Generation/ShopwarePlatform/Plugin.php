@@ -75,4 +75,9 @@ class Plugin implements PluginInterface
 
         return $versions;
     }
+
+    public function getStoreType(): string
+    {
+        return 'platform';
+    }
 }

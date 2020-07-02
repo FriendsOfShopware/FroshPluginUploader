@@ -82,4 +82,9 @@ class Plugin implements PluginInterface
 
         return $matches;
     }
+
+    public function getStoreType(): string
+    {
+        return 'classic';
+    }
 }
