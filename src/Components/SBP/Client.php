@@ -36,6 +36,11 @@ class Client
      */
     private $components;
 
+    /**
+     * @var int
+     */
+    private $userId;
+
     public function __construct()
     {
         $this->apiClient = $this->createClient(null);
@@ -70,6 +75,7 @@ class Client
         }
 
         $this->apiClient = $this->createClient($data['token']);
+        $this->userId = (int) $data['userId'];
 
         $this->components['plugins'] = new Plugin($this);
         $this->components['producer'] = new Producer($this);
@@ -89,6 +95,11 @@ class Client
     public function General(): General
     {
         return $this->components['general'];
+    }
+
+    public function getUserId(): int
+    {
+        return $this->userId;
     }
 
     private function createClient(?string $token): \GuzzleHttp\Client

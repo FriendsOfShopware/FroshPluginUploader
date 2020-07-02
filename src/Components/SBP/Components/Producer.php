@@ -8,7 +8,7 @@ class Producer extends AbstractComponent
 {
     public function getProducer(): \FroshPluginUploader\Structs\Producer
     {
-        return \FroshPluginUploader\Structs\Producer::map(json_decode((string) $this->client->get('/producers')->getBody())[0]);
+        return \FroshPluginUploader\Structs\Producer::map(json_decode((string) $this->client->get('/producers?companyId=' . $this->client->getUserId())->getBody())[0]);
     }
 
     /**
