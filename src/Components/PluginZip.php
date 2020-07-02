@@ -2,6 +2,8 @@
 
 namespace FroshPluginUploader\Components;
 
+use FroshPluginUploader\Components\ZipStrategy\AbstractStrategy;
+
 class PluginZip
 {
     private $defaultBlacklist = [
@@ -17,10 +19,8 @@ class PluginZip
         '.github',
     ];
 
-    public function zip(string $directory, ?string $branch = null): string
+    public function zip(string $directory, AbstractStrategy $strategy): string
     {
-        $currentCwd = getcwd();
-        $branch = $this->getCheckoutBranch($directory, $branch);
         $plugin = PluginFinder::findPluginByRootFolder($directory);
 
         $tmpDir = sys_get_temp_dir() . '/' . uniqid('uploaderPacking', true);
@@ -29,10 +29,9 @@ class PluginZip
         $this->exec(sprintf('mkdir -p %s', escapeshellarg($pluginTmpDir)));
 
         // Cleanup old releases
-        $this->exec(sprintf('rm -rf %s %s', escapeshellarg($plugin->getName()), escapeshellarg($plugin->getName() . '-*.zip')));
+        $this->exec(sprintf('rm -rf %s', escapeshellarg($plugin->getName() . '-*.zip')));
 
-        // Extract the git repository there
-        $this->exec(sprintf('git archive %s | tar -x -C %s', escapeshellarg($branch), escapeshellarg($pluginTmpDir)));
+        $version = $strategy->copyFolder($directory, $pluginTmpDir);
 
         $composerJson = $tmpDir . '/composer.json';
         $composerJsonBackup = $composerJson . '.bak';
@@ -60,35 +59,23 @@ class PluginZip
         }
 
         // Clean branch name for filename
-        $branchClean = preg_replace('/[^a-z0-9]+/', '-', strtolower($branch));
 
-        $fileName = $plugin->getName() . '-' . $branchClean . '.zip';
+        if ($version) {
+            $version = preg_replace('/[^a-z\.0-9]+/', '-', strtolower($version));
+            $fileName = $plugin->getName() . '-' . $version . '.zip';
+        } else {
+            $fileName = $plugin->getName() . '.zip';
+        }
+
         $filePath = $directory . '/' . $plugin->getName();
 
         $this->exec(sprintf('cd %s; zip -r %s %s -x *.git*', escapeshellarg($tmpDir), escapeshellarg($fileName), escapeshellarg($plugin->getName())));
 
-        $this->exec(sprintf('mv %s %s', escapeshellarg($tmpDir . '/' . $fileName), escapeshellarg($currentCwd)));
+        $this->exec(sprintf('mv %s %s', escapeshellarg($tmpDir . '/' . $fileName), escapeshellarg(getcwd())));
 
         $this->exec('rm -rf ' . escapeshellarg($tmpDir));
 
         return $filePath . '/' . $fileName;
-    }
-
-    private function getCheckoutBranch(string $directory, ?string $branch)
-    {
-        chdir($directory);
-
-        if ($branch) {
-            return $branch;
-        }
-
-        exec('git tag --sort=-creatordate | head -1', $output, $ret);
-
-        if ($ret !== 0) {
-            throw new \RuntimeException('Command "git tag --sort=-creatordate" failed with code %d', $ret);
-        }
-
-        return $output[0] ?? 'master';
     }
 
     private function exec(string $command): void
