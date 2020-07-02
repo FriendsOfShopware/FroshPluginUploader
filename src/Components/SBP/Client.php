@@ -51,8 +51,8 @@ class Client
     {
         $this->apiClient = $this->createClient(null);
 
-        $user = Util::getEnv('ACCOUNT_USER');
-        $password = Util::getEnv('ACCOUNT_PASSWORD');
+        $user = $_SERVER['ACCOUNT_USER'] ?? '';
+        $password = $_SERVER['ACCOUNT_PASSWORD'] ?? '';
         if (empty($user) || empty($password)) {
             throw new \RuntimeException('The enviroment variable $ACCOUNT_USER and $ACCOUNT_PASSWORD are required');
         }
@@ -118,7 +118,7 @@ class Client
     private function createClient(?string $token): \GuzzleHttp\Client
     {
         $options = [
-            'base_uri' => Util::getEnv('API_ENDPOINT', 'https://api.shopware.com'),
+            'base_uri' => $_SERVER['API_ENDPOINT'] ?? 'https://api.shopware.com',
             'timeout' => 30.0,
         ];
 

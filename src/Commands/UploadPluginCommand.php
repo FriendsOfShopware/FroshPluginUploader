@@ -38,7 +38,10 @@ class UploadPluginCommand extends Command implements ContainerAwareInterface
         $zipPath = realpath($input->getArgument('zipPath'));
         $zip = new \ZipArchive();
         $zip->open($zipPath);
-        $tmpFolder = Util::mkTempDir(basename($zipPath));
+
+        if (!mkdir($tmpFolder = sys_get_temp_dir() . '/' . uniqid('uploader', true)) && !is_dir($tmpFolder)) {
+            throw new \RuntimeException(sprintf('Directory "%s" was not created', $tmpFolder));
+        }
 
         $zip->extractTo($tmpFolder);
 
