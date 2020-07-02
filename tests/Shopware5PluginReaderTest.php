@@ -33,14 +33,4 @@ class Shopware5PluginReaderTest extends TestCase
 
         $pluginReader->validate();
     }
-
-    public function testMissingChangelogTranslation(): void
-    {
-        $this->expectException(\RuntimeException::class);
-        $this->expectExceptionMessage('Changelog for version 1.0.0 has no translation for en');
-
-        $pluginReader = new PluginReader(__DIR__ . '/testPlugins/Shopware5PluginMissingChangelog');
-
-        $pluginReader->validate();
-    }
 }
