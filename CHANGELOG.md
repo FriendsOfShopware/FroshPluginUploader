@@ -11,6 +11,29 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 
 <!-- dumped content start -->
 
+## Unreleased
+
+- [#38] Added option to create extension when does not exists., Thanks to [@shyim]
+- [#40] Update README.md, Thanks to [@tinect]
+- [#39] Refactor Util class out, Thanks to [@shyim]
+- [#37] Allow uploading app system extensions, Thanks to [@shyim]
+- [#35] Allow using plain copying files in plugin zipping, Thanks to [@shyim]
+- [#34] Allow configuring image options in store.json, fixes [#20], Thanks to [@shyim]
+- [#33] Remove required PLUGIN_ID, fixes [#21], Thanks to [@shyim]
+- [#16] added min version support in composer.json, Thanks to [@bilobait-lorenz]
+- [#31] Increase code-review wait timeout, Thanks to [@shyim]
+- [#27] Improve plugin zip by name detection, Thanks to [@JoshuaBehrens]
+- [#24] Update README.md, Thanks to [@tinect]
+- [#18] [#17]: Omit Shopware base packages in plugin .zip, Thanks to [@moehrenzahn]
+- [#15] Clean branch name, Thanks to [@runelaenen]
+- [#32] Fix plugin zipping in same folder, Thanks to [@shyim]
+- Fix listing of plugins
+- Update plugin icon after updated plugin
+
+<!-- dumped content end -->
+
+<!-- dumped content start -->
+
 ## [0.2.2] - 2020-01-19
 
 - [#14] Test Github Actions, Thanks to [@shyim]
@@ -26,18 +49,6 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 - [#5] added dotenv check and .env.example, Thanks to [@Dwza]
 - [#9] Support for plugin features & highlights, Thanks to [@bilobait-lorenz]
 - [#6] More infos in list command, Thanks to [@Dwza]
-
-## Unreleased
-
-- [#16] added min version support in composer.json, Thanks to [@bilobait-lorenz]
-- [#31] Increase code-review wait timeout, Thanks to [@shyim]
-- [#27] Improve plugin zip by name detection, Thanks to [@JoshuaBehrens]
-- [#24] Update README.md, Thanks to [@tinect]
-- [#18] [#17]: Omit Shopware base packages in plugin .zip, Thanks to [@moehrenzahn]
-- [#15] Clean branch name, Thanks to [@runelaenen]
-- [#32] Fix plugin zipping in same folder, Thanks to [@shyim]
-- Fix listing of plugins
-- Update plugin icon after updated plugin
 
 <!-- dumped content end -->
 
@@ -65,3 +76,12 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 [@Dwza]: https://github.com/Dwza
 [0.2.2]: https://github.com/FriendsOfShopware/FroshPluginUploader/compare/0.2.1...0.2.2
 [0.2.1]: https://github.com/FriendsOfShopware/FroshPluginUploader/compare/0.1.2...0.2.1
+[#40]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/40
+[#39]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/39
+[#38]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/38
+[#37]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/37
+[#35]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/35
+[#34]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/34
+[#33]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/33
+[#21]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/21
+[#20]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/20
