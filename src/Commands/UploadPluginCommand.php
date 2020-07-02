@@ -4,7 +4,9 @@ namespace FroshPluginUploader\Commands;
 
 use FroshPluginUploader\Components\PluginBinaryUploader;
 use FroshPluginUploader\Components\PluginFinder;
+use FroshPluginUploader\Components\SBP\Client;
 use FroshPluginUploader\Components\Util;
+use FroshPluginUploader\Structs\Input\UploadPluginInput;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -24,15 +26,12 @@ class UploadPluginCommand extends Command implements ContainerAwareInterface
             ->setName('plugin:upload')
             ->setDescription('Uploads a plugin binary to store.shopware.com')
             ->addArgument('zipPath', InputArgument::REQUIRED, 'Path to to the plugin binary')
+            ->addOption('skipCodeReview', null, InputOption::VALUE_NONE, 'Don\'t trigger code review')
             ->addOption('skipCodeReviewResult', 's', InputOption::VALUE_NONE, 'Dont wait for code-review result');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        if (!Util::getEnv('PLUGIN_ID')) {
-            throw new \RuntimeException('The enviroment variable $PLUGIN_ID is required');
-        }
-
         $this->validateInput($input);
 
         $zipPath = realpath($input->getArgument('zipPath'));
@@ -43,8 +42,17 @@ class UploadPluginCommand extends Command implements ContainerAwareInterface
         $zip->extractTo($tmpFolder);
 
         $plugin = PluginFinder::findPluginByZipFile($tmpFolder);
+        $storePlugin = $this->container->get(Client::class)->Producer()->getPlugin($plugin->getName());
 
-        $result = $this->container->get(PluginBinaryUploader::class)->upload($input->getArgument('zipPath'), $plugin, $input->getOption('skipCodeReviewResult'));
+        $pluginInput = new UploadPluginInput(
+            $zipPath,
+            $plugin,
+            $storePlugin,
+            $input->getOption('skipCodeReview'),
+            $input->getOption('skipCodeReviewResult')
+        );
+
+        $result = $this->container->get(PluginBinaryUploader::class)->upload($pluginInput);
 
         $io = new SymfonyStyle($input, $output);
 

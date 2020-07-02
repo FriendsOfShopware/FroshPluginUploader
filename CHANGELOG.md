@@ -30,15 +30,19 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 ## Unreleased
 
 - [#16] added min version support in composer.json, Thanks to [@bilobait-lorenz]
+- [#31] Increase code-review wait timeout, Thanks to [@shyim]
 - [#27] Improve plugin zip by name detection, Thanks to [@JoshuaBehrens]
 - [#24] Update README.md, Thanks to [@tinect]
 - [#18] [#17]: Omit Shopware base packages in plugin .zip, Thanks to [@moehrenzahn]
 - [#15] Clean branch name, Thanks to [@runelaenen]
+- [#32] Fix plugin zipping in same folder, Thanks to [@shyim]
 - Fix listing of plugins
 - Update plugin icon after updated plugin
 
 <!-- dumped content end -->
 
+[#32]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/32
+[#31]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/31
 [#27]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/27
 [#24]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/24
 [#18]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/18

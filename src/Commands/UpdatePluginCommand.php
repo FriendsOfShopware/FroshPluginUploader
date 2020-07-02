@@ -4,6 +4,7 @@ namespace FroshPluginUploader\Commands;
 
 use FroshPluginUploader\Components\PluginFinder;
 use FroshPluginUploader\Components\PluginUpdater;
+use FroshPluginUploader\Components\SBP\Client;
 use FroshPluginUploader\Components\Util;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -27,10 +28,6 @@ class UpdatePluginCommand extends Command implements ContainerAwareInterface
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        if (!Util::getEnv('PLUGIN_ID')) {
-            throw new \RuntimeException('The enviroment variable $PLUGIN_ID is required');
-        }
-
         $path = realpath($input->getArgument('path'));
 
         if (!file_exists($path)) {
@@ -38,8 +35,9 @@ class UpdatePluginCommand extends Command implements ContainerAwareInterface
         }
 
         $plugin = PluginFinder::findPluginByRootFolder($path);
+        $storePlugin = $this->container->get(Client::class)->Producer()->getPlugin($plugin->getName());
 
-        $this->container->get(PluginUpdater::class)->sync($plugin);
+        $this->container->get(PluginUpdater::class)->sync($plugin, $storePlugin);
 
         $io = new SymfonyStyle($input, $output);
         $io->success('Store folder has been applied to plugin page');

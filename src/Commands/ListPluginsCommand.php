@@ -27,7 +27,7 @@ class ListPluginsCommand extends Command implements ContainerAwareInterface
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $client = $this->container->get(Client::class);
-        $plugins = $client->Producer()->getPlugins($client->Producer()->getProducer()->id);
+        $plugins = $client->Producer()->getPlugins();
         $table = new Table($output);
         $tblStyle = new TableStyle();
         $alignRight = $tblStyle->setPadType(STR_PAD_LEFT);

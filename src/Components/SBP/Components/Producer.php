@@ -2,30 +2,50 @@
 
 namespace FroshPluginUploader\Components\SBP\Components;
 
+use FroshPluginUploader\Exception\PluginNotFoundInAccount;
 use FroshPluginUploader\Structs\Plugin;
+use FroshPluginUploader\Structs\Producer as ProducerStruct;
 
 class Producer extends AbstractComponent
 {
-    public function getProducer(): \FroshPluginUploader\Structs\Producer
+    public function getProducer(): ProducerStruct
     {
-        return \FroshPluginUploader\Structs\Producer::map(json_decode((string) $this->client->get('/producers?companyId=' . $this->client->getUserId())->getBody())[0]);
+        return ProducerStruct::map(json_decode((string) $this->client->get('/producers?companyId=' . $this->client->getUserId())->getBody())[0]);
     }
 
     /**
-     * @param int $producerId
-     *
      * @return Plugin[]
      */
-    public function getPlugins(int $producerId): array
+    public function getPlugins(?string $search = null): array
     {
         $query = [
             'limit' => 100,
             'offset' => 0,
             'orderBy' => 'creationDate',
             'orderSequence' => 'desc',
-            'producerId' => $producerId,
+            'producerId' => $this->client->getProducer()->id
         ];
 
-        return Plugin::mapList(json_decode((string) $this->client->get('/plugins?' . http_build_query($query))->getBody()));
+        if ($search) {
+            $query['search'] = $search;
+        }
+
+        return Plugin::mapList(json_decode((string) $this->client->get('/plugins', ['query' => $query])->getBody()));
+    }
+
+    public function getPlugin(string $name): Plugin
+    {
+        $plugins = $this->getPlugins($name);
+
+        if (count($plugins) !== 1) {
+            throw new PluginNotFoundInAccount($name);
+        }
+
+        // Didn't match plugin name
+        if (strtolower($name) !== strtolower($plugins[0]->moduleKey)) {
+            throw new PluginNotFoundInAccount($name);
+        }
+
+        return $plugins[0];
     }
 }
