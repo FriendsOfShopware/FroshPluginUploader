@@ -6,7 +6,10 @@ use FroshPluginUploader\Structs\Struct;
 
 class CodeReview extends Struct
 {
-    public static $mappedFields = ['type' => Type::class];
+    public static $mappedFields = [
+        'type' => Type::class,
+        'subCheckResults' => SubCheckResult::class,
+    ];
 
     /**
      * @var int
@@ -32,4 +35,9 @@ class CodeReview extends Struct
      * @var Type
      */
     public $type;
+
+    /**
+     * @var SubCheckResult[]
+     */
+    public $subCheckResults;
 }

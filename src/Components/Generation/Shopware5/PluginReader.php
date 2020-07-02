@@ -18,15 +18,6 @@ class PluginReader implements PluginReaderInterface
         'description',
     ];
 
-    private const LANGUAGE_FIELDS = [
-        'label',
-        'description',
-    ];
-
-    private const REQUIRED_LANGUAGES = [
-        'de',
-        'en',
-    ];
     /**
      * @var array
      */
@@ -67,25 +58,6 @@ class PluginReader implements PluginReaderInterface
                 throw new \RuntimeException(sprintf('%s is not defined in plugin.xml', ucfirst($requiredKey)));
             }
         }
-
-        // Validate language in keys
-        foreach (self::LANGUAGE_FIELDS as $requiredKey) {
-            foreach (self::REQUIRED_LANGUAGES as $language) {
-                if (!isset($this->xml[$requiredKey][$language])) {
-                    throw new \RuntimeException(sprintf('%s with language %s is not defined in plugin.xml', ucfirst($requiredKey), $language));
-                }
-            }
-        }
-
-        $latestChangelog = $this->xml['changelog'][$this->xml['version']];
-
-        foreach (self::REQUIRED_LANGUAGES as $language) {
-            if (!isset($latestChangelog[$language])) {
-                throw new \RuntimeException(sprintf('Changelog for version %s has no translation for %s', $this->xml['version'], $language));
-            }
-        }
-
-        $this->validateConfig();
     }
 
     public function getVersion(): string
@@ -161,26 +133,5 @@ class PluginReader implements PluginReaderInterface
     public function getName(): string
     {
         return $this->name;
-    }
-
-    private function validateConfig(): void
-    {
-        if (empty($this->config)) {
-            return;
-        }
-
-        foreach ($this->config['elements'] as $element) {
-            foreach (self::LANGUAGE_FIELDS as $requiredKey) {
-                if (!isset($element[$requiredKey])) {
-                    continue;
-                }
-
-                foreach (self::REQUIRED_LANGUAGES as $language) {
-                    if (!isset($element[$requiredKey][$language])) {
-                        throw new \RuntimeException(sprintf('Element name: %s, Attribute: %s with language %s is not defined in config.xml', $element['name'], $requiredKey, $language));
-                    }
-                }
-            }
-        }
     }
 }

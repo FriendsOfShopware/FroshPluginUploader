@@ -21,16 +21,6 @@ class PluginReader implements PluginReaderInterface
         'description',
     ];
 
-    private const LANGUAGE_FIELDS = [
-        'label',
-        'description',
-    ];
-
-    private const REQUIRED_LANGUAGES = [
-        'de-DE',
-        'en-GB',
-    ];
-
     /**
      * @var array
      */
@@ -65,15 +55,6 @@ class PluginReader implements PluginReaderInterface
         foreach (self::REQUIRED_KEYS_EXTRA as $requiredKey) {
             if (!isset($this->composerJson['extra'][$requiredKey])) {
                 throw new \RuntimeException(sprintf('%s is not defined in composer.json extra section', ucfirst($requiredKey)));
-            }
-        }
-
-        // Validate language in keys
-        foreach (self::LANGUAGE_FIELDS as $requiredKey) {
-            foreach (self::REQUIRED_LANGUAGES as $language) {
-                if (!isset($this->composerJson['extra'][$requiredKey][$language])) {
-                    throw new \RuntimeException(sprintf('%s with language %s is not defined in plugin.xml', ucfirst($requiredKey), $language));
-                }
             }
         }
 
