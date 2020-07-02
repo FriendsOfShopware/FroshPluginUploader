@@ -23,7 +23,8 @@ class UploadPluginCommand extends Command implements ContainerAwareInterface
     protected function configure(): void
     {
         $this
-            ->setName('plugin:upload')
+            ->setName('ext:upload')
+            ->setAliases(['plugin:upload'])
             ->setDescription('Uploads a plugin binary to store.shopware.com')
             ->addArgument('zipPath', InputArgument::REQUIRED, 'Path to to the plugin binary')
             ->addOption('skipCodeReview', null, InputOption::VALUE_NONE, 'Don\'t trigger code review')
@@ -57,9 +58,9 @@ class UploadPluginCommand extends Command implements ContainerAwareInterface
         $io = new SymfonyStyle($input, $output);
 
         if ($result->isPassed() && !$result->hasWarnings()) {
-            $io->success('Plugin zip successfully uploaded');
+            $io->success('Zip successfully uploaded');
         } elseif ($result->isPassed()) {
-            $io->success('Plugin uploaded but with Warnings');
+            $io->success('Uploaded but with Warnings');
             $io->warning($result->getMessage());
         } else {
             $io->error($result->getMessage());

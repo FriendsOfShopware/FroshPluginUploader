@@ -20,7 +20,8 @@ class UpdatePluginCommand extends Command implements ContainerAwareInterface
     protected function configure()
     {
         $this
-            ->setName('plugin:update')
+            ->setName('ext:update')
+            ->setAliases(['plugin:update'])
             ->setDescription('Synchronize the Resources/store to the account')
             ->addArgument('path', InputArgument::REQUIRED, 'Path to plugin folder');
     }

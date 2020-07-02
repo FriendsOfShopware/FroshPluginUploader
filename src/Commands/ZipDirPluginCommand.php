@@ -39,7 +39,8 @@ class ZipDirPluginCommand extends Command implements ContainerAwareInterface
     protected function configure(): void
     {
         $this
-            ->setName('plugin:zip:dir')
+            ->setName('ext:zip')
+            ->setAliases(['plugin:zip:dir'])
             ->setDescription('Zips the given directory')
             ->addArgument('path', InputArgument::REQUIRED, 'Path to to directory')
             ->addArgument('branch', InputArgument::OPTIONAL, 'Branch to checkout. Default newest version')

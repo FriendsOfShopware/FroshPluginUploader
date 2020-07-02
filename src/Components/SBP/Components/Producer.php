@@ -48,4 +48,22 @@ class Producer extends AbstractComponent
 
         return $plugins[0];
     }
+
+    public function createPlugin(string $name, string $generation): Plugin
+    {
+        $plugin = (string) $this->client->post('/plugins', [
+            'json' => [
+                'generation' => [
+                    'name' => $generation
+                ],
+                'producerId' => $this->client->getProducer()->id
+            ]
+        ])->getBody();
+
+        $createdPlugin = Plugin::map(json_decode($plugin));
+        $createdPlugin->name = $name;
+        $createdPlugin->moduleKey = $name;
+
+        return $this->client->Plugins()->put($createdPlugin->id, $createdPlugin);
+    }
 }

@@ -3,12 +3,14 @@
 namespace FroshPluginUploader\Commands;
 
 use FroshPluginUploader\Components\PluginFinder;
+use FroshPluginUploader\Components\PluginInterface;
 use FroshPluginUploader\Components\SBP\Client;
 use FroshPluginUploader\Components\Util;
 use FroshPluginUploader\Exception\PluginNotFoundInAccount;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -18,12 +20,15 @@ class ValidatePluginCommand extends Command implements ContainerAwareInterface
 {
     use ContainerAwareTrait;
 
-    protected function configure()
+    protected function configure(): void
     {
         $this
-            ->setName('plugin:validate')
+            ->setName('ext:validate')
+            ->setAliases(['plugin:validate'])
             ->setDescription('Validate the plugin for the community store')
-            ->addArgument('zipPath', InputArgument::REQUIRED, 'Path to to the plugin binary');
+            ->addArgument('zipPath', InputArgument::REQUIRED, 'Path to to the plugin binary')
+            ->addOption('create', null, InputOption::VALUE_NONE, 'Creates the plugin in store, when not present');
+
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -39,10 +44,10 @@ class ValidatePluginCommand extends Command implements ContainerAwareInterface
         $plugin = PluginFinder::findPluginByZipFile($tmpFolder);
         $plugin->getReader()->validate();
 
-        $this->validateTechnicalName($plugin->getName());
+        $this->validateTechnicalName($plugin, $input->getOption('create'));
 
         $io = new SymfonyStyle($input, $output);
-        $io->success('Plugin has been successfully validated');
+        $io->success('Has been successfully validated');
 
         return 0;
     }
@@ -56,16 +61,22 @@ class ValidatePluginCommand extends Command implements ContainerAwareInterface
         }
     }
 
-    private function validateTechnicalName(string $pluginName): void
+    private function validateTechnicalName(PluginInterface $plugin, bool $createIfNotExists = false): void
     {
         if (!isset($_SERVER['ACCOUNT_USER'])) {
             return;
         }
 
-        $plugin = $this->container->get(Client::class)->Producer()->getPlugin($pluginName);
+        $client = $this->container->get(Client::class);
 
-        if ($plugin === null) {
-            throw new PluginNotFoundInAccount($pluginName);
+        try {
+            $client->Producer()->getPlugin($plugin->getName());
+        } catch (PluginNotFoundInAccount $e) {
+            if (!$createIfNotExists) {
+                throw $e;
+            }
+
+            $client->Producer()->createPlugin($plugin->getName(), $plugin->getStoreType());
         }
     }
 }
