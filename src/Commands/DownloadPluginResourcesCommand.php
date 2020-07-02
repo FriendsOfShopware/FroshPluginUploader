@@ -18,7 +18,8 @@ class DownloadPluginResourcesCommand extends Command implements ContainerAwareIn
     protected function configure(): void
     {
         $this
-            ->setName('plugin:download:resources')
+            ->setName('ext:download:resources')
+            ->setAliases(['plugin:download:resources'])
             ->setDescription('Downloads the resources from account to given folder. Needed for plugin:upload')
             ->addArgument('name', InputArgument::REQUIRED, 'Technical plugin name')
             ->addArgument('path', InputArgument::REQUIRED, 'Path to /Resources/store folder');
