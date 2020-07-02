@@ -57,11 +57,6 @@ class PluginBinaryUploader
     }
 
     /**
-     * @param array  $binaries
-     * @param string $version
-     * @param string $binaryPath
-     * @param int    $pluginId
-     *
      * @return Binary
      */
     private function updateBinary(array $binaries, string $version, string $binaryPath, int $pluginId)

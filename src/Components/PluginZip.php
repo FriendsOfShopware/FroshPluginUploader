@@ -2,8 +2,6 @@
 
 namespace FroshPluginUploader\Components;
 
-use FroshPluginUploader\Components\XmlReader\XmlPluginReader;
-
 class PluginZip
 {
     private $defaultBlacklist = [
@@ -69,7 +67,7 @@ class PluginZip
 
         $this->exec(sprintf('cd %s; zip -r %s %s -x *.git*', escapeshellarg($tmpDir), escapeshellarg($fileName), escapeshellarg($plugin->getName())));
 
-        $this->exec(sprintf('mv %s %s', escapeshellarg($tmpDir . '/' . $fileName) , escapeshellarg($currentCwd)));
+        $this->exec(sprintf('mv %s %s', escapeshellarg($tmpDir . '/' . $fileName), escapeshellarg($currentCwd)));
 
         $this->exec('rm -rf ' . escapeshellarg($tmpDir));
 
@@ -117,8 +115,6 @@ class PluginZip
     /**
      * Remove Shopware base packages from composer.json
      * so they aren't bundled with the plugin.
-     *
-     * @param string $composerJsonPath
      */
     private function filterShopwareDependencies(string $composerJsonPath): void
     {

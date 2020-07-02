@@ -17,8 +17,6 @@ class XmlPluginReader extends XmlReaderBase
     /**
      * parse required plugin blacklist
      *
-     * @param DOMNodeList $items
-     *
      * @return array|null
      */
     public static function parseBlacklist(DOMNodeList $items)
@@ -37,8 +35,6 @@ class XmlPluginReader extends XmlReaderBase
 
     /**
      * This method should be overridden as main entry point to parse a xml file.
-     *
-     * @param DOMDocument $xml
      *
      * @return array
      */
@@ -96,8 +92,6 @@ class XmlPluginReader extends XmlReaderBase
 
     /**
      * parse required plugins
-     *
-     * @param DOMElement $requiredPluginNode
      *
      * @return array
      */

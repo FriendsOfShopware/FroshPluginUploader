@@ -7,8 +7,6 @@ class Struct
     public static $mappedFields = [];
 
     /**
-     * @param \stdClass $object
-     *
      * @return static
      */
     public static function map(\stdClass $object)
@@ -44,8 +42,6 @@ class Struct
     }
 
     /**
-     * @param array $data
-     *
      * @return static[]
      */
     public static function mapList(array $data)

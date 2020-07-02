@@ -32,8 +32,6 @@ class XmlConfigReader extends XmlReaderBase
     /**
      * This method should be overridden as main entry point to parse a xml file.
      *
-     * @param DOMDocument $xml
-     *
      * @return array
      */
     protected function parseFile(DOMDocument $xml)
@@ -55,8 +53,6 @@ class XmlConfigReader extends XmlReaderBase
 
     /**
      * parses DOMNodeList with elements
-     *
-     * @param DOMNodeList $list
      *
      * @return array
      */

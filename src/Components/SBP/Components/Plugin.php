@@ -4,6 +4,7 @@ namespace FroshPluginUploader\Components\SBP\Components;
 
 use FroshPluginUploader\Structs\Binary;
 use FroshPluginUploader\Structs\CodeReview\CodeReview;
+use FroshPluginUploader\Structs\Image;
 use FroshPluginUploader\Structs\Picture;
 
 class Plugin extends AbstractComponent
@@ -19,8 +20,6 @@ class Plugin extends AbstractComponent
     }
 
     /**
-     * @param int $pluginId
-     *
      * @return Picture[]
      */
     public function getImages(int $pluginId): array
@@ -33,15 +32,24 @@ class Plugin extends AbstractComponent
         $this->client->delete(sprintf('/plugins/%d/pictures/%d', $pluginId, $imageId));
     }
 
-    public function addImage(int $pluginId, string $path): void
+    public function addImage(int $pluginId, string $path): Image
     {
-        $this->client->post(sprintf('/plugins/%d/pictures', $pluginId), [
+        $json = (string) $this->client->post(sprintf('/plugins/%d/pictures', $pluginId), [
             'multipart' => [
                 [
                     'name' => 'file',
                     'contents' => fopen($path, 'rb'),
                 ],
             ],
+        ])->getBody();
+
+        return Image::mapList(json_decode($json))[0];
+    }
+
+    public function updateImage(int $pluginId, Image $image): void
+    {
+        $this->client->put(sprintf('/plugins/%d/pictures/%d', $pluginId, $image->id), [
+            'json' => $image,
         ]);
     }
 
@@ -58,8 +66,6 @@ class Plugin extends AbstractComponent
     }
 
     /**
-     * @param int $pluginId
-     *
      * @return Binary[]
      */
     public function getAvailableBinaries(int $pluginId): array
@@ -120,9 +126,6 @@ class Plugin extends AbstractComponent
     }
 
     /**
-     * @param int $pluginId
-     * @param int $binaryId
-     *
      * @return CodeReview[]
      */
     public function getCodeReviewResults(int $pluginId, int $binaryId): array

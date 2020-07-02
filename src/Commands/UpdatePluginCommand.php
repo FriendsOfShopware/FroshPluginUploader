@@ -5,7 +5,6 @@ namespace FroshPluginUploader\Commands;
 use FroshPluginUploader\Components\PluginFinder;
 use FroshPluginUploader\Components\PluginUpdater;
 use FroshPluginUploader\Components\SBP\Client;
-use FroshPluginUploader\Components\Util;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
