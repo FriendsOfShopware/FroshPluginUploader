@@ -24,7 +24,7 @@ class ListPluginsCommand extends Command implements ContainerAwareInterface
             ->setDescription('Shows all plugins from the account');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $client = $this->container->get(Client::class);
         $plugins = $client->Producer()->getPlugins($client->Producer()->getProducer()->id);
@@ -38,7 +38,7 @@ class ListPluginsCommand extends Command implements ContainerAwareInterface
             $fromVersion = null;
             $toVersion = null;
 
-            if ($plugin->latestBinary->compatibleSoftwareVersions) {
+            if (isset($plugin->latestBinary) && $plugin->latestBinary->compatibleSoftwareVersions) {
                 $fromVersion = reset($plugin->latestBinary->compatibleSoftwareVersions);
                 $toVersion = end($plugin->latestBinary->compatibleSoftwareVersions);
             }
@@ -70,5 +70,7 @@ class ListPluginsCommand extends Command implements ContainerAwareInterface
         }
         $table->setColumnStyle(3, $alignRight);
         $table->render();
+
+        return 0;
     }
 }

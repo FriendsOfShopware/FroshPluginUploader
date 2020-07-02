@@ -1,33 +1,44 @@
 {
   "name": "frosh/plugin-uploader",
-  "description": "A tool for deploying shopware plugins to store.shopware.com",
+  "description": "A tool for deploying Shopware plugins to store.shopware.com",
   "license": "MIT",
-  "require": {
-    "php": "^7.2",
-    "ext-curl": "*",
-    "symfony/console": "^4.2",
-    "symfony/config": "~4.2",
-    "symfony/dependency-injection": "~4.2",
-    "symfony/dotenv": "^4.2",
-    "symfony/finder": "^4.2",
-    "guzzlehttp/guzzle": "~6.0",
-    "composer/semver": "*",
-    "ext-json": "*",
-    "ext-simplexml": "*",
-    "ext-libxml": "*",
-    "ext-zip": "*",
-    "ext-dom": "*",
-    "erusev/parsedown": "^1.7"
-  },
-  "require-dev": {
-    "ext-phar": "*",
-    "nette/php-generator": "^3.2",
-    "phpunit/phpunit": "^8.0"
-  },
+  "bin": [
+    "bin/pluginupload"
+  ],
   "autoload": {
     "psr-4": {
       "FroshPluginUploader\\": "src/"
     }
   },
-  "bin": ["bin/pluginupload"]
+  "require": {
+    "php": "^7.2",
+    "ext-json": "*",
+    "ext-simplexml": "*",
+    "ext-libxml": "*",
+    "ext-zip": "*",
+    "ext-dom": "*",
+    "ext-curl": "*",
+    "symfony/console": "^5.1",
+    "symfony/config": "~5.1",
+    "symfony/dependency-injection": "~5.1",
+    "symfony/dotenv": "^5.1",
+    "symfony/finder": "^5.1",
+    "guzzlehttp/guzzle": "~6.0",
+    "composer/semver": "*",
+    "erusev/parsedown": "^1.7"
+  },
+  "replace": {
+    "symfony/polyfill-intl-normalizer": "*",
+    "symfony/polyfill-intl-grapheme": "*",
+    "symfony/polyfill-ctype": "*",
+    "symfony/polyfill-php72": "*",
+    "symfony/polyfill-intl-idn": "*"
+  },
+  "require-dev": {
+    "ext-phar": "*",
+    "roave/security-advisories": "dev-master",
+    "nette/php-generator": "^3.2",
+    "phpunit/phpunit": "^8.0",
+    "symplify/changelog-linker": "^8.1"
+  }
 }

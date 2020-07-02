@@ -27,7 +27,7 @@ class UploadPluginCommand extends Command implements ContainerAwareInterface
             ->addOption('skipCodeReviewResult', 's', InputOption::VALUE_NONE, 'Dont wait for code-review result');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         if (!Util::getEnv('PLUGIN_ID')) {
             throw new \RuntimeException('The enviroment variable $PLUGIN_ID is required');
@@ -55,6 +55,8 @@ class UploadPluginCommand extends Command implements ContainerAwareInterface
         } else {
             $io->error(strip_tags($result));
         }
+
+        return 0;
     }
 
     private function validateInput(InputInterface $input): void

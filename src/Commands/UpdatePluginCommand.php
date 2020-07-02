@@ -25,7 +25,7 @@ class UpdatePluginCommand extends Command implements ContainerAwareInterface
             ->addArgument('path', InputArgument::REQUIRED, 'Path to plugin folder');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         if (!Util::getEnv('PLUGIN_ID')) {
             throw new \RuntimeException('The enviroment variable $PLUGIN_ID is required');
@@ -43,5 +43,7 @@ class UpdatePluginCommand extends Command implements ContainerAwareInterface
 
         $io = new SymfonyStyle($input, $output);
         $io->success('Store folder has been applied to plugin page');
+
+        return 0;
     }
 }

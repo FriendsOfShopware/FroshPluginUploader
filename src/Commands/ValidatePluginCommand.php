@@ -25,7 +25,7 @@ class ValidatePluginCommand extends Command implements ContainerAwareInterface
             ->addArgument('zipPath', InputArgument::REQUIRED, 'Path to to the plugin binary');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->validateInput($input);
 
@@ -42,6 +42,8 @@ class ValidatePluginCommand extends Command implements ContainerAwareInterface
 
         $io = new SymfonyStyle($input, $output);
         $io->success('Plugin has been successfully validated');
+
+        return 0;
     }
 
     private function validateInput(InputInterface $input): void
@@ -53,7 +55,7 @@ class ValidatePluginCommand extends Command implements ContainerAwareInterface
         }
     }
 
-    private function validateTechnicalName(string $pluginName)
+    private function validateTechnicalName(string $pluginName): void
     {
         $pluginId = (int) Util::getEnv('PLUGIN_ID');
 

@@ -15,7 +15,7 @@ class ZipDirPluginCommand extends Command implements ContainerAwareInterface
 {
     use ContainerAwareTrait;
 
-    public function execute(InputInterface $input, OutputInterface $output)
+    public function execute(InputInterface $input, OutputInterface $output): int
     {
         $path = realpath($input->getArgument('gitPath'));
 
@@ -28,9 +28,11 @@ class ZipDirPluginCommand extends Command implements ContainerAwareInterface
         $io = new SymfonyStyle($input, $output);
 
         $io->success(sprintf('Created file %s', basename($zipPath)));
+
+        return 0;
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setName('plugin:zip:dir')

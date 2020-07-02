@@ -24,7 +24,7 @@ class DownloadPluginResourcesCommand extends Command implements ContainerAwareIn
             ->addArgument('path', InputArgument::REQUIRED, 'Path to /Resources/store folder');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         if (!Util::getEnv('PLUGIN_ID')) {
             throw new \RuntimeException('The enviroment variable $PLUGIN_ID is required');
@@ -34,5 +34,7 @@ class DownloadPluginResourcesCommand extends Command implements ContainerAwareIn
 
         $io = new SymfonyStyle($input, $output);
         $io->success('Downloaded store data to given folder');
+
+        return 0;
     }
 }

@@ -138,7 +138,7 @@ class StoreJsonLoader
                 }
             }
 
-            throw new \RuntimeException(sprintf('Unable to map field "%s" with value "%s". Allowed values are %s', $pluginField, $this->$pluginField, implode(',', array_column($data, $sourceField))));
+            throw new \RuntimeException(sprintf('Unable to map field "%s" with value "%s". Allowed values are %s', $pluginField, $this->$pluginField, implode(', ', array_column($data, $sourceField))));
         }
 
         if (is_array($this->$pluginField)) {
