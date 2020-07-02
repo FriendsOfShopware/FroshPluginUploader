@@ -3,9 +3,13 @@
 namespace FroshPluginUploader\Commands;
 
 use FroshPluginUploader\Components\PluginZip;
+use FroshPluginUploader\Components\ZipStrategy\AbstractStrategy;
+use FroshPluginUploader\Components\ZipStrategy\GitStrategy;
+use FroshPluginUploader\Components\ZipStrategy\PlainStrategy;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -17,13 +21,13 @@ class ZipDirPluginCommand extends Command implements ContainerAwareInterface
 
     public function execute(InputInterface $input, OutputInterface $output): int
     {
-        $path = realpath($input->getArgument('gitPath'));
+        $path = realpath($input->getArgument('path'));
 
         if (!file_exists($path)) {
-            throw new \RuntimeException(sprintf('Folder by path %s does not exist', $input->getArgument('gitPath')));
+            throw new \RuntimeException(sprintf('Folder by path %s does not exist', $input->getArgument('path')));
         }
 
-        $zipPath = $this->container->get(PluginZip::class)->zip($path, $input->getArgument('branch'));
+        $zipPath = $this->container->get(PluginZip::class)->zip($path, $this->makeStrategy($input));
 
         $io = new SymfonyStyle($input, $output);
 
@@ -37,7 +41,17 @@ class ZipDirPluginCommand extends Command implements ContainerAwareInterface
         $this
             ->setName('plugin:zip:dir')
             ->setDescription('Zips the given directory')
-            ->addArgument('gitPath', InputArgument::REQUIRED, 'Path to to git directory')
-            ->addArgument('branch', InputArgument::OPTIONAL, 'Branch to checkout. Default newest version');
+            ->addArgument('path', InputArgument::REQUIRED, 'Path to to directory')
+            ->addArgument('branch', InputArgument::OPTIONAL, 'Branch to checkout. Default newest version')
+            ->addOption('strategy', null, InputOption::VALUE_OPTIONAL, 'Strategy to use git (git archive) or plain (copy folder)', 'git');
+    }
+
+    private function makeStrategy(InputInterface $input): AbstractStrategy
+    {
+        if ($input->getOption('strategy') === 'git') {
+            return new GitStrategy($input->getArgument('branch'));
+        }
+
+        return new PlainStrategy();
     }
 }
