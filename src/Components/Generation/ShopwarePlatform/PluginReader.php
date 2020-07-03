@@ -105,16 +105,6 @@ class PluginReader implements PluginReaderInterface
         return $this->composerJson['extra']['description']['en-GB'];
     }
 
-    public function getMinVersion(): string
-    {
-        return $this->composerJson['extra']['shopware-min-version'] ?? '6.0.0';
-    }
-
-    public function getMaxVersion(): ?string
-    {
-        return $this->composerJson['extra']['shopware-max-version'] ?? null;
-    }
-
     public function getCoreConstraint()
     {
         return $this->composerJson['require']['shopware/core'];

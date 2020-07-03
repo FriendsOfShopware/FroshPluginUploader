@@ -18,8 +18,6 @@ class ShopwarePlatformReaderTest extends TestCase
         $this->assertEquals('Description EN', $pluginReader->getDescriptionEnglish());
         $this->assertEquals('Description DE', $pluginReader->getDescriptionGerman());
         $this->assertEquals('1.0.0', $pluginReader->getVersion());
-        $this->assertEquals('6.0.0', $pluginReader->getMinVersion());
-        $this->assertNull($pluginReader->getMaxVersion());
         $this->assertEquals('<ul><li>First release in store</li></ul>', $pluginReader->getNewestChangelogEnglish());
         $this->assertEquals('<ul><li>Erster Release im Store</li></ul>', $pluginReader->getNewestChangelogGerman());
 

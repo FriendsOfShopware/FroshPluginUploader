@@ -20,10 +20,6 @@ interface PluginReaderInterface
 
     public function getDescriptionEnglish(): string;
 
-    public function getMinVersion(): string;
-
-    public function getMaxVersion(): ?string;
-
     public function getLicense(): string;
 
     public function getName(): string;

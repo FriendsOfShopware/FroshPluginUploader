@@ -82,16 +82,6 @@ class AppReader implements PluginReaderInterface
         return '';
     }
 
-    public function getMinVersion(): string
-    {
-        return '6.0.0';
-    }
-
-    public function getMaxVersion(): ?string
-    {
-        return null;
-    }
-
     public function getLicense(): string
     {
         return 'MIT';
