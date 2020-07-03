@@ -18,10 +18,16 @@ class Plugin implements PluginInterface
      */
     private $pluginName;
 
+    /**
+     * @var PluginReader
+     */
+    private $reader;
+
     public function __construct(string $rootFolder, string $pluginName)
     {
         $this->rootDir = $rootFolder;
         $this->pluginName = $pluginName;
+        $this->reader = new PluginReader($this->rootDir);
     }
 
     public function getName(): string
@@ -31,7 +37,7 @@ class Plugin implements PluginInterface
 
     public function getReader(): PluginReaderInterface
     {
-        return new PluginReader($this->rootDir);
+        return $this->reader;
     }
 
     public function hasStoreJson(): bool
@@ -56,9 +62,8 @@ class Plugin implements PluginInterface
 
     public function getCompatibleVersions(array $versions): array
     {
-        $reader = $this->getReader();
-        $minVersion = $reader->getMinVersion();
-        $maxVersion = $reader->getMaxVersion();
+        $minVersion = $this->reader->getMinVersion();
+        $maxVersion = $this->reader->getMaxVersion();
         $matches = [];
 
         foreach ($versions as $version) {
