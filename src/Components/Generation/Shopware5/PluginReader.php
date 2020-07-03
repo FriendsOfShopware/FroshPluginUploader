@@ -67,7 +67,7 @@ class PluginReader implements PluginReaderInterface
 
     public function getNewestChangelogGerman(): string
     {
-        $data = $this->xml['changelog'][$this->xml['version']]['de'];
+        $data = $this->xml['changelog'][$this->xml['version']]['de'] ?? $this->xml['changelog'][$this->xml['version']]['en'];
 
         if (is_array($data)) {
             $data = implode('', $data);
@@ -89,7 +89,7 @@ class PluginReader implements PluginReaderInterface
 
     public function getLabelGerman(): string
     {
-        return $this->xml['label']['de'];
+        return $this->xml['label']['de'] ?? $this->xml['label']['en'];
     }
 
     public function getLabelEnglish(): string
@@ -99,7 +99,7 @@ class PluginReader implements PluginReaderInterface
 
     public function getDescriptionGerman(): string
     {
-        return $this->xml['description']['de'];
+        return $this->xml['description']['de'] ?? $this->xml['description']['en'];
     }
 
     public function getDescriptionEnglish(): string
