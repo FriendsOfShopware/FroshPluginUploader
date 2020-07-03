@@ -98,7 +98,7 @@ Valid options are:
 --strategy - default `git`. `plain` will zip the folder as it is.
 ```
 
-A .sw-zip-blacklist file can be used to define which files should be deleted before creating the zip
+A .sw-zip-blacklist file can be used to define which files should be deleted before creating the zip. (**Deprecated, will be removed with 0.4.0**)
 
 # FAQ
 

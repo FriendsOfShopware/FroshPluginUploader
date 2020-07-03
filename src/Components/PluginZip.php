@@ -3,6 +3,9 @@
 namespace FroshPluginUploader\Components;
 
 use FroshPluginUploader\Components\ZipStrategy\AbstractStrategy;
+use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 
 class PluginZip
 {
@@ -19,8 +22,10 @@ class PluginZip
         '.github',
     ];
 
-    public function zip(string $directory, AbstractStrategy $strategy): string
+    public function zip(string $directory, AbstractStrategy $strategy, OutputInterface $output): void
     {
+        $io = new SymfonyStyle(new ArgvInput(), $output);
+
         $plugin = PluginFinder::findPluginByRootFolder($directory);
 
         $tmpDir = sys_get_temp_dir() . '/' . uniqid('uploaderPacking', true);
@@ -48,6 +53,7 @@ class PluginZip
         }
 
         if (file_exists($tmpDir . '/.sw-zip-blacklist')) {
+            $io->warning('Use of .sw-zip-blacklist is deprecated, use .gitattributes with export-ignore. It will be removed with 0.4.0');
             $blackList = file_get_contents($directory . '/.sw-zip-blacklist');
             $blackList = array_filter(explode("\n", $blackList));
             $this->defaultBlacklist = array_merge($this->defaultBlacklist, $blackList);
@@ -67,15 +73,13 @@ class PluginZip
             $fileName = $plugin->getName() . '.zip';
         }
 
-        $filePath = $directory . '/' . $plugin->getName();
-
         $this->exec(sprintf('cd %s; zip -r %s %s -x *.git*', escapeshellarg($tmpDir), escapeshellarg($fileName), escapeshellarg($plugin->getName())));
 
         $this->exec(sprintf('mv %s %s', escapeshellarg($tmpDir . '/' . $fileName), escapeshellarg(getcwd())));
 
         $this->exec('rm -rf ' . escapeshellarg($tmpDir));
 
-        return $filePath . '/' . $fileName;
+        $io->success(sprintf('Created file %s', $fileName));
     }
 
     private function exec(string $command): void

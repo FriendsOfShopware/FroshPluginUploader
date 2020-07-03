@@ -27,11 +27,7 @@ class ZipDirPluginCommand extends Command implements ContainerAwareInterface
             throw new \RuntimeException(sprintf('Folder by path %s does not exist', $input->getArgument('path')));
         }
 
-        $zipPath = $this->container->get(PluginZip::class)->zip($path, $this->makeStrategy($input));
-
-        $io = new SymfonyStyle($input, $output);
-
-        $io->success(sprintf('Created file %s', basename($zipPath)));
+        $this->container->get(PluginZip::class)->zip($path, $this->makeStrategy($input), $output);
 
         return 0;
     }
