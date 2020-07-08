@@ -134,7 +134,7 @@ class PluginUpdater
         $availableLicenses = array_column($availableStoreLicenses, 'name');
 
         if (!in_array($license, $availableLicenses, true)) {
-            if (strtolower($license) === 'proprietary') {
+            if ($license === 'proprietary') {
                 $license = 'proprietary';
             } else {
                 $license = 'open_source';
