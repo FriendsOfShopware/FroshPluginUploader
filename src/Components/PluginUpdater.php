@@ -149,7 +149,7 @@ class PluginUpdater
             }
         }
 
-        throw new \RuntimeException(sprintf('Invalid license given "%s". Following are available %s', $license, implode(', ', array_column($availableLicenses, 'name'))));
+        throw new \RuntimeException(sprintf('Invalid license given "%s". Following are available %s', $license, implode(', ', $availableLicenses)));
     }
 
     private function convertDescription(string $content): string
