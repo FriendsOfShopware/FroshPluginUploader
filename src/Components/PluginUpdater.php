@@ -128,8 +128,20 @@ class PluginUpdater
 
     private function setLicense(Plugin $plugin, string $license): void
     {
-        $availableLicenses = $this->client->General()->all()['licenses'];
-        foreach ($availableLicenses as $licenseItem) {
+        $license = strtolower($license);
+        $availableStoreLicenses = $this->client->General()->all()['licenses'];
+
+        $availableLicenses = array_column($availableStoreLicenses, 'name');
+
+        if (!in_array($license, $availableLicenses, true)) {
+            if ($license === 'proprietary') {
+                $license = 'proprietary';
+            } else {
+                $license = 'open_source';
+            }
+        }
+
+        foreach ($availableStoreLicenses as $licenseItem) {
             if ($licenseItem['name'] === $license) {
                 $plugin->license = $licenseItem;
 
@@ -137,7 +149,7 @@ class PluginUpdater
             }
         }
 
-        throw new \RuntimeException(sprintf('Invalid license given "%s". Following are available %s', $license, implode(',', array_column($availableLicenses, 'name'))));
+        throw new \RuntimeException(sprintf('Invalid license given "%s". Following are available %s', $license, implode(', ', $availableLicenses)));
     }
 
     private function convertDescription(string $content): string
