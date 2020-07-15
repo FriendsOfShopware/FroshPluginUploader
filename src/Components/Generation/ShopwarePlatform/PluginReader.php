@@ -6,21 +6,6 @@ use FroshPluginUploader\Components\PluginReaderInterface;
 
 class PluginReader implements PluginReaderInterface
 {
-    private const REQUIRED_KEYS_COMPOSER_JSON = [
-        'name',
-        'type',
-        'description',
-        'license',
-        'version',
-        'authors',
-        'require',
-    ];
-
-    private const REQUIRED_KEYS_EXTRA = [
-        'label',
-        'description',
-    ];
-
     /**
      * @var array
      */
@@ -42,32 +27,9 @@ class PluginReader implements PluginReaderInterface
         $this->rootDir = $path;
     }
 
-    public function validate(): void
+    public function all(): array
     {
-        // Validate keys
-        foreach (self::REQUIRED_KEYS_COMPOSER_JSON as $requiredKey) {
-            if (!isset($this->composerJson[$requiredKey])) {
-                throw new \RuntimeException(sprintf('%s is not defined in composer.json', ucfirst($requiredKey)));
-            }
-        }
-
-        // Validate extra keys
-        foreach (self::REQUIRED_KEYS_EXTRA as $requiredKey) {
-            if (!isset($this->composerJson['extra'][$requiredKey])) {
-                throw new \RuntimeException(sprintf('%s is not defined in composer.json extra section', ucfirst($requiredKey)));
-            }
-        }
-
-        $wrappingFolderName = basename($this->rootDir);
-        $pluginClassName = $this->getName();
-
-        if ($wrappingFolderName !== $pluginClassName) {
-            throw new \RuntimeException(sprintf('The folder is not wrapped inside a folder having the plugins name %s but %s instead', $pluginClassName, $wrappingFolderName));
-        }
-
-        // Call the changelog methods, it will throw a exception if they are missing
-        $this->getNewestChangelogGerman();
-        $this->getNewestChangelogEnglish();
+        return $this->composerJson;
     }
 
     public function getVersion(): string

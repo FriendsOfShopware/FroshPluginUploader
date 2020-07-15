@@ -10,6 +10,11 @@
       "FroshPluginUploader\\": "src/"
     }
   },
+  "autoload-dev": {
+    "psr-4": {
+      "FroshPluginUploader\\Tests\\": "tests/"
+    }
+  },
   "require": {
     "php": "^7.2",
     "ext-json": "*",
@@ -25,8 +30,9 @@
     "symfony/dotenv": "^5.1",
     "symfony/finder": "^5.1",
     "guzzlehttp/guzzle": "~6.0",
-    "composer/semver": "*",
-    "erusev/parsedown": "^1.7"
+    "composer/semver": "^3.0",
+    "erusev/parsedown": "^1.7",
+    "composer/spdx-licenses": "^1.5"
   },
   "replace": {
     "symfony/polyfill-intl-normalizer": "*",

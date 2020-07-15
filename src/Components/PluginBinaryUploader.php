@@ -21,8 +21,6 @@ class PluginBinaryUploader
 
     public function upload(UploadPluginInput $input)
     {
-        $input->getPlugin()->getReader()->validate();
-
         $binaries = $this->client->Plugins()->getAvailableBinaries($input->getStorePlugin()->id);
 
         if (!$this->client->Plugins()->hasVersion($binaries, $input->getPlugin()->getReader()->getVersion())) {

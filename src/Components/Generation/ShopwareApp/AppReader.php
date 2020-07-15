@@ -7,12 +7,6 @@ use FroshPluginUploader\Components\PluginReaderInterface;
 
 class AppReader implements PluginReaderInterface
 {
-    private const REQUIRED_KEYS = [
-        'label',
-        'version',
-        'license',
-    ];
-
     private $config;
 
     /**
@@ -32,18 +26,9 @@ class AppReader implements PluginReaderInterface
         $this->rootDir = $rootDir;
     }
 
-    public function validate(): void
+    public function all(): array
     {
-        // Validate keys
-        foreach (self::REQUIRED_KEYS as $requiredKey) {
-            if (!isset($this->config[$requiredKey])) {
-                throw new \RuntimeException(sprintf('%s is not defined in manifest.xml', ucfirst($requiredKey)));
-            }
-        }
-
-        // Call the changelog methods, it will throw a exception if they are missing
-        $this->getNewestChangelogGerman();
-        $this->getNewestChangelogEnglish();
+        return $this->config;
     }
 
     public function getVersion(): string
