@@ -37,16 +37,13 @@ class Producer extends AbstractComponent
     {
         $plugins = $this->getPlugins($name);
 
-        if (count($plugins) !== 1) {
-            throw new PluginNotFoundInAccount($name);
+        foreach ($plugins as $plugin) {
+            if (strtolower($name) === strtolower($plugins[0]->moduleKey)) {
+                return $plugin;
+            }
         }
 
-        // Didn't match plugin name
-        if (strtolower($name) !== strtolower($plugins[0]->moduleKey)) {
-            throw new PluginNotFoundInAccount($name);
-        }
-
-        return $plugins[0];
+        throw new PluginNotFoundInAccount($name);
     }
 
     public function createPlugin(string $name, string $generation): Plugin
