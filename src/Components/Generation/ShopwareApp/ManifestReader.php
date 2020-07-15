@@ -21,6 +21,7 @@ class ManifestReader extends XmlReaderBase
 
         $info['name'] = self::getElementChildValueByName($meta, 'name');
         $info['version'] = self::getElementChildValueByName($meta, 'version');
+        $info['license'] = self::getElementChildValueByName($meta, 'license');
 
         return $info;
     }
