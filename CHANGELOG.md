@@ -10,6 +10,22 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 <!-- changelog-linker -->
 
 <!-- dumped content start -->
+## [0.3.2] - 2020-07-15
+
+- [#59] Fix composer install while zipping, Thanks to [@shyim]
+- [#58] Fix search for plugins with identical name, Thanks to [@shyim]
+
+## [0.3.1] - 2020-07-09
+
+- [#44] Add language inheritance to Shopware5 Reader, Thanks to [@shyim]
+- [#47] Update docker image, Thanks to [@shyim]
+- [#45] Deprecate .sw-zip-blacklist. Use .gitattributes instead, Thanks to [@shyim]
+- [#50] fix new store license, Thanks to [@tinect]
+- [#46] Remove deprecated composer.json fields for Shopware 6, fixes [#41], Thanks to [@shyim]
+
+<!-- dumped content end -->
+
+<!-- dumped content start -->
 
 ## [0.3.0]
 
@@ -82,3 +98,13 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 [0.3.0]: https://github.com/FriendsOfShopware/FroshPluginUploader/compare/0.2.2...0.3.0
 [0.2.2]: https://github.com/FriendsOfShopware/FroshPluginUploader/compare/0.2.1...0.2.2
 [0.2.1]: https://github.com/FriendsOfShopware/FroshPluginUploader/compare/0.1.2...0.2.1
+[#59]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/59
+[#58]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/58
+[#50]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/50
+[#47]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/47
+[#46]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/46
+[#45]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/45
+[#44]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/44
+[#41]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/41
+[0.3.2]: https://github.com/FriendsOfShopware/FroshPluginUploader/compare/0.3.1...0.3.2
+[0.3.1]: https://github.com/FriendsOfShopware/FroshPluginUploader/compare/0.3.0...0.3.1
