@@ -10,6 +10,13 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 <!-- changelog-linker -->
 
 <!-- dumped content start -->
+## Unreleased
+
+- [#60] Apps needs a license in manifest, fixes [#48], Thanks to [@shyim]
+
+<!-- dumped content end -->
+
+<!-- dumped content start -->
 ## [0.3.2] - 2020-07-15
 
 - [#59] Fix composer install while zipping, Thanks to [@shyim]
@@ -108,3 +115,5 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 [#41]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/41
 [0.3.2]: https://github.com/FriendsOfShopware/FroshPluginUploader/compare/0.3.1...0.3.2
 [0.3.1]: https://github.com/FriendsOfShopware/FroshPluginUploader/compare/0.3.0...0.3.1
+[#60]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/60
+[#48]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/48
