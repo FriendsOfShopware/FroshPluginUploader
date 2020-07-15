@@ -4,10 +4,14 @@ namespace FroshPluginUploader\Commands;
 
 use FroshPluginUploader\Components\PluginFinder;
 use FroshPluginUploader\Components\PluginInterface;
+use FroshPluginUploader\Components\PluginValidator\ValidationInterface;
 use FroshPluginUploader\Components\SBP\Client;
 use FroshPluginUploader\Components\Util;
 use FroshPluginUploader\Exception\PluginNotFoundInAccount;
+use FroshPluginUploader\Structs\Plugin;
+use FroshPluginUploader\Structs\ViolationContext;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -19,6 +23,18 @@ use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 class ValidatePluginCommand extends Command implements ContainerAwareInterface
 {
     use ContainerAwareTrait;
+
+    /**
+     * @var ValidationInterface[]
+     */
+    private $validators;
+
+    public function __construct(iterable $validators)
+    {
+        parent::__construct();
+        $this->validators = $validators;
+    }
+
 
     protected function configure(): void
     {
@@ -46,11 +62,31 @@ class ValidatePluginCommand extends Command implements ContainerAwareInterface
         $zip->extractTo($tmpFolder);
 
         $plugin = PluginFinder::findPluginByZipFile($tmpFolder);
-        $plugin->getReader()->validate();
 
-        $this->validateTechnicalName($plugin, $input->getOption('create'));
+        $storePlugin = $this->validateTechnicalName($plugin, $input->getOption('create'));
+
+        $context = new ViolationContext($plugin, $zip, $tmpFolder, $storePlugin);
+        foreach ($this->validators as $validator) {
+            if ($validator->supports($context)) {
+                $validator->validate($context);
+            }
+        }
 
         $io = new SymfonyStyle($input, $output);
+
+        if ($context->hasViolations()) {
+            $io->error('Found some issues in the plugin');
+
+            $table = new Table($output);
+            $table->setHeaders(['Message']);
+            foreach ($context->getViolations() as $violation) {
+                $table->addRow([$violation]);
+            }
+            $table->render();
+
+            return 1;
+        }
+
         $io->success('Has been successfully validated');
 
         return 0;
@@ -65,22 +101,22 @@ class ValidatePluginCommand extends Command implements ContainerAwareInterface
         }
     }
 
-    private function validateTechnicalName(PluginInterface $plugin, bool $createIfNotExists = false): void
+    private function validateTechnicalName(PluginInterface $plugin, bool $createIfNotExists = false): ?Plugin
     {
         if (!isset($_SERVER['ACCOUNT_USER'])) {
-            return;
+            return null;
         }
 
         $client = $this->container->get(Client::class);
 
         try {
-            $client->Producer()->getPlugin($plugin->getName());
+            return $client->Producer()->getPlugin($plugin->getName());
         } catch (PluginNotFoundInAccount $e) {
             if (!$createIfNotExists) {
                 throw $e;
             }
 
-            $client->Producer()->createPlugin($plugin->getName(), $plugin->getStoreType());
+            return $client->Producer()->createPlugin($plugin->getName(), $plugin->getStoreType());
         }
     }
 }

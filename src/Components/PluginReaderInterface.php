@@ -4,7 +4,7 @@ namespace FroshPluginUploader\Components;
 
 interface PluginReaderInterface
 {
-    public function validate(): void;
+    public function all(): array;
 
     public function getVersion(): string;
 

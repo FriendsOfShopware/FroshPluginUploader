@@ -9,15 +9,6 @@ use FroshPluginUploader\Exception\PluginValidationException;
 
 class PluginReader implements PluginReaderInterface
 {
-    private const REQUIRED_KEYS = [
-        'compatibility',
-        'changelog',
-        'label',
-        'version',
-        'license',
-        'description',
-    ];
-
     /**
      * @var array
      */
@@ -42,22 +33,12 @@ class PluginReader implements PluginReaderInterface
         $reader = new XmlPluginReader();
         $this->xml = $reader->read($path . '/plugin.xml');
 
-        if (file_exists($path . '/Resources/config.xml')) {
-            $configReader = new XmlConfigReader();
-            $this->config = $configReader->read($path . '/Resources/config.xml');
-        }
-
         $this->name = basename($path);
     }
 
-    public function validate(): void
+    public function all(): array
     {
-        // Validate keys
-        foreach (self::REQUIRED_KEYS as $requiredKey) {
-            if (!isset($this->xml[$requiredKey])) {
-                throw new \RuntimeException(sprintf('%s is not defined in plugin.xml', ucfirst($requiredKey)));
-            }
-        }
+        return $this->xml;
     }
 
     public function getVersion(): string
