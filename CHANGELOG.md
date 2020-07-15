@@ -12,6 +12,13 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 <!-- dumped content start -->
 ## Unreleased
 
+- [#61] Improve plugin validation, fixes [#52], [#53], [#54], [#55], [#56], Thanks to [@shyim]
+
+<!-- dumped content end -->
+
+<!-- dumped content start -->
+## Unreleased
+
 - [#60] Apps needs a license in manifest, fixes [#48], Thanks to [@shyim]
 
 <!-- dumped content end -->
@@ -117,3 +124,9 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 [0.3.1]: https://github.com/FriendsOfShopware/FroshPluginUploader/compare/0.3.0...0.3.1
 [#60]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/60
 [#48]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/48
+[#61]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/61
+[#56]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/56
+[#55]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/55
+[#54]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/54
+[#53]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/53
+[#52]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/52
