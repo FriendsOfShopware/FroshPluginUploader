@@ -38,7 +38,7 @@ class PluginZip
 
         $version = $strategy->copyFolder($directory, $pluginTmpDir);
 
-        $composerJson = $tmpDir . '/composer.json';
+        $composerJson = $pluginTmpDir . '/composer.json';
         $composerJsonBackup = $composerJson . '.bak';
 
         if (file_exists($composerJson)) {
@@ -46,7 +46,7 @@ class PluginZip
             $this->filterShopwareDependencies($composerJson);
             // Install composer dependencies
             if ($this->needComposerToRun($composerJson)) {
-                $this->exec('composer install --no-dev -n -o -d ' . escapeshellarg($plugin->getName()));
+                $this->exec('composer install --no-dev -n -o -d ' . escapeshellarg($pluginTmpDir));
             }
 
             rename($composerJsonBackup, $composerJson);
