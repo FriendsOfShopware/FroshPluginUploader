@@ -85,7 +85,7 @@ class AppReader implements PluginReaderInterface
 
     public function getLicense(): string
     {
-        return 'MIT';
+        return $this->config['license'];
     }
 
     public function getName(): string
