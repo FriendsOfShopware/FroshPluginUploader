@@ -1,0 +1,23 @@
+name: Changelog
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest
+
+    - name: Build changelog
+      run: php ./vendor/bin/changelog-linker dump-merges
+    
+    - name: Commit Changelog
+      uses: EndBug/add-and-commit@v4
+      with:
+        author_name: Bot
+        author_email: bot@fos.gg
+        message: "Update Changelog"
+        add: "CHANGELOG.md"
