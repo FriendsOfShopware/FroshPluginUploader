@@ -10,6 +10,7 @@ class AppReader implements PluginReaderInterface
     private const REQUIRED_KEYS = [
         'label',
         'version',
+        'license',
     ];
 
     private $config;
