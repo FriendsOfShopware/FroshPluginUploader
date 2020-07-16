@@ -28,6 +28,7 @@
                 <directory suffix=".php">./src/Structs</directory>
                 <directory suffix=".php">./src/Exception</directory>
                 <directory suffix=".php">./src/Components/Generator</directory>
+                <directory suffix=".php">./src/Components/SBP</directory>
             </exclude>
         </whitelist>
     </filter>
