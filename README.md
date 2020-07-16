@@ -1,4 +1,9 @@
 # FroshPluginUploader
+[![codecov](https://codecov.io/gh/FriendsOfShopware/FroshPluginUploader/branch/master/graph/badge.svg)](https://codecov.io/gh/FriendsOfShopware/FroshPluginUploader)
+![PHPUnit](https://github.com/FriendsOfShopware/FroshPluginUploader/workflows/PHPUnit/badge.svg)
+[![License](https://img.shields.io/github/license/FriendsOfShopware/FroshPluginUploader.svg)](https://github.com/FriendsOfShopware/FroshPluginUploader/blob/master/license.txt)
+[![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/FriendsOfShopware/FroshPluginUploader.svg)](https://github.com/FriendsOfShopware/FroshPluginUploader/pulls)
+[![Slack](https://img.shields.io/badge/chat-on%20slack-%23ECB22E)](https://slack.shopware.com?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 Tool for uploading new plugin releases to Shopware Store
 
