@@ -7,9 +7,9 @@ use FroshPluginUploader\Structs\ViolationContext;
 
 class NotAllowedFilesInZipChecker implements ValidationInterface
 {
-    private const NOT_ALLOWED_FILES = ['.DS_Store', 'Thumbs.db', '.git', '__MACOSX'];
+    public const NOT_ALLOWED_FILES = ['.DS_Store', 'Thumbs.db', '.git', '__MACOSX'];
 
-    private const NOT_ALLOWED_EXTENSIONS = ['.zip', '.tar', '.tar.gz', '.phar'];
+    public const NOT_ALLOWED_EXTENSIONS = ['.zip', '.tar', '.gz', '.phar', '.rar'];
 
     public function supports(ViolationContext $context): bool
     {

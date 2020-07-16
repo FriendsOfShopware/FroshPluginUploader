@@ -2,6 +2,7 @@
 
 namespace FroshPluginUploader\Components;
 
+use FroshPluginUploader\Components\PluginValidator\General\NotAllowedFilesInZipChecker;
 use FroshPluginUploader\Components\ZipStrategy\AbstractStrategy;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -64,6 +65,8 @@ class PluginZip
             $this->exec('rm -rf ' . escapeshellarg($pluginTmpDir . '/' . $item));
         }
 
+        $this->removeBlacklistedStoreFiles($pluginTmpDir);
+
         // Clean branch name for filename
 
         if ($version) {
@@ -122,5 +125,18 @@ class PluginZip
             $composerJsonPath,
             json_encode($json, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
         );
+    }
+
+    private function removeBlacklistedStoreFiles(string $pluginTmpDir): void
+    {
+        // Remove not allowed store file extensions
+        foreach (NotAllowedFilesInZipChecker::NOT_ALLOWED_EXTENSIONS as $item) {
+            $this->exec('(find ' . escapeshellarg($pluginTmpDir . '/') . ' -iname \'*' . escapeshellarg($item) . '\') | xargs rm -rf');
+        }
+
+        // Remove not allowed store files
+        foreach (NotAllowedFilesInZipChecker::NOT_ALLOWED_FILES as $item) {
+            $this->exec('(find ' . escapeshellarg($pluginTmpDir . '/') . ' -iname \'' . escapeshellarg($item) . '\') | xargs rm -rf');
+        }
     }
 }
