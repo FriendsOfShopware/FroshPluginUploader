@@ -12,6 +12,13 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 <!-- dumped content start -->
 ## Unreleased
 
+- [#64] remove files that are not allowed in store, Thanks to [@tinect]
+
+<!-- dumped content end -->
+
+<!-- dumped content start -->
+## Unreleased
+
 - [#63] Add more tests, Thanks to [@shyim]
 
 <!-- dumped content end -->
@@ -138,3 +145,4 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 [#53]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/53
 [#52]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/52
 [#63]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/63
+[#64]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/64
