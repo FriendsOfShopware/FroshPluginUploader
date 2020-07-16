@@ -76,7 +76,7 @@ class PluginReader implements PluginReaderInterface
 
     public function getDescriptionGerman(): string
     {
-        return $this->xml['description']['de'] ?? $this->xml['description']['en'];
+        return $this->xml['description']['de'] ?? $this->getDescriptionEnglish();
     }
 
     public function getDescriptionEnglish(): string
