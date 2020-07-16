@@ -65,15 +65,7 @@ class PluginZip
             $this->exec('rm -rf ' . escapeshellarg($pluginTmpDir . '/' . $item));
         }
 
-        // Remove not allowed store file extensions
-        foreach (NotAllowedFilesInZipChecker::NOT_ALLOWED_EXTENSIONS as $item) {
-            $this->exec('(find ' . escapeshellarg($pluginTmpDir . '/') . ' -iname \'*' . escapeshellarg($item) . '\') | xargs rm -rf');
-        }
-
-        // Remove not allowed store files
-        foreach (NotAllowedFilesInZipChecker::NOT_ALLOWED_FILES as $item) {
-            $this->exec('(find ' . escapeshellarg($pluginTmpDir . '/') . ' -iname \'' . escapeshellarg($item) . '\') | xargs rm -rf');
-        }
+        $this->removeBlacklistedStoreFiles($pluginTmpDir);
 
         // Clean branch name for filename
 
@@ -133,5 +125,21 @@ class PluginZip
             $composerJsonPath,
             json_encode($json, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
         );
+    }
+
+    /**
+     * @param string $pluginTmpDir
+     */
+    private function removeBlacklistedStoreFiles(string $pluginTmpDir): void
+    {
+        // Remove not allowed store file extensions
+        foreach (NotAllowedFilesInZipChecker::NOT_ALLOWED_EXTENSIONS as $item) {
+            $this->exec('(find ' . escapeshellarg($pluginTmpDir . '/') . ' -iname \'*' . escapeshellarg($item) . '\') | xargs rm -rf');
+        }
+
+        // Remove not allowed store files
+        foreach (NotAllowedFilesInZipChecker::NOT_ALLOWED_FILES as $item) {
+            $this->exec('(find ' . escapeshellarg($pluginTmpDir . '/') . ' -iname \'' . escapeshellarg($item) . '\') | xargs rm -rf');
+        }
     }
 }
