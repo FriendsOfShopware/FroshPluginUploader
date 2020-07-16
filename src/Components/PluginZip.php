@@ -127,9 +127,6 @@ class PluginZip
         );
     }
 
-    /**
-     * @param string $pluginTmpDir
-     */
     private function removeBlacklistedStoreFiles(string $pluginTmpDir): void
     {
         // Remove not allowed store file extensions
