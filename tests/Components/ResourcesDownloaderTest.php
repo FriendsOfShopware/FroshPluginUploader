@@ -11,6 +11,9 @@ use PHPUnit\Framework\TestCase;
 
 class ResourcesDownloaderTest extends TestCase
 {
+    /**
+     * @covers \FroshPluginUploader\Commands\DownloadPluginResourcesCommand
+     */
     public function testDownload(): void
     {
         $folder = sys_get_temp_dir() . '/' . uniqid('test', true);

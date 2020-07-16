@@ -54,4 +54,17 @@ class Struct
             return static::map($item);
         }, $data);
     }
+
+    public static function make(array $data)
+    {
+        return static::map(static::arrayToObject($data));
+    }
+
+    private static function arrayToObject($d) {
+        if (is_array($d)) {
+            return (object) array_map([static::class, 'arrayToObject'], $d);
+        }
+
+        return $d;
+    }
 }
