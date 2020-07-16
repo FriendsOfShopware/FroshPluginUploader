@@ -12,42 +12,11 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 <!-- dumped content start -->
 ## Unreleased
 
-- [#49] add check for length of description, Thanks to [@tinect]
-
-<!-- dumped content end -->
-
-<!-- dumped content start -->
-## Unreleased
-
-- [#49] add check for length of description, Thanks to [@tinect]
-
-<!-- dumped content end -->
-
-<!-- dumped content start -->
-## Unreleased
-
-- [#49] add check for length of description, Thanks to [@tinect]
-
-<!-- dumped content end -->
-
-<!-- dumped content start -->
-## Unreleased
-
-- [#64] remove files that are not allowed in store, Thanks to [@tinect]
-
-<!-- dumped content end -->
-
-<!-- dumped content start -->
-## Unreleased
-
-- [#63] Add more tests, Thanks to [@shyim]
-
-<!-- dumped content end -->
-
-<!-- dumped content start -->
-## Unreleased
-
+- Increased minimum PHP Version to 7.4
 - [#61] Improve plugin validation, fixes [#52], [#53], [#54], [#55], [#56], Thanks to [@shyim]
+- [#63] Add more tests, Thanks to [@shyim]
+- [#64] remove files that are not allowed in store, Thanks to [@tinect]
+- [#49] add check for length of description, Thanks to [@tinect]
 
 <!-- dumped content end -->
 
