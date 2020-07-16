@@ -53,7 +53,7 @@ class PluginZip
             rename($composerJsonBackup, $composerJson);
         }
 
-        if (file_exists($tmpDir . '/.sw-zip-blacklist')) {
+        if (file_exists($pluginTmpDir . '/.sw-zip-blacklist')) {
             $io->warning('Use of .sw-zip-blacklist is deprecated, use .gitattributes with export-ignore. It will be removed with 0.4.0');
             $blackList = file_get_contents($directory . '/.sw-zip-blacklist');
             $blackList = array_filter(explode("\n", $blackList));
@@ -89,9 +89,11 @@ class PluginZip
     {
         exec($command, $output, $ret);
 
+        // @codeCoverageIgnoreStart
         if ($ret !== 0) {
             throw new \RuntimeException(sprintf('Command "%s" failed with code %d', $command, $ret));
         }
+        // @codeCoverageIgnoreEnd
     }
 
     private function needComposerToRun(string $composerJsonPath): bool

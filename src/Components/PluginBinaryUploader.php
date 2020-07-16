@@ -86,7 +86,7 @@ class PluginBinaryUploader
                     ++$tries;
                     continue;
                 }
-                // @codeCoverageIgnoreIgnoreEnd
+                // @codeCoverageIgnoreEnd
 
                 return CodeReviewFormatter::format($result);
             }
