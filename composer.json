@@ -45,7 +45,7 @@
     "ext-phar": "*",
     "roave/security-advisories": "dev-master",
     "nette/php-generator": "^3.2",
-    "phpunit/phpunit": "^8.0",
+    "phpunit/phpunit": "^8.5",
     "symplify/changelog-linker": "^8.1"
   }
 }
