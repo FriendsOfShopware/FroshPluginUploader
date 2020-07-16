@@ -19,6 +19,7 @@ class ResourcesDownloader
 
     public function download(string $pluginName, string $path): void
     {
+        // @codeCoverageIgnoreStart
         if (!file_exists($path)) {
             if (!mkdir($path) && !is_dir($path)) {
                 throw new \RuntimeException(sprintf('Directory "%s" was not created', $path));
@@ -31,6 +32,7 @@ class ResourcesDownloader
                 throw new \RuntimeException(sprintf('Directory "%s" was not created', $imagesPath));
             }
         }
+        // @codeCoverageIgnoreEnd
 
         $plugin = $this->client->Producer()->getPlugin($pluginName);
 

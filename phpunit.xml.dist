@@ -22,6 +22,14 @@
     <filter>
         <whitelist>
             <directory>./src/</directory>
+            <exclude>
+                <directory suffix=".php">./src/Resources</directory>
+                <directory suffix=".php">./src/Structs</directory>
+                <directory suffix=".php">./src/Exception</directory>
+            </exclude>
         </whitelist>
     </filter>
+    <logging>
+        <log type="coverage-clover" target="clover.xml"/>
+    </logging>
 </phpunit>

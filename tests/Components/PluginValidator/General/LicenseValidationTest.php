@@ -14,6 +14,7 @@ class LicenseValidationTest extends TestCase
     public function testValidCase(): void
     {
         $context = $this->makeContext('MIT', 'MIT');
+        static::assertTrue((new LicenseValidation())->supports($context));
         (new LicenseValidation())->validate($context);
         static::assertFalse($context->hasViolations());
     }

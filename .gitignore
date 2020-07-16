@@ -5,3 +5,5 @@
 /composer.lock
 /test
 /*.zip
+/.phpunit.result.cache
+/clover.xml

@@ -14,6 +14,8 @@ class VersionCheckerTest extends TestCase
     public function testVersion(): void
     {
         $context = $this->makeContext('1.0.0');
+        static::assertTrue((new VersionChecker())->supports($context));
+
         (new VersionChecker())->validate($context);
 
         static::assertFalse($context->hasViolations());

@@ -2,6 +2,7 @@
 
 namespace FroshPluginUploader\Tests\Components\PluginValidator\ShopwareAppSystem;
 
+use FroshPluginUploader\Components\Generation\Shopware5\Plugin;
 use FroshPluginUploader\Components\Generation\ShopwareApp\App;
 use FroshPluginUploader\Components\Generation\ShopwareApp\AppReader;
 use FroshPluginUploader\Components\PluginValidator\ShopwareAppSystem\ManifestChecker;
@@ -19,6 +20,12 @@ class ManifestCheckerTest extends TestCase
         static::assertContains('"label" is not defined in manifest.xml', $context->getViolations());
         static::assertContains('"version" is not defined in manifest.xml', $context->getViolations());
         static::assertContains('"license" is not defined in manifest.xml', $context->getViolations());
+    }
+
+    public function testSupportsOnlyApp(): void
+    {
+        static::assertTrue((new ManifestChecker())->supports(new ViolationContext($this->createMock(App::class), new \ZipArchive(), __DIR__)));
+        static::assertFalse((new ManifestChecker())->supports(new ViolationContext($this->createMock(Plugin::class), new \ZipArchive(), __DIR__)));
     }
 
     public function testValidManifest(): void
