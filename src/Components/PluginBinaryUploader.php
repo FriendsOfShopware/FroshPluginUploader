@@ -73,8 +73,6 @@ class PluginBinaryUploader
     {
         $tries = 0;
 
-        sleep(5);
-
         while (true) {
             $results = $this->client->Plugins()->getCodeReviewResults($pluginId, $binaryId);
 
@@ -82,15 +80,18 @@ class PluginBinaryUploader
                 $result = $results[count($results) - 1];
 
                 // Still pending
+                // @codeCoverageIgnoreStart
                 if ($result->type->id === 4) {
                     sleep(5);
                     ++$tries;
                     continue;
                 }
+                // @codeCoverageIgnoreIgnoreEnd
 
                 return CodeReviewFormatter::format($result);
             }
 
+            // @codeCoverageIgnoreStart
             sleep(5);
 
             ++$tries;
@@ -98,6 +99,7 @@ class PluginBinaryUploader
             if ($tries === 200) {
                 return new UploadPluginResult(true, false, 'Code-Review check took to long');
             }
+            // @codeCoverageIgnoreIgnoreEnd
         }
     }
 }
