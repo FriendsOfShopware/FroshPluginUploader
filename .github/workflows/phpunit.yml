@@ -17,6 +17,9 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
 
+    - name: Create env
+      run: touch .env
+
     - name: Run test suite
       run: php vendor/bin/phpunit
 

@@ -26,10 +26,6 @@ class PluginReader implements PluginReaderInterface
 
     public function __construct(string $path)
     {
-        if (!file_exists($path . '/plugin.xml')) {
-            throw new PluginValidationException('The plugin requires a plugin.xml');
-        }
-
         $reader = new XmlPluginReader();
         $this->xml = $reader->read($path . '/plugin.xml');
 

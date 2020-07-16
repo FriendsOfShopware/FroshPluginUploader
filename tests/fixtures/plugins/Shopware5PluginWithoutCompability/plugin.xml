@@ -8,7 +8,7 @@
     <license>mit</license>
     <link>https://friendsofshopware.github.io/</link>
     <author>Friends of Shopware</author>
-    <compatibility minVersion="5.4.0" maxVersion="5.6.0"/>
+    <compatibility/>
     <description>Description EN</description>
     <description lang="de">Description DE</description>
 
