@@ -59,7 +59,7 @@ class PluginReader implements PluginReaderInterface
 
     public function getDescriptionGerman(): string
     {
-        return $this->composerJson['extra']['description']['de-DE'];
+        return $this->composerJson['extra']['description']['de-DE'] ?? $this->getDescriptionEnglish();
     }
 
     public function getDescriptionEnglish(): string
