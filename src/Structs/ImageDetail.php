@@ -4,6 +4,8 @@ namespace FroshPluginUploader\Structs;
 
 class ImageDetail extends Struct
 {
+    public static $mappedFields = ['locale' => Locale::class];
+
     /** @var int */
     public $id;
 
@@ -15,7 +17,6 @@ class ImageDetail extends Struct
 
     /** @var string */
     public $caption;
-    public static $mappedFields = [];
 
     /** @var Locale */
     public $locale;

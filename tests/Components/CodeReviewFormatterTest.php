@@ -29,18 +29,20 @@ class CodeReviewFormatterTest extends TestCase
             'type' => [
                 'id' => 3,
                 'description' => 'automaticcodereviewsucceeded'
+            ],
+            'subCheckResults' => [
+                [
+                    'subCheck' => 'test',
+                    'passed' => true,
+                    'hasWarnings' => true,
+                    'message' => 'Warning',
+                ],
+                [
+                    'passed' => true,
+                    'hasWarnings' => false,
+                    'message' => 'test',
+                ]
             ]
-        ]);
-        $codeReview->subCheckResults[] = SubCheckResult::make([
-            'subCheck' => 'test',
-            'passed' => true,
-            'hasWarnings' => true,
-            'message' => 'Warning',
-        ]);
-        $codeReview->subCheckResults[] = SubCheckResult::make([
-            'passed' => true,
-            'hasWarnings' => false,
-            'message' => 'test',
         ]);
 
         $formatted = CodeReviewFormatter::format($codeReview);

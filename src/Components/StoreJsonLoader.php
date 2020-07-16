@@ -115,15 +115,15 @@ class StoreJsonLoader
                 }
 
                 if (isset($config['de']['preview'])) {
-                    $detail->activated = $config['de']['preview'];
+                    $detail->preview = $config['de']['preview'];
                 }
             } elseif ($detail->locale->name === 'en_GB' && isset($config['en'])) {
-                if (isset($config['de']['activated'])) {
-                    $detail->activated = $config['de']['activated'];
+                if (isset($config['en']['activated'])) {
+                    $detail->activated = $config['en']['activated'];
                 }
 
-                if (isset($config['de']['preview'])) {
-                    $detail->activated = $config['de']['preview'];
+                if (isset($config['en']['preview'])) {
+                    $detail->preview = $config['en']['preview'];
                 }
             }
         }
@@ -182,8 +182,6 @@ class StoreJsonLoader
                     return;
                 }
             }
-
-            throw new \RuntimeException(sprintf('Unable to map field "%s" with value "%s". Allowed values are %s', $pluginField, $this->$pluginField, implode(', ', array_column($data, $sourceField))));
         }
 
         if (is_array($this->$pluginField)) {
@@ -202,8 +200,6 @@ class StoreJsonLoader
                 if ($found) {
                     continue;
                 }
-
-                throw new \RuntimeException(sprintf('Unable to map field "%s" with value "%s". Allowed values are %s', $pluginField, $newValue, implode(',', array_column($data, $sourceField))));
             }
         }
     }

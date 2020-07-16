@@ -14,18 +14,8 @@ use Symfony\Component\Config\Util\XmlUtils;
  */
 abstract class XmlReaderBase implements XmlReaderInterface
 {
-    const SCOPE_LOCALE = 0;
-    const SCOPE_SHOP = 1;
-    const DEFAULT_LANG = 'en';
-    /**
-     * Map of language shortcuts to locale.
-     *
-     * @var array
-     */
-    protected static $languageMapping = [
-        'de' => 'de_DE',
-        'en' => 'en_GB',
-    ];
+    private const DEFAULT_LANG = 'en';
+
     /**
      * @var string should be set in instance that extends this class
      */
@@ -68,83 +58,6 @@ abstract class XmlReaderBase implements XmlReaderInterface
     }
 
     /**
-     * Get child elements by name.
-     *
-     * @param mixed $name
-     *
-     * @return array
-     */
-    public static function getChildren(DOMNode $node, $name)
-    {
-        $children = [];
-        foreach ($node->childNodes as $child) {
-            if ($child instanceof DOMElement && $child->localName === $name) {
-                $children[] = $child;
-            }
-        }
-
-        return $children;
-    }
-
-    /**
-     * Returns first item of DOMNodeList or null.
-     *
-     * @param string $name
-     *
-     * @return DOMElement|null
-     */
-    public static function getFirstChildren(DOMNode $list, $name)
-    {
-        $children = self::getChildren($list, $name);
-        if (count($children) === 0) {
-            return null;
-        }
-
-        return $children[0];
-    }
-
-    /**
-     * Validates boolean attribute.
-     *
-     * @param string $value
-     * @param bool   $defaultValue
-     *
-     * @return bool
-     */
-    public static function validateBooleanAttribute($value, $defaultValue = false)
-    {
-        if ($value === '') {
-            return $defaultValue;
-        }
-
-        return (bool) XmlUtils::phpize($value);
-    }
-
-    /**
-     * @return array|null
-     */
-    public static function parseOptionsNodeList(DOMNodeList $optionsList)
-    {
-        if ($optionsList->length === 0) {
-            return null;
-        }
-        $optionsItem = $optionsList->item(0);
-        $optionList = $optionsItem->childNodes;
-        if ($optionList->length === 0) {
-            return null;
-        }
-        $options = [];
-        /** @var DOMElement $option */
-        foreach ($optionList as $option) {
-            if ($option instanceof DOMElement) {
-                $options[$option->nodeName] = XmlUtils::phpize($option->nodeValue);
-            }
-        }
-
-        return $options;
-    }
-
-    /**
      * Returns all element child values by nodeName.
      *
      * @param string $name
@@ -166,23 +79,6 @@ abstract class XmlReaderBase implements XmlReaderInterface
         }
 
         return $children->item(0)->nodeValue;
-    }
-
-    /**
-     * Validates attribute type.
-     *
-     * @param string $type
-     * @param string $defaultValue
-     *
-     * @return string
-     */
-    public static function validateTextAttribute($type, $defaultValue = '')
-    {
-        if ($type === '') {
-            return $defaultValue;
-        }
-
-        return $type;
     }
 
     /**

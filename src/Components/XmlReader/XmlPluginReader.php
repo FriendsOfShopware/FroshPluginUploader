@@ -14,31 +14,7 @@ class XmlPluginReader extends XmlReaderBase
      */
     protected $xsdFile = __DIR__ . '/schema/plugin.xsd';
 
-    /**
-     * parse required plugin blacklist
-     *
-     * @return array|null
-     */
-    public static function parseBlacklist(DOMNodeList $items)
-    {
-        if ($items->length === 0) {
-            return null;
-        }
-        $blacklist = [];
-        /** @var DOMElement $item */
-        foreach ($items as $item) {
-            $blacklist[] = $item->nodeValue;
-        }
-
-        return $blacklist;
-    }
-
-    /**
-     * This method should be overridden as main entry point to parse a xml file.
-     *
-     * @return array
-     */
-    protected function parseFile(DOMDocument $xml)
+    protected function parseFile(DOMDocument $xml): array
     {
         $xpath = new DOMXPath($xml);
         $plugin = $xpath->query('//plugin');
@@ -73,51 +49,10 @@ class XmlPluginReader extends XmlReaderBase
         if ($compatibility !== null) {
             $info['compatibility'] = [
                 'minVersion' => $compatibility->getAttribute('minVersion'),
-                'maxVersion' => $compatibility->getAttribute('maxVersion'),
-                'blacklist' => self::parseBlacklist(
-                    $compatibility->getElementsByTagName('blacklist')
-                ),
+                'maxVersion' => $compatibility->getAttribute('maxVersion')
             ];
-        }
-        $requiredPlugins = self::getFirstChildren(
-            $pluginData,
-            'requiredPlugins'
-        );
-        if ($requiredPlugins !== null) {
-            $info['requiredPlugins'] = $this->parseRequiredPlugins($requiredPlugins);
         }
 
         return $info;
-    }
-
-    /**
-     * parse required plugins
-     *
-     * @return array
-     */
-    private function parseRequiredPlugins(DOMElement $requiredPluginNode)
-    {
-        $plugins = [];
-        $requiredPlugins = $requiredPluginNode->getElementsByTagName('requiredPlugin');
-        /** @var DOMElement $requiredPlugin */
-        foreach ($requiredPlugins as $requiredPlugin) {
-            $plugin = [];
-            $plugin['pluginName'] = $requiredPlugin->getAttribute('pluginName');
-            if ($minVersion = $requiredPlugin->getAttribute('minVersion')) {
-                $plugin['minVersion'] = $minVersion;
-            }
-            if ($maxVersion = $requiredPlugin->getAttribute('maxVersion')) {
-                $plugin['maxVersion'] = $maxVersion;
-            }
-            $blacklist = self::parseBlacklist(
-                $requiredPlugin->getElementsByTagName('blacklist')
-            );
-            if ($blacklist !== null) {
-                $plugin['blacklist'] = $blacklist;
-            }
-            $plugins[] = $plugin;
-        }
-
-        return $plugins;
     }
 }

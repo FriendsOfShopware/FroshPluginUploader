@@ -1,0 +1,2341 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "Administration",
+      "description": "",
+      "parent": 69,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": false,
+      "details": [
+        {
+          "id": 1,
+          "name": "Administration",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 2,
+          "name": "Administration",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 2,
+      "name": "BackendBearbeitung",
+      "description": "",
+      "parent": 1,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": true,
+      "details": [
+        {
+          "id": 3,
+          "name": "Backend-Bearbeitung",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 4,
+          "name": "Backend editing",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 3,
+      "name": "System",
+      "description": "",
+      "parent": 1,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": true,
+      "details": [
+        {
+          "id": 5,
+          "name": "System",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 6,
+          "name": "System",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 4,
+      "name": "SEOOptimierung",
+      "description": "",
+      "parent": 69,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": true,
+      "details": [
+        {
+          "id": 7,
+          "name": "SEO Optimierung",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 8,
+          "name": "SEO Optimization",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 5,
+      "name": "Bonitaetspr\u00fcfung",
+      "description": "",
+      "parent": 1,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": true,
+      "details": [
+        {
+          "id": 9,
+          "name": "Bonit\u00e4tspr\u00fcfung",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 10,
+          "name": "Credit assessment",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 6,
+      "name": "Rechtssicherheit",
+      "description": "",
+      "parent": 1,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": true,
+      "details": [
+        {
+          "id": 11,
+          "name": "Rechtssicherheit",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 12,
+          "name": "Legal security",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 7,
+      "name": "MobileAdministration",
+      "description": "",
+      "parent": 1,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": true,
+      "details": [
+        {
+          "id": 13,
+          "name": "Mobile Administration",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 14,
+          "name": "Mobile administration",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 8,
+      "name": "Auswertung",
+      "description": "",
+      "parent": 69,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": false,
+      "details": [
+        {
+          "id": 15,
+          "name": "Auswertung und Analyse",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 16,
+          "name": "Evaluation and Analysis",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 9,
+      "name": "KommentarFeedback",
+      "description": "",
+      "parent": 8,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": true,
+      "details": [
+        {
+          "id": 17,
+          "name": "Kommentar \/ Feedback",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 18,
+          "name": "Comments \/ Feedback",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 10,
+      "name": "Tracking",
+      "description": "",
+      "parent": 8,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": true,
+      "details": [
+        {
+          "id": 19,
+          "name": "Tracking",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 20,
+          "name": "Tracking",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 11,
+      "name": "MobileAuswertung",
+      "description": "",
+      "parent": 8,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": true,
+      "details": [
+        {
+          "id": 21,
+          "name": "Mobile Auswertung",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 22,
+          "name": "Mobile analysis",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 12,
+      "name": "Integration",
+      "description": "",
+      "parent": 69,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": false,
+      "details": [
+        {
+          "id": 23,
+          "name": "Integration",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 24,
+          "name": "Integration",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 13,
+      "name": "Shopsystem",
+      "description": "",
+      "parent": 12,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": true,
+      "details": [
+        {
+          "id": 25,
+          "name": "Shopsystem",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 26,
+          "name": "Shop system",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 14,
+      "name": "PreissuchmaschinenPortale",
+      "description": "",
+      "parent": 69,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": true,
+      "details": [
+        {
+          "id": 27,
+          "name": "Preissuchmaschinen \/ -portale",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 28,
+          "name": "Price search engine \/ portal",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 15,
+      "name": "Warenwirtschaft",
+      "description": "",
+      "parent": 12,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": true,
+      "details": [
+        {
+          "id": 29,
+          "name": "Warenwirtschaft",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 30,
+          "name": "ERP",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 16,
+      "name": "Versand",
+      "description": "",
+      "parent": 12,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": true,
+      "details": [
+        {
+          "id": 31,
+          "name": "Versand",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 32,
+          "name": "Shipping",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 17,
+      "name": "Bezahlung",
+      "description": "",
+      "parent": 12,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": true,
+      "details": [
+        {
+          "id": 33,
+          "name": "Bezahlung",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 34,
+          "name": "Payment",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 18,
+      "name": "StorefrontDetailanpassungen",
+      "description": "",
+      "parent": 69,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": false,
+      "details": [
+        {
+          "id": 35,
+          "name": "Storefront \/ Detailanpassungen",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 36,
+          "name": "Frontend \/ detail adjustment",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 19,
+      "name": "Sprache",
+      "description": "",
+      "parent": 69,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": true,
+      "details": [
+        {
+          "id": 37,
+          "name": "Sprachen \u0026 Internationalisierung",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 38,
+          "name": "Language \u0026 Internationalisation",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 20,
+      "name": "Suche",
+      "description": "",
+      "parent": 18,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": true,
+      "details": [
+        {
+          "id": 39,
+          "name": "Suche",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 40,
+          "name": "Search",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 21,
+      "name": "HeaderFooter",
+      "description": "",
+      "parent": 18,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": true,
+      "details": [
+        {
+          "id": 41,
+          "name": "Header + Footer",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 42,
+          "name": "Header + Footer",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 22,
+      "name": "Produktdarstellung",
+      "description": "",
+      "parent": 18,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": false,
+      "details": [
+        {
+          "id": 43,
+          "name": "Produktdarstellung",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 44,
+          "name": "Product presentation",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 23,
+      "name": "UebergreifendeDarstellung",
+      "description": "",
+      "parent": 22,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": true,
+      "details": [
+        {
+          "id": 45,
+          "name": "\u00dcbergreifende Darstellung",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 46,
+          "name": "Cross presentation",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 24,
+      "name": "Detailseite",
+      "description": "",
+      "parent": 22,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": true,
+      "details": [
+        {
+          "id": 47,
+          "name": "Detailseite",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 48,
+          "name": "Detail page",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 25,
+      "name": "MenueKategorien",
+      "description": "",
+      "parent": 22,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": true,
+      "details": [
+        {
+          "id": 49,
+          "name": "Men\u00fc + Kategorien",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 50,
+          "name": "Menu + category",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 26,
+      "name": "Bestellprozess",
+      "description": "",
+      "parent": 69,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": true,
+      "details": [
+        {
+          "id": 51,
+          "name": "Bestellprozess (Checkout)",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 52,
+          "name": "Checkout process",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 27,
+      "name": "KundenkontoPersonalisierung",
+      "description": "",
+      "parent": 69,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": true,
+      "details": [
+        {
+          "id": 53,
+          "name": "Kundenkonto + Personalisierung",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 54,
+          "name": "Customer account + personalization",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 28,
+      "name": "IconsButons",
+      "description": "",
+      "parent": 18,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": true,
+      "details": [
+        {
+          "id": 55,
+          "name": "Icons + Buttons",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 56,
+          "name": "Icons + Buttons",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 29,
+      "name": "Schriftarten",
+      "description": "",
+      "parent": 18,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": true,
+      "details": [
+        {
+          "id": 57,
+          "name": "Schriftarten",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 58,
+          "name": "Typefaces",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 31,
+      "name": "WidgetsSnippets",
+      "description": "",
+      "parent": 18,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": true,
+      "details": [
+        {
+          "id": 61,
+          "name": "Widgets + Snippets",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 62,
+          "name": "Widgets + snippets",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 32,
+      "name": "Sonderfunktionen",
+      "description": "",
+      "parent": 18,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": true,
+      "details": [
+        {
+          "id": 63,
+          "name": "Sonderfunktionen",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 64,
+          "name": "Special features",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 33,
+      "name": "Themes",
+      "description": "",
+      "parent": false,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": false,
+      "details": [
+        {
+          "id": 65,
+          "name": "Themes",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 66,
+          "name": "Themes",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 34,
+      "name": "Branche",
+      "description": "",
+      "parent": 33,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": false,
+      "details": [
+        {
+          "id": 67,
+          "name": "Branche",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 68,
+          "name": "Industry",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 35,
+      "name": "Home+Furnishings",
+      "description": "",
+      "parent": 34,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": false,
+      "applicable": true,
+      "details": [
+        {
+          "id": 69,
+          "name": "Haus + Einrichtung",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 70,
+          "name": "Home + furnishings",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 36,
+      "name": "FashionBekleidung",
+      "description": "",
+      "parent": 34,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": false,
+      "applicable": true,
+      "details": [
+        {
+          "id": 71,
+          "name": "Fashion + Bekleidung",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 72,
+          "name": "Fashion + clothing",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 37,
+      "name": "GartenNatur",
+      "description": "",
+      "parent": 34,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": false,
+      "applicable": true,
+      "details": [
+        {
+          "id": 73,
+          "name": "Garten + Natur",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 74,
+          "name": "Garden + nature",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 38,
+      "name": "KosmetikGesundheit",
+      "description": "",
+      "parent": 34,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": false,
+      "applicable": true,
+      "details": [
+        {
+          "id": 75,
+          "name": "Kosmetik + Gesundheit",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 76,
+          "name": "Cosmetic + health",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 39,
+      "name": "EssenTrinken",
+      "description": "",
+      "parent": 34,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": false,
+      "applicable": true,
+      "details": [
+        {
+          "id": 77,
+          "name": "Essen + Trinken",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 78,
+          "name": "Food + drink",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 40,
+      "name": "KinderPartyGeschenke",
+      "description": "",
+      "parent": 34,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": false,
+      "applicable": true,
+      "details": [
+        {
+          "id": 79,
+          "name": "Kinder, Party + Geschenke",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 80,
+          "name": "Children, party + gifts",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 41,
+      "name": "SportLifestyleReisen",
+      "description": "",
+      "parent": 34,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": false,
+      "applicable": true,
+      "details": [
+        {
+          "id": 81,
+          "name": "Sport, Lifestyle + Reisen",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 82,
+          "name": "Sport, lifestyle + travel",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 42,
+      "name": "TechnikIT",
+      "description": "",
+      "parent": 34,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": false,
+      "applicable": true,
+      "details": [
+        {
+          "id": 83,
+          "name": "Technik + IT",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 84,
+          "name": "Technology + IT",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 43,
+      "name": "IndustrieGro\u00dfhandel",
+      "description": "",
+      "parent": 34,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": false,
+      "applicable": true,
+      "details": [
+        {
+          "id": 85,
+          "name": "Industrie + Gro\u00dfhandel",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 86,
+          "name": "Industry + wholesale",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 60,
+      "name": "MigrationTools",
+      "description": "",
+      "parent": 69,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": true,
+      "details": [
+        {
+          "id": 119,
+          "name": "Migrations-Tools",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 120,
+          "name": "Migration tools",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 62,
+      "name": "Einkaufswelten",
+      "description": "",
+      "parent": 69,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": true,
+      "details": [
+        {
+          "id": 239,
+          "name": "Einkaufswelten",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 240,
+          "name": "Shopping Worlds",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 65,
+      "name": "ConversionOptimierung",
+      "description": "",
+      "parent": 69,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": true,
+      "details": [
+        {
+          "id": 245,
+          "name": "Conversion Optimierung",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 246,
+          "name": "Conversion Optimization",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 69,
+      "name": "Extensions",
+      "description": "",
+      "parent": false,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": false,
+      "details": [
+        {
+          "id": 253,
+          "name": "Erweiterungen",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 254,
+          "name": "Extensions",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 72,
+      "name": "MarketingTools",
+      "description": "",
+      "parent": 69,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": true,
+      "details": [
+        {
+          "id": 259,
+          "name": "Marketing-Tools",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 260,
+          "name": "Marketing-Tools",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 73,
+      "name": "B2BExtensions",
+      "description": "",
+      "parent": 69,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": true,
+      "details": [
+        {
+          "id": 261,
+          "name": "B2B-Erweiterungen",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 262,
+          "name": "B2B extensions",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 113,
+      "name": "Blog",
+      "description": "",
+      "parent": 18,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": true,
+      "details": [
+        {
+          "id": 341,
+          "name": "Blog",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 342,
+          "name": "Blog",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 115,
+      "name": "Mobile\/ExpressPayment",
+      "description": "",
+      "parent": 12,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": false,
+      "applicable": true,
+      "details": [
+        {
+          "id": 345,
+          "name": "Mobile \/ Express Bezahlung",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 346,
+          "name": "Mobile \/ Express Payment",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    }
+  ],
+  "addons": [
+    {
+      "id": 1,
+      "name": "encryptionIonCube",
+      "description": "Verschl\u00fcsseln Sie ihr Plugin mit \u003Ca href=\u0022http:\/\/www.ioncube.com\/\u0022\u003EIonCube\u003C\/a\u003E.",
+      "addedProvision": 0,
+      "public": true
+    },
+    {
+      "id": 2,
+      "name": "enterpriseCertified",
+      "description": "Bei Bedarf kann Ihre Shopware Erweiterung von uns zertifiziert werden. Das bedeutet, dass wir ein Code-Review durchf\u00fchren und Ihr Plugin f\u00fcr den Einsatz in Shopware Enterprise Umgebungen freigeben\u003Cbr \/\u003E\u003Cbr \/\u003EInhalte des Core-Reviews sind unter anderem:\u003Cul\u003E\u003Cli\u003EQuellcode-Qualit\u00e4t\u003C\/li\u003E\u003Cli\u003ESecutiry-Audit\u003C\/li\u003E\u003Cli\u003EKompatibilit\u00e4t\u003C\/li\u003E\u003Cli\u003ESkalierbarkeit \/ Performance-Impact\u003C\/li\u003E\u003C\/ul\u003E\u003Cbr \/\u003EF\u00fcr diesen Service erheben wir einen \u003Cb\u003EAufschlag von 10% auf die Verkaufsprovision\u003C\/b\u003E.\u003Cbr \/\u003EIhr Plugin wird dann im Store mit einem \u0022Certified\u0022-Label hervorgehoben und bevorzugt pr\u00e4sentiert.",
+      "addedProvision": 10,
+      "public": true
+    },
+    {
+      "id": 3,
+      "name": "licenseCheck",
+      "description": "Damit dir Erstellung von Lizenzkeys automatisch erfolgen kann, k\u00f6nnen Sie unser Lizenzsystem einsetzen.Hierzu m\u00fcssen sie passende Sicherheitsschl\u00fcssel bei uns anfordern und die Lizenzpr\u00fcfung in Ihr Plugin \u00fcbernehmen.Danach k\u00f6nnen Sie das Plugin hochladen.",
+      "addedProvision": 0,
+      "public": true
+    },
+    {
+      "id": 4,
+      "name": "highlightInListing",
+      "description": "Plugin optisch hervorheben in Listings.\u003Cbr \/\u003E\u003Cb\u003E+ 5 % Provision solange Option aktiv\u003C\/b\u003E",
+      "addedProvision": 5,
+      "public": true
+    },
+    {
+      "id": 20,
+      "name": "emotionPreset",
+      "description": "Includes emotion preset",
+      "addedProvision": 0,
+      "public": true
+    },
+    {
+      "id": 22,
+      "name": "testVersionNotObligatory",
+      "description": "test version is not obligatory",
+      "addedProvision": 0,
+      "public": true
+    }
+  ],
+  "generations": [
+    {
+      "id": 1,
+      "name": "classic",
+      "description": "Shopware 3, 4, 5"
+    },
+    {
+      "id": 2,
+      "name": "platform",
+      "description": "Shopware Platform"
+    },
+    {
+      "id": 3,
+      "name": "apps",
+      "description": "Shopware Apps"
+    },
+    {
+      "id": 4,
+      "name": "themes",
+      "description": "Shopware Themes"
+    }
+  ],
+  "activationStatus": [
+    {
+      "id": 1,
+      "name": "activated",
+      "description": "Activated"
+    },
+    {
+      "id": 2,
+      "name": "deactivated",
+      "description": "Deactivated"
+    }
+  ],
+  "approvalStatus": [
+    {
+      "id": 1,
+      "name": "unchecked",
+      "description": "Unchecked"
+    },
+    {
+      "id": 2,
+      "name": "approved",
+      "description": "Approveed"
+    },
+    {
+      "id": 3,
+      "name": "rejected",
+      "description": "Rejected"
+    }
+  ],
+  "lifecycleStatus": [
+    {
+      "id": 1,
+      "name": "created",
+      "description": "Created"
+    },
+    {
+      "id": 2,
+      "name": "reviewrequired",
+      "description": "Review required"
+    },
+    {
+      "id": 3,
+      "name": "inreview",
+      "description": "In Review"
+    },
+    {
+      "id": 4,
+      "name": "waitingforapproval",
+      "description": "Waiting for approval"
+    },
+    {
+      "id": 5,
+      "name": "readyforstore",
+      "description": "Ready for store"
+    },
+    {
+      "id": 6,
+      "name": "rejected",
+      "description": "Rejected"
+    },
+    {
+      "id": 7,
+      "name": "deleted",
+      "description": "Deleted"
+    }
+  ],
+  "binaryStatus": [
+    {
+      "id": 1,
+      "name": "waitingforcodereview",
+      "description": "Waiting for code review"
+    },
+    {
+      "id": 2,
+      "name": "waitingformanualcodereview",
+      "description": "Waiting for manual code review"
+    },
+    {
+      "id": 3,
+      "name": "codereviewfailed",
+      "description": "Code review failed"
+    },
+    {
+      "id": 4,
+      "name": "codereviewsucceeded",
+      "description": "Code review succeeded"
+    },
+    {
+      "id": 5,
+      "name": "encryptionfailed",
+      "description": "encryptionfailed"
+    },
+    {
+      "id": 6,
+      "name": "revoked",
+      "description": "Binary has been revoked"
+    },
+    {
+      "id": 7,
+      "name": "codeReviewProcessing",
+      "description": "Code review processing"
+    },
+    {
+      "id": 8,
+      "name": "codeReviewProcessingStep1",
+      "description": "Code review step 1 is in process"
+    },
+    {
+      "id": 9,
+      "name": "codeReviewRequired",
+      "description": "Code review required"
+    },
+    {
+      "id": 10,
+      "name": "codeReviewRequested",
+      "description": "Code review requested"
+    },
+    {
+      "id": 11,
+      "name": "inCodeReview",
+      "description": "In code review"
+    }
+  ],
+  "locales": [
+    {
+      "id": 1,
+      "name": "de_DE"
+    },
+    {
+      "id": 2,
+      "name": "en_GB"
+    }
+  ],
+  "infos": [
+    {
+      "id": null,
+      "locale": {
+        "id": 1,
+        "name": "de_DE"
+      },
+      "name": "",
+      "description": "",
+      "installationManual": "",
+      "shortDescription": "",
+      "highlights": "",
+      "features": "",
+      "tags": [],
+      "videos": [],
+      "faqs": []
+    },
+    {
+      "id": null,
+      "locale": {
+        "id": 2,
+        "name": "en_GB"
+      },
+      "name": "",
+      "description": "",
+      "installationManual": "",
+      "shortDescription": "",
+      "highlights": "",
+      "features": "",
+      "tags": [],
+      "videos": [],
+      "faqs": []
+    }
+  ],
+  "licenses": [
+    {
+      "id": 1,
+      "name": "proprietary",
+      "description": "Proprietary licence"
+    },
+    {
+      "id": 2,
+      "name": "open_source",
+      "description": "Open-source license"
+    }
+  ],
+  "storeAvailabilities": [
+    {
+      "id": 1,
+      "name": "German",
+      "description": "only available in german store"
+    },
+    {
+      "id": 2,
+      "name": "International",
+      "description": "available in international store"
+    }
+  ],
+  "priceModels": [
+    {
+      "id": null,
+      "price": 1,
+      "subscription": false,
+      "type": "buy",
+      "discount": 0,
+      "bookingKey": "",
+      "bookingText": ""
+    },
+    {
+      "id": null,
+      "price": 1,
+      "duration": "normal",
+      "type": "rent",
+      "bookingKey": "",
+      "bookingText": ""
+    },
+    {
+      "id": null,
+      "duration": "normal",
+      "type": "test",
+      "bookingKey": "",
+      "bookingText": ""
+    },
+    {
+      "id": null,
+      "type": "free",
+      "bookingKey": "",
+      "bookingText": ""
+    },
+    {
+      "id": null,
+      "price": 1,
+      "duration": "normal",
+      "type": "support",
+      "bookingKey": "",
+      "bookingText": ""
+    }
+  ],
+  "softwareVersions": [
+    {
+      "id": 159,
+      "name": "6.2.3",
+      "parent": 151,
+      "selectable": true,
+      "major": "Shopware 6",
+      "releaseDate": {
+        "date": "2020-07-13 00:00:00.000000",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+      },
+      "public": true
+    },
+    {
+      "id": 158,
+      "name": "6.2.2",
+      "parent": 151,
+      "selectable": true,
+      "major": "Shopware 6",
+      "releaseDate": {
+        "date": "2020-06-17 00:00:00.000000",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+      },
+      "public": true
+    },
+    {
+      "id": 157,
+      "name": "6.2.1",
+      "parent": 151,
+      "selectable": true,
+      "major": "Shopware 6",
+      "releaseDate": {
+        "date": "2020-06-15 00:00:00.000000",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+      },
+      "public": true
+    },
+    {
+      "id": 154,
+      "name": "6.2.0",
+      "parent": 151,
+      "selectable": true,
+      "major": "Shopware 6",
+      "releaseDate": {
+        "date": "2020-05-11 00:00:00.000000",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+      },
+      "public": true
+    },
+    {
+      "id": 152,
+      "name": "6.2.0-RC1",
+      "parent": 151,
+      "selectable": true,
+      "major": "Shopware 6",
+      "releaseDate": {
+        "date": "2020-04-27 00:00:00.000000",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+      },
+      "public": true
+    },
+    {
+      "id": 151,
+      "name": "6.2",
+      "parent": 123,
+      "selectable": false,
+      "major": null,
+      "releaseDate": null,
+      "public": true
+    },
+    {
+      "id": 155,
+      "name": "6.1.6",
+      "parent": 138,
+      "selectable": true,
+      "major": "Shopware 6",
+      "releaseDate": {
+        "date": "2020-05-13 00:00:00.000000",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+      },
+      "public": true
+    },
+    {
+      "id": 150,
+      "name": "6.1.5",
+      "parent": 138,
+      "selectable": true,
+      "major": "Shopware 6",
+      "releaseDate": {
+        "date": "2020-04-02 00:00:00.000000",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+      },
+      "public": true
+    },
+    {
+      "id": 149,
+      "name": "6.1.4",
+      "parent": 138,
+      "selectable": true,
+      "major": "Shopware 6",
+      "releaseDate": {
+        "date": "2020-03-18 00:00:00.000000",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+      },
+      "public": true
+    },
+    {
+      "id": 146,
+      "name": "6.1.3",
+      "parent": 138,
+      "selectable": true,
+      "major": "Shopware 6",
+      "releaseDate": {
+        "date": "2020-02-19 00:00:00.000000",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+      },
+      "public": true
+    },
+    {
+      "id": 145,
+      "name": "6.1.2",
+      "parent": 138,
+      "selectable": true,
+      "major": "Shopware 6",
+      "releaseDate": {
+        "date": "2020-02-18 00:00:00.000000",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+      },
+      "public": true
+    },
+    {
+      "id": 144,
+      "name": "6.1.1",
+      "parent": 138,
+      "selectable": true,
+      "major": "Shopware 6",
+      "releaseDate": {
+        "date": "2020-01-27 00:00:00.000000",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+      },
+      "public": true
+    },
+    {
+      "id": 137,
+      "name": "6.1.0",
+      "parent": 138,
+      "selectable": true,
+      "major": "Shopware 6",
+      "releaseDate": {
+        "date": "2019-12-09 00:00:00.000000",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+      },
+      "public": true
+    },
+    {
+      "id": 143,
+      "name": "6.1.0-RC4",
+      "parent": 138,
+      "selectable": true,
+      "major": "Shopware 6",
+      "releaseDate": null,
+      "public": true
+    },
+    {
+      "id": 142,
+      "name": "6.1.0-RC3",
+      "parent": 138,
+      "selectable": true,
+      "major": "Shopware 6",
+      "releaseDate": null,
+      "public": true
+    },
+    {
+      "id": 140,
+      "name": "6.1.0-RC2",
+      "parent": 138,
+      "selectable": true,
+      "major": "Shopware 6",
+      "releaseDate": {
+        "date": "2019-12-10 00:00:00.000000",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+      },
+      "public": true
+    },
+    {
+      "id": 139,
+      "name": "6.1.0-RC1",
+      "parent": 138,
+      "selectable": true,
+      "major": "Shopware 6",
+      "releaseDate": {
+        "date": "2019-12-09 00:00:00.000000",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+      },
+      "public": true
+    },
+    {
+      "id": 138,
+      "name": "6.1",
+      "parent": 123,
+      "selectable": false,
+      "major": null,
+      "releaseDate": null,
+      "public": true
+    },
+    {
+      "id": 135,
+      "name": "6.0.0-EA2",
+      "parent": 124,
+      "selectable": true,
+      "major": "Shopware 6",
+      "releaseDate": {
+        "date": "2019-10-15 10:00:00.000000",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+      },
+      "public": true
+    },
+    {
+      "id": 132,
+      "name": "6.0.0-EA1.1",
+      "parent": 124,
+      "selectable": true,
+      "major": "Shopware 6",
+      "releaseDate": {
+        "date": "2019-08-22 10:00:00.000000",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+      },
+      "public": true
+    },
+    {
+      "id": 131,
+      "name": "6.0.0-EA1",
+      "parent": 124,
+      "selectable": true,
+      "major": "Shopware 6",
+      "releaseDate": null,
+      "public": true
+    },
+    {
+      "id": 125,
+      "name": "6.0.0-DP1",
+      "parent": 124,
+      "selectable": true,
+      "major": "Shopware 6",
+      "releaseDate": {
+        "date": "2019-05-23 10:30:00.000000",
+        "timezone_type": 3,
+        "timezone": "Europe\/Berlin"
+      },
+      "public": true
+    },
+    {
+      "id": 124,
+      "name": "6.0",
+      "parent": 123,
+      "selectable": false,
+      "major": null,
+      "releaseDate": null,
+      "public": true
+    },
+    {
+      "id": 123,
+      "name": "6",
+      "parent": false,
+      "selectable": false,
+      "major": null,
+      "releaseDate": null,
+      "public": true
+    }
+  ],
+  "demoTypes": [
+    {
+      "id": 1,
+      "name": "frontend",
+      "description": "Frontend demo"
+    },
+    {
+      "id": 2,
+      "name": "backend",
+      "description": "Backend demo"
+    }
+  ],
+  "localizations": [
+    {
+      "id": 1,
+      "name": "de_DE"
+    },
+    {
+      "id": 2,
+      "name": "en_GB"
+    },
+    {
+      "id": 3,
+      "name": "es_ES"
+    },
+    {
+      "id": 4,
+      "name": "fi_FI"
+    },
+    {
+      "id": 5,
+      "name": "fr_FR"
+    },
+    {
+      "id": 6,
+      "name": "it_IT"
+    },
+    {
+      "id": 7,
+      "name": "nb_NO"
+    },
+    {
+      "id": 8,
+      "name": "nl_NL"
+    },
+    {
+      "id": 9,
+      "name": "pl_PL"
+    },
+    {
+      "id": 10,
+      "name": "sv_SE"
+    },
+    {
+      "id": 11,
+      "name": "bg_BG"
+    },
+    {
+      "id": 12,
+      "name": "cs_CZ"
+    },
+    {
+      "id": 13,
+      "name": "pt_PT"
+    },
+    {
+      "id": 14,
+      "name": "hy"
+    },
+    {
+      "id": 15,
+      "name": "de_CH"
+    },
+    {
+      "id": 16,
+      "name": "tr"
+    }
+  ],
+  "productTypes": [
+    {
+      "id": 1,
+      "name": "extension",
+      "description": "",
+      "mainCategory": {
+        "id": 69,
+        "name": "Extensions",
+        "description": "",
+        "parent": false,
+        "position": 0,
+        "public": true,
+        "visible": true,
+        "suggested": true,
+        "applicable": false,
+        "details": [
+          {
+            "id": 253,
+            "name": "Erweiterungen",
+            "description": "",
+            "locale": {
+              "id": 1,
+              "name": "de_DE"
+            }
+          },
+          {
+            "id": 254,
+            "name": "Extensions",
+            "description": "",
+            "locale": {
+              "id": 2,
+              "name": "en_GB"
+            }
+          }
+        ],
+        "active": true
+      }
+    },
+    {
+      "id": 2,
+      "name": "theme",
+      "description": "",
+      "mainCategory": {
+        "id": 33,
+        "name": "Themes",
+        "description": "",
+        "parent": false,
+        "position": 0,
+        "public": true,
+        "visible": true,
+        "suggested": true,
+        "applicable": false,
+        "details": [
+          {
+            "id": 65,
+            "name": "Themes",
+            "description": "",
+            "locale": {
+              "id": 1,
+              "name": "de_DE"
+            }
+          },
+          {
+            "id": 66,
+            "name": "Themes",
+            "description": "",
+            "locale": {
+              "id": 2,
+              "name": "en_GB"
+            }
+          }
+        ],
+        "active": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "storeAvailabilities": [
+    "International",
+    "German"
+  ],
+  "standardLocale": "en_GB",
+  "localizations": [
+    "en_GB",
+    "de_DE"
+  ],
+  "categories": [
+    "System",
+    "ConversionOptimierung"
+  ],
+  "productType": "extension",
+  "responsive": true,
+  "tags": {
+    "en": [
+      "thumbnail",
+      "performance",
+      "space"
+    ],
+    "de": [
+      "thumbnail",
+      "performance",
+      "space"
+    ]
+  },
+  "images": {
+    "nice_english_image.jpg": {
+      "priority": 5,
+      "de": {
+        "activated": false,
+        "preview": false
+      },
+      "en": {
+        "activated": true,
+        "preview": true
+      }
+    }
+  },
+  "videos": {
+    "de": {
+      "url": "https://youtube.de"
+    }
+  }
+}

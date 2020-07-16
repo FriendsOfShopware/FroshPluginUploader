@@ -57,7 +57,34 @@ class Struct
 
     public static function make(array $data)
     {
-        return static::map(static::arrayToObject($data));
+        $newObject = new static();
+
+        foreach ($data as $key => $value) {
+            if (empty($value)) {
+                $newObject->$key = $value;
+                continue;
+            }
+
+            if (isset(static::$mappedFields[$key])) {
+                if (is_array($value) && isset($value[0])) {
+                    $data = [];
+
+                    foreach ($value as $item) {
+                        $data[] = static::$mappedFields[$key]::make($item);
+                    }
+
+                    $newObject->$key = $data;
+                } else {
+                    $newObject->$key = static::$mappedFields[$key]::make($value);
+                }
+
+                continue;
+            }
+
+            $newObject->$key = $value;
+        }
+
+        return $newObject;
     }
 
     private static function arrayToObject($d) {

@@ -8,6 +8,7 @@
         <author>FriendsOfShopware</author>
         <copyright>FriendsOfShopware</copyright>
         <version>1.0.0</version>
+        <license>mit</license>
     </meta>
     <setup>
         <registrationUrl>https://sheet.fos.gg/api/v1/auth</registrationUrl>

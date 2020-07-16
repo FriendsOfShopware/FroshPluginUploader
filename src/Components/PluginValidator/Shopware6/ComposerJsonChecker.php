@@ -26,6 +26,11 @@ class ComposerJsonChecker implements ValidationInterface
         'supportLink',
     ];
 
+    private const REQUIRED_LANGUAGES = [
+        'de-DE',
+        'en-GB'
+    ];
+
     public function supports(ViolationContext $context): bool
     {
         return $context->getPlugin() instanceof Plugin;
@@ -49,10 +54,29 @@ class ComposerJsonChecker implements ValidationInterface
             }
         }
 
+        if (($json['type'] ?? '') !== 'shopware-platform-plugin') {
+            $context->addViolation('"type" should be "shopware-platform-plugin"');
+        }
+
+        if (!isset($json['extra'])) {
+            $context->addViolation('"extra" section is missing in the composer.json');
+            $json['extra'] = [];
+        }
+
+        if (!isset($json['require']['shopware/core'])) {
+            $context->addViolation('You need to require "shopware/core" package');
+        }
+
         // Validate extra keys
         foreach (self::REQUIRED_KEYS_EXTRA as $requiredKey) {
             if (!isset($json['extra'][$requiredKey])) {
                 $context->addViolation(sprintf('"%s" is not defined in composer.json "extra" section', $requiredKey));
+            } elseif ($requiredKey === 'label' || $requiredKey === 'description') {
+                foreach (self::REQUIRED_LANGUAGES as $lang) {
+                    if (!isset($json['extra'][$requiredKey][$lang])) {
+                        $context->addViolation(sprintf('"%s" in "extra" needs an translation for %s', $requiredKey, $lang));
+                    }
+                }
             }
         }
 
@@ -64,6 +88,11 @@ class ComposerJsonChecker implements ValidationInterface
     private function doesPluginBootstrapExists(ViolationContext $context): void
     {
         $composerJson = $context->getPlugin()->getReader()->all();
+
+        if (!isset($composerJson['extra'])) {
+            return;
+        }
+
         $shopwarePluginClass = $composerJson['extra']['shopware-plugin-class'];
 
         $autoload = $composerJson['autoload'];

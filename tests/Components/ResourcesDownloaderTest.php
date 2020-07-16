@@ -2,24 +2,34 @@
 
 namespace FroshPluginUploader\Tests\Components;
 
+use FroshPluginUploader\Commands\DownloadPluginResourcesCommand;
 use FroshPluginUploader\Components\ResourcesDownloader;
 use FroshPluginUploader\Components\SBP\Client;
 use FroshPluginUploader\Components\SBP\Components\Producer;
 use FroshPluginUploader\Structs\Image;
 use FroshPluginUploader\Structs\Plugin;
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Output\NullOutput;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class ResourcesDownloaderTest extends TestCase
 {
-    /**
-     * @covers \FroshPluginUploader\Commands\DownloadPluginResourcesCommand
-     */
     public function testDownload(): void
     {
         $folder = sys_get_temp_dir() . '/' . uniqid('test', true);
 
-        $downloader = new ResourcesDownloader($this->makeClient());
-        $downloader->download('Test', $folder);
+        $argvInput = new ArrayInput([
+            'name' => 'Test',
+            'path' => $folder,
+        ]);
+
+        $command = new DownloadPluginResourcesCommand();
+        $container = new ContainerBuilder();
+        $container->set(ResourcesDownloader::class, new ResourcesDownloader($this->makeClient()));
+        $command->setContainer($container);
+        $command->run($argvInput, new NullOutput());
 
         static::assertFileExists($folder . '/de.html');
         static::assertFileExists($folder . '/en.html');

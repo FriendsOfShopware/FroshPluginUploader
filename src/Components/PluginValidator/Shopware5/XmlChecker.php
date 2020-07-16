@@ -16,7 +16,6 @@ class XmlChecker implements ValidationInterface
         'changelog',
         'label',
         'version',
-        'license',
         'description',
     ];
 
@@ -49,8 +48,10 @@ class XmlChecker implements ValidationInterface
 
     private function checkRequiredXmlFields(ViolationContext $context): void
     {
+        $xml = $context->getPlugin()->getReader()->all();
+
         foreach (self::REQUIRED_KEYS as $requiredKey) {
-            if (!isset($this->xml[$requiredKey])) {
+            if (!isset($xml[$requiredKey])) {
                 $context->addViolation(sprintf('%s is not defined in plugin.xml', ucfirst($requiredKey)));
             }
         }

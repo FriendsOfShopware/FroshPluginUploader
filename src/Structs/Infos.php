@@ -7,7 +7,7 @@ class Infos extends Struct
     /** @var int */
     public $id;
 
-    public static $mappedFields = [];
+    public static $mappedFields = ['locale' => Locale::class, 'standardLocale' => Locale::class];
 
     /** @var Locale */
     public $locale;
