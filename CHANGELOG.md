@@ -12,6 +12,13 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 <!-- dumped content start -->
 ## Unreleased
 
+- [#63] Add more tests, Thanks to [@shyim]
+
+<!-- dumped content end -->
+
+<!-- dumped content start -->
+## Unreleased
+
 - [#61] Improve plugin validation, fixes [#52], [#53], [#54], [#55], [#56], Thanks to [@shyim]
 
 <!-- dumped content end -->
@@ -130,3 +137,4 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 [#54]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/54
 [#53]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/53
 [#52]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/52
+[#63]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/63
