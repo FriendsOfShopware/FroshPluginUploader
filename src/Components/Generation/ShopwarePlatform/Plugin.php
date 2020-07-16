@@ -60,8 +60,12 @@ class Plugin implements PluginInterface
     public function getCompatibleVersions(array $versions): array
     {
         $constraints = $this->getReader()->getCoreConstraint();
-        $versions = array_filter($versions, function ($version) use ($constraints) {
+        $versions = array_values(array_filter($versions, function ($version) use ($constraints) {
             if ($version['major'] !== 'Shopware 6') {
+                return null;
+            }
+
+            if (!$version['selectable']) {
                 return null;
             }
 
@@ -71,7 +75,7 @@ class Plugin implements PluginInterface
                 // EA is not semver compatible
                 return null;
             }
-        });
+        }));
 
         return $versions;
     }

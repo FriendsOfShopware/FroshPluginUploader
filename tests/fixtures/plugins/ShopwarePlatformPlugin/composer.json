@@ -29,6 +29,7 @@
     }
   },
   "require": {
+    "shopware/core": "*",
     "symfony/web-link": "^4.2"
   }
 }

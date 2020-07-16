@@ -47,10 +47,6 @@ class ChangelogReader
             return $this->renderChangelogAsUl($localeStorage[$version]);
         }
 
-        if (isset($this->storage[self::FALLBACK_LOCALE][$version])) {
-            return $this->renderChangelogAsUl($this->storage[self::FALLBACK_LOCALE][$version]);
-        }
-
         throw new \RuntimeException(sprintf('Cannot find changelog for version "%s" with locale "%s"', $version, $locale));
     }
 

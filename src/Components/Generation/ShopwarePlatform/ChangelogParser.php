@@ -33,11 +33,11 @@ class ChangelogParser
 
     private function parse(string $path): \Generator
     {
-        $file = fopen($path, 'rb');
-
-        if ($file === false) {
+        if (!file_exists($path)) {
             throw new FileNotFoundException(null, 0, null, $path);
         }
+
+        $file = fopen($path, 'rb');
 
         while ($line = fgets($file)) {
             yield $line;
