@@ -12,6 +12,7 @@ class ZipFolderMatchesTechnicalPluginNameTest extends TestCase
     public function testInvalidNaming(): void
     {
         $context = $this->createContextWithError('test', 'foo');
+        static::assertTrue((new ZipFolderMatchesTechnicalPluginName())->supports($context));
         (new ZipFolderMatchesTechnicalPluginName())->validate($context);
 
         static::assertTrue($context->hasViolations());

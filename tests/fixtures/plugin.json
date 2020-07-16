@@ -1,0 +1,868 @@
+{
+  "id": 11985,
+  "producer": {
+    "id": 2287,
+    "prefix": "Frosh",
+    "contract": {
+      "id": 2287,
+      "path": "\/producers\/2287\/contracts\/2287"
+    },
+    "name": "Friends of Shopware",
+    "details": [
+      {
+        "id": 4567,
+        "locale": {
+          "id": 1,
+          "name": "de_DE"
+        },
+        "description": "\u003Cp\u003EWir, die Freunde von Shopware, verstehen uns als leidenschaftliche Entwickler. F\u00fcr die Community haben wir uns zusammengeschlossen, um kostenlose und gut getestete Shopware-Plugins unter Ber\u00fccksichtigung moderner Programmierstandards zu entwickeln.\u003C\/p\u003E\u003Cp\u003E\u200b\u003C\/p\u003E\u003Ch2\u003EDu willst mit uns in Kontakt treten?\u003C\/h2\u003E\u003Cp\u003EViele unserer Mitglieder sind im \u003Ca href=\u0022https:\/\/gitter.im\/shopware\/shopwareDE\u0022\u003EShopware Gitter Channel\u003C\/a\u003E aktiv. Wir haben au\u00dferdem einen \u003Ca href=\u0022https:\/\/gitter.im\/FriendsOfShopware\/Lobby\u0022\u003Eeigenen Gitter Channel\u003C\/a\u003E.\u003C\/p\u003E\u003Cp\u003E\u200b\u003C\/p\u003E\u003Ch2\u003ESupport\u003C\/h2\u003E\u003Cp\u003ESupportanfragen k\u00f6nnen auf \u003Ca href=\u0022https:\/\/gitter.im\/FriendsOfShopware\/Lobby\u0022\u003EGitter\u003C\/a\u003E und in den jeweiligen \u003Ca href=\u0022https:\/\/github.com\/FriendsOfShopware\u0022\u003EGithub\u003C\/a\u003E-Projekten gestellt werden. Bitte beachte aber, dass alle Mitglieder freiwillig und unentgeltlich f\u00fcr \u201cFriends of Shopware\u201d t\u00e4tig sind und daher kein Support gew\u00e4hrleistet werden kann.\u003C\/p\u003E\u003Cp\u003E\u200b\u003C\/p\u003E\u003Ch2\u003EQuelloffen und \u00f6ffentliche Entwicklung\u003C\/h2\u003E\u003Cp\u003EUnsere Entwicklungen kannst du dir auch auf \u003Ca href=\u0022https:\/\/github.com\/FriendsOfShopware\u0022\u003EGithub\u003C\/a\u003E ansehen. Dort kannst du auch Anregungen, W\u00fcnsche und Probleme (Issues) hinterlassen. Selbstverst\u00e4ndlich kannst du uns dort auch bei der Weiterentwicklung der Plugins durch Pull Requests unterst\u00fctzen.\u003C\/p\u003E\u003Cp\u003E\u200b\u003C\/p\u003E\u003Ch2\u003EFreund werden?\u003C\/h2\u003E\u003Cp\u003E\u003C\/p\u003E\u003Cp\u003ENat\u00fcrlich wollen wir auch neue Freunde kennen lernen und aufnehmen. Alle Betreuer eines Projekts sind automatisch in der Organisation \u0022Friends of Shopware\u0022. Das bedeutet nicht, dass du ein eigenes Plugin zur Verf\u00fcgung stellen musst. Die Mitwirkung an unseren bestehenden Plugins ist ebenfalls sehr wichtig und wir freuen uns immer, neue Entwickler f\u00fcr unsere spannenden Projekte zu finden.\u003C\/p\u003E"
+      },
+      {
+        "id": 4568,
+        "locale": {
+          "id": 2,
+          "name": "en_GB"
+        },
+        "description": "FriendsOfShopware is a group of passionate developers who have banded together to build solid and well tested Shopware Plugins using modern coding standards.\u003Cbr \/\u003E\u003Ch2\u003EHow do I get in touch?\u003C\/h2\u003E\u003Ca href=\u0022https:\/\/gitter.im\/FriendsOfShopware\/Lobby\u0022\u003E\u003C\/a\u003E\u003Cbr \/\u003ESeveral of us hang out in \u003Ca href=\u0022https:\/\/gitter.im\/shopware\/shopware\u0022\u003EShopware\u2019s gitter channel\u003C\/a\u003E. We also have our \u003Ca href=\u0022https:\/\/gitter.im\/FriendsOfShopware\/Lobby\u0022\u003Eown gitter channel\u003C\/a\u003E. Finally if you want to ask for a vote (for example to propose a new topic\/plugin) please have a look at the \u003Ca href=\u0022https:\/\/friendsofshopware.github.io\/CONTRIBUTING.md\u0022\u003Econtribution document\u003C\/a\u003E.\u003Cbr \/\u003E\u003Cbr \/\u003E\u003Ch2\u003EHow can I become a member?\u003C\/h2\u003E\u003Cp\u003EAll maintainers of a project are automatically in the Friends of Shopware group. That doesn\u2019t mean that you have to provide an own plugin. Contributing to our existing plugins is also very important and we are always glad to find new developers for our exciting projects.\u003C\/p\u003E\u003Cp\u003EIf you do want to contribute your own plugins, please be aware that we won\u2019t guarantee admission before you provide at least a functional prototype. The important thing is that\u00a0you\u00a0are convinced by your idea and you should be developing solely for this occasion.\u003C\/p\u003E"
+      }
+    ],
+    "website": "friendsofshopware.github.io",
+    "fixed": true,
+    "hasCancelledContract": false,
+    "iconPath": "\/producers\/2287\/icon",
+    "iconIsSet": true,
+    "shopwareId": "friendsofshopware",
+    "userId": 125430,
+    "companyId": 125430,
+    "companyName": "shopware AG",
+    "saleMail": "s.sayakci@shopware.com",
+    "supportMail": "s.sayakci@shopware.com",
+    "ratingMail": "s.sayakci@shopware.com",
+    "supportedLanguages": [
+      {
+        "id": 1,
+        "name": "de_DE",
+        "description": "german"
+      },
+      {
+        "id": 2,
+        "name": "en_GB",
+        "description": "english"
+      }
+    ],
+    "iconUrl": "https:\/\/sbp-plugin-images.s3.eu-west-1.amazonaws.com\/prod2287_Webp.net-resizeimage.png",
+    "cancelledContract": null
+  },
+  "type": {
+    "id": 1,
+    "name": "plugin",
+    "description": "normal plugin with price models"
+  },
+  "name": "FroshPlatformThumbnailProcessor",
+  "code": "Frosh69611263569",
+  "moduleKey": "FroshPlatformThumbnailProcessor",
+  "lifecycleStatus": {
+    "id": 5,
+    "name": "readyforstore",
+    "description": "Ready for store"
+  },
+  "generation": {
+    "id": 2,
+    "name": "platform",
+    "description": "Shopware Platform"
+  },
+  "activationStatus": {
+    "id": 1,
+    "name": "activated",
+    "description": "Activated"
+  },
+  "approvalStatus": {
+    "id": 2,
+    "name": "approved",
+    "description": "Approveed"
+  },
+  "standardLocale": {
+    "id": 2,
+    "name": "en_GB"
+  },
+  "license": {
+    "id": 2,
+    "name": "open_source",
+    "description": "Open-source license"
+  },
+  "infos": [
+    {
+      "id": 18986,
+      "locale": {
+        "id": 1,
+        "name": "de_DE"
+      },
+      "name": "ThumbnailProcessor Plugin",
+      "description": "\u003Cp\u003EVerschwende keine Rechenleistung und keinen Speicherplatz mit Thumbnails! Mit diesem Plugin k\u00f6nnen Sie auf dynamische Thumbnails zur\u00fcckgreifen.\u003Cbr \/\u003E\nJeder Artikel, jedes Bild in der Einkaufswelten hat berechtigterweise Thumbnails. Diese werden standardm\u00e4\u00dfig\nautomatisch beim Upload erzeugt und gespeichert.\u003Cbr \/\u003E\nAn diesem Punkt greift dieses Plugin ein und stellt die Funktion zur Verf\u00fcgung, dass keine Thumbnails mehr erstellt\nwerden m\u00fcssen.\u003Cbr \/\u003E\nDie Thumbnails werden dann in Echtzeit beim Besuch durch einen externen Dienst erzeugt und ausgeliefert.\u003C\/p\u003E\n\u003Ch2\u003EVorteile vom Sparen der Thumbnailerzeugung:\u003C\/h2\u003E\n\u003Cul\u003E\n\u003Cli\u003ESparen von Speicherplatz\u003C\/li\u003E\n\u003Cli\u003ESchnellerer Upload von Bildern\u003C\/li\u003E\n\u003Cli\u003EEntlastung des Servers\u003C\/li\u003E\n\u003Cli\u003ESchnellere Backups durch weniger Dateien\u003C\/li\u003E\n\u003C\/ul\u003E\n\u003Ch2\u003EWelchen Dienst verwende ich nun f\u00fcr die Thumbnails:\u003C\/h2\u003E\n\u003Cp\u003EBeachten Sie, dass dieses Plugin nur die Funktion zum Ausliefern der Thumbnail-Urls bereitstellt.\u003Cbr \/\u003E\nDieses Plugin erstellt keine Thumbnails! Dazu werden die entsprechenden Dienste verwendet.\u003C\/p\u003E\n\u003Cp\u003EEs gibt vier Paramter, die Ihnen optional zur Erstellung des Links zur Verf\u00fcgung stehen:\u003Cbr \/\u003E\n{mediaUrl}: Prim\u00e4r die Config shopware.cdn.url, alternativ Shop-Url\u003Cbr \/\u003E\n{mediaPath}: Der relative Pfad zu dem Originalbild\u003Cbr \/\u003E\n{width}: Die Breite des Thumbnails\u003Cbr \/\u003E\n{height}: Die H\u00f6he des Thumbnails  \u003C\/p\u003E\n\u003Cp\u003EWir haben schon Erfahrung mit folgenden Diensten gemacht.\u003C\/p\u003E\n\u003Cul\u003E\n\u003Cli\u003E\u003Ca href=\u0022https:\/\/bunnycdn.com\u0022\u003EBunnyCDN\u003C\/a\u003E (kostenpflichtig, inkl. Webp)\u003Cbr \/\u003E\nTemplate-Beispiel: {mediaUrl}\/{mediaPath}?width={width}\u0026amp;height={height}\u003C\/li\u003E\n\u003Cli\u003E\u003Ca href=\u0022https:\/\/www.keycdn.com\/support\/image-processing\u0022\u003Ekeycdn\u003C\/a\u003E (kostenpflichtig, inkl. Webp)\u003Cbr \/\u003E\nTemplate-Beispiel: {mediaUrl}\/{mediaPath}?width={width}\u0026amp;height={height}\u003C\/li\u003E\n\u003Cli\u003E\u003Ca href=\u0022https:\/\/imgproxy.net\/\u0022\u003Eimgproxy\u003C\/a\u003E (kostenlos, selbst gehosted, inkl. Webp)\u003Cbr \/\u003E\nTemplate-Beispiel: http:\/\/localhost:8080\/insecure\/fit\/{width}\/{height}\/sm\/0\/plain\/{mediaUrl}\/{mediaPath}\u003C\/li\u003E\n\u003Cli\u003E\u003Ca href=\u0022https:\/\/images.weserv.nl\/\u0022\u003Eimages.weserv.nl\u003C\/a\u003E (kostenlos, kein Webp)\u003Cbr \/\u003E\nTemplate-Beispiel: https:\/\/images.weserv.nl\/?url={mediaUrl}\/{mediaPath}\u0026amp;w={width}\u0026amp;h={height}\u003C\/li\u003E\n\u003Cli\u003E\u003Ca href=\u0022https:\/\/www.cloudimage.io\/en\/home\u0022\u003Ecloudimage\u003C\/a\u003E (kostenloser Plan verf\u00fcgbar inkl. Webp)\u003Cbr \/\u003E\nTemplate-Beispiel: https:\/\/token.cloudimg.io\/v7\/{mediaUrl}\/{mediaPath}\u0026amp;w={width}\u0026amp;h={height}\u003C\/li\u003E\n\u003C\/ul\u003E\n\u003Cp\u003EJegliche Dienstleister, die per Url-Parameter Bildergr\u00f6\u00dfen \u00e4ndern, sollten aber auch kompatibel sein.\u003C\/p\u003E\n\u003Cp\u003ENach der Einrichtung und Pr\u00fcfung im DeveloperTools Ihres Browsers, k\u00f6nnen Sie auch den vorhandenen thumbnail-Ordner sichern und l\u00f6schen.  \u003C\/p\u003E\n\u003Cp\u003EDieses Plugin wird von \u003Ca href=\u0022https:\/\/store.shopware.com\/friends-of-shopware.html\u0022\u003E@FriendsOfShopware\u003C\/a\u003E entwickelt.\u003Cbr \/\u003E\nMaintainer dieses Plugins ist: \u003Ca href=\u0022https:\/\/github.com\/tinect\u0022\u003ESebastian K\u00f6nig (tinect)\u003C\/a\u003E\u003C\/p\u003E\n\u003Cp\u003EBei Fragen \/ Fehlern bitte ein \u003Ca href=\u0022https:\/\/github.com\/FriendsOfShopware\/FroshPlatformThumbnailProcessor\/issues\/new\u0022\u003EGithub Issue\u003C\/a\u003E erstellen\u003C\/p\u003E",
+      "installationManual": "Test",
+      "shortDescription": "Verschwende keine Rechenleistung und keinen Speicherplatz mit Thumbnails! Lass diese in Echtzeit beim Besuch durch einen externen Dienst erzeugen und ausliefern.",
+      "highlights": "",
+      "features": "",
+      "tags": [
+        {
+          "id": 251,
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          },
+          "name": "Performance",
+          "internal": false
+        },
+        {
+          "id": 10308,
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          },
+          "name": "space",
+          "internal": false
+        },
+        {
+          "id": 10860,
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          },
+          "name": "Thumbnail",
+          "internal": false
+        }
+      ],
+      "videos": [{
+        "url": "https://youtube.de/test"
+      }],
+      "faqs": []
+    },
+    {
+      "id": 18987,
+      "locale": {
+        "id": 2,
+        "name": "en_GB"
+      },
+      "name": "ThumbnailProcessor Plugin",
+      "description": "\u003Cp\u003EDon\u0027t waste the computing power and space with thumbnails! With this plugin you can access dynamic thumbnails.\u003Cbr \/\u003E\nEvery product, every picture in the shopping worlds legitimately has thumbnails. These become standard\ngenerated and saved automatically during upload.\u003Cbr \/\u003E\nAt this point this plugin intervenes and provides the function that no more thumbnails are created have to be created.\u003Cbr \/\u003E\nThe thumbnails are then generated and delivered by an external service in real time when visiting.\u003C\/p\u003E\n\u003Ch2\u003EAdvantages of saving thumbnail generation:\u003C\/h2\u003E\n\u003Cul\u003E\n\u003Cli\u003ESave space on disk\u003C\/li\u003E\n\u003Cli\u003EFaster upload of images\u003C\/li\u003E\n\u003Cli\u003ERelief of the server\u003C\/li\u003E\n\u003Cli\u003EFaster backups with fewer files\u003C\/li\u003E\n\u003C\/ul\u003E\n\u003Ch2\u003EWhich service do I now use for the thumbnails:\u003C\/h2\u003E\n\u003Cp\u003EPlease note that this plugin only provides the function for delivering the thumbnail urls.\u003Cbr \/\u003E\nThis plugin does not create thumbnails! The corresponding services are used for this.\u003C\/p\u003E\n\u003Cp\u003EThere are four parameters that are optionally available for creating the link:\u003Cbr \/\u003E\n{mediaUrl}: Primarily your config shopware.cdn.url, alternatively shop url\u003Cbr \/\u003E\n{mediaPath}: The relative path to the original image\u003Cbr \/\u003E\n{width}: The width of the thumbnail\u003Cbr \/\u003E\n{height}: The height of the thumbnail  \u003C\/p\u003E\n\u003Cp\u003EWe have already had experience with the following services.\u003C\/p\u003E\n\u003Cul\u003E\n\u003Cli\u003E\u003Ca href=\u0022https:\/\/bunnycdn.com\u0022\u003EBunnyCDN\u003C\/a\u003E (paid, incl. Webp)\u003Cbr \/\u003E\nTemplate example: {mediaUrl}\/{mediaPath}?width={width}\u0026amp;height={height}\u003C\/li\u003E\n\u003Cli\u003E\u003Ca href=\u0022https:\/\/www.keycdn.com\/support\/image-processing\u0022\u003Ekeycdn\u003C\/a\u003E (paid, incl. Webp)\u003Cbr \/\u003E\nTemplate example: {mediaUrl}\/{mediaPath}?width={width}\u0026amp;height={height}\u003C\/li\u003E\n\u003Cli\u003E\u003Ca href=\u0022https:\/\/imgproxy.net\/\u0022\u003Eimgproxy\u003C\/a\u003E (free, self hosted, incl. Webp)\u003Cbr \/\u003E\nTemplate example: http:\/\/localhost:8080\/insecure\/fit\/{width}\/{height}\/sm\/0\/plain\/{mediaUrl}\/{mediaPath}\u003C\/li\u003E\n\u003Cli\u003E\u003Ca href=\u0022https:\/\/images.weserv.nl\/\u0022\u003Eimages.weserv.nl\u003C\/a\u003E (free, no Webp)\u003Cbr \/\u003E\nTemplate example: https:\/\/images.weserv.nl\/?url={mediaUrl}\/{mediaPath}\u0026amp;w={width}\u0026amp;h={height}\u003C\/li\u003E\n\u003Cli\u003E\u003Ca href=\u0022https:\/\/www.cloudimage.io\/en\/home\u0022\u003Ecloudimage\u003C\/a\u003E (free plan available, incl. Webp)\u003Cbr \/\u003E\nTemplate example: https:\/\/token.cloudimg.io\/v7\/{mediaUrl}\/{mediaPath}\u0026amp;w={width}\u0026amp;h={height}\u003C\/li\u003E\n\u003C\/ul\u003E\n\u003Cp\u003EAny service provider that changes image sizes using the url parameter should also be compatible.\u003C\/p\u003E\n\u003Cp\u003EAfter setting up and checking in the developer tools of your browser, you can also backup and delete the existing thumbnail folder.\u003C\/p\u003E\n\u003Cp\u003EThis plugin is part of \u003Ca href=\u0022https:\/\/store.shopware.com\/en\/friends-of-shopware.html\u0022\u003E@FriendsOfShopware\u003C\/a\u003E.\u003Cbr \/\u003E\nMaintainer from the plugin is: \u003Ca href=\u0022https:\/\/github.com\/tinect\u0022\u003ESebastian K\u00f6nig (tinect)\u003C\/a\u003E\u003C\/p\u003E\n\u003Cp\u003EFor questions or bugs please create a \u003Ca href=\u0022https:\/\/github.com\/FriendsOfShopware\/FroshPlatformThumbnailProcessor\/issues\/new\u0022\u003EGithub Issue\u003C\/a\u003E\u003C\/p\u003E",
+      "installationManual": "",
+      "shortDescription": "Don\u0027t waste the computing power and space with thumbnails! Have the thumbnails generated and delivered in real time when you visit an external service.",
+      "highlights": "",
+      "features": "",
+      "tags": [
+        {
+          "id": 839,
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          },
+          "name": "performance",
+          "internal": false
+        },
+        {
+          "id": 7726,
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          },
+          "name": "thumbnail",
+          "internal": false
+        },
+        {
+          "id": 10310,
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          },
+          "name": "space",
+          "internal": false
+        }
+      ],
+      "videos": [],
+      "faqs": []
+    }
+  ],
+  "priceModels": [
+    {
+      "id": 160518,
+      "type": "free",
+      "bookingKey": "Frosh69611263569",
+      "bookingText": "ThumbnailProcessor Plugin"
+    }
+  ],
+  "variants": [
+    {
+      "id": 78931,
+      "priceModel": {
+        "id": 160518,
+        "type": "free",
+        "bookingKey": "Frosh69611263569",
+        "bookingText": "ThumbnailProcessor Plugin"
+      },
+      "name": "free",
+      "description": ""
+    }
+  ],
+  "storeAvailabilities": [
+    {
+      "id": 1,
+      "name": "German",
+      "description": "only available in german store"
+    },
+    {
+      "id": 2,
+      "name": "International",
+      "description": "available in international store"
+    }
+  ],
+  "categories": [
+    {
+      "id": 3,
+      "name": "System",
+      "description": "",
+      "parent": 1,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": true,
+      "details": [
+        {
+          "id": 5,
+          "name": "System",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 6,
+          "name": "System",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": 65,
+      "name": "ConversionOptimierung",
+      "description": "",
+      "parent": 69,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": true,
+      "details": [
+        {
+          "id": 245,
+          "name": "Conversion Optimierung",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 246,
+          "name": "Conversion Optimization",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    }
+  ],
+  "addons": [],
+  "lastChange": "2020-07-15 21:45:46",
+  "creationDate": "2020-07-06 21:49:51",
+  "support": false,
+  "supportOnlyCommercial": false,
+  "iconPath": "\/plugins\/11985\/icon",
+  "iconIsSet": true,
+  "examplePageUrl": "",
+  "demos": [],
+  "localizations": [
+    {
+      "id": 1,
+      "name": "de_DE"
+    },
+    {
+      "id": 2,
+      "name": "en_GB"
+    }
+  ],
+  "latestBinary": {
+    "id": 61249,
+    "name": "FroshPlatformThumbnailProcessor",
+    "version": "1.0.2",
+    "creationDate": "2020-07-15 13:06:49",
+    "lastChangeDate": "2020-07-15 13:51:08",
+    "status": {
+      "id": 4,
+      "name": "codereviewsucceeded",
+      "description": "Code review succeeded"
+    },
+    "compatibleSoftwareVersions": [
+      {
+        "id": 154,
+        "name": "6.2.0",
+        "parent": 151,
+        "selectable": true,
+        "major": "Shopware 6",
+        "releaseDate": {
+          "date": "2020-05-11 00:00:00.000000",
+          "timezone_type": 3,
+          "timezone": "Europe\/Berlin"
+        },
+        "public": true
+      },
+      {
+        "id": 152,
+        "name": "6.2.0-RC1",
+        "parent": 151,
+        "selectable": true,
+        "major": "Shopware 6",
+        "releaseDate": {
+          "date": "2020-04-27 00:00:00.000000",
+          "timezone_type": 3,
+          "timezone": "Europe\/Berlin"
+        },
+        "public": true
+      },
+      {
+        "id": 157,
+        "name": "6.2.1",
+        "parent": 151,
+        "selectable": true,
+        "major": "Shopware 6",
+        "releaseDate": {
+          "date": "2020-06-15 00:00:00.000000",
+          "timezone_type": 3,
+          "timezone": "Europe\/Berlin"
+        },
+        "public": true
+      },
+      {
+        "id": 158,
+        "name": "6.2.2",
+        "parent": 151,
+        "selectable": true,
+        "major": "Shopware 6",
+        "releaseDate": {
+          "date": "2020-06-17 00:00:00.000000",
+          "timezone_type": 3,
+          "timezone": "Europe\/Berlin"
+        },
+        "public": true
+      },
+      {
+        "id": 159,
+        "name": "6.2.3",
+        "parent": 151,
+        "selectable": true,
+        "major": "Shopware 6",
+        "releaseDate": {
+          "date": "2020-07-13 00:00:00.000000",
+          "timezone_type": 3,
+          "timezone": "Europe\/Berlin"
+        },
+        "public": true
+      }
+    ],
+    "changelogs": [
+      {
+        "id": 120914,
+        "locale": {
+          "id": 1,
+          "name": "de_DE"
+        },
+        "text": "\u003Cul\u003E\u003Cli\u003EOption zum Verarbeiten von Originalbildern durch den Processor\u003C\/li\u003E\u003Cli\u003EOption zum Einschliessen von SVGs, standardm\u00e4\u00dfig deaktiviert\u003C\/li\u003E\u003Cli\u003EVerbesserung der Plugin-Konfiguration\u003C\/li\u003E\u003C\/ul\u003E"
+      },
+      {
+        "id": 120915,
+        "locale": {
+          "id": 2,
+          "name": "en_GB"
+        },
+        "text": "\u003Cul\u003E\u003Cli\u003EOption to process original images\u003C\/li\u003E\u003Cli\u003EOption to process SVGs, disabled by default\u003C\/li\u003E\u003Cli\u003EOptimizing plugin config\u003C\/li\u003E\u003C\/ul\u003E"
+      }
+    ],
+    "ionCubeEncrypted": false,
+    "licenseCheckRequired": false
+  },
+  "responsive": true,
+  "migrationSupport": false,
+  "automaticBugfixVersionCompatibility": true,
+  "hiddenInStore": false,
+  "certification": {
+    "pluginId": 11985,
+    "creationDate": "2020-07-15 19:35:40",
+    "bronzeResult": {
+      "items": [
+        {
+          "name": "producerSinceDays",
+          "label": "Hersteller seit (in Tagen)",
+          "actual": 548,
+          "expected": 180,
+          "fulfilled": true
+        },
+        {
+          "name": "compatibleWithNewestSoftwasreVersion",
+          "label": "Kompatibel mit neuester Shopware-Version",
+          "actual": "6.2.3",
+          "expected": "6.2.3",
+          "fulfilled": true
+        },
+        {
+          "name": "updatesCounter",
+          "label": "Zur Verf\u00fcgung gestellte Updates",
+          "actual": 2,
+          "expected": 1,
+          "fulfilled": true
+        },
+        {
+          "name": "codeReviewSucceeded",
+          "label": "CodeReview ist bei allen Binaries erfolgreich",
+          "actual": true,
+          "expected": true,
+          "fulfilled": true
+        },
+        {
+          "name": "salesCounter",
+          "label": "Pluginverk\u00e4ufe",
+          "actual": 3,
+          "expected": 25,
+          "fulfilled": false
+        },
+        {
+          "name": "ratingAverage",
+          "label": "Durchschnittsbewertung f\u00fcr Plugin",
+          "actual": 5,
+          "expected": 4,
+          "fulfilled": true
+        },
+        {
+          "name": "testVersionAvailable",
+          "label": "Testversion steht zur Verf\u00fcgung",
+          "actual": false,
+          "expected": true,
+          "fulfilled": false
+        },
+        {
+          "name": "documentationAvailable",
+          "label": "Dokumentation steht zur Verf\u00fcgung",
+          "actual": false,
+          "expected": true,
+          "fulfilled": false
+        }
+      ],
+      "fulfilled": false
+    },
+    "silverResult": {
+      "items": [
+        {
+          "name": "bronzeIsValid",
+          "label": "Bronze bestanden",
+          "actual": false,
+          "expected": true,
+          "fulfilled": false
+        },
+        {
+          "name": "salesCounter",
+          "label": "Pluginverk\u00e4ufe",
+          "actual": 3,
+          "expected": 75,
+          "fulfilled": false
+        },
+        {
+          "name": "producerSinceDays",
+          "label": "Hersteller seit (in Tagen)",
+          "actual": 548,
+          "expected": 365,
+          "fulfilled": true
+        },
+        {
+          "name": "updatesCounter",
+          "label": "Zur Verf\u00fcgung gestellte Updates",
+          "actual": 2,
+          "expected": 2,
+          "fulfilled": true
+        },
+        {
+          "name": "ratingCounter",
+          "label": "Anzahl Bewertungen",
+          "actual": 1,
+          "expected": 5,
+          "fulfilled": false
+        },
+        {
+          "name": "ratingAverage",
+          "label": "Durchschnittsbewertung f\u00fcr Plugin",
+          "actual": 5,
+          "expected": 4,
+          "fulfilled": true
+        },
+        {
+          "name": "overallRatingAverage",
+          "label": "Durchschnittsbewertung f\u00fcr alle Plugin",
+          "actual": 4.74,
+          "expected": 3.5,
+          "fulfilled": true
+        },
+        {
+          "name": "pluginCounter",
+          "label": "Angebotene Plugins",
+          "actual": 31,
+          "expected": 3,
+          "fulfilled": true
+        },
+        {
+          "name": "certifiedDeveloper",
+          "label": "Zertifizierter Entwickler (oder 10 Plugins)",
+          "actual": false,
+          "expected": true,
+          "fulfilled": true
+        }
+      ],
+      "fulfilled": false
+    },
+    "goldResult": {
+      "items": [
+        {
+          "name": "silverIsValid",
+          "label": "Silber bestanden",
+          "actual": false,
+          "expected": true,
+          "fulfilled": false
+        },
+        {
+          "name": "producerSinceDays",
+          "label": "Hersteller seit (in Tagen)",
+          "actual": 548,
+          "expected": 540,
+          "fulfilled": true
+        },
+        {
+          "name": "pluginCounter",
+          "label": "Angebotene Plugins",
+          "actual": 31,
+          "expected": 5,
+          "fulfilled": true
+        },
+        {
+          "name": "updatesCounter",
+          "label": "Zur Verf\u00fcgung gestellte Updates",
+          "actual": 2,
+          "expected": 4,
+          "fulfilled": false
+        },
+        {
+          "name": "salesCounter",
+          "label": "Pluginverk\u00e4ufe",
+          "actual": 3,
+          "expected": 115,
+          "fulfilled": false
+        },
+        {
+          "name": "ratingCounter",
+          "label": "Anzahl Bewertungen",
+          "actual": 1,
+          "expected": 10,
+          "fulfilled": false
+        },
+        {
+          "name": "overallRatingAverage",
+          "label": "Durchschnittsbewertung f\u00fcr alle Plugin",
+          "actual": 4.74,
+          "expected": 4,
+          "fulfilled": true
+        },
+        {
+          "name": "ratingAverage",
+          "label": "Durchschnittsbewertung f\u00fcr Plugin",
+          "actual": 5,
+          "expected": 4,
+          "fulfilled": true
+        },
+        {
+          "name": "isAdvancedDeveloper",
+          "label": "Advanced Developer (oder mehr als 20 Plugins und 2 Jahre Hersteller)",
+          "actual": false,
+          "expected": true,
+          "fulfilled": true
+        }
+      ],
+      "fulfilled": false
+    },
+    "type": {
+      "name": "none",
+      "description": "Nichts"
+    }
+  },
+  "productType": {
+    "id": 1,
+    "name": "extension",
+    "description": "",
+    "mainCategory": {
+      "id": 69,
+      "name": "Extensions",
+      "description": "",
+      "parent": false,
+      "position": 0,
+      "public": true,
+      "visible": true,
+      "suggested": true,
+      "applicable": false,
+      "details": [
+        {
+          "id": 253,
+          "name": "Erweiterungen",
+          "description": "",
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          }
+        },
+        {
+          "id": 254,
+          "name": "Extensions",
+          "description": "",
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          }
+        }
+      ],
+      "active": true
+    }
+  },
+  "status": {
+    "name": "instore"
+  },
+  "statusComment": "7.7.20 MB:soweit alles ok. nach r\u00fccksprahe mit soner ungetestet freigegben (TP)\n7.7.20 MB: abgelehnt. Kurzbeschriebung nicht ausreichend und mit Leerzeichen gef\u00fcllt. (TP)",
+  "minimumMarketingSoftwareVersion": null,
+  "isSubscriptionEnabled": false,
+  "releaseDate": "2020-07-07 09:09:19",
+  "plannedReleaseDate": null,
+  "lastBusinessModelChangeDate": "2020-07-06 22:07:38",
+  "iconUrl": "https:\/\/sbp-plugin-images.s3.eu-west-1.amazonaws.com\/phpE4DruN",
+  "pictures": "\/plugins\/11985\/pictures",
+  "hasPictures": true,
+  "comments": "\/plugins\/11985\/comments",
+  "reviews": "\/plugins\/11985\/reviews",
+  "binaries": [
+    {
+      "id": 60612,
+      "name": "FroshPlatformThumbnailProcessor",
+      "remoteLink": "",
+      "version": "1.0.1",
+      "status": {
+        "id": 4,
+        "name": "codereviewsucceeded",
+        "description": "Code review succeeded"
+      },
+      "compatibleSoftwareVersions": [
+        {
+          "id": 154,
+          "name": "6.2.0",
+          "parent": 151,
+          "selectable": true,
+          "major": "Shopware 6",
+          "releaseDate": {
+            "date": "2020-05-11 00:00:00.000000",
+            "timezone_type": 3,
+            "timezone": "Europe\/Berlin"
+          },
+          "public": true
+        },
+        {
+          "id": 152,
+          "name": "6.2.0-RC1",
+          "parent": 151,
+          "selectable": true,
+          "major": "Shopware 6",
+          "releaseDate": {
+            "date": "2020-04-27 00:00:00.000000",
+            "timezone_type": 3,
+            "timezone": "Europe\/Berlin"
+          },
+          "public": true
+        },
+        {
+          "id": 157,
+          "name": "6.2.1",
+          "parent": 151,
+          "selectable": true,
+          "major": "Shopware 6",
+          "releaseDate": {
+            "date": "2020-06-15 00:00:00.000000",
+            "timezone_type": 3,
+            "timezone": "Europe\/Berlin"
+          },
+          "public": true
+        },
+        {
+          "id": 158,
+          "name": "6.2.2",
+          "parent": 151,
+          "selectable": true,
+          "major": "Shopware 6",
+          "releaseDate": {
+            "date": "2020-06-17 00:00:00.000000",
+            "timezone_type": 3,
+            "timezone": "Europe\/Berlin"
+          },
+          "public": true
+        },
+        {
+          "id": 159,
+          "name": "6.2.3",
+          "parent": 151,
+          "selectable": true,
+          "major": "Shopware 6",
+          "releaseDate": {
+            "date": "2020-07-13 00:00:00.000000",
+            "timezone_type": 3,
+            "timezone": "Europe\/Berlin"
+          },
+          "public": true
+        }
+      ],
+      "changelogs": [
+        {
+          "id": 119640,
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          },
+          "text": "\u003Cul\u003E\u003Cli\u003EErster Release im store\u003C\/li\u003E\u003C\/ul\u003E"
+        },
+        {
+          "id": 119641,
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          },
+          "text": "\u003Cul\u003E\u003Cli\u003EFirst release in store\u003C\/li\u003E\u003C\/ul\u003E"
+        }
+      ],
+      "creationDate": "2020-07-06 22:05:29",
+      "lastChangeDate": "2020-07-06 22:11:51",
+      "ionCubeEncrypted": false,
+      "licenseCheckRequired": false,
+      "hasActiveCodeReviewWarnings": true
+    },
+    {
+      "id": 61249,
+      "name": "FroshPlatformThumbnailProcessor",
+      "remoteLink": "",
+      "version": "1.0.2",
+      "status": {
+        "id": 4,
+        "name": "codereviewsucceeded",
+        "description": "Code review succeeded"
+      },
+      "compatibleSoftwareVersions": [
+        {
+          "id": 154,
+          "name": "6.2.0",
+          "parent": 151,
+          "selectable": true,
+          "major": "Shopware 6",
+          "releaseDate": {
+            "date": "2020-05-11 00:00:00.000000",
+            "timezone_type": 3,
+            "timezone": "Europe\/Berlin"
+          },
+          "public": true
+        },
+        {
+          "id": 152,
+          "name": "6.2.0-RC1",
+          "parent": 151,
+          "selectable": true,
+          "major": "Shopware 6",
+          "releaseDate": {
+            "date": "2020-04-27 00:00:00.000000",
+            "timezone_type": 3,
+            "timezone": "Europe\/Berlin"
+          },
+          "public": true
+        },
+        {
+          "id": 157,
+          "name": "6.2.1",
+          "parent": 151,
+          "selectable": true,
+          "major": "Shopware 6",
+          "releaseDate": {
+            "date": "2020-06-15 00:00:00.000000",
+            "timezone_type": 3,
+            "timezone": "Europe\/Berlin"
+          },
+          "public": true
+        },
+        {
+          "id": 158,
+          "name": "6.2.2",
+          "parent": 151,
+          "selectable": true,
+          "major": "Shopware 6",
+          "releaseDate": {
+            "date": "2020-06-17 00:00:00.000000",
+            "timezone_type": 3,
+            "timezone": "Europe\/Berlin"
+          },
+          "public": true
+        },
+        {
+          "id": 159,
+          "name": "6.2.3",
+          "parent": 151,
+          "selectable": true,
+          "major": "Shopware 6",
+          "releaseDate": {
+            "date": "2020-07-13 00:00:00.000000",
+            "timezone_type": 3,
+            "timezone": "Europe\/Berlin"
+          },
+          "public": true
+        }
+      ],
+      "changelogs": [
+        {
+          "id": 120914,
+          "locale": {
+            "id": 1,
+            "name": "de_DE"
+          },
+          "text": "\u003Cul\u003E\u003Cli\u003EOption zum Verarbeiten von Originalbildern durch den Processor\u003C\/li\u003E\u003Cli\u003EOption zum Einschliessen von SVGs, standardm\u00e4\u00dfig deaktiviert\u003C\/li\u003E\u003Cli\u003EVerbesserung der Plugin-Konfiguration\u003C\/li\u003E\u003C\/ul\u003E"
+        },
+        {
+          "id": 120915,
+          "locale": {
+            "id": 2,
+            "name": "en_GB"
+          },
+          "text": "\u003Cul\u003E\u003Cli\u003EOption to process original images\u003C\/li\u003E\u003Cli\u003EOption to process SVGs, disabled by default\u003C\/li\u003E\u003Cli\u003EOptimizing plugin config\u003C\/li\u003E\u003C\/ul\u003E"
+        }
+      ],
+      "creationDate": "2020-07-15 13:06:49",
+      "lastChangeDate": "2020-07-15 13:51:08",
+      "ionCubeEncrypted": false,
+      "licenseCheckRequired": false,
+      "hasActiveCodeReviewWarnings": true
+    }
+  ],
+  "successor": null,
+  "pluginPreview": null
+}

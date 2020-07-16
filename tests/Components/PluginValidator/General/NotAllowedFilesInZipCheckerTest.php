@@ -13,6 +13,8 @@ class NotAllowedFilesInZipCheckerTest extends TestCase
     {
         $context = $this->createContextWithAllErrors();
 
+        static::assertTrue((new NotAllowedFilesInZipChecker())->supports($context));
+
         (new NotAllowedFilesInZipChecker())->validate($context);
         static::assertTrue($context->hasViolations());
 
@@ -38,6 +40,7 @@ class NotAllowedFilesInZipCheckerTest extends TestCase
         $zip->addFromString('test.phar', 'Huhu');
         $zip->addFromString('.DS_Store', 'Huhu');
         $zip->addFromString('Thumbs.db', 'Huhu');
+        $zip->addFromString('.phar', 'Huhu');
 
         return new ViolationContext($this->createMock(Plugin::class), $zip, __DIR__);
     }

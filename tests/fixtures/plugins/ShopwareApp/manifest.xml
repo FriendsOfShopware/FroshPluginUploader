@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/app-system/master/src/Core/Content/App/Manifest/Schema/manifest-1.0.xsd">
+    <meta>
+        <name>FroshGoogleSheet</name>
+        <label>Google Sheet Synchronization</label>
+        <label lang="de-DE">Google Sheet Synchronization</label>
+        <author>FriendsOfShopware</author>
+        <copyright>FriendsOfShopware</copyright>
+        <version>1.0.0</version>
+    </meta>
+    <setup>
+        <registrationUrl>https://sheet.fos.gg/api/v1/auth</registrationUrl>
+        <secret>frosh</secret>
+    </setup>
+    <admin>
+        <module name="googleConfig" source="https://sheet.fos.gg/module/googleConfig">
+            <label>Google Sheet</label>
+            <label lang="de-DE">Google Sheet</label>
+        </module>
+    </admin>
+
+
+    <permissions>
+        <create>product</create>
+        <update>product</update>
+        <delete>product</delete>
+        <read>product</read>
+    </permissions>
+
+    <webhooks>
+        <webhook name="productWritten" url="https://sheet.fos.gg/api/v1/webhook/product.written" event="product.written"/>
+        <webhook name="productDeleted" url="https://sheet.fos.gg/api/v1/webhook/product.deleted" event="product.deleted"/>
+    </webhooks>
+
+</manifest>

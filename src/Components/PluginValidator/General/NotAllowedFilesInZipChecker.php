@@ -66,11 +66,6 @@ class NotAllowedFilesInZipChecker implements ValidationInterface
 
     private static function endsWith($haystack, $needle): bool
     {
-        $length = strlen($needle);
-        if ($length === 0) {
-            return true;
-        }
-
-        return (substr($haystack, -$length) === $needle);
+        return (substr($haystack, -strlen($needle)) === $needle);
     }
 }
