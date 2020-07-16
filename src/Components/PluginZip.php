@@ -2,6 +2,7 @@
 
 namespace FroshPluginUploader\Components;
 
+use FroshPluginUploader\Components\PluginValidator\General\NotAllowedFilesInZipChecker;
 use FroshPluginUploader\Components\ZipStrategy\AbstractStrategy;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -62,6 +63,16 @@ class PluginZip
         // Cleanup directory using blacklist
         foreach ($this->defaultBlacklist as $item) {
             $this->exec('rm -rf ' . escapeshellarg($pluginTmpDir . '/' . $item));
+        }
+
+        // Remove not allowed store file extensions
+        foreach (NotAllowedFilesInZipChecker::NOT_ALLOWED_EXTENSIONS as $item) {
+            $this->exec('(find ' . escapeshellarg($pluginTmpDir . '/') . ' -iname \'*' . escapeshellarg($item) . '\') | xargs rm -rf');
+        }
+
+        // Remove not allowed store files
+        foreach (NotAllowedFilesInZipChecker::NOT_ALLOWED_FILES as $item) {
+            $this->exec('(find ' . escapeshellarg($pluginTmpDir . '/') . ' -iname \'' . escapeshellarg($item) . '\') | xargs rm -rf');
         }
 
         // Clean branch name for filename
