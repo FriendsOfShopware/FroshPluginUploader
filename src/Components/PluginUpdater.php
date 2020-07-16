@@ -106,7 +106,6 @@ class PluginUpdater
                 $storeImage = $this->client->Plugins()->addImage($storePlugin->id, $imageDir . '/' . $image);
 
                 if ($plugin->hasStoreJson() && $plugin->getStoreJson()->applyImageUpdate($storeImage, $image)) {
-                    var_dump($storeImage);
                     $this->client->Plugins()->updateImage($storePlugin->id, $storeImage);
                 }
             }
@@ -134,22 +133,14 @@ class PluginUpdater
         $availableLicenses = array_column($availableStoreLicenses, 'name');
 
         if (!in_array($license, $availableLicenses, true)) {
-            if ($license === 'proprietary') {
-                $license = 'proprietary';
-            } else {
-                $license = 'open_source';
-            }
+            $license = 'open_source';
         }
 
         foreach ($availableStoreLicenses as $licenseItem) {
             if ($licenseItem['name'] === $license) {
                 $plugin->license = $licenseItem;
-
-                return;
             }
         }
-
-        throw new \RuntimeException(sprintf('Invalid license given "%s". Following are available %s', $license, implode(', ', $availableLicenses)));
     }
 
     private function convertDescription(string $content): string

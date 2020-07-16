@@ -19,6 +19,15 @@ class GitStrategyTest extends TestCase
         static::assertFileNotExists($target . '/untracked_file.png');
     }
 
+    public function testInvalidBranch(): void
+    {
+        static::expectException(\RuntimeException::class);
+        [$src, $target] = $this->prepare();
+
+        $gitStrategy = new GitStrategy('next');
+        $gitStrategy->copyFolder($src, $target);
+    }
+
     private function prepare(): array
     {
         $src = IoHelper::makeFolder();
