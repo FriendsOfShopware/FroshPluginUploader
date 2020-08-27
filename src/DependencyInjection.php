@@ -2,7 +2,6 @@
 
 namespace FroshPluginUploader;
 
-use FroshPluginUploader\Commands\ZipDirPluginCommand;
 use FroshPluginUploader\Components\PluginValidator\ValidationInterface;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Console\Command\Command;
@@ -19,7 +18,6 @@ class DependencyInjection
 
         $loader = new PhpFileLoader($container, new FileLocator(__DIR__ . '/Resources'));
         $loader->load('services.php');
-
         $container->compile();
 
         return $container;

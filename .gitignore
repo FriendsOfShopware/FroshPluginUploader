@@ -7,3 +7,4 @@
 /*.zip
 /.phpunit.result.cache
 /clover.xml
+/vendor-bin/**/vendor

@@ -11,7 +11,6 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
@@ -26,8 +25,8 @@ class ZipDirPluginCommand extends Command implements ContainerAwareInterface
         if (!file_exists($path)) {
             throw new \RuntimeException(sprintf('Folder by path %s does not exist', $input->getArgument('path')));
         }
-
-        $this->container->get(PluginZip::class)->zip($path, $this->makeStrategy($input), $output);
+        $this->container->set('zip.strategy', $this->makeStrategy($input));
+        $this->container->get(PluginZip::class)->zip($path, (bool) $input->getOption('scope'), $output);
 
         return 0;
     }
@@ -40,7 +39,8 @@ class ZipDirPluginCommand extends Command implements ContainerAwareInterface
             ->setDescription('Zips the given directory')
             ->addArgument('path', InputArgument::REQUIRED, 'Path to to directory')
             ->addArgument('branch', InputArgument::OPTIONAL, 'Branch to checkout. Default newest version')
-            ->addOption('strategy', null, InputOption::VALUE_OPTIONAL, 'Strategy to use git (git archive) or plain (copy folder)', 'git');
+            ->addOption('strategy', null, InputOption::VALUE_OPTIONAL, 'Strategy to use git (git archive) or plain (copy folder)', 'git')
+            ->addOption('scope',null,InputOption::VALUE_OPTIONAL,'Will attempt to scope plugin dependencies into a distinct namespace to avoid conflict. A config file is recommended on plugin level.',false);
     }
 
     private function makeStrategy(InputInterface $input): AbstractStrategy
