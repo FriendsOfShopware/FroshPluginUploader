@@ -34,14 +34,14 @@ class XmlChecker implements ValidationInterface
 
     private function hasPluginXml(ViolationContext $context): void
     {
-        if (!file_exists($context->getUnpackedFolder() . '/plugin.xml')) {
+        if (!file_exists($context->getUnpackedFolder() . '/' . $context->getPlugin()->getName() .  '/plugin.xml')) {
             $context->addViolation('Plugin requires an plugin.xml');
         }
     }
 
     private function hasPluginIcon(ViolationContext $context): void
     {
-        if (!file_exists($context->getUnpackedFolder() . '/plugin.png')) {
+        if (!file_exists($context->getUnpackedFolder() . '/' . $context->getPlugin()->getName() . '/plugin.png')) {
             $context->addViolation('Plugin requires an plugin.png');
         }
     }
