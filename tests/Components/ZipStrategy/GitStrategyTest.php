@@ -16,7 +16,7 @@ class GitStrategyTest extends TestCase
         $gitStrategy->copyFolder($src, $target);
 
         static::assertFileExists($target . '/plugin.png');
-        static::assertFileNotExists($target . '/untracked_file.png');
+        static::assertFileDoesNotExist($target . '/untracked_file.png');
     }
 
     public function testInvalidBranch(): void
