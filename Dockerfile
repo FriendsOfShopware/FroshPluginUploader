@@ -5,7 +5,7 @@ COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr
 COPY . /app
 
 RUN apk add --no-cache git zip unzip && \
-    install-php-extensions zip intl && \
+    install-php-extensions bcmath gd intl mysqli pdo_mysql sockets bz2 gmp soap zip gmp && \
     composer install -d /app
 
 ENTRYPOINT [ "/app/bin/pluginupload" ]
