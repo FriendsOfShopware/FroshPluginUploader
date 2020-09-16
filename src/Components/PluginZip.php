@@ -15,11 +15,6 @@ class PluginZip
      */
     private $strategy;
 
-    /**
-     * @var string
-     */
-    private $applicationDir;
-
     private $defaultBlacklist = [
         '.travis.yml',
         'build.sh',
@@ -33,10 +28,9 @@ class PluginZip
         '.github',
     ];
 
-    public function __construct(AbstractStrategy $strategy, string $applicationDir)
+    public function __construct(AbstractStrategy $strategy)
     {
         $this->strategy = $strategy;
-        $this->applicationDir = $applicationDir;
     }
 
     public function zip(string $directory, bool $scopeDependencies, OutputInterface $output): void

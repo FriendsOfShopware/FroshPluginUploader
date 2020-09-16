@@ -21,8 +21,7 @@ return static function (ContainerConfigurator $configurator) {
     $configurator
         ->services()
         ->get(PluginZip::class)
-        ->arg('$strategy', service('zip.strategy'))
-        ->arg('$applicationDir', '%project_dir%');
+        ->arg('$strategy', service('zip.strategy'));
 
     $configurator
         ->services()
