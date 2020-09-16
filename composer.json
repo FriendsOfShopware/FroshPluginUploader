@@ -48,14 +48,5 @@
     "phpunit/phpunit": "^9.3",
     "symplify/changelog-linker": "^8.2",
     "bamarni/composer-bin-plugin": "^1.4"
-  },
-  "scripts": {
-    "bin": "echo 'bin not installed'",
-    "post-install-cmd": [
-      "@composer bin all install --ansi"
-    ],
-    "post-update-cmd": [
-      "@composer bin all update --ansi"
-    ]
   }
 }
