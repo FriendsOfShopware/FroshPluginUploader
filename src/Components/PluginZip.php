@@ -64,10 +64,18 @@ class PluginZip
             // Install composer dependencies
             if ($this->needComposerToRun($composerJson)) {
                 $this->exec('composer install --no-dev -n -d ' . escapeshellarg($pluginTmpDir));
+                try{
+                    $this->exec('command -v php-scoper');
+                } catch (\RuntimeException $e) {
+                    if($scopeDependencies){
+                        $io->warning('Could not find php-scoper executable in PATH');
+                    }
+                    $scopeDependencies = false;
+                }
                 if($scopeDependencies) {
                     $io->writeln('Scoping plugin dependencies into ' . $plugin->getName() . '\\ namespace.');
                     $this->exec(
-                        escapeshellarg($this->applicationDir) . '/vendor/bin/php-scoper add-prefix -n -o ' . escapeshellarg($pluginTmpDir)
+                        'php-scoper add-prefix -n -o ' . escapeshellarg($pluginTmpDir)
                         . ' -d ' . escapeshellarg($pluginTmpDir)
                         . ' -p ' . $plugin->getName()
                     );
