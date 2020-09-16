@@ -58,22 +58,8 @@ class PluginZip
             // Install composer dependencies
             if ($this->needComposerToRun($composerJson)) {
                 $this->exec('composer install --no-dev -n -d ' . escapeshellarg($pluginTmpDir));
-                try{
-                    $this->exec('command -v php-scoper');
-                } catch (\RuntimeException $e) {
-                    if($scopeDependencies){
-                        $io->warning('Could not find php-scoper executable in PATH');
-                    }
-                    $scopeDependencies = false;
-                }
-                if($scopeDependencies) {
-                    $io->writeln('Scoping plugin dependencies into ' . $plugin->getName() . '\\ namespace.');
-                    $this->exec(
-                        'php-scoper add-prefix -n -o ' . escapeshellarg($pluginTmpDir)
-                        . ' -d ' . escapeshellarg($pluginTmpDir)
-                        . ' -p ' . $plugin->getName()
-                    );
-                    $io->writeln('');
+                if($scopeDependencies){
+                    $this->scopeDependencies($io, $plugin, $pluginTmpDir);
                 }
                 $this->exec('composer dump -o');
             }
@@ -168,5 +154,26 @@ class PluginZip
         foreach (NotAllowedFilesInZipChecker::NOT_ALLOWED_FILES as $item) {
             $this->exec('(find ' . escapeshellarg($pluginTmpDir . '/') . ' -iname \'' . escapeshellarg($item) . '\') | xargs rm -rf');
         }
+    }
+
+    private function scopeDependencies(
+        SymfonyStyle $io,
+        Generation\ShopwarePlatform\Plugin $plugin,
+        string $pluginTmpDir
+    ): void {
+        try {
+            $this->exec('command -v php-scoper');
+        } catch (\RuntimeException $e) {
+            $io->warning('Could not find php-scoper executable in PATH');
+
+            return;
+        }
+        $io->writeln('Scoping plugin dependencies into ' . $plugin->getName() . '\\ namespace.');
+        $this->exec(
+            'php-scoper add-prefix -n -o ' . escapeshellarg($pluginTmpDir)
+            . ' -d ' . escapeshellarg($pluginTmpDir)
+            . ' -p ' . $plugin->getName()
+        );
+        $io->writeln('');
     }
 }
