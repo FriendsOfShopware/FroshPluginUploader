@@ -61,7 +61,7 @@ class PluginZip
                 if($scopeDependencies){
                     $this->scopeDependencies($io, $plugin, $pluginTmpDir);
                 }
-                $this->exec('composer dump -o');
+                $this->exec('composer dump -o -d ' . escapeshellarg($pluginTmpDir));
             }
 
             rename($composerJsonBackup, $composerJson);
