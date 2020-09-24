@@ -4,7 +4,6 @@ namespace FroshPluginUploader\Components\XmlReader;
 
 use DOMDocument;
 use DOMElement;
-use DOMNode;
 use DOMNodeList;
 use InvalidArgumentException;
 use Symfony\Component\Config\Util\XmlUtils;

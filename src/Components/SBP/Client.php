@@ -5,7 +5,6 @@ namespace FroshPluginUploader\Components\SBP;
 use FroshPluginUploader\Components\SBP\Components\General;
 use FroshPluginUploader\Components\SBP\Components\Plugin;
 use FroshPluginUploader\Components\SBP\Components\Producer;
-use FroshPluginUploader\Components\Util;
 use FroshPluginUploader\Structs\Producer as ProducerStruct;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Http\Message\ResponseInterface;

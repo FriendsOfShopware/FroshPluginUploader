@@ -40,7 +40,7 @@ class ZipDirPluginCommand extends Command implements ContainerAwareInterface
             ->addArgument('path', InputArgument::REQUIRED, 'Path to to directory')
             ->addArgument('branch', InputArgument::OPTIONAL, 'Branch to checkout. Default newest version')
             ->addOption('strategy', null, InputOption::VALUE_OPTIONAL, 'Strategy to use git (git archive) or plain (copy folder)', 'git')
-            ->addOption('scope',null,InputOption::VALUE_OPTIONAL,'Will attempt to scope plugin dependencies into a distinct namespace to avoid conflict. A config file is recommended on plugin level.',false);
+            ->addOption('scope', null, InputOption::VALUE_OPTIONAL, 'Will attempt to scope plugin dependencies into a distinct namespace to avoid conflict. A config file is recommended on plugin level.', false);
     }
 
     private function makeStrategy(InputInterface $input): AbstractStrategy

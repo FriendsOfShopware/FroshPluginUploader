@@ -4,7 +4,6 @@ namespace FroshPluginUploader\Components\XmlReader;
 
 use DOMDocument;
 use DOMElement;
-use DOMNodeList;
 use DOMXPath;
 
 class XmlPluginReader extends XmlReaderBase
@@ -49,7 +48,7 @@ class XmlPluginReader extends XmlReaderBase
         if ($compatibility !== null) {
             $info['compatibility'] = [
                 'minVersion' => $compatibility->getAttribute('minVersion'),
-                'maxVersion' => $compatibility->getAttribute('maxVersion')
+                'maxVersion' => $compatibility->getAttribute('maxVersion'),
             ];
         }
 

@@ -16,7 +16,7 @@ class LicenseValidation implements ValidationInterface
     public function validate(ViolationContext $context): void
     {
         $spdxLicences = new SpdxLicenses();
-        if (false === $spdxLicences->validate([$context->getPlugin()->getReader()->getLicense()])) {
+        if ($spdxLicences->validate([$context->getPlugin()->getReader()->getLicense()]) === false) {
             $context->addViolation('The license must comply with a valid open-source identifier. https://spdx.org/licenses');
         }
 

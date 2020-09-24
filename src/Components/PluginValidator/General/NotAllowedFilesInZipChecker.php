@@ -20,13 +20,13 @@ class NotAllowedFilesInZipChecker implements ValidationInterface
     {
         $foundVcsDir = false;
 
-        /**
+        /*
          * Go through all files in the zip
          */
-        for ($i = 0; $i < $context->getZipArchive()->numFiles; $i++) {
+        for ($i = 0; $i < $context->getZipArchive()->numFiles; ++$i) {
             $fileInfo = $context->getZipArchive()->statIndex($i);
 
-            /**
+            /*
              * Check for a directory traversal attack
              */
             if (strpos($fileInfo['name'], '../') !== false) {
@@ -44,17 +44,16 @@ class NotAllowedFilesInZipChecker implements ValidationInterface
                 }
             }
 
-            /**
+            /*
              * iterate over all not allowed file extensions and folders
              */
             foreach (self::NOT_ALLOWED_FILES as $forbiddenFile) {
-
                 /**
                  * user lowercase for comparison and escape metacharacters
                  */
                 $checkPattern = preg_quote(strtolower($forbiddenFile));
 
-                /**
+                /*
                  * check for not allowed files
                  */
                 if (preg_match('/^.*' . $checkPattern . '$/', strtolower($fileInfo['name']))) {
@@ -66,6 +65,6 @@ class NotAllowedFilesInZipChecker implements ValidationInterface
 
     private static function endsWith($haystack, $needle): bool
     {
-        return (substr($haystack, -strlen($needle)) === $needle);
+        return substr($haystack, -strlen($needle)) === $needle;
     }
 }

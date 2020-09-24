@@ -6,7 +6,6 @@ use FroshPluginUploader\Components\PluginFinder;
 use FroshPluginUploader\Components\PluginInterface;
 use FroshPluginUploader\Components\PluginValidator\ValidationInterface;
 use FroshPluginUploader\Components\SBP\Client;
-use FroshPluginUploader\Components\Util;
 use FroshPluginUploader\Exception\PluginNotFoundInAccount;
 use FroshPluginUploader\Structs\Plugin;
 use FroshPluginUploader\Structs\ViolationContext;
@@ -35,7 +34,6 @@ class ValidatePluginCommand extends Command implements ContainerAwareInterface
         $this->validators = $validators;
     }
 
-
     protected function configure(): void
     {
         $this
@@ -44,7 +42,6 @@ class ValidatePluginCommand extends Command implements ContainerAwareInterface
             ->setDescription('Validate the plugin for the community store')
             ->addArgument('zipPath', InputArgument::REQUIRED, 'Path to to the plugin binary')
             ->addOption('create', null, InputOption::VALUE_NONE, 'Creates the plugin in store, when not present');
-
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int

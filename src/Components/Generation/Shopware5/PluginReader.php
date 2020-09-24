@@ -3,9 +3,7 @@
 namespace FroshPluginUploader\Components\Generation\Shopware5;
 
 use FroshPluginUploader\Components\PluginReaderInterface;
-use FroshPluginUploader\Components\XmlReader\XmlConfigReader;
 use FroshPluginUploader\Components\XmlReader\XmlPluginReader;
-use FroshPluginUploader\Exception\PluginValidationException;
 
 class PluginReader implements PluginReaderInterface
 {

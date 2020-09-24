@@ -58,7 +58,7 @@ class PluginZip
             // Install composer dependencies
             if ($this->needComposerToRun($composerJson)) {
                 $this->exec('composer install --ignore-platform-reqs --no-dev -n -d ' . escapeshellarg($pluginTmpDir));
-                if($scopeDependencies){
+                if ($scopeDependencies) {
                     $this->scopeDependencies($io, $plugin, $pluginTmpDir);
                 }
                 $this->exec('composer dump -o -d ' . escapeshellarg($pluginTmpDir));

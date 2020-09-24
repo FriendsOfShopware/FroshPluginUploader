@@ -87,7 +87,8 @@ class Struct
         return $newObject;
     }
 
-    private static function arrayToObject($d) {
+    private static function arrayToObject($d)
+    {
         if (is_array($d)) {
             return (object) array_map([static::class, 'arrayToObject'], $d);
         }

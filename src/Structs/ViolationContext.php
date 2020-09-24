@@ -1,6 +1,5 @@
 <?php declare(strict_types=1);
 
-
 namespace FroshPluginUploader\Structs;
 
 use FroshPluginUploader\Components\PluginInterface;

@@ -28,7 +28,7 @@ class ComposerJsonChecker implements ValidationInterface
 
     private const REQUIRED_LANGUAGES = [
         'de-DE',
-        'en-GB'
+        'en-GB',
     ];
 
     public function supports(ViolationContext $context): bool
@@ -117,11 +117,11 @@ class ComposerJsonChecker implements ValidationInterface
             }
         }
 
-        if (null === $matchingPath) {
+        if ($matchingPath === null) {
             $context->addViolation(sprintf('Plugin bootstrap file "%s" cannot be found in the defined psr-0 or psr-4 autoload paths', $shopwarePluginClass));
         }
 
-        $bootstrapFilePath = $context->getPlugin()->getName() . '/' .  $matchingPath . $context->getPlugin()->getName() . '.php';
+        $bootstrapFilePath = $context->getPlugin()->getName() . '/' . $matchingPath . $context->getPlugin()->getName() . '.php';
         $stat = $context->getZipArchive()->statName($bootstrapFilePath);
         if ($stat === false) {
             $context->addViolation(sprintf('Cannot find plugin bootstrap file in zip at path "%s"', $bootstrapFilePath));

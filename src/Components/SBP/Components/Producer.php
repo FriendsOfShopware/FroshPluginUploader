@@ -51,10 +51,10 @@ class Producer extends AbstractComponent
         $plugin = (string) $this->client->post('/plugins', [
             'json' => [
                 'generation' => [
-                    'name' => $generation
+                    'name' => $generation,
                 ],
-                'producerId' => $this->client->getProducer()->id
-            ]
+                'producerId' => $this->client->getProducer()->id,
+            ],
         ])->getBody();
 
         $createdPlugin = Plugin::map(json_decode($plugin));

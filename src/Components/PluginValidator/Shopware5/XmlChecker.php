@@ -34,7 +34,7 @@ class XmlChecker implements ValidationInterface
 
     private function hasPluginXml(ViolationContext $context): void
     {
-        if (!file_exists($context->getUnpackedFolder() . '/' . $context->getPlugin()->getName() .  '/plugin.xml')) {
+        if (!file_exists($context->getUnpackedFolder() . '/' . $context->getPlugin()->getName() . '/plugin.xml')) {
             $context->addViolation('Plugin requires an plugin.xml');
         }
     }
