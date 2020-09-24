@@ -1,0 +1,10 @@
+Upload Zip to Store:
+    when: manual
+    image:
+        name: ghcr.io/friendsofshopware/plugin-uploader:0.3.2
+        entrypoint: ["/bin/sh", "-c"]
+    variables:
+        GIT_DEPTH: 0
+    script:
+        - php /app/bin/pluginupload ext:zip . $CI_COMMIT_SHA
+        - php /app/bin/pluginupload ext:upload SwagPlatformSecurity*.zip
