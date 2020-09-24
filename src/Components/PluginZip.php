@@ -130,7 +130,7 @@ class PluginZip
     {
         $json = json_decode(file_get_contents($composerJsonPath), true);
 
-        $keys = ['shopware/platform', 'shopware/core', 'shopware/storefront', 'shopware/administration'];
+        $keys = ['shopware/platform', 'shopware/core', 'shopware/storefront', 'shopware/administration', 'composer/installers'];
         foreach ($keys as $key) {
             if (isset($json['require'][$key])) {
                 unset($json['require'][$key]);
