@@ -42,4 +42,12 @@ class PluginZipTest extends TestCase
 
         exec('rm -rf ' . $path . '/.git');
     }
+
+    public function testScooping(): void
+    {
+        $service = new PluginZip(new PlainStrategy());
+        $service->zip(dirname(__DIR__) . '/fixtures/plugins/ShopwarePlatformPlugin', true, new NullOutput());
+        static::assertFileExists(getcwd() . '/ShopwarePlatformPlugin.zip');
+        unlink(getcwd() . '/ShopwarePlatformPlugin.zip');
+    }
 }

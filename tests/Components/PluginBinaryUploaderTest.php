@@ -11,9 +11,12 @@ use FroshPluginUploader\Structs\Input\UploadPluginInput;
 use FroshPluginUploader\Structs\Plugin as StorePlugin;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 class PluginBinaryUploaderTest extends TestCase
 {
+    use ProphecyTrait;
+
     public function testCreateBinary(): void
     {
         $uploader = $this->create();

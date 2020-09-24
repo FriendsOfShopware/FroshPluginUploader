@@ -156,6 +156,9 @@ class PluginZip
         }
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     private function scopeDependencies(
         SymfonyStyle $io,
         Generation\ShopwarePlatform\Plugin $plugin,
