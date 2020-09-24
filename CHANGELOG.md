@@ -9,25 +9,33 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 
 <!-- changelog-linker -->
 
-<!-- dumped content start -->
-## Unreleased
+## [0.3.3] - 2020-09-24
 
+- [#75] NRFE-3714: add optional scoping of extension, Thanks to [@powli]
+- [#49] add check for length of description, Thanks to [@tinect]
+- [#81] Update symplify/changelog-linker requirement from ^8.2 to ^8.3, Thanks to [@dependabot-preview][bot]
+- [#77] Update composer/semver requirement from ^3.1 to ^3.2, Thanks to [@dependabot-preview][bot]
+- [#76] Update composer/semver requirement from ^3.0 to ^3.1, Thanks to [@dependabot-preview][bot]
+- [#73] Update symplify/changelog-linker requirement from ^8.1 to ^8.2, Thanks to [@dependabot-preview][bot]
+- [#72] Update phpunit/phpunit requirement from ^9.2 to ^9.3, Thanks to [@dependabot-preview][bot]
+- [#71] Update guzzlehttp/guzzle requirement from ~6.5 to ~7.0, Thanks to [@dependabot-preview][bot]
+- [#68] Update phpunit/phpunit requirement from ^8.5 to ^9.2, Thanks to [@dependabot-preview][bot]
+- [#67] Update guzzlehttp/guzzle requirement from ~6.0 to ~6.5, Thanks to [@dependabot-preview][bot]
+- [#66] Update nette/php-generator requirement from ^3.2 to ^3.4, Thanks to [@dependabot-preview][bot]
+- [#65] Update phpunit/phpunit requirement from ^8.0 to ^8.5, Thanks to [@dependabot-preview][bot]
+- [#82] Fixes [#74], Thanks to [@powli]
+- [#79] [#78] fixed plugin.xml and plugin.png validation for shopware 5, Thanks to [@ascheider]
 - Increased minimum PHP Version to 7.4
 - [#61] Improve plugin validation, fixes [#52], [#53], [#54], [#55], [#56], Thanks to [@shyim]
 - [#63] Add more tests, Thanks to [@shyim]
 - [#64] remove files that are not allowed in store, Thanks to [@tinect]
 - [#49] add check for length of description, Thanks to [@tinect]
-
-<!-- dumped content end -->
-
-<!-- dumped content start -->
-## Unreleased
-
 - [#60] Apps needs a license in manifest, fixes [#48], Thanks to [@shyim]
 
 <!-- dumped content end -->
 
 <!-- dumped content start -->
+
 ## [0.3.2] - 2020-07-15
 
 - [#59] Fix composer install while zipping, Thanks to [@shyim]
@@ -137,3 +145,21 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 [#63]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/63
 [#64]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/64
 [#49]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/49
+[#82]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/82
+[#81]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/81
+[#79]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/79
+[#78]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/78
+[#77]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/77
+[#76]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/76
+[#75]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/75
+[#74]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/74
+[#73]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/73
+[#72]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/72
+[#71]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/71
+[#68]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/68
+[#67]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/67
+[#66]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/66
+[#65]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/65
+[@powli]: https://github.com/powli
+[@dependabot-preview]: https://github.com/dependabot-preview
+[@ascheider]: https://github.com/ascheider

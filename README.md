@@ -33,6 +33,10 @@ Example:
  [OK] Has been successfully validated                                           
 ```
 
+## CI-Integration
+
+See [examples](https://github.com/FriendsOfShopware/FroshPluginUploader/tree/master/examples/ci) folder for how the Uploader could be integrated.
+
 # Using the Commands
 
 ## ext:upload

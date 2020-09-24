@@ -48,3 +48,20 @@ jobs:
         asset_path: frosh-plugin-upload.phar
         asset_name: frosh-plugin-upload.phar
         asset_content_type: application/octet-stream
+
+    - name: Login into Docker Registery
+      run: echo "${{ secrets.DOCKER_HUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_HUB_USERNAME }}" --password-stdin
+
+    - name: Login into Github Docker Registery
+      run: echo "${{ secrets.GHCR_PASSWORD }}" | docker login ghcr.io -u "${{ secrets.GHCR_USERNAME }}" --password-stdin
+
+    - name: Build image and push
+      run: |
+        docker build -t friendsofshopware/plugin-uploader:${{ steps.get_version.outputs.VERSION }} .
+        docker build -t ghcr.io/friendsofshopware/plugin-uploader:${{ steps.get_version.outputs.VERSION }} .
+        docker build -t friendsofshopware/plugin-uploader .
+        docker build -t ghcr.io/friendsofshopware/plugin-uploader .
+        docker push friendsofshopware/plugin-uploader:${{ steps.get_version.outputs.VERSION }}
+        docker push ghcr.io/friendsofshopware/plugin-uploader:${{ steps.get_version.outputs.VERSION }}
+        docker push friendsofshopware/plugin-uploader
+        docker push ghcr.io/friendsofshopware/plugin-uploader
