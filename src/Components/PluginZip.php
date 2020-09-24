@@ -10,6 +10,11 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 class PluginZip
 {
+    /**
+     * @var AbstractStrategy
+     */
+    private $strategy;
+
     private $defaultBlacklist = [
         '.travis.yml',
         'build.sh',
@@ -23,7 +28,12 @@ class PluginZip
         '.github',
     ];
 
-    public function zip(string $directory, AbstractStrategy $strategy, OutputInterface $output): void
+    public function __construct(AbstractStrategy $strategy)
+    {
+        $this->strategy = $strategy;
+    }
+
+    public function zip(string $directory, bool $scopeDependencies, OutputInterface $output): void
     {
         $io = new SymfonyStyle(new ArgvInput(), $output);
 
@@ -37,7 +47,7 @@ class PluginZip
         // Cleanup old releases
         $this->exec(sprintf('rm -rf %s', escapeshellarg($plugin->getName() . '-*.zip')));
 
-        $version = $strategy->copyFolder($directory, $pluginTmpDir);
+        $version = $this->strategy->copyFolder($directory, $pluginTmpDir);
 
         $composerJson = $pluginTmpDir . '/composer.json';
         $composerJsonBackup = $composerJson . '.bak';
@@ -47,7 +57,11 @@ class PluginZip
             $this->filterShopwareDependencies($composerJson);
             // Install composer dependencies
             if ($this->needComposerToRun($composerJson)) {
-                $this->exec('composer install --no-dev -n -o -d ' . escapeshellarg($pluginTmpDir));
+                $this->exec('composer install --no-dev -n -d ' . escapeshellarg($pluginTmpDir));
+                if($scopeDependencies){
+                    $this->scopeDependencies($io, $plugin, $pluginTmpDir);
+                }
+                $this->exec('composer dump -o -d ' . escapeshellarg($pluginTmpDir));
             }
 
             rename($composerJsonBackup, $composerJson);
@@ -140,5 +154,26 @@ class PluginZip
         foreach (NotAllowedFilesInZipChecker::NOT_ALLOWED_FILES as $item) {
             $this->exec('(find ' . escapeshellarg($pluginTmpDir . '/') . ' -iname \'' . escapeshellarg($item) . '\') | xargs rm -rf');
         }
+    }
+
+    private function scopeDependencies(
+        SymfonyStyle $io,
+        Generation\ShopwarePlatform\Plugin $plugin,
+        string $pluginTmpDir
+    ): void {
+        try {
+            $this->exec('command -v php-scoper');
+        } catch (\RuntimeException $e) {
+            $io->warning('Could not find php-scoper executable in PATH');
+
+            return;
+        }
+        $io->writeln('Scoping plugin dependencies into ' . $plugin->getName() . '\\ namespace.');
+        $this->exec(
+            'php-scoper add-prefix -n -o ' . escapeshellarg($pluginTmpDir)
+            . ' -d ' . escapeshellarg($pluginTmpDir)
+            . ' -p ' . $plugin->getName()
+        );
+        $io->writeln('');
     }
 }

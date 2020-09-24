@@ -12,23 +12,23 @@ class PluginZipTest extends TestCase
 {
     public function testZipShopware6Plugin(): void
     {
-        $service = new PluginZip();
-        $service->zip(dirname(__DIR__) . '/fixtures/plugins/ShopwarePlatformPlugin', new PlainStrategy(), new NullOutput());
+        $service = new PluginZip(new PlainStrategy());
+        $service->zip(dirname(__DIR__) . '/fixtures/plugins/ShopwarePlatformPlugin', false, new NullOutput());
         static::assertFileExists(getcwd() . '/ShopwarePlatformPlugin.zip');
         unlink(getcwd() . '/ShopwarePlatformPlugin.zip');
     }
 
     public function testZipShopware6PluginWithoutOtherDeps(): void
     {
-        $service = new PluginZip();
-        $service->zip(dirname(__DIR__) . '/fixtures/plugins/ShopwarePlatformPluginComposer', new PlainStrategy(), new NullOutput());
+        $service = new PluginZip(new PlainStrategy());
+        $service->zip(dirname(__DIR__) . '/fixtures/plugins/ShopwarePlatformPluginComposer', false, new NullOutput());
         static::assertFileExists(getcwd() . '/ShopwarePlatformPlugin.zip');
         unlink(getcwd() . '/ShopwarePlatformPlugin.zip');
     }
 
     public function testGit(): void
     {
-        $service = new PluginZip();
+        $service = new PluginZip(new GitStrategy(null));
         $path = dirname(__DIR__) . '/fixtures/plugins/ShopwarePlatformPluginComposer';
 
         exec('cd ' . $path . '; git init; git add .');
@@ -36,7 +36,7 @@ class PluginZipTest extends TestCase
         exec('cd ' . $path . '; git config user.email test@test.de');
         exec('cd ' . $path . '; git commit -m "Test"');
 
-        $service->zip($path, new GitStrategy(null), new NullOutput());
+        $service->zip($path, false, new NullOutput());
         static::assertFileExists(getcwd() . '/ShopwarePlatformPlugin-master.zip');
         unlink(getcwd() . '/ShopwarePlatformPlugin-master.zip');
 
