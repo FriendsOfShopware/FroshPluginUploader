@@ -63,10 +63,16 @@ class PluginUpdater
             }
 
             if ($language === 'de') {
-                $infoTranslation->shortDescription = $plugin->getReader()->getDescriptionGerman();
+                if ($plugin->getReader()->getDescriptionGerman()) {
+                    $infoTranslation->shortDescription = $plugin->getReader()->getDescriptionGerman();
+                }
+
                 $infoTranslation->name = $plugin->getReader()->getLabelGerman();
             } else {
-                $infoTranslation->shortDescription = $plugin->getReader()->getDescriptionEnglish();
+                if ($plugin->getReader()->getDescriptionEnglish()) {
+                    $infoTranslation->shortDescription = $plugin->getReader()->getDescriptionEnglish();
+                }
+
                 $infoTranslation->name = $plugin->getReader()->getLabelEnglish();
             }
         }
