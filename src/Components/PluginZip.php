@@ -57,7 +57,7 @@ class PluginZip
             $this->filterShopwareDependencies($composerJson);
             // Install composer dependencies
             if ($this->needComposerToRun($composerJson)) {
-                $this->exec('composer install --no-dev -n -d ' . escapeshellarg($pluginTmpDir));
+                $this->exec('composer install --ignore-platform-reqs --no-dev -n -d ' . escapeshellarg($pluginTmpDir));
                 if($scopeDependencies){
                     $this->scopeDependencies($io, $plugin, $pluginTmpDir);
                 }
