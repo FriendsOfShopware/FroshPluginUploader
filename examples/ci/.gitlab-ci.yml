@@ -7,4 +7,4 @@ Upload Zip to Store:
         GIT_DEPTH: 0
     script:
         - php /app/bin/pluginupload ext:zip . $CI_COMMIT_SHA
-        - php /app/bin/pluginupload ext:upload SwagPlatformSecurity*.zip
+        - php /app/bin/pluginupload ext:upload MyPlugin*.zip
