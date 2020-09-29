@@ -28,7 +28,7 @@ You can use it also using Docker. Don't forget to pass your credentials as env v
 
 Example: 
 ```
-❯ docker run --rm -v (pwd):/storage friendsofshopware/plugin-uploader plugin:validate /storage/FroshAppGoogleSheet.zip
+❯ docker run --rm -w "/storage" -v (pwd):/storage friendsofshopware/plugin-uploader plugin:validate /storage/FroshAppGoogleSheet.zip
 
  [OK] Has been successfully validated                                           
 ```
@@ -105,6 +105,7 @@ branch - Optional: will detect the latest tag, otherwise will use master
 Valid options are:
 ```
 --strategy - default `git`. `plain` will zip the folder as it is.
+--scope - default `false`. `true` will scope the plugin dependencies into a specific namespace using [humbug/php-scoper](https://github.com/humbug/php-scoper). php-scoper has to be available in `$PATH`
 ```
 
 A .sw-zip-blacklist file can be used to define which files should be deleted before creating the zip. (**Deprecated, will be removed with 0.4.0**)
