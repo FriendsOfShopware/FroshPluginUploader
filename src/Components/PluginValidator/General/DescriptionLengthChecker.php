@@ -18,12 +18,12 @@ class DescriptionLengthChecker implements ValidationInterface
         $pluginReader = $context->getPlugin()->getReader();
         $violationMsg = 'The %s description with length of %s should have a length from 150 up to 185 characters.';
 
-        $lengthDescriptionGerman = strlen($pluginReader->getDescriptionGerman());
+        $lengthDescriptionGerman = mb_strlen($pluginReader->getDescriptionGerman(), 'UTF-8');
         if ($lengthDescriptionGerman < 150 || $lengthDescriptionGerman > 185) {
             $context->addViolation(sprintf($violationMsg, 'German', $lengthDescriptionGerman));
         }
 
-        $lengthDescriptionEnglish = strlen($pluginReader->getDescriptionEnglish());
+        $lengthDescriptionEnglish = mb_strlen($pluginReader->getDescriptionEnglish(), 'UTF-8');
         if ($lengthDescriptionEnglish < 150 || $lengthDescriptionEnglish > 185) {
             $context->addViolation(sprintf($violationMsg, 'English', $lengthDescriptionEnglish));
         }
