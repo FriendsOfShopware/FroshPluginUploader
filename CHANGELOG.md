@@ -9,6 +9,16 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 
 <!-- changelog-linker -->
 
+<!-- dumped content start -->
+## [0.3.4] - 2020-10-05
+
+- [#88] make proprietary license valid, Thanks to [@validati0n]
+- [#86] Update README, Thanks to [@powli]
+- [#85] Check description character length rather then byte length, Thanks to [@powli]
+- [#84] Update guzzlehttp/guzzle requirement from ~7.0 to ~7.1, Thanks to [@dependabot-preview][bot]
+
+<!-- dumped content end -->
+
 ## [0.3.3] - 2020-09-24
 
 - [#75] NRFE-3714: add optional scoping of extension, Thanks to [@powli]
@@ -163,3 +173,9 @@ PRs and issues are linked, so you can find more about it. Thanks to [ChangelogLi
 [@powli]: https://github.com/powli
 [@dependabot-preview]: https://github.com/dependabot-preview
 [@ascheider]: https://github.com/ascheider
+[#88]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/88
+[#86]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/86
+[#85]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/85
+[#84]: https://github.com/FriendsOfShopware/FroshPluginUploader/pull/84
+[@validati0n]: https://github.com/validati0n
+[0.3.3]: https://github.com/FriendsOfShopware/FroshPluginUploader/compare/0.3.2...0.3.3
