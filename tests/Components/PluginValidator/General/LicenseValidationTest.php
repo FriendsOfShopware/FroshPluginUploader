@@ -24,7 +24,7 @@ class LicenseValidationTest extends TestCase
         $context = $this->makeContext('this system blows you', '');
         (new LicenseValidation())->validate($context);
         static::assertTrue($context->hasViolations());
-        static::assertContains('The license must comply with a valid open-source identifier. https://spdx.org/licenses', $context->getViolations());
+        static::assertContains('The license must comply with a valid open-source identifier or `proprietary`. https://spdx.org/licenses', $context->getViolations());
     }
 
     public function testZipAndStoreDoesNotMatch(): void
