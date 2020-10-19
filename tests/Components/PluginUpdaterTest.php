@@ -87,6 +87,8 @@ class PluginUpdaterTest extends TestCase
 
         $reader = $this->createMock(PluginReader::class);
         $reader->method('getLicense')->willReturn('proprietary');
+        $reader->method('getDescriptionGerman')->willReturn('Test');
+        $reader->method('getDescriptionEnglish')->willReturn('Test');
 
         $plugin->method('getReader')->willReturn($reader);
 

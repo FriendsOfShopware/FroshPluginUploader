@@ -3,6 +3,7 @@
 namespace FroshPluginUploader\Components;
 
 use FroshPluginUploader\Components\SBP\Client;
+use FroshPluginUploader\Components\SBP\FaqReader;
 use FroshPluginUploader\Structs\Plugin;
 
 class PluginUpdater
@@ -35,6 +36,7 @@ class PluginUpdater
             $languageManualFileMarkdown = $resourcesFolderPath . '/' . $language . '_manual.md';
             $languageHighlightsFile = $resourcesFolderPath . '/' . $language . '_highlights.txt';
             $languageFeaturesFile = $resourcesFolderPath . '/' . $language . '_features.txt';
+            $languageFaqFile = $resourcesFolderPath . '/' . $language . '_faq.md';
 
             if (file_exists($languageFile)) {
                 $infoTranslation->description = $this->convertDescription(file_get_contents($languageFile));
@@ -60,6 +62,10 @@ class PluginUpdater
 
             if (file_exists($languageFeaturesFile)) {
                 $infoTranslation->features = file_get_contents($languageFeaturesFile);
+            }
+
+            if (file_exists($languageFaqFile)) {
+                $infoTranslation->faqs = (new FaqReader())->parseFaq($languageFaqFile);
             }
 
             if ($language === 'de') {

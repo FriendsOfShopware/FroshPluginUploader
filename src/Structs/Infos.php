@@ -30,6 +30,9 @@ class Infos extends Struct
     /** @var string */
     public $features;
 
+    /** @var array */
+    public $faqs;
+
     /** @var Tags[] */
     public $tags;
 
