@@ -113,4 +113,5 @@ A .sw-zip-blacklist file can be used to define which files should be deleted bef
 # FAQ
 
 [Getting Credentials](https://github.com/FriendsOfShopware/FroshPluginUploader/wiki/Getting-Credentials)
+
 [Exception-Codes](https://github.com/FriendsOfShopware/FroshPluginUploader/wiki/PluginsException-Codes)
