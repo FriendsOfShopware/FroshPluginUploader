@@ -27,6 +27,11 @@ class GitStrategy extends AbstractStrategy
     {
         $output = $this->exec(sprintf('git -C %s tag --sort=-creatordate | head -1', escapeshellarg($directory)));
 
-        return $output[0] ?? 'master';
+        if (empty($output[0])) {
+            $output = $this->exec(sprintf('git -C %s branch', escapeshellarg($directory)));
+            $output[0] = ltrim($output[0], '* ');
+        }
+
+        return $output[0];
     }
 }
