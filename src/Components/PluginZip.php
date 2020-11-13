@@ -17,9 +17,11 @@ class PluginZip
 
     private $defaultBlacklist = [
         '.travis.yml',
+        '.gitlab-ci.yml',
         'build.sh',
         '.editorconfig',
         '.php_cs.dist',
+        '.php_cs.cache',
         'ISSUE_TEMPLATE.md',
         '.sw-zip-blacklist',
         'tests',
