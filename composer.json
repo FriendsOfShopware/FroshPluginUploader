@@ -26,7 +26,7 @@
     "ext-intl": "*",
     "symfony/console": "^5.2",
     "symfony/config": "~5.2",
-    "symfony/dependency-injection": "~5.1",
+    "symfony/dependency-injection": "~5.2",
     "symfony/dotenv": "^5.2",
     "symfony/finder": "^5.2",
     "guzzlehttp/guzzle": "~7.2",
