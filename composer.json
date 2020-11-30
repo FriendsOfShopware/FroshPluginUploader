@@ -24,7 +24,7 @@
     "ext-dom": "*",
     "ext-curl": "*",
     "ext-intl": "*",
-    "symfony/console": "^5.1",
+    "symfony/console": "^5.2",
     "symfony/config": "~5.2",
     "symfony/dependency-injection": "~5.2",
     "symfony/dotenv": "^5.2",
