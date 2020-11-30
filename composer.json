@@ -28,7 +28,7 @@
     "symfony/config": "~5.2",
     "symfony/dependency-injection": "~5.1",
     "symfony/dotenv": "^5.2",
-    "symfony/finder": "^5.1",
+    "symfony/finder": "^5.2",
     "guzzlehttp/guzzle": "~7.2",
     "composer/semver": "^3.2",
     "erusev/parsedown": "^1.7",
