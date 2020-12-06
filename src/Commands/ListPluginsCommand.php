@@ -39,6 +39,10 @@ class ListPluginsCommand extends Command implements ContainerAwareInterface
             $fromVersion = null;
             $toVersion = null;
 
+            if (empty($plugin->name)) {
+                continue;
+            }
+
             if (isset($plugin->latestBinary) && $plugin->latestBinary->compatibleSoftwareVersions) {
                 $fromVersion = reset($plugin->latestBinary->compatibleSoftwareVersions);
                 $toVersion = end($plugin->latestBinary->compatibleSoftwareVersions);
