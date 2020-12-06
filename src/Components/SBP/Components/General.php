@@ -27,7 +27,8 @@ class General extends AbstractComponent
     private function getData(): array
     {
         if ($this->allData === null) {
-            $this->allData = json_decode((string) $this->client->get('/pluginstatics/all')->getBody(), true);
+            $filter = json_encode([['property' => 'includeNonPublic', 'value' => 1]]);
+            $this->allData = json_decode((string) $this->client->get('/pluginstatics/all?filter=' . $filter)->getBody(), true);
         }
 
         return $this->allData;
