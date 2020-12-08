@@ -15,6 +15,11 @@ class PluginZip
      */
     private $strategy;
 
+    /**
+     * @var PluginPrepare
+     */
+    private $pluginPrepare;
+
     private $defaultBlacklist = [
         '.travis.yml',
         '.gitlab-ci.yml',
@@ -30,9 +35,10 @@ class PluginZip
         '.github',
     ];
 
-    public function __construct(AbstractStrategy $strategy)
+    public function __construct(AbstractStrategy $strategy, PluginPrepare $pluginPrepare)
     {
         $this->strategy = $strategy;
+        $this->pluginPrepare = $pluginPrepare;
     }
 
     public function zip(string $directory, bool $scopeDependencies, OutputInterface $output): void
@@ -50,24 +56,7 @@ class PluginZip
         $this->exec(sprintf('rm -rf %s', escapeshellarg($plugin->getName() . '-*.zip')));
 
         $version = $this->strategy->copyFolder($directory, $pluginTmpDir);
-
-        $composerJson = $pluginTmpDir . '/composer.json';
-        $composerJsonBackup = $composerJson . '.bak';
-
-        if (file_exists($composerJson)) {
-            copy($composerJson, $composerJsonBackup);
-            $this->filterShopwareDependencies($composerJson);
-            // Install composer dependencies
-            if ($this->needComposerToRun($composerJson)) {
-                $this->exec('composer install --ignore-platform-reqs --no-dev -n -d ' . escapeshellarg($pluginTmpDir));
-                if ($scopeDependencies) {
-                    $this->scopeDependencies($io, $plugin, $pluginTmpDir);
-                }
-                $this->exec('composer dump -o -d ' . escapeshellarg($pluginTmpDir));
-            }
-
-            rename($composerJsonBackup, $composerJson);
-        }
+        $this->pluginPrepare->prepare($pluginTmpDir, $scopeDependencies, $output);
 
         if (file_exists($pluginTmpDir . '/.sw-zip-blacklist')) {
             $io->warning('Use of .sw-zip-blacklist is deprecated, use .gitattributes with export-ignore. It will be removed with 0.4.0');
@@ -112,39 +101,6 @@ class PluginZip
         // @codeCoverageIgnoreEnd
     }
 
-    private function needComposerToRun(string $composerJsonPath): bool
-    {
-        $json = json_decode(file_get_contents($composerJsonPath), true);
-
-        // Plugin does not require anything
-        if (empty($json['require'])) {
-            return false;
-        }
-
-        return true;
-    }
-
-    /**
-     * Remove Shopware base packages from composer.json
-     * so they aren't bundled with the plugin.
-     */
-    private function filterShopwareDependencies(string $composerJsonPath): void
-    {
-        $json = json_decode(file_get_contents($composerJsonPath), true);
-
-        $keys = ['shopware/platform', 'shopware/core', 'shopware/storefront', 'shopware/administration', 'composer/installers'];
-        foreach ($keys as $key) {
-            if (isset($json['require'][$key])) {
-                unset($json['require'][$key]);
-            }
-        }
-
-        file_put_contents(
-            $composerJsonPath,
-            json_encode($json, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
-        );
-    }
-
     private function removeBlacklistedStoreFiles(string $pluginTmpDir): void
     {
         // Remove not allowed store file extensions
@@ -156,29 +112,5 @@ class PluginZip
         foreach (NotAllowedFilesInZipChecker::NOT_ALLOWED_FILES as $item) {
             $this->exec('(find ' . escapeshellarg($pluginTmpDir . '/') . ' -iname \'' . escapeshellarg($item) . '\') | xargs rm -rf');
         }
-    }
-
-    /**
-     * @codeCoverageIgnore
-     */
-    private function scopeDependencies(
-        SymfonyStyle $io,
-        Generation\ShopwarePlatform\Plugin $plugin,
-        string $pluginTmpDir
-    ): void {
-        try {
-            $this->exec('command -v php-scoper');
-        } catch (\RuntimeException $e) {
-            $io->warning('Could not find php-scoper executable in PATH');
-
-            return;
-        }
-        $io->writeln('Scoping plugin dependencies into ' . $plugin->getName() . '\\ namespace.');
-        $this->exec(
-            'php-scoper add-prefix -n -o ' . escapeshellarg($pluginTmpDir)
-            . ' -d ' . escapeshellarg($pluginTmpDir)
-            . ' -p ' . $plugin->getName()
-        );
-        $io->writeln('');
     }
 }
