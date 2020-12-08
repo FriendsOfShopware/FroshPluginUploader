@@ -2,6 +2,7 @@
 
 namespace FroshPluginUploader\Tests\Components;
 
+use FroshPluginUploader\Components\PluginPrepare;
 use FroshPluginUploader\Components\PluginZip;
 use FroshPluginUploader\Components\ZipStrategy\GitStrategy;
 use FroshPluginUploader\Components\ZipStrategy\PlainStrategy;
@@ -10,9 +11,19 @@ use Symfony\Component\Console\Output\NullOutput;
 
 class PluginZipTest extends TestCase
 {
+    /**
+     * @var PluginPrepare
+     */
+    private $pluginPrepare;
+
+    protected function setUp(): void
+    {
+        $this->pluginPrepare = new PluginPrepare();
+    }
+
     public function testZipShopware6Plugin(): void
     {
-        $service = new PluginZip(new PlainStrategy());
+        $service = new PluginZip(new PlainStrategy(), $this->pluginPrepare);
         $service->zip(dirname(__DIR__) . '/fixtures/plugins/ShopwarePlatformPlugin', false, new NullOutput());
         static::assertFileExists(getcwd() . '/ShopwarePlatformPlugin.zip');
         unlink(getcwd() . '/ShopwarePlatformPlugin.zip');
@@ -20,7 +31,7 @@ class PluginZipTest extends TestCase
 
     public function testZipShopware6PluginWithoutOtherDeps(): void
     {
-        $service = new PluginZip(new PlainStrategy());
+        $service = new PluginZip(new PlainStrategy(), $this->pluginPrepare);
         $service->zip(dirname(__DIR__) . '/fixtures/plugins/ShopwarePlatformPluginComposer', false, new NullOutput());
         static::assertFileExists(getcwd() . '/ShopwarePlatformPlugin.zip');
         unlink(getcwd() . '/ShopwarePlatformPlugin.zip');
@@ -28,7 +39,7 @@ class PluginZipTest extends TestCase
 
     public function testGit(): void
     {
-        $service = new PluginZip(new GitStrategy(null));
+        $service = new PluginZip(new GitStrategy(null), $this->pluginPrepare);
         $path = dirname(__DIR__) . '/fixtures/plugins/ShopwarePlatformPluginComposer';
 
         exec('cd ' . $path . '; git init; git add .');
@@ -45,7 +56,7 @@ class PluginZipTest extends TestCase
 
     public function testScooping(): void
     {
-        $service = new PluginZip(new PlainStrategy());
+        $service = new PluginZip(new PlainStrategy(), $this->pluginPrepare);
         $service->zip(dirname(__DIR__) . '/fixtures/plugins/ShopwarePlatformPlugin', true, new NullOutput());
         static::assertFileExists(getcwd() . '/ShopwarePlatformPlugin.zip');
         unlink(getcwd() . '/ShopwarePlatformPlugin.zip');
