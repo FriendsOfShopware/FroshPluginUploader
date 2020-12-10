@@ -46,7 +46,7 @@
     "roave/security-advisories": "dev-master",
     "nette/php-generator": "^3.5",
     "phpunit/phpunit": "^9.5",
-    "symplify/changelog-linker": "^8.3",
+    "symplify/changelog-linker": "^9.0",
     "phpspec/prophecy-phpunit": "^2.0"
   }
 }
