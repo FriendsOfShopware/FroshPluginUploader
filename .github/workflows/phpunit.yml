@@ -30,7 +30,7 @@ jobs:
         file: ./clover.xml
     
     - name: Download box
-      run: wget https://github.com/humbug/box/releases/download/3.8.4/box.phar
+      run: wget https://github.com/humbug/box/releases/download/3.11.0/box.phar
     
     - name: Remove dev deps
       run: composer install --no-dev
