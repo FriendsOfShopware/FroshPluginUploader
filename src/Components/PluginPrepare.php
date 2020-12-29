@@ -2,6 +2,9 @@
 
 namespace FroshPluginUploader\Components;
 
+use JakubOnderka\PhpVarDumpCheck\Manager;
+use JakubOnderka\PhpVarDumpCheck\Output;
+use JakubOnderka\PhpVarDumpCheck\Settings;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
@@ -13,6 +16,8 @@ class PluginPrepare
         $composerJson = $directory . '/composer.json';
         $composerJsonBackup = $composerJson . '.bak';
 
+        $io = new SymfonyStyle(new ArgvInput(), $output);
+
         if (file_exists($composerJson)) {
             copy($composerJson, $composerJsonBackup);
             $this->filterShopwareDependencies($composerJson);
@@ -23,7 +28,6 @@ class PluginPrepare
 
                 // TODO: Maybe refactor this into own service
                 if ($scopeDependencies) {
-                    $io = new SymfonyStyle(new ArgvInput(), $output);
                     $plugin = PluginFinder::findPluginByRootFolder($directory);
                     $this->scopeDependencies($io, $plugin, $directory);
                 }
@@ -31,6 +35,19 @@ class PluginPrepare
             }
 
             rename($composerJsonBackup, $composerJson);
+        }
+
+        $settings = new Settings();
+        $settings->excluded = ['vendor'];
+        $settings->paths = [$directory];
+
+        $manager = new Manager();
+        $buffer = new BufferedWriter();
+        if (!$manager->check($settings, new Output($buffer))) {
+            // @codeCoverageIgnoreStart
+            $io->error($buffer->getOutput());
+            exit(254);
+            // @codeCoverageIgnoreEnd
         }
     }
 
