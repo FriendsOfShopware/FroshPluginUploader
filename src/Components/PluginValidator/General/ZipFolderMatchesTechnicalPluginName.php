@@ -14,9 +14,9 @@ class ZipFolderMatchesTechnicalPluginName implements ValidationInterface
 
     public function validate(ViolationContext $context): void
     {
-        $firstFolder = $context->getZipArchive()->statIndex(0)['name'];
+        $firstFolder = explode('/', $context->getZipArchive()->statIndex(0)['name'])[0];
 
-        if ($firstFolder === $context->getPlugin()->getName() . '/') {
+        if ($firstFolder === $context->getPlugin()->getName()) {
             return;
         }
 
