@@ -3,7 +3,20 @@
 error_reporting(-1);
 ini_set('display_errors', 1);
 
-require dirname(__DIR__) . '/vendor/autoload.php';
+$includables = [
+    __DIR__ . '/../../../autoload.php',
+    __DIR__ . '/../../vendor/autoload.php',
+    __DIR__ . '/../vendor/autoload.php',
+    __DIR__ . '/vendor/autoload.php'
+];
+
+foreach ($includables as $file) {
+    if (file_exists($file)) {
+        include_once ($file);
+
+        break;
+    }
+}
 
 $app = new \FroshPluginUploader\Application();
 $app->run();
