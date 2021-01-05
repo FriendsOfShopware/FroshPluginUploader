@@ -38,7 +38,7 @@ class PluginPrepare
         }
 
         $settings = new Settings();
-        $settings->excluded = ['vendor'];
+        $settings->excluded = [$directory . '/vendor'];
         $settings->paths = [$directory];
 
         $manager = new Manager();
