@@ -81,8 +81,12 @@ class ComposerJsonChecker implements ValidationInterface
         }
 
         // Call the changelog methods, it will throw a exception if they are missing
-        $context->getPlugin()->getReader()->getNewestChangelogGerman();
-        $context->getPlugin()->getReader()->getNewestChangelogEnglish();
+        try {
+            $context->getPlugin()->getReader()->getNewestChangelogGerman();
+            $context->getPlugin()->getReader()->getNewestChangelogEnglish();
+        } catch (\Exception $e) {
+            $context->addViolation($e->getMessage());
+        }
     }
 
     private function doesPluginBootstrapExists(ViolationContext $context): void

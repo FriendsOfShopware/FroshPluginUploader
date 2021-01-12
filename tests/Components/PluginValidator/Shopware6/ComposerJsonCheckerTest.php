@@ -5,6 +5,7 @@ namespace FroshPluginUploader\Tests\Components\PluginValidator\Shopware6;
 use FroshPluginUploader\Components\Generation\ShopwarePlatform\Plugin;
 use FroshPluginUploader\Components\Generation\ShopwarePlatform\PluginReader;
 use FroshPluginUploader\Components\PluginValidator\Shopware6\ComposerJsonChecker;
+use FroshPluginUploader\Exception\MissingChangelogException;
 use FroshPluginUploader\Structs\ViolationContext;
 use FroshPluginUploader\Tests\Components\IoHelper;
 use PHPUnit\Framework\TestCase;
@@ -215,6 +216,59 @@ class ComposerJsonCheckerTest extends TestCase
         static::assertTrue($context->hasViolations());
         static::assertContains('Cannot find plugin bootstrap file in zip at path "SwagTest/SwagTest.php"', $context->getViolations());
     }
+
+    public function testInvalidMissingChangelog(): void
+    {
+        $context = $this->makeContext([
+            'name' => 'swag/test',
+            'type' => 'shopware-platform-plugin',
+            'description' => 'Foo',
+            'license' => 'Foo',
+            'version' => '1.0.0',
+            'authors' => [
+                [
+                    'name' => 'Test'
+                ]
+            ],
+            "autoload" => [
+                'psr-4' => [
+                    'Swag\\Test\\' => 'src/'
+                ]
+            ],
+            'require' => [
+                'shopware/core' => '*'
+            ],
+            'extra' => [
+                'shopware-plugin-class' => 'Swag\\Test\\SwagTest',
+                'label' => [
+                    'de-DE' => 'FOO',
+                    'en-GB' => 'FOO'
+                ],
+                'description' => [
+                    'de-DE' => 'FOO',
+                    'en-GB' => 'FOO'
+                ],
+                'manufacturerLink' => [
+                    'de-DE' => 'FOO',
+                ],
+                'supportLink' => [
+                    'de-DE' => 'FOO'
+                ]
+            ]
+        ]);
+
+        /** @var \PHPUnit\Framework\MockObject\MockObject $pluginReader */
+        $pluginReader = $context->getPlugin()->getReader();
+        $pluginReader->method('getNewestChangelogGerman')
+            ->will($this->throwException(new MissingChangelogException('Changelogs are missing for plugin')));
+
+        static::assertTrue((new ComposerJsonChecker())->supports($context));
+        (new ComposerJsonChecker())->validate($context);
+
+        static::assertTrue($context->hasViolations());
+        static::assertContains('Changelogs are missing for plugin', $context->getViolations());
+    }
+
 
     private function makeContext(array $xml = [], string $pluginName = 'SwagTest'): ViolationContext
     {
