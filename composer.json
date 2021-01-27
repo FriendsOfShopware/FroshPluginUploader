@@ -51,6 +51,7 @@
     "nette/php-generator": "^3.5",
     "phpunit/phpunit": "^9.5",
     "symplify/changelog-linker": "^9.0",
-    "phpspec/prophecy-phpunit": "^2.0"
+    "phpspec/prophecy-phpunit": "^2.0",
+    "friendsofphp/php-cs-fixer": "^2.18"
   }
 }

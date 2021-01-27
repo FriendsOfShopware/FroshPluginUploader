@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+declare(strict_types=1);
 
 namespace FroshPluginUploader\Commands;
 
@@ -10,12 +11,16 @@ use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Helper\TableStyle;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
-class ListPluginsCommand extends Command implements ContainerAwareInterface
+class ListPluginsCommand extends Command
 {
-    use ContainerAwareTrait;
+    private Client $client;
+
+    public function __construct(Client $client)
+    {
+        parent::__construct();
+        $this->client = $client;
+    }
 
     protected function configure(): void
     {
@@ -27,8 +32,7 @@ class ListPluginsCommand extends Command implements ContainerAwareInterface
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $client = $this->container->get(Client::class);
-        $plugins = $client->Producer()->getPlugins();
+        $plugins = $this->client->Producer()->getPlugins();
         $table = new Table($output);
         $tblStyle = new TableStyle();
         $alignRight = $tblStyle->setPadType(STR_PAD_LEFT);

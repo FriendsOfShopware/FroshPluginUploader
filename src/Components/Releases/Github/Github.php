@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace FroshPluginUploader\Components\Releases\Github;
 
@@ -35,7 +36,7 @@ class Github implements ReleaseInterface
         }
 
         $tag = $this->client->repo()->releases()->create($this->user, $this->repo, [
-            'tag_name' => $plugin->getReader()->getVersion()
+            'tag_name' => $plugin->getReader()->getVersion(),
         ]);
 
         $this->updateAndUploadZip($tag['id'], $plugin, $zipPath);
@@ -46,7 +47,7 @@ class Github implements ReleaseInterface
     private function updateAndUploadZip(int $id, PluginInterface $plugin, string $zipPath): void
     {
         $this->client->repo()->releases()->edit($this->user, $this->repo, $id, [
-            'body' => '## Changelog' . "\n" . $plugin->getReader()->getNewestChangelogEnglish()
+            'body' => '## Changelog' . "\n" . $plugin->getReader()->getNewestChangelogEnglish(),
         ]);
 
         $ourAssetName = $plugin->getName() . '.zip';

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace FroshPluginUploader\Components\Releases\Gitlab;
 
@@ -35,7 +36,6 @@ class Gitlab implements ReleaseInterface
 
         $this->updateAndUploadZip($plugin, $zipPath);
 
-
         return new Release('');
     }
 
@@ -49,12 +49,11 @@ class Gitlab implements ReleaseInterface
 
         $ch = curl_init(sprintf('https://gitlab.com/api/v4/projects/%s/packages/generic/%s/%s/%s', $_SERVER['CI_PROJECT_ID'], $plugin->getName(), $plugin->getReader()->getVersion(), $plugin->getName() . '.zip'));
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
             'PRIVATE-TOKEN: ' . $_SERVER['CI_JOB_TOKEN'],
-        ));
+        ]);
         curl_setopt($ch, CURLOPT_POSTFIELDS, file_get_contents($zipPath));
 
         var_dump(curl_exec($ch));
-
     }
 }

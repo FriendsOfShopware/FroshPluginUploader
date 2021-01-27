@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace FroshPluginUploader\Components\PluginValidator\Shopware6;
 
@@ -26,6 +27,7 @@ class ThemeJsonValidator implements ValidationInterface
 
         if (!isset($themeJson['previewMedia'])) {
             $context->addViolation(sprintf('Required field "previewMedia" in theme.json is not in'));
+
             return;
         }
 

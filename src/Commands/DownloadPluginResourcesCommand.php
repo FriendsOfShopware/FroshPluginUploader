@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+declare(strict_types=1);
 
 namespace FroshPluginUploader\Commands;
 
@@ -8,12 +9,16 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
-class DownloadPluginResourcesCommand extends Command implements ContainerAwareInterface
+class DownloadPluginResourcesCommand extends Command
 {
-    use ContainerAwareTrait;
+    private ResourcesDownloader $resourcesDownloader;
+
+    public function __construct(ResourcesDownloader $resourcesDownloader)
+    {
+        parent::__construct();
+        $this->resourcesDownloader = $resourcesDownloader;
+    }
 
     protected function configure(): void
     {
@@ -27,7 +32,7 @@ class DownloadPluginResourcesCommand extends Command implements ContainerAwareIn
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $this->container->get(ResourcesDownloader::class)->download($input->getArgument('name'), $input->getArgument('path'));
+        $this->resourcesDownloader->download($input->getArgument('name'), $input->getArgument('path'));
 
         $io = new SymfonyStyle($input, $output);
         $io->success('Downloaded store data to given folder');

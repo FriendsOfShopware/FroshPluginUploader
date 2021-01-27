@@ -23,23 +23,23 @@ class PluginZipTest extends TestCase
 
     public function testZipShopware6Plugin(): void
     {
-        $service = new PluginZip(new PlainStrategy(), $this->pluginPrepare);
-        $service->zip(dirname(__DIR__) . '/fixtures/plugins/ShopwarePlatformPlugin', false, new NullOutput());
+        $service = new PluginZip($this->pluginPrepare);
+        $service->zip(dirname(__DIR__) . '/fixtures/plugins/ShopwarePlatformPlugin', false, new NullOutput(), new PlainStrategy());
         static::assertFileExists(getcwd() . '/ShopwarePlatformPlugin.zip');
         unlink(getcwd() . '/ShopwarePlatformPlugin.zip');
     }
 
     public function testZipShopware6PluginWithoutOtherDeps(): void
     {
-        $service = new PluginZip(new PlainStrategy(), $this->pluginPrepare);
-        $service->zip(dirname(__DIR__) . '/fixtures/plugins/ShopwarePlatformPluginComposer', false, new NullOutput());
+        $service = new PluginZip($this->pluginPrepare);
+        $service->zip(dirname(__DIR__) . '/fixtures/plugins/ShopwarePlatformPluginComposer', false, new NullOutput(), new PlainStrategy());
         static::assertFileExists(getcwd() . '/ShopwarePlatformPlugin.zip');
         unlink(getcwd() . '/ShopwarePlatformPlugin.zip');
     }
 
     public function testGit(): void
     {
-        $service = new PluginZip(new GitStrategy(null), $this->pluginPrepare);
+        $service = new PluginZip($this->pluginPrepare);
         $path = dirname(__DIR__) . '/fixtures/plugins/ShopwarePlatformPluginComposer';
 
         exec('cd ' . $path . '; git init; git add .');
@@ -47,7 +47,7 @@ class PluginZipTest extends TestCase
         exec('cd ' . $path . '; git config user.email test@test.de');
         exec('cd ' . $path . '; git commit -m "Test"');
 
-        $service->zip($path, false, new NullOutput());
+        $service->zip($path, false, new NullOutput(), new GitStrategy(null));
         static::assertFileExists(getcwd() . '/ShopwarePlatformPlugin-master.zip');
         unlink(getcwd() . '/ShopwarePlatformPlugin-master.zip');
 
@@ -56,8 +56,8 @@ class PluginZipTest extends TestCase
 
     public function testScooping(): void
     {
-        $service = new PluginZip(new PlainStrategy(), $this->pluginPrepare);
-        $service->zip(dirname(__DIR__) . '/fixtures/plugins/ShopwarePlatformPlugin', true, new NullOutput());
+        $service = new PluginZip($this->pluginPrepare);
+        $service->zip(dirname(__DIR__) . '/fixtures/plugins/ShopwarePlatformPlugin', true, new NullOutput(), new PlainStrategy());
         static::assertFileExists(getcwd() . '/ShopwarePlatformPlugin.zip');
         unlink(getcwd() . '/ShopwarePlatformPlugin.zip');
     }

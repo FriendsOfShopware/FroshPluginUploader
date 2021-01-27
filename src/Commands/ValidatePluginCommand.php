@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+declare(strict_types=1);
 
 namespace FroshPluginUploader\Commands;
 
@@ -16,22 +17,21 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
-class ValidatePluginCommand extends Command implements ContainerAwareInterface
+class ValidatePluginCommand extends Command
 {
-    use ContainerAwareTrait;
-
     /**
      * @var ValidationInterface[]
      */
     private $validators;
 
-    public function __construct(iterable $validators)
+    private Client $client;
+
+    public function __construct(iterable $validators, Client $client)
     {
         parent::__construct();
         $this->validators = $validators;
+        $this->client = $client;
     }
 
     protected function configure(): void
@@ -104,16 +104,14 @@ class ValidatePluginCommand extends Command implements ContainerAwareInterface
             return null;
         }
 
-        $client = $this->container->get(Client::class);
-
         try {
-            return $client->Producer()->getPlugin($plugin->getName());
+            return $this->client->Producer()->getPlugin($plugin->getName());
         } catch (PluginNotFoundInAccount $e) {
             if (!$createIfNotExists) {
                 throw $e;
             }
 
-            return $client->Producer()->createPlugin($plugin->getName(), $plugin->getStoreType());
+            return $this->client->Producer()->createPlugin($plugin->getName(), $plugin->getStoreType());
         }
     }
 }

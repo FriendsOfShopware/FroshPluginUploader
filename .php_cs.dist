@@ -22,5 +22,6 @@ return PhpCsFixer\Config::create()
         'declare_strict_types' => true,
         'yoda_style' => ['equal' => false, 'identical' => false, 'less_and_greater' => false],
     ])
+    ->setRiskyAllowed(true)
     ->setFinder($finder)
 ;

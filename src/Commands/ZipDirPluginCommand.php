@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+declare(strict_types=1);
 
 namespace FroshPluginUploader\Commands;
 
@@ -11,12 +12,16 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
-class ZipDirPluginCommand extends Command implements ContainerAwareInterface
+class ZipDirPluginCommand extends Command
 {
-    use ContainerAwareTrait;
+    private PluginZip $pluginZip;
+
+    public function __construct(PluginZip $pluginZip)
+    {
+        parent::__construct();
+        $this->pluginZip = $pluginZip;
+    }
 
     public function execute(InputInterface $input, OutputInterface $output): int
     {
@@ -25,8 +30,8 @@ class ZipDirPluginCommand extends Command implements ContainerAwareInterface
         if (!file_exists($path)) {
             throw new \RuntimeException(sprintf('Folder by path %s does not exist', $input->getArgument('path')));
         }
-        $this->container->set('zip.strategy', $this->makeStrategy($input));
-        $this->container->get(PluginZip::class)->zip($path, (bool) $input->getOption('scope'), $output);
+
+        $this->pluginZip->zip($path, (bool) $input->getOption('scope'), $output, $this->makeStrategy($input));
 
         return 0;
     }

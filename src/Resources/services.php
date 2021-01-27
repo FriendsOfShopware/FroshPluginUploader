@@ -1,10 +1,9 @@
-<?php declare(strict_types=1);
+<?php
+declare(strict_types=1);
 
 use FroshPluginUploader\Commands\ValidatePluginCommand;
-use FroshPluginUploader\Components\PluginZip;
 use Symfony\Component\DependencyInjection\Argument\TaggedIteratorArgument;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
-use function Symfony\Component\DependencyInjection\Loader\Configurator\service;
 
 return static function (ContainerConfigurator $configurator) {
     $configurator->parameters()->set('project_dir', __DIR__ . '/../..');
@@ -20,16 +19,6 @@ return static function (ContainerConfigurator $configurator) {
 
     $configurator
         ->services()
-        ->get(PluginZip::class)
-        ->arg('$strategy', service('zip.strategy'));
-
-    $configurator
-        ->services()
         ->get(ValidatePluginCommand::class)
         ->arg('$validators', new TaggedIteratorArgument('uploader.validation'));
-
-    $configurator
-        ->services()
-        ->set('zip.strategy')
-        ->synthetic(true);
 };

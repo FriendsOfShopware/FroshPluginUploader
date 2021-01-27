@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+declare(strict_types=1);
 
 namespace FroshPluginUploader\Commands;
 
@@ -8,12 +9,16 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
-class PreparePluginCommand extends Command implements ContainerAwareInterface
+class PreparePluginCommand extends Command
 {
-    use ContainerAwareTrait;
+    private PluginPrepare $pluginPrepare;
+
+    public function __construct(PluginPrepare $pluginPrepare)
+    {
+        parent::__construct();
+        $this->pluginPrepare = $pluginPrepare;
+    }
 
     public function execute(InputInterface $input, OutputInterface $output): int
     {
@@ -22,7 +27,8 @@ class PreparePluginCommand extends Command implements ContainerAwareInterface
         if (!file_exists($path)) {
             throw new \RuntimeException(sprintf('Folder by path %s does not exist', $input->getArgument('path')));
         }
-        $this->container->get(PluginPrepare::class)->prepare($path, (bool) $input->getOption('scope'), $output);
+
+        $this->pluginPrepare->prepare($path, (bool) $input->getOption('scope'), $output);
 
         return 0;
     }

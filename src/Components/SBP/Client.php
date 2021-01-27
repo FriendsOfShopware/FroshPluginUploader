@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+declare(strict_types=1);
 
 namespace FroshPluginUploader\Components\SBP;
 
@@ -23,6 +24,9 @@ use Psr\Http\Message\UriInterface;
  * @method PromiseInterface  postAsync(string|UriInterface $uri, array $options = [])
  * @method PromiseInterface  patchAsync(string|UriInterface $uri, array $options = [])
  * @method PromiseInterface  deleteAsync(string|UriInterface $uri, array $options = [])
+ * @method Plugin            Plugins()
+ * @method Producer          Producer()
+ * @method General           General()
  */
 class Client
 {
@@ -46,26 +50,34 @@ class Client
      */
     private $producer;
 
+    private bool $connected = false;
+
     public function __construct()
     {
         $this->apiClient = $this->createClient(null);
-
-        $user = $_SERVER['ACCOUNT_USER'] ?? '';
-        $password = $_SERVER['ACCOUNT_PASSWORD'] ?? '';
-        if (empty($user) || empty($password)) {
-            throw new \RuntimeException('The enviroment variable $ACCOUNT_USER and $ACCOUNT_PASSWORD are required');
-        }
-
-        $this->login($user, $password);
     }
 
     public function __call($name, $arguments)
     {
+        $this->ensureConnected();
+
+        $lowerName = \strtolower($name);
+
+        if (isset($this->components[$lowerName])) {
+            return $this->components[$lowerName];
+        }
+
         return call_user_func_array([$this->apiClient, $name], $arguments);
     }
 
-    public function login(string $username, string $password): void
+    public function login(): void
     {
+        $username = $_SERVER['ACCOUNT_USER'] ?? '';
+        $password = $_SERVER['ACCOUNT_PASSWORD'] ?? '';
+        if (empty($username) || empty($password)) {
+            throw new \RuntimeException('The environment variable $ACCOUNT_USER and $ACCOUNT_PASSWORD are required');
+        }
+
         $response = $this->apiClient->post('/accesstokens', [
             'json' => [
                 'shopwareId' => $username,
@@ -87,21 +99,6 @@ class Client
         $this->components['general'] = new General($this);
 
         $this->producer = $this->Producer()->getProducer();
-    }
-
-    public function Plugins(): Plugin
-    {
-        return $this->components['plugins'];
-    }
-
-    public function Producer(): Producer
-    {
-        return $this->components['producer'];
-    }
-
-    public function General(): General
-    {
-        return $this->components['general'];
     }
 
     public function getUserId(): int
@@ -128,5 +125,15 @@ class Client
         }
 
         return new \GuzzleHttp\Client($options);
+    }
+
+    private function ensureConnected(): void
+    {
+        if ($this->connected) {
+            return;
+        }
+
+        $this->connected = true;
+        $this->login();
     }
 }

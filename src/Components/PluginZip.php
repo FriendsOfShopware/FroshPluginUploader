@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+declare(strict_types=1);
 
 namespace FroshPluginUploader\Components;
 
@@ -10,11 +11,6 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 class PluginZip
 {
-    /**
-     * @var AbstractStrategy
-     */
-    private $strategy;
-
     /**
      * @var PluginPrepare
      */
@@ -35,13 +31,12 @@ class PluginZip
         '.github',
     ];
 
-    public function __construct(AbstractStrategy $strategy, PluginPrepare $pluginPrepare)
+    public function __construct(PluginPrepare $pluginPrepare)
     {
-        $this->strategy = $strategy;
         $this->pluginPrepare = $pluginPrepare;
     }
 
-    public function zip(string $directory, bool $scopeDependencies, OutputInterface $output): void
+    public function zip(string $directory, bool $scopeDependencies, OutputInterface $output, AbstractStrategy $strategy): void
     {
         $io = new SymfonyStyle(new ArgvInput(), $output);
 
@@ -55,7 +50,7 @@ class PluginZip
         // Cleanup old releases
         $this->exec(sprintf('rm -rf %s', escapeshellarg($plugin->getName() . '-*.zip')));
 
-        $version = $this->strategy->copyFolder($directory, $pluginTmpDir);
+        $version = $strategy->copyFolder($directory, $pluginTmpDir);
         $this->pluginPrepare->prepare($pluginTmpDir, $scopeDependencies, $output);
 
         if (file_exists($pluginTmpDir . '/.sw-zip-blacklist')) {

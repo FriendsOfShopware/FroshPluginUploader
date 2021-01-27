@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+declare(strict_types=1);
 
 namespace FroshPluginUploader\Commands;
 
@@ -10,12 +11,18 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
-class UpdatePluginCommand extends Command implements ContainerAwareInterface
+class UpdatePluginCommand extends Command
 {
-    use ContainerAwareTrait;
+    private Client $client;
+    private PluginUpdater $pluginUpdater;
+
+    public function __construct(Client $client, PluginUpdater $pluginUpdater)
+    {
+        parent::__construct();
+        $this->client = $client;
+        $this->pluginUpdater = $pluginUpdater;
+    }
 
     protected function configure()
     {
@@ -35,9 +42,9 @@ class UpdatePluginCommand extends Command implements ContainerAwareInterface
         }
 
         $plugin = PluginFinder::findPluginByRootFolder($path);
-        $storePlugin = $this->container->get(Client::class)->Producer()->getPlugin($plugin->getName());
+        $storePlugin = $this->client->Producer()->getPlugin($plugin->getName());
 
-        $this->container->get(PluginUpdater::class)->sync($plugin, $storePlugin);
+        $this->pluginUpdater->sync($plugin, $storePlugin);
 
         $io = new SymfonyStyle($input, $output);
         $io->success('Store folder has been applied to plugin page');
