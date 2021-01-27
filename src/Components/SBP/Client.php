@@ -24,9 +24,6 @@ use Psr\Http\Message\UriInterface;
  * @method PromiseInterface  postAsync(string|UriInterface $uri, array $options = [])
  * @method PromiseInterface  patchAsync(string|UriInterface $uri, array $options = [])
  * @method PromiseInterface  deleteAsync(string|UriInterface $uri, array $options = [])
- * @method Plugin            Plugins()
- * @method Producer          Producer()
- * @method General           General()
  */
 class Client
 {
@@ -99,6 +96,27 @@ class Client
         $this->components['general'] = new General($this);
 
         $this->producer = $this->Producer()->getProducer();
+    }
+
+    public function Plugins(): Plugin
+    {
+        $this->ensureConnected();
+
+        return $this->components['plugins'];
+    }
+
+    public function Producer(): Producer
+    {
+        $this->ensureConnected();
+
+        return $this->components['producer'];
+    }
+
+    public function General(): General
+    {
+        $this->ensureConnected();
+
+        return $this->components['general'];
     }
 
     public function getUserId(): int

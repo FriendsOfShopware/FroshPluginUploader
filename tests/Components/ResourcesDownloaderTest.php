@@ -1,4 +1,5 @@
-<?php declare(strict_types=1);
+<?php
+declare(strict_types=1);
 
 namespace FroshPluginUploader\Tests\Components;
 
@@ -9,10 +10,8 @@ use FroshPluginUploader\Components\SBP\Components\Producer;
 use FroshPluginUploader\Structs\Image;
 use FroshPluginUploader\Structs\Plugin;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\NullOutput;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class ResourcesDownloaderTest extends TestCase
 {
@@ -25,10 +24,7 @@ class ResourcesDownloaderTest extends TestCase
             'path' => $folder,
         ]);
 
-        $command = new DownloadPluginResourcesCommand();
-        $container = new ContainerBuilder();
-        $container->set(ResourcesDownloader::class, new ResourcesDownloader($this->makeClient()));
-        $command->setContainer($container);
+        $command = new DownloadPluginResourcesCommand(new ResourcesDownloader($this->makeClient()));
         $command->run($argvInput, new NullOutput());
 
         static::assertFileExists($folder . '/de.html');
@@ -39,44 +35,37 @@ class ResourcesDownloaderTest extends TestCase
 
         $json = json_decode(file_get_contents($folder . '/store.json'), true);
         static::assertSame([
-            'storeAvailabilities' =>
-                [
+            'storeAvailabilities' => [
                     0 => 'German',
                     1 => 'International',
                 ],
-            'localizations' =>
-                [
+            'localizations' => [
                     0 => 'de_DE',
                     1 => 'en_GB',
                 ],
-            'categories' =>
-                [
+            'categories' => [
                     0 => 'System',
                     1 => 'ConversionOptimierung',
                 ],
             'productType' => 'extension',
             'responsive' => true,
             'standardLocale' => 'en_GB',
-            'tags' =>
-                [
-                    'de' =>
-                        [
+            'tags' => [
+                    'de' => [
                             0 => 'Performance',
                             1 => 'space',
                             2 => 'Thumbnail',
                         ],
-                    'en' =>
-                        [
+                    'en' => [
                             0 => 'performance',
                             1 => 'thumbnail',
                             2 => 'space',
                         ],
                 ],
-            'videos' =>
-                [
+            'videos' => [
                     'de' => [
-                        'https://youtube.de/test'
-                    ]
+                        'https://youtube.de/test',
+                    ],
                 ],
         ], $json);
     }
