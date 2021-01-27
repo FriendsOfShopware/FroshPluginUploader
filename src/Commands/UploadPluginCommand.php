@@ -4,8 +4,11 @@ namespace FroshPluginUploader\Commands;
 
 use FroshPluginUploader\Components\PluginBinaryUploader;
 use FroshPluginUploader\Components\PluginFinder;
+use FroshPluginUploader\Components\ReleaseFactory;
+use FroshPluginUploader\Components\Releases\Release;
 use FroshPluginUploader\Components\SBP\Client;
 use FroshPluginUploader\Structs\Input\UploadPluginInput;
+use FroshPluginUploader\Structs\Input\UploadPluginResult;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -27,7 +30,8 @@ class UploadPluginCommand extends Command implements ContainerAwareInterface
             ->setDescription('Uploads a plugin binary to store.shopware.com')
             ->addArgument('zipPath', InputArgument::REQUIRED, 'Path to to the plugin binary')
             ->addOption('skipCodeReview', null, InputOption::VALUE_NONE, 'Don\'t trigger code review')
-            ->addOption('skipCodeReviewResult', 's', InputOption::VALUE_NONE, 'Dont wait for code-review result');
+            ->addOption('skipCodeReviewResult', 's', InputOption::VALUE_NONE, 'Dont wait for code-review result')
+            ->addOption('createRelease', null, InputOption::VALUE_NONE, 'Create a Github Release');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -66,6 +70,12 @@ class UploadPluginCommand extends Command implements ContainerAwareInterface
             $io->warning($result->getMessage());
         } else {
             $io->error($result->getMessage());
+        }
+
+        if ($result->isPassed() && $input->getOption('createRelease')) {
+            /** @var Release $release */
+            $release = $this->container->get(ReleaseFactory::class)->get()->create($plugin, $zipPath);
+            $io->success('Created a new Release '. $release->getReleaseUrl());
         }
 
         return $result->isPassed() ? 0 : -1;

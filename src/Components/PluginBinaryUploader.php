@@ -19,7 +19,7 @@ class PluginBinaryUploader
         $this->client = $client;
     }
 
-    public function upload(UploadPluginInput $input)
+    public function upload(UploadPluginInput $input): UploadPluginResult
     {
         $binaries = $this->client->Plugins()->getAvailableBinaries($input->getStorePlugin()->id);
 
