@@ -16,6 +16,7 @@ class PluginPrepare
     {
         $composerJson = $directory . '/composer.json';
         $composerJsonBackup = $composerJson . '.bak';
+        $composerLock = $directory . '/composer.lock';
 
         $io = new SymfonyStyle(new ArgvInput(), $output);
 
@@ -25,6 +26,11 @@ class PluginPrepare
 
             // Install composer dependencies
             if ($this->needComposerToRun($composerJson)) {
+                // delete composer.lock file before calling `composer install` - see #112 for details
+                if (file_exists($composerLock)) {
+                    unlink($composerLock);
+                }
+
                 $this->exec('composer install --ignore-platform-reqs --no-dev -n -d ' . escapeshellarg($directory));
 
                 // TODO: Maybe refactor this into own service
