@@ -47,6 +47,7 @@ jobs:
   dockerUpload:
     runs-on: ubuntu-latest
     needs: [build]
+    if: github.ref == 'refs/heads/master'
     steps:
       - uses: actions/checkout@v1
       - name: Login into Docker Registery
