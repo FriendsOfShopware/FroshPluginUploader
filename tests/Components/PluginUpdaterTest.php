@@ -47,8 +47,8 @@ class PluginUpdaterTest extends TestCase
 
         $updater->sync($plugin, $storePlugin);
 
-        static::assertSame('<p>Test</p>', $storePlugin->infos[0]->description);
-        static::assertSame('<p>Test</p>', $storePlugin->infos[0]->installationManual);
+        static::assertSame('<p>Test</p>', trim($storePlugin->infos[0]->description));
+        static::assertSame('<p>Test</p>', trim($storePlugin->infos[0]->installationManual));
         static::assertSame('Test', $storePlugin->infos[0]->features);
         static::assertSame('Test', $storePlugin->infos[0]->highlights);
     }
@@ -94,8 +94,8 @@ class PluginUpdaterTest extends TestCase
 
         $updater->sync($plugin, $storePlugin);
 
-        static::assertSame('<p>Test</p>', $storePlugin->infos[0]->description);
-        static::assertSame('<p>Test</p>', $storePlugin->infos[0]->installationManual);
+        static::assertSame('<p>Test</p>', trim($storePlugin->infos[0]->description));
+        static::assertSame('<p>Test</p>', trim($storePlugin->infos[0]->installationManual));
         static::assertSame('proprietary', $storePlugin->license['name']);
     }
 
