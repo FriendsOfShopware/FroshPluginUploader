@@ -1,0 +1,34 @@
+{
+  "name": "frosh/platform-performance",
+  "version": "1.0.0",
+  "type": "shopware-platform-plugin",
+  "keywords": ["shopware", "performance", "minify", "http2"],
+  "description": "Performance improvements for Shopware",
+  "license": ["MIT", "foo"],
+  "authors": [
+        {
+            "name": "Example Company",
+            "homepage": "https://my.example.com"
+        }
+    ],
+  "autoload": {
+    "psr-4": {
+      "Frosh\\Performance\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "Frosh\\Performance\\ShopwarePlatformPlugin",
+    "copyright": "FriendsOfShopware",
+    "label": {
+      "de-DE": "Label DE",
+      "en-GB": "Label EN"
+    },
+    "description": {
+      "de-DE": "Description DE",
+      "en-GB": "Description EN"
+    }
+  },
+  "require": {
+    "shopware/core": "*"
+  }
+}

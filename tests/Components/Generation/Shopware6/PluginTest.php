@@ -54,4 +54,12 @@ class PluginTest extends TestCase
         static::assertSame('<ul><li>First release in store</li></ul>', $plugin->getReader()->getNewestChangelogEnglish());
         static::assertSame('<ul><li>Erster Release im Store</li></ul>', $plugin->getReader()->getNewestChangelogGerman());
     }
+
+    public function testMultiLicense(): void
+    {
+        $rootDir = dirname(__DIR__, 3) . '/fixtures/plugins/ShopwarePlatformPluginComposerMultiLicense';
+        $plugin = new Plugin($rootDir, 'ShopwarePlatformPluginComposerMultiLicense');
+
+        static::assertSame('mit', $plugin->getReader()->getLicense());
+    }
 }
