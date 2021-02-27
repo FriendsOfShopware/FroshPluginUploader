@@ -75,7 +75,7 @@ class PluginReader implements PluginReaderInterface
 
     public function getLicense(): string
     {
-        return strtolower($this->composerJson['license']);
+        return strtolower(is_array($this->composerJson['license']) ? $this->composerJson['license'][0] : $this->composerJson['license']);
     }
 
     public function getName(): string
