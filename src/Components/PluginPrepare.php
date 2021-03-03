@@ -99,7 +99,7 @@ class PluginPrepare
      */
     private function scopeDependencies(
         SymfonyStyle $io,
-        Generation\ShopwarePlatform\Plugin $plugin,
+        PluginInterface $plugin,
         string $directory
     ): void {
         try {
