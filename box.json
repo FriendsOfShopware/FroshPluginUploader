@@ -21,7 +21,6 @@
     }
   ],
   "git-version": "package_version",
-  "intercept": true,
   "output": "frosh-plugin-upload.phar",
   "compression": "GZ"
 }
