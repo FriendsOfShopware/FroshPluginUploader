@@ -1,7 +1,7 @@
 FROM alpine as scoper
 WORKDIR /bin
 RUN apk add --no-cache wget && \
-    wget -O php-scoper.phar https://github.com/humbug/php-scoper/releases/download/0.13.2/php-scoper.phar && \
+    wget -O php-scoper.phar https://github.com/humbug/php-scoper/releases/download/0.14.0/php-scoper.phar && \
     chmod +x php-scoper.phar
 
 FROM php:7.4-cli-alpine
