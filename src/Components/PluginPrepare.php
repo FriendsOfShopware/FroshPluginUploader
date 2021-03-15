@@ -31,7 +31,7 @@ class PluginPrepare
                     unlink($composerLock);
                 }
 
-                $this->exec('composer install --ignore-platform-reqs --no-dev -n -d ' . escapeshellarg($directory));
+                $this->exec('composer install --no-dev -n -d ' . escapeshellarg($directory));
 
                 // TODO: Maybe refactor this into own service
                 if ($scopeDependencies) {
