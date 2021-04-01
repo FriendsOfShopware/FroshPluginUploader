@@ -39,8 +39,8 @@ class Producer extends AbstractComponent
         $plugins = $this->getPlugins($name);
 
         foreach ($plugins as $plugin) {
-            if (strtolower($name) === strtolower($plugin->moduleKey)) {
-                return $plugin;
+            if (strtolower($name) === strtolower($plugin->name)) {
+                return $this->client->Plugins()->get($plugin->id);
             }
         }
 
@@ -60,7 +60,6 @@ class Producer extends AbstractComponent
 
         $createdPlugin = Plugin::map(json_decode($plugin));
         $createdPlugin->name = $name;
-        $createdPlugin->moduleKey = $name;
 
         return $this->client->Plugins()->put($createdPlugin->id, $createdPlugin);
     }

@@ -43,9 +43,6 @@ class Plugin extends Struct
     /** @var string */
     public $code;
 
-    /** @var string */
-    public $moduleKey;
-
     /** @var LifecycleStatus */
     public $lifecycleStatus;
 
