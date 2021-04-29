@@ -33,7 +33,7 @@
     "composer/semver": "^3.2",
     "composer/spdx-licenses": "^1.5",
     "php-parallel-lint/php-var-dump-check": "^0.5.0",
-    "knplabs/github-api": "^3.1",
+    "knplabs/github-api": "^3.2",
     "http-interop/http-factory-guzzle": "^1.0",
     "m4tthumphrey/php-gitlab-api": "^11.4",
     "league/commonmark": "^1.5"
