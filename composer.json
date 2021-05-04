@@ -52,6 +52,6 @@
     "phpunit/phpunit": "^9.5",
     "symplify/changelog-linker": "^9.2",
     "phpspec/prophecy-phpunit": "^2.0",
-    "friendsofphp/php-cs-fixer": "^2.18"
+    "friendsofphp/php-cs-fixer": "^3.0"
   }
 }
