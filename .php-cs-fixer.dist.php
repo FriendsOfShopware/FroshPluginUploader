@@ -1,11 +1,13 @@
 <?php
 
+use PhpCsFixer\Config;
+
 $finder = PhpCsFixer\Finder::create()
     ->in(__DIR__.'/src')
     ->name('*.php')
 ;
 
-return PhpCsFixer\Config::create()
+return (new Config())
     ->setUsingCache(false)
     ->setRules([
         '@PSR2' => true,
