@@ -9,6 +9,9 @@ jobs:
       - name: Clone
         uses: actions/checkout@v1
 
+      - name: Composer Install
+        run: composer install
+
       - name: Linting
         id: linting
         run: php .github/pr_lint.php
