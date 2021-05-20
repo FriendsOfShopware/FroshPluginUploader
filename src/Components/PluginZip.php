@@ -5,12 +5,15 @@ namespace FroshPluginUploader\Components;
 
 use FroshPluginUploader\Components\PluginValidator\General\NotAllowedFilesInZipChecker;
 use FroshPluginUploader\Components\ZipStrategy\AbstractStrategy;
+use FroshPluginUploader\Traits\ExecTrait;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 class PluginZip
 {
+    use ExecTrait;
+
     /**
      * @var PluginPrepare
      */
@@ -83,17 +86,6 @@ class PluginZip
         $this->exec('rm -rf ' . escapeshellarg($tmpDir));
 
         $io->success(sprintf('Created file %s', $fileName));
-    }
-
-    private function exec(string $command): void
-    {
-        exec($command, $output, $ret);
-
-        // @codeCoverageIgnoreStart
-        if ($ret !== 0) {
-            throw new \RuntimeException(sprintf('Command "%s" failed with code %d', $command, $ret));
-        }
-        // @codeCoverageIgnoreEnd
     }
 
     private function removeBlacklistedStoreFiles(string $pluginTmpDir): void

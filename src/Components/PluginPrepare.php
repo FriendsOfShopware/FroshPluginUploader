@@ -9,9 +9,12 @@ use JakubOnderka\PhpVarDumpCheck\Settings;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use FroshPluginUploader\Traits\ExecTrait;
 
 class PluginPrepare
 {
+    use ExecTrait;
+
     public function prepare(string $directory, bool $scopeDependencies, OutputInterface $output): void
     {
         $composerJson = $directory . '/composer.json';
@@ -146,16 +149,5 @@ class PluginPrepare
             . ' -p ' . $plugin->getName()
         );
         $io->writeln('');
-    }
-
-    private function exec(string $command): void
-    {
-        exec($command, $output, $ret);
-
-        // @codeCoverageIgnoreStart
-        if ($ret !== 0) {
-            throw new \RuntimeException(sprintf('Command "%s" failed with code %d', $command, $ret));
-        }
-        // @codeCoverageIgnoreEnd
     }
 }
