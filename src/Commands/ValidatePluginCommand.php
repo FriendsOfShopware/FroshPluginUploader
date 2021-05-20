@@ -41,7 +41,8 @@ class ValidatePluginCommand extends Command
             ->setAliases(['plugin:validate'])
             ->setDescription('Validate the plugin for the community store')
             ->addArgument('zipPath', InputArgument::REQUIRED, 'Path to to the plugin binary')
-            ->addOption('create', null, InputOption::VALUE_NONE, 'Creates the plugin in store, when not present');
+            ->addOption('create', null, InputOption::VALUE_NONE, 'Creates the plugin in store, when not present')
+        ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int

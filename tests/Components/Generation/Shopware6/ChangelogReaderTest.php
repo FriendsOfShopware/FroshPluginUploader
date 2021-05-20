@@ -6,6 +6,10 @@ use FroshPluginUploader\Components\Generation\ShopwarePlatform\ChangelogReader;
 use FroshPluginUploader\Exception\MissingChangelogException;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class ChangelogReaderTest extends TestCase
 {
     public function testNotFound(): void

@@ -7,6 +7,10 @@ use FroshPluginUploader\Components\PluginValidator\General\PhpLinter;
 use FroshPluginUploader\Structs\ViolationContext;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class PhpLinterTest extends TestCase
 {
     public function testInvalidFolderLint(): void

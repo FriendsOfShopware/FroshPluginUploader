@@ -7,6 +7,10 @@ use FroshPluginUploader\Components\PluginValidator\General\ZipFolderMatchesTechn
 use FroshPluginUploader\Structs\ViolationContext;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class ZipFolderMatchesTechnicalPluginNameTest extends TestCase
 {
     public function testInvalidNaming(): void

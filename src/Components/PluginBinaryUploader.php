@@ -84,7 +84,7 @@ class PluginBinaryUploader
                 // @codeCoverageIgnoreStart
                 if ($result->type->id === 4) {
                     sleep(5);
-                    ++$tries;
+                    $tries++;
                     continue;
                 }
                 // @codeCoverageIgnoreEnd
@@ -95,7 +95,7 @@ class PluginBinaryUploader
             // @codeCoverageIgnoreStart
             sleep(5);
 
-            ++$tries;
+            $tries++;
 
             if ($tries === 200) {
                 return new UploadPluginResult(true, false, 'Code-Review check took to long');

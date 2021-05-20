@@ -9,6 +9,10 @@ use FroshPluginUploader\Structs\ViolationContext;
 use PHPUnit\Framework\TestCase;
 use ZipArchive;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class LicenseValidationTest extends TestCase
 {
     public function testValidCase(): void
@@ -42,7 +46,8 @@ class LicenseValidationTest extends TestCase
 
         $plugin = $this->createMock(Plugin::class);
         $plugin->method('getReader')
-            ->willReturn($reader);
+            ->willReturn($reader)
+        ;
 
         $storePlugin = new \FroshPluginUploader\Structs\Plugin();
         $storePlugin->license = new \FroshPluginUploader\Structs\License();

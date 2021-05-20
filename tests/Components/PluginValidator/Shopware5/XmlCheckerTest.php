@@ -8,6 +8,10 @@ use FroshPluginUploader\Components\PluginValidator\Shopware5\XmlChecker;
 use FroshPluginUploader\Structs\ViolationContext;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class XmlCheckerTest extends TestCase
 {
     public function testCheckFailed(): void
@@ -52,13 +56,14 @@ class XmlCheckerTest extends TestCase
         $reader = $this->createMock(PluginReader::class);
 
         $reader->method('all')
-            ->willReturn($xml);
+            ->willReturn($xml)
+        ;
 
         $plugin = $this->createMock(Plugin::class);
 
         $plugin->method('getReader')
-            ->willReturn($reader);
-
+            ->willReturn($reader)
+        ;
 
         return new ViolationContext($plugin, new \ZipArchive(), $dir);
     }

@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 
 namespace FroshPluginUploader\Tests\Components;
 
@@ -14,6 +13,10 @@ use FroshPluginUploader\Components\PluginReaderInterface;
 use FroshPluginUploader\Exception\PluginGenerationException;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class PluginFinderTest extends TestCase
 {
     public function testShopware5(): void

@@ -61,7 +61,8 @@ class Plugin implements PluginInterface
     public function getCompatibleVersions(array $versions): array
     {
         $constraints = $this->getReader()->getCoreConstraint();
-        $versions = array_values(array_filter($versions, function ($version) use ($constraints) {
+
+        return array_values(array_filter($versions, function ($version) use ($constraints) {
             if ($version['major'] !== 'Shopware 6') {
                 return null;
             }
@@ -77,8 +78,6 @@ class Plugin implements PluginInterface
                 return null;
             }
         }));
-
-        return $versions;
     }
 
     public function getStoreType(): string

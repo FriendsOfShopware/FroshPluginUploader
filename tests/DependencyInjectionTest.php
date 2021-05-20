@@ -5,6 +5,10 @@ namespace FroshPluginUploader\Tests;
 use FroshPluginUploader\DependencyInjection;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class DependencyInjectionTest extends TestCase
 {
     public function testCompiled(): void

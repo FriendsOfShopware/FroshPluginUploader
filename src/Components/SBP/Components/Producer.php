@@ -39,7 +39,7 @@ class Producer extends AbstractComponent
         $plugins = $this->getPlugins($name);
 
         foreach ($plugins as $plugin) {
-            if (strtolower($name) === strtolower($plugin->name)) {
+            if (mb_strtolower($name) === mb_strtolower($plugin->name)) {
                 return $this->client->Plugins()->get($plugin->id);
             }
         }

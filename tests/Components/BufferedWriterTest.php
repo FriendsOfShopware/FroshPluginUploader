@@ -1,10 +1,14 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace FroshPluginUploader\Tests\Components;
 
 use FroshPluginUploader\Components\BufferedWriter;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class BufferedWriterTest extends TestCase
 {
     public function testReturnsOutput(): void

@@ -111,7 +111,7 @@ class PluginPrepare
 
         file_put_contents(
             $composerJsonPath,
-            json_encode($json, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
+            json_encode($json, \JSON_PRETTY_PRINT | \JSON_UNESCAPED_SLASHES | \JSON_UNESCAPED_UNICODE)
         );
     }
 

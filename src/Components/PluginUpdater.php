@@ -46,7 +46,7 @@ class PluginUpdater
         $resourcesFolderPath = $plugin->getResourcesFolderPath();
 
         foreach ($storePlugin->infos as &$infoTranslation) {
-            $language = substr($infoTranslation->locale->name, 0, 2);
+            $language = mb_substr($infoTranslation->locale->name, 0, 2);
             $languageFile = $resourcesFolderPath . '/' . $language . '.html';
             $languageFileMarkdown = $resourcesFolderPath . '/' . $language . '.md';
             $languageManualFile = $resourcesFolderPath . '/' . $language . '_manual.html';
@@ -127,7 +127,7 @@ class PluginUpdater
                 $this->client->Plugins()->deleteImage($storePlugin->id, $image->id);
             }
 
-            foreach (scandir($imageDir, SCANDIR_SORT_ASCENDING) as $image) {
+            foreach (scandir($imageDir, \SCANDIR_SORT_ASCENDING) as $image) {
                 if ($image[0] === '.') {
                     continue;
                 }
@@ -147,7 +147,7 @@ class PluginUpdater
         $plugin->localizations = [];
 
         foreach ($allLocales as $allLocale) {
-            $shortLocale = substr($allLocale['name'], 0, 2);
+            $shortLocale = mb_substr($allLocale['name'], 0, 2);
             if ($shortLocale === 'de' || $shortLocale === 'en') {
                 $plugin->localizations[] = $allLocale;
             }
@@ -156,7 +156,7 @@ class PluginUpdater
 
     private function setLicense(Plugin $plugin, string $license): void
     {
-        $license = strtolower($license);
+        $license = mb_strtolower($license);
         $availableStoreLicenses = $this->client->General()->all()['licenses'];
 
         $availableLicenses = array_column($availableStoreLicenses, 'name');

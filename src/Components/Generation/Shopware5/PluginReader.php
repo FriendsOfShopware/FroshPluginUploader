@@ -103,7 +103,7 @@ class PluginReader implements PluginReaderInterface
 
     public function getLicense(): string
     {
-        return strtolower($this->xml['license']);
+        return mb_strtolower($this->xml['license']);
     }
 
     public function getName(): string

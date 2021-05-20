@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace FroshPluginUploader\Tests\Components\PluginValidator\Shopware6;
 
@@ -9,6 +9,10 @@ use FroshPluginUploader\Structs\ViolationContext;
 use FroshPluginUploader\Tests\Components\IoHelper;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class ThemeJsonValidatorTest extends TestCase
 {
     public function testMissingThemeJson(): void
@@ -68,7 +72,8 @@ class ThemeJsonValidatorTest extends TestCase
         $plugin = $this->createMock(Plugin::class);
 
         $plugin->method('getReader')
-            ->willReturn($reader);
+            ->willReturn($reader)
+        ;
 
         $plugin->method('getName')->willReturn('SwagTest');
 

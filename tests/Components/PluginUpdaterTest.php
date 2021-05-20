@@ -11,6 +11,10 @@ use FroshPluginUploader\Structs\Image;
 use FroshPluginUploader\Structs\Plugin;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class PluginUpdaterTest extends TestCase
 {
     public function testSync(): void
@@ -23,19 +27,19 @@ class PluginUpdaterTest extends TestCase
             'infos' => [
                 [
                     'locale' => [
-                        'name' => 'en_GB'
-                    ]
+                        'name' => 'en_GB',
+                    ],
                 ],
                 [
                     'locale' => [
-                        'name' => 'de_DE'
-                    ]
-                ]
+                        'name' => 'de_DE',
+                    ],
+                ],
             ],
             'localizations' => [],
             'license' => [
-                'name' => 'agpl'
-            ]
+                'name' => 'agpl',
+            ],
         ]);
 
         $storeJson = $this->createMock(StoreJsonLoader::class);
@@ -63,19 +67,19 @@ class PluginUpdaterTest extends TestCase
             'infos' => [
                 [
                     'locale' => [
-                        'name' => 'en_GB'
-                    ]
+                        'name' => 'en_GB',
+                    ],
                 ],
                 [
                     'locale' => [
-                        'name' => 'de_DE'
-                    ]
-                ]
+                        'name' => 'de_DE',
+                    ],
+                ],
             ],
             'localizations' => [],
             'license' => [
-                'name' => 'agpl'
-            ]
+                'name' => 'agpl',
+            ],
         ]);
 
         $storeJson = $this->createMock(StoreJsonLoader::class);
@@ -103,18 +107,18 @@ class PluginUpdaterTest extends TestCase
     {
         $storeData = json_decode(file_get_contents(dirname(__DIR__) . '/fixtures/store_data.json'), true);
         $plugin = $this->createMock(\FroshPluginUploader\Components\SBP\Components\Plugin::class);
-        $plugin->method('put')->withAnyParameters()->willReturn(new Plugin);
+        $plugin->method('put')->withAnyParameters()->willReturn(new Plugin());
         $plugin->method('getImages')->willReturn([Image::make(['id' => 1])]);
 
         $general = $this->createMock(General::class);
         $general->method('all')->willReturn($storeData);
         $general->method('getLocalizations')->willReturn([
             [
-                'name' => 'de-DE'
+                'name' => 'de-DE',
             ],
             [
-                'name' => 'en-GB'
-            ]
+                'name' => 'en-GB',
+            ],
         ]);
 
         $client = $this->createMock(Client::class);

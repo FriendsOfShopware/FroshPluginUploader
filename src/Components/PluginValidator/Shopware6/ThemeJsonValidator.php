@@ -23,10 +23,10 @@ class ThemeJsonValidator implements ValidationInterface
             return;
         }
 
-        $themeJson = \json_decode(file_get_contents($themeJsonPath), true, 512, JSON_THROW_ON_ERROR);
+        $themeJson = \json_decode(file_get_contents($themeJsonPath), true, 512, \JSON_THROW_ON_ERROR);
 
         if (!isset($themeJson['previewMedia'])) {
-            $context->addViolation(sprintf('Required field "previewMedia" in theme.json is not in'));
+            $context->addViolation('Required field "previewMedia" in theme.json is not in');
 
             return;
         }
