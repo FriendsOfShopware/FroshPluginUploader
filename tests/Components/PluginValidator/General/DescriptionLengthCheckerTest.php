@@ -59,5 +59,4 @@ class DescriptionLengthCheckerTest extends TestCase
     {
         return new ViolationContext($this->createMock($plugin), new ZipArchive(), __DIR__, null);
     }
-
 }

@@ -93,7 +93,7 @@ class PluginBinaryUploaderTest extends TestCase
         if (!$skipCodeReview) {
             $plugins->triggerCodeReview(Argument::type('int'))
                 ->shouldBeCalled()
-                ->will(function () use($plugins, $skipWaitingForCodeReview) {
+                ->will(function () use ($plugins, $skipWaitingForCodeReview) {
                     if ($skipWaitingForCodeReview) {
                         return;
                     }

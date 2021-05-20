@@ -67,7 +67,8 @@ class ListPluginsCommand extends Command
                 $generation = $plugin->generation->description;
             }
 
-            $table->addRow([
+            $table->addRow(
+                [
                 $plugin->id,
                 $plugin->name,
                 $generation,

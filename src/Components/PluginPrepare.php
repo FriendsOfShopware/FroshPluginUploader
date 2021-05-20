@@ -3,13 +3,13 @@ declare(strict_types=1);
 
 namespace FroshPluginUploader\Components;
 
+use FroshPluginUploader\Traits\ExecTrait;
 use JakubOnderka\PhpVarDumpCheck\Manager;
 use JakubOnderka\PhpVarDumpCheck\Output;
 use JakubOnderka\PhpVarDumpCheck\Settings;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use FroshPluginUploader\Traits\ExecTrait;
 
 class PluginPrepare
 {
