@@ -10,6 +10,10 @@ use FroshPluginUploader\Structs\ViolationContext;
 use FroshPluginUploader\Tests\Components\IoHelper;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class ComposerJsonCheckerTest extends TestCase
 {
     public function testEmptyConfig(): void
@@ -42,16 +46,16 @@ class ComposerJsonCheckerTest extends TestCase
             'version' => '1.0.0',
             'authors' => [
                 [
-                    'name' => 'Test'
-                ]
+                    'name' => 'Test',
+                ],
             ],
-            "autoload" => [
+            'autoload' => [
                 'psr-4' => [
-                    'Swag\\Test\\' => 'src/'
-                ]
+                    'Swag\\Test\\' => 'src/',
+                ],
             ],
             'require' => [
-                'shopware/core' => '*'
+                'shopware/core' => '*',
             ],
             'extra' => [
                 'shopware-plugin-class' => 'Swag\\Test\\SwagTest',
@@ -65,9 +69,9 @@ class ComposerJsonCheckerTest extends TestCase
                     'de-DE' => 'FOO',
                 ],
                 'supportLink' => [
-                    'de-DE' => 'FOO'
-                ]
-            ]
+                    'de-DE' => 'FOO',
+                ],
+            ],
         ]);
 
         static::assertTrue((new ComposerJsonChecker())->supports($context));
@@ -88,34 +92,34 @@ class ComposerJsonCheckerTest extends TestCase
             'version' => '1.0.0',
             'authors' => [
                 [
-                    'name' => 'Test'
-                ]
+                    'name' => 'Test',
+                ],
             ],
-            "autoload" => [
+            'autoload' => [
                 'psr-4' => [
-                    'Swag\\Test\\' => 'src/'
-                ]
+                    'Swag\\Test\\' => 'src/',
+                ],
             ],
             'require' => [
-                'shopware/core' => '*'
+                'shopware/core' => '*',
             ],
             'extra' => [
                 'shopware-plugin-class' => 'Swag\\Test\\SwagTest',
                 'label' => [
                     'de-DE' => 'FOO',
-                    'en-GB' => 'FOO'
+                    'en-GB' => 'FOO',
                 ],
                 'description' => [
                     'de-DE' => 'FOO',
-                    'en-GB' => 'FOO'
+                    'en-GB' => 'FOO',
                 ],
                 'manufacturerLink' => [
                     'de-DE' => 'FOO',
                 ],
                 'supportLink' => [
-                    'de-DE' => 'FOO'
-                ]
-            ]
+                    'de-DE' => 'FOO',
+                ],
+            ],
         ]);
 
         static::assertTrue((new ComposerJsonChecker())->supports($context));
@@ -134,34 +138,34 @@ class ComposerJsonCheckerTest extends TestCase
             'version' => '1.0.0',
             'authors' => [
                 [
-                    'name' => 'Test'
-                ]
+                    'name' => 'Test',
+                ],
             ],
-            "autoload" => [
+            'autoload' => [
                 'psr-0' => [
-                    'Swag\\Test\\' => 'src/'
-                ]
+                    'Swag\\Test\\' => 'src/',
+                ],
             ],
             'require' => [
-                'shopware/core' => '*'
+                'shopware/core' => '*',
             ],
             'extra' => [
                 'shopware-plugin-class' => 'Swag\\Test\\SwagTest',
                 'label' => [
                     'de-DE' => 'FOO',
-                    'en-GB' => 'FOO'
+                    'en-GB' => 'FOO',
                 ],
                 'description' => [
                     'de-DE' => 'FOO',
-                    'en-GB' => 'FOO'
+                    'en-GB' => 'FOO',
                 ],
                 'manufacturerLink' => [
                     'de-DE' => 'FOO',
                 ],
                 'supportLink' => [
-                    'de-DE' => 'FOO'
-                ]
-            ]
+                    'de-DE' => 'FOO',
+                ],
+            ],
         ]);
 
         static::assertTrue((new ComposerJsonChecker())->supports($context));
@@ -180,34 +184,34 @@ class ComposerJsonCheckerTest extends TestCase
             'version' => '1.0.0',
             'authors' => [
                 [
-                    'name' => 'Test'
-                ]
+                    'name' => 'Test',
+                ],
             ],
-            "autoload" => [
+            'autoload' => [
                 'psr-4' => [
-                    'Swag\\Test\\' => 'src/'
-                ]
+                    'Swag\\Test\\' => 'src/',
+                ],
             ],
             'require' => [
-                'shopware/core' => '*'
+                'shopware/core' => '*',
             ],
             'extra' => [
                 'shopware-plugin-class' => 'Foo\\Test\\SwagTest',
                 'label' => [
                     'de-DE' => 'FOO',
-                    'en-GB' => 'FOO'
+                    'en-GB' => 'FOO',
                 ],
                 'description' => [
                     'de-DE' => 'FOO',
-                    'en-GB' => 'FOO'
+                    'en-GB' => 'FOO',
                 ],
                 'manufacturerLink' => [
                     'de-DE' => 'FOO',
                 ],
                 'supportLink' => [
-                    'de-DE' => 'FOO'
-                ]
-            ]
+                    'de-DE' => 'FOO',
+                ],
+            ],
         ]);
 
         static::assertTrue((new ComposerJsonChecker())->supports($context));
@@ -227,40 +231,41 @@ class ComposerJsonCheckerTest extends TestCase
             'version' => '1.0.0',
             'authors' => [
                 [
-                    'name' => 'Test'
-                ]
+                    'name' => 'Test',
+                ],
             ],
-            "autoload" => [
+            'autoload' => [
                 'psr-4' => [
-                    'Swag\\Test\\' => 'src/'
-                ]
+                    'Swag\\Test\\' => 'src/',
+                ],
             ],
             'require' => [
-                'shopware/core' => '*'
+                'shopware/core' => '*',
             ],
             'extra' => [
                 'shopware-plugin-class' => 'Swag\\Test\\SwagTest',
                 'label' => [
                     'de-DE' => 'FOO',
-                    'en-GB' => 'FOO'
+                    'en-GB' => 'FOO',
                 ],
                 'description' => [
                     'de-DE' => 'FOO',
-                    'en-GB' => 'FOO'
+                    'en-GB' => 'FOO',
                 ],
                 'manufacturerLink' => [
                     'de-DE' => 'FOO',
                 ],
                 'supportLink' => [
-                    'de-DE' => 'FOO'
-                ]
-            ]
+                    'de-DE' => 'FOO',
+                ],
+            ],
         ]);
 
         /** @var \PHPUnit\Framework\MockObject\MockObject $pluginReader */
         $pluginReader = $context->getPlugin()->getReader();
         $pluginReader->method('getNewestChangelogGerman')
-            ->will($this->throwException(new MissingChangelogException('Changelogs are missing for plugin')));
+            ->will($this->throwException(new MissingChangelogException('Changelogs are missing for plugin')))
+        ;
 
         static::assertTrue((new ComposerJsonChecker())->supports($context));
         (new ComposerJsonChecker())->validate($context);
@@ -269,18 +274,19 @@ class ComposerJsonCheckerTest extends TestCase
         static::assertContains('Changelogs are missing for plugin', $context->getViolations());
     }
 
-
     private function makeContext(array $xml = [], string $pluginName = 'SwagTest'): ViolationContext
     {
         $reader = $this->createMock(PluginReader::class);
 
         $reader->method('all')
-            ->willReturn($xml);
+            ->willReturn($xml)
+        ;
 
         $plugin = $this->createMock(Plugin::class);
 
         $plugin->method('getReader')
-            ->willReturn($reader);
+            ->willReturn($reader)
+        ;
 
         $plugin->method('getName')->willReturn($pluginName);
 

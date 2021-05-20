@@ -27,7 +27,8 @@ class DownloadPluginResourcesCommand extends Command
             ->setAliases(['plugin:download:resources'])
             ->setDescription('Downloads the resources from account to given folder. Needed for plugin:upload')
             ->addArgument('name', InputArgument::REQUIRED, 'Technical plugin name')
-            ->addArgument('path', InputArgument::REQUIRED, 'Path to /Resources/store folder');
+            ->addArgument('path', InputArgument::REQUIRED, 'Path to /Resources/store folder')
+        ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int

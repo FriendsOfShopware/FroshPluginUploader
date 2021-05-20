@@ -13,6 +13,10 @@ use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\PhpUnit\ProphecyTrait;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class PluginBinaryUploaderTest extends TestCase
 {
     use ProphecyTrait;
@@ -64,36 +68,43 @@ class PluginBinaryUploaderTest extends TestCase
         $plugins = $this->prophesize(\FroshPluginUploader\Components\SBP\Components\Plugin::class);
         $plugins->hasVersion(Argument::any(), Argument::any())
             ->willReturn($binaryExists)
-            ->shouldBeCalled();
+            ->shouldBeCalled()
+        ;
         $plugins->getAvailableBinaries(Argument::any())
             ->shouldBeCalled()
-            ->willReturn([]);
+            ->willReturn([])
+        ;
 
         if ($binaryExists) {
             $plugins->getVersion(Argument::any(), Argument::any())
                 ->shouldBeCalled()
-                ->willReturn(Binary::make(['id' => 1, 'changelogs' => [['text' => 'text'], ['text' => 'text']]]));
+                ->willReturn(Binary::make(['id' => 1, 'changelogs' => [['text' => 'text'], ['text' => 'text']]]))
+            ;
 
             $plugins->updateBinaryFile(Argument::any(), Argument::any(), Argument::any())
-                ->shouldBeCalled();
+                ->shouldBeCalled()
+            ;
         } else {
             $plugins->createBinaryFile(Argument::type('string'), Argument::type('int'))
                 ->shouldBeCalled()
-                ->willReturn(Binary::make(['id' => 1, 'changelogs' => [['text' => 'text'], ['text' => 'text']]]));
+                ->willReturn(Binary::make(['id' => 1, 'changelogs' => [['text' => 'text'], ['text' => 'text']]]))
+            ;
         }
 
         $plugins
             ->getCodeReviewResults(Argument::type('int'), Argument::type('int'))
             ->shouldBeCalled()
-            ->willReturn([]);
+            ->willReturn([])
+        ;
 
         $plugins->updateBinary(Argument::type(Binary::class), Argument::type('int'))
-            ->shouldBeCalled();
+            ->shouldBeCalled()
+        ;
 
         if (!$skipCodeReview) {
             $plugins->triggerCodeReview(Argument::type('int'))
                 ->shouldBeCalled()
-                ->will(function () use($plugins, $skipWaitingForCodeReview) {
+                ->will(function () use ($plugins, $skipWaitingForCodeReview): void {
                     if ($skipWaitingForCodeReview) {
                         return;
                     }
@@ -105,9 +116,11 @@ class PluginBinaryUploaderTest extends TestCase
                                 'passed' => true,
                                 'hasWarnings' => false,
                                 'message' => 'test',
-                            ]
-                        ]])]);
-                });
+                            ],
+                        ]])])
+                    ;
+                })
+            ;
         }
 
         $client->method('Plugins')->willReturn($plugins->reveal());
@@ -117,9 +130,7 @@ class PluginBinaryUploaderTest extends TestCase
 
     private function createPlugin(): Plugin
     {
-        $plugin = $this->createMock(Plugin::class);
-
-        return $plugin;
+        return $this->createMock(Plugin::class);
     }
 
     private function createStorePlugin(): StorePlugin

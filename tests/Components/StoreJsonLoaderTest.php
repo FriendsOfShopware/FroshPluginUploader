@@ -7,6 +7,10 @@ use FroshPluginUploader\Structs\Image;
 use FroshPluginUploader\Structs\Plugin;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class StoreJsonLoaderTest extends TestCase
 {
     public function testLoadImageWithoutChanges(): void
@@ -15,9 +19,9 @@ class StoreJsonLoaderTest extends TestCase
         $image = Image::make([
             'details' => [
                 'locale' => [
-                    'name' => 'de_DE'
-                ]
-            ]
+                    'name' => 'de_DE',
+                ],
+            ],
         ]);
 
         $before = json_encode($image);
@@ -32,15 +36,15 @@ class StoreJsonLoaderTest extends TestCase
             'details' => [
                 [
                     'locale' => [
-                        'name' => 'de_DE'
-                    ]
+                        'name' => 'de_DE',
+                    ],
                 ],
                 [
                     'locale' => [
-                        'name' => 'en_GB'
-                    ]
-                ]
-            ]
+                        'name' => 'en_GB',
+                    ],
+                ],
+            ],
         ]);
 
         $before = json_encode($image);
@@ -60,19 +64,19 @@ class StoreJsonLoaderTest extends TestCase
                 [
                     'name' => 'Test',
                     'locale' => [
-                        'name' => 'de_DE'
-                    ]
+                        'name' => 'de_DE',
+                    ],
                 ],
                 [
                     'name' => 'Test',
                     'locale' => [
-                        'name' => 'en_GB'
-                    ]
-                ]
+                        'name' => 'en_GB',
+                    ],
+                ],
             ],
             'standardLocale' => [
-                'name' => 'en_GB'
-            ]
+                'name' => 'en_GB',
+            ],
         ]);
 
         $allData = json_decode(file_get_contents(dirname(__DIR__) . '/fixtures/store_data.json'), true);
@@ -91,19 +95,19 @@ class StoreJsonLoaderTest extends TestCase
                 [
                     'name' => 'Test',
                     'locale' => [
-                        'name' => 'de_DE'
-                    ]
+                        'name' => 'de_DE',
+                    ],
                 ],
                 [
                     'name' => 'Test',
                     'locale' => [
-                        'name' => 'en_GB'
-                    ]
-                ]
+                        'name' => 'en_GB',
+                    ],
+                ],
             ],
             'standardLocale' => [
-                'name' => 'en_GB'
-            ]
+                'name' => 'en_GB',
+            ],
         ]);
 
         $allData = json_decode(file_get_contents(dirname(__DIR__) . '/fixtures/store_data.json'), true);
@@ -121,19 +125,19 @@ class StoreJsonLoaderTest extends TestCase
                 [
                     'name' => 'Test',
                     'locale' => [
-                        'name' => 'de_DE'
-                    ]
+                        'name' => 'de_DE',
+                    ],
                 ],
                 [
                     'name' => 'Test',
                     'locale' => [
-                        'name' => 'en_GB'
-                    ]
-                ]
+                        'name' => 'en_GB',
+                    ],
+                ],
             ],
             'standardLocale' => [
-                'name' => 'en_GB'
-            ]
+                'name' => 'en_GB',
+            ],
         ]);
 
         $allData = json_decode(file_get_contents(dirname(__DIR__) . '/fixtures/store_data.json'), true);
@@ -151,19 +155,19 @@ class StoreJsonLoaderTest extends TestCase
                 [
                     'name' => 'Test',
                     'locale' => [
-                        'name' => 'de_DE'
-                    ]
+                        'name' => 'de_DE',
+                    ],
                 ],
                 [
                     'name' => 'Test',
                     'locale' => [
-                        'name' => 'en_GB'
-                    ]
-                ]
+                        'name' => 'en_GB',
+                    ],
+                ],
             ],
             'standardLocale' => [
-                'name' => 'en_GB'
-            ]
+                'name' => 'en_GB',
+            ],
         ]);
 
         $allData = json_decode(file_get_contents(dirname(__DIR__) . '/fixtures/store_data.json'), true);

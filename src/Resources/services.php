@@ -5,7 +5,7 @@ use FroshPluginUploader\Commands\ValidatePluginCommand;
 use Symfony\Component\DependencyInjection\Argument\TaggedIteratorArgument;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 
-return static function (ContainerConfigurator $configurator) {
+return static function (ContainerConfigurator $configurator): void {
     $configurator->parameters()->set('project_dir', __DIR__ . '/../..');
     $configurator
         ->services()
@@ -15,10 +15,12 @@ return static function (ContainerConfigurator $configurator) {
         ->autoconfigure()
         ->load('FroshPluginUploader\\Commands\\', dirname(__DIR__) . '/Commands')
         ->load('FroshPluginUploader\\Components\\', dirname(__DIR__) . '/Components')
-        ->exclude(dirname(__DIR__) . '/Components/{Generation,Generator,StoreJsonLoader.php,ZipStrategy}');
+        ->exclude(dirname(__DIR__) . '/Components/{Generation,Generator,StoreJsonLoader.php,ZipStrategy}')
+    ;
 
     $configurator
         ->services()
         ->get(ValidatePluginCommand::class)
-        ->arg('$validators', new TaggedIteratorArgument('uploader.validation'));
+        ->arg('$validators', new TaggedIteratorArgument('uploader.validation'))
+    ;
 };

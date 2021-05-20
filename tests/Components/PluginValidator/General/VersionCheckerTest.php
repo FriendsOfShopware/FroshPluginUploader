@@ -9,6 +9,10 @@ use FroshPluginUploader\Structs\ViolationContext;
 use PHPUnit\Framework\TestCase;
 use ZipArchive;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class VersionCheckerTest extends TestCase
 {
     public function testVersion(): void
@@ -37,7 +41,8 @@ class VersionCheckerTest extends TestCase
 
         $plugin = $this->createMock(Plugin::class);
         $plugin->method('getReader')
-            ->willReturn($reader);
+            ->willReturn($reader)
+        ;
 
         return new ViolationContext($plugin, new ZipArchive(), __DIR__);
     }

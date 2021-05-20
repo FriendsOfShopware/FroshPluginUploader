@@ -13,6 +13,10 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\NullOutput;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class ResourcesDownloaderTest extends TestCase
 {
     public function testDownload(): void
@@ -36,37 +40,37 @@ class ResourcesDownloaderTest extends TestCase
         $json = json_decode(file_get_contents($folder . '/store.json'), true);
         static::assertSame([
             'storeAvailabilities' => [
-                    0 => 'German',
-                    1 => 'International',
-                ],
+                0 => 'German',
+                1 => 'International',
+            ],
             'localizations' => [
-                    0 => 'de_DE',
-                    1 => 'en_GB',
-                ],
+                0 => 'de_DE',
+                1 => 'en_GB',
+            ],
             'categories' => [
-                    0 => 'System',
-                    1 => 'ConversionOptimierung',
-                ],
+                0 => 'System',
+                1 => 'ConversionOptimierung',
+            ],
             'productType' => 'extension',
             'responsive' => true,
             'standardLocale' => 'en_GB',
             'tags' => [
-                    'de' => [
-                            0 => 'Performance',
-                            1 => 'space',
-                            2 => 'Thumbnail',
-                        ],
-                    'en' => [
-                            0 => 'performance',
-                            1 => 'thumbnail',
-                            2 => 'space',
-                        ],
+                'de' => [
+                    0 => 'Performance',
+                    1 => 'space',
+                    2 => 'Thumbnail',
                 ],
+                'en' => [
+                    0 => 'performance',
+                    1 => 'thumbnail',
+                    2 => 'space',
+                ],
+            ],
             'videos' => [
-                    'de' => [
-                        'https://youtube.de/test',
-                    ],
+                'de' => [
+                    'https://youtube.de/test',
                 ],
+            ],
         ], $json);
     }
 
@@ -76,14 +80,16 @@ class ResourcesDownloaderTest extends TestCase
 
         $producer = $this->createMock(Producer::class);
         $producer->method('getPlugin')
-            ->willReturn($plugin);
+            ->willReturn($plugin)
+        ;
 
         $image = new Image();
         $image->remoteLink = 'http://placekitten.com/960/480';
 
         $pluginComponent = $this->createMock(\FroshPluginUploader\Components\SBP\Components\Plugin::class);
         $pluginComponent->method('getImages')
-            ->willReturn([$image]);
+            ->willReturn([$image])
+        ;
 
         $client = $this->createMock(Client::class);
         $client->method('Producer')->willReturn($producer);

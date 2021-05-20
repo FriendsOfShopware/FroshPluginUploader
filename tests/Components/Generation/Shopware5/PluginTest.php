@@ -6,6 +6,10 @@ use FroshPluginUploader\Components\Generation\Shopware5\Plugin;
 use FroshPluginUploader\Components\StoreJsonLoader;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class PluginTest extends TestCase
 {
     public function testCreate(): void
@@ -26,18 +30,18 @@ class PluginTest extends TestCase
             [
                 'selectable' => false,
                 'major' => 'Shopware 5',
-                'name' => '5.2'
+                'name' => '5.2',
             ],
             [
                 'selectable' => true,
                 'major' => 'Shopware 6',
-                'name' => '5.2'
+                'name' => '5.2',
             ],
             [
                 'selectable' => true,
                 'major' => 'Shopware 5',
-                'name' => '5.4.0'
-            ]
+                'name' => '5.4.0',
+            ],
         ]);
 
         static::assertSame('5.4.0', $versions[0]['name']);
@@ -69,23 +73,23 @@ class PluginTest extends TestCase
             [
                 'selectable' => false,
                 'major' => 'Shopware 5',
-                'name' => '5.2'
+                'name' => '5.2',
             ],
             [
                 'selectable' => true,
                 'major' => 'Shopware 6',
-                'name' => '5.2'
+                'name' => '5.2',
             ],
             [
                 'selectable' => true,
                 'major' => 'Shopware 5',
-                'name' => '5.2.0'
-            ]
+                'name' => '5.2.0',
+            ],
         ]);
 
         static::assertSame('5.2.0', $versions[0]['name']);
         static::assertSame('5.2.0', $plugin->getReader()->getMinVersion());
-        static::assertSame(null, $plugin->getReader()->getMaxVersion());
+        static::assertNull($plugin->getReader()->getMaxVersion());
         static::assertSame('Label DE', $plugin->getReader()->getLabelGerman());
         static::assertSame('Label EN', $plugin->getReader()->getLabelEnglish());
         static::assertSame('Changelog EN', $plugin->getReader()->getNewestChangelogEnglish());

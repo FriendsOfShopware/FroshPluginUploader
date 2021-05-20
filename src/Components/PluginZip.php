@@ -73,7 +73,7 @@ class PluginZip
         // Clean branch name for filename
 
         if ($version) {
-            $version = preg_replace('/[^a-z\.0-9]+/', '-', strtolower($version));
+            $version = preg_replace('/[^a-z\.0-9]+/', '-', mb_strtolower($version));
             $fileName = $plugin->getName() . '-' . $version . '.zip';
         } else {
             $fileName = $plugin->getName() . '.zip';

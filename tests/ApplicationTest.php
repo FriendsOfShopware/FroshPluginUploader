@@ -6,6 +6,10 @@ use FroshPluginUploader\Application;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Command\Command;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class ApplicationTest extends TestCase
 {
     public function testCliAppStart(): void

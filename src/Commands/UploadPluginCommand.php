@@ -38,7 +38,8 @@ class UploadPluginCommand extends Command
             ->addArgument('zipPath', InputArgument::REQUIRED, 'Path to to the plugin binary')
             ->addOption('skipCodeReview', null, InputOption::VALUE_NONE, 'Don\'t trigger code review')
             ->addOption('skipCodeReviewResult', 's', InputOption::VALUE_NONE, 'Dont wait for code-review result')
-            ->addOption('createRelease', null, InputOption::VALUE_NONE, 'Create a Github Release');
+            ->addOption('createRelease', null, InputOption::VALUE_NONE, 'Create a Github Release')
+        ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int

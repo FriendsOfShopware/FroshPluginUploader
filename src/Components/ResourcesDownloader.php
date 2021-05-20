@@ -38,7 +38,7 @@ class ResourcesDownloader
         $plugin = $this->client->Producer()->getPlugin($pluginName);
 
         foreach ($plugin->infos as $info) {
-            $locale = substr($info->locale->name, 0, 2);
+            $locale = mb_substr($info->locale->name, 0, 2);
 
             if (!empty($info->description)) {
                 file_put_contents($path . '/' . $locale . '.html', $info->description);
@@ -49,14 +49,14 @@ class ResourcesDownloader
             }
         }
 
-        file_put_contents($path . '/store.json', json_encode($this->generateStoreJson($plugin), JSON_PRETTY_PRINT));
+        file_put_contents($path . '/store.json', json_encode($this->generateStoreJson($plugin), \JSON_PRETTY_PRINT));
 
         $pictures = $this->client->Plugins()->getImages($plugin->id);
 
         $i = 0;
         foreach ($pictures as $picture) {
             copy($picture->remoteLink, $imagesPath . '/' . $i . '.png');
-            ++$i;
+            $i++;
         }
     }
 
@@ -75,13 +75,13 @@ class ResourcesDownloader
 
         foreach ($plugin->infos as $info) {
             if (!empty($info->tags)) {
-                $json['tags'][substr($info->locale->name, 0, 2)] = array_map([$this, 'getNames'], $info->tags);
+                $json['tags'][mb_substr($info->locale->name, 0, 2)] = array_map([$this, 'getNames'], $info->tags);
             }
         }
 
         foreach ($plugin->infos as $info) {
             if (!empty($info->videos)) {
-                $json['videos'][substr($info->locale->name, 0, 2)] = array_map([$this, 'getUrls'], $info->videos);
+                $json['videos'][mb_substr($info->locale->name, 0, 2)] = array_map([$this, 'getUrls'], $info->videos);
             }
         }
 

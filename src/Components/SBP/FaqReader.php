@@ -22,7 +22,7 @@ class FaqReader
                         throw new \InvalidArgumentException(sprintf('FAQ in path "%s" is invalid', $path));
                     }
 
-                    if (strlen(trim($line)) === 0) {
+                    if (mb_strlen(trim($line)) === 0) {
                         break;
                     }
 
@@ -50,7 +50,7 @@ class FaqReader
             throw new FileNotFoundException(null, 0, null, $path);
         }
 
-        $file = fopen($path, 'rb');
+        $file = fopen($path, 'r');
 
         while ($line = fgets($file)) {
             yield $line;
@@ -60,6 +60,6 @@ class FaqReader
 
     private function parseTitle($line): string
     {
-        return trim(substr($line, 1));
+        return trim(mb_substr($line, 1));
     }
 }

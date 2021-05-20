@@ -2,13 +2,17 @@
 
 namespace FroshPluginUploader\Components\PluginValidator\General;
 
-use FroshPluginUploader\Components\Generation\ShopwarePlatform\PluginReader;
-use FroshPluginUploader\Components\Generation\ShopwarePlatform\Plugin;
 use FroshPluginUploader\Components\Generation\ShopwareApp\App;
+use FroshPluginUploader\Components\Generation\ShopwarePlatform\Plugin;
+use FroshPluginUploader\Components\Generation\ShopwarePlatform\PluginReader;
 use FroshPluginUploader\Structs\ViolationContext;
 use PHPUnit\Framework\TestCase;
 use ZipArchive;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class DescriptionLengthCheckerTest extends TestCase
 {
     public function testSupportsPlatform(): void
@@ -30,8 +34,8 @@ class DescriptionLengthCheckerTest extends TestCase
         $context = $this->makeContext($testDescription);
         (new DescriptionLengthChecker())->validate($context);
         static::assertTrue($context->hasViolations());
-        static::assertContains(sprintf('The German description with length of %s should have a length from 150 up to 185 characters.', strlen($testDescription)), $context->getViolations());
-        static::assertContains(sprintf('The English description with length of %s should have a length from 150 up to 185 characters.', strlen($testDescription)), $context->getViolations());
+        static::assertContains(sprintf('The German description with length of %s should have a length from 150 up to 185 characters.', mb_strlen($testDescription)), $context->getViolations());
+        static::assertContains(sprintf('The English description with length of %s should have a length from 150 up to 185 characters.', mb_strlen($testDescription)), $context->getViolations());
     }
 
     public function testCorrectDescriptionLength(): void
@@ -59,5 +63,4 @@ class DescriptionLengthCheckerTest extends TestCase
     {
         return new ViolationContext($this->createMock($plugin), new ZipArchive(), __DIR__, null);
     }
-
 }

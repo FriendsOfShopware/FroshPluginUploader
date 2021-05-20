@@ -4,10 +4,13 @@ namespace FroshPluginUploader\Tests\Components;
 
 use FroshPluginUploader\Components\CodeReviewFormatter;
 use FroshPluginUploader\Structs\CodeReview\CodeReview;
-use FroshPluginUploader\Structs\CodeReview\SubCheckResult;
 use FroshPluginUploader\Structs\CodeReview\Type;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class CodeReviewFormatterTest extends TestCase
 {
     public function testNotPassed(): void
@@ -28,7 +31,7 @@ class CodeReviewFormatterTest extends TestCase
         $codeReview = CodeReview::make([
             'type' => [
                 'id' => 3,
-                'description' => 'automaticcodereviewsucceeded'
+                'description' => 'automaticcodereviewsucceeded',
             ],
             'subCheckResults' => [
                 [
@@ -41,8 +44,8 @@ class CodeReviewFormatterTest extends TestCase
                     'passed' => true,
                     'hasWarnings' => false,
                     'message' => 'test',
-                ]
-            ]
+                ],
+            ],
         ]);
 
         $formatted = CodeReviewFormatter::format($codeReview);

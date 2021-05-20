@@ -7,6 +7,10 @@ use FroshPluginUploader\Components\XmlReader\XmlReaderBase;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class XmlReaderBaseTest extends TestCase
 {
     public function testReadBrokenXml(): void
@@ -20,7 +24,6 @@ class XmlReaderBaseTest extends TestCase
     {
         static::assertNull(XmlReaderBase::parseTranslatableNodeList(new \DOMNodeList()));
     }
-
 
     public function testGetNotExistingElement(): void
     {

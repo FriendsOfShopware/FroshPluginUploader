@@ -18,12 +18,12 @@ use Psr\Http\Message\UriInterface;
  * @method ResponseInterface post(string|UriInterface $uri, array $options = [])
  * @method ResponseInterface patch(string|UriInterface $uri, array $options = [])
  * @method ResponseInterface delete(string|UriInterface $uri, array $options = [])
- * @method PromiseInterface  getAsync(string|UriInterface $uri, array $options = [])
- * @method PromiseInterface  headAsync(string|UriInterface $uri, array $options = [])
- * @method PromiseInterface  putAsync(string|UriInterface $uri, array $options = [])
- * @method PromiseInterface  postAsync(string|UriInterface $uri, array $options = [])
- * @method PromiseInterface  patchAsync(string|UriInterface $uri, array $options = [])
- * @method PromiseInterface  deleteAsync(string|UriInterface $uri, array $options = [])
+ * @method PromiseInterface getAsync(string|UriInterface $uri, array $options = [])
+ * @method PromiseInterface headAsync(string|UriInterface $uri, array $options = [])
+ * @method PromiseInterface putAsync(string|UriInterface $uri, array $options = [])
+ * @method PromiseInterface postAsync(string|UriInterface $uri, array $options = [])
+ * @method PromiseInterface patchAsync(string|UriInterface $uri, array $options = [])
+ * @method PromiseInterface deleteAsync(string|UriInterface $uri, array $options = [])
  */
 class Client
 {
@@ -58,7 +58,7 @@ class Client
     {
         $this->ensureConnected();
 
-        $lowerName = \strtolower($name);
+        $lowerName = \mb_strtolower($name);
 
         if (isset($this->components[$lowerName])) {
             return $this->components[$lowerName];

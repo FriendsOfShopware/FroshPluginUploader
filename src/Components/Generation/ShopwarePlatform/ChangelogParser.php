@@ -38,7 +38,7 @@ class ChangelogParser
             throw new FileNotFoundException(null, 0, null, $path);
         }
 
-        $file = fopen($path, 'rb');
+        $file = fopen($path, 'r');
 
         while ($line = fgets($file)) {
             yield $line;
@@ -48,11 +48,11 @@ class ChangelogParser
 
     private function parseTitle($line): string
     {
-        return strtolower(trim(substr($line, 1)));
+        return mb_strtolower(trim(mb_substr($line, 1)));
     }
 
     private function parseItem($line): string
     {
-        return trim(substr($line, 1));
+        return trim(mb_substr($line, 1));
     }
 }

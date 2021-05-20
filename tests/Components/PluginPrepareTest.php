@@ -6,6 +6,10 @@ use FroshPluginUploader\Components\PluginPrepare;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Output\NullOutput;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class PluginPrepareTest extends TestCase
 {
     public function testZipShopware6Plugin(): void

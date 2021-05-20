@@ -27,7 +27,8 @@ class ListPluginsCommand extends Command
         $this
             ->setName('ext:list')
             ->setAliases(['plugin:list'])
-            ->setDescription('Shows all plugins from the account');
+            ->setDescription('Shows all plugins from the account')
+        ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -35,7 +36,7 @@ class ListPluginsCommand extends Command
         $plugins = $this->client->Producer()->getPlugins();
         $table = new Table($output);
         $tblStyle = new TableStyle();
-        $alignRight = $tblStyle->setPadType(STR_PAD_LEFT);
+        $alignRight = $tblStyle->setPadType(\STR_PAD_LEFT);
         $table->setHeaders(['Id', 'Name', 'Generation', 'Status', 'Latest Version', 'Version Compatibility', 'Last Change']);
 
         /** @var Plugin $plugin */
@@ -67,14 +68,15 @@ class ListPluginsCommand extends Command
                 $generation = $plugin->generation->description;
             }
 
-            $table->addRow([
-                $plugin->id,
-                $plugin->name,
-                $generation,
-                $plugin->activationStatus->description,
-                $plugin->latestBinary->version ?? 'n/a',
-                "min {$fromVersion->name} | max {$toVersion->name}",
-                $plugin->lastChange, ]
+            $table->addRow(
+                [
+                    $plugin->id,
+                    $plugin->name,
+                    $generation,
+                    $plugin->activationStatus->description,
+                    $plugin->latestBinary->version ?? 'n/a',
+                    "min {$fromVersion->name} | max {$toVersion->name}",
+                    $plugin->lastChange, ]
             );
         }
         $table->setColumnStyle(3, $alignRight);

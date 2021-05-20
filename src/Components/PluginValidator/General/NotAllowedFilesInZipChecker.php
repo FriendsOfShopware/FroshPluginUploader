@@ -24,17 +24,17 @@ class NotAllowedFilesInZipChecker implements ValidationInterface
         /*
          * Go through all files in the zip
          */
-        for ($i = 0; $i < $context->getZipArchive()->numFiles; ++$i) {
+        for ($i = 0; $i < $context->getZipArchive()->numFiles; $i++) {
             $fileInfo = $context->getZipArchive()->statIndex($i);
 
             /*
              * Check for a directory traversal attack
              */
-            if (strpos($fileInfo['name'], '../') !== false) {
+            if (mb_strpos($fileInfo['name'], '../') !== false) {
                 $context->addViolation('Directory traversal detected');
             }
 
-            if (!$foundVcsDir && (strpos($fileInfo['name'], '/.git/') !== false || strpos($fileInfo['name'], '.git/') === 0)) {
+            if (!$foundVcsDir && (mb_strpos($fileInfo['name'], '/.git/') !== false || mb_strpos($fileInfo['name'], '.git/') === 0)) {
                 $context->addViolation('Found vcs repository inside zip.');
                 $foundVcsDir = true;
             }
@@ -52,12 +52,12 @@ class NotAllowedFilesInZipChecker implements ValidationInterface
                 /**
                  * user lowercase for comparison and escape metacharacters
                  */
-                $checkPattern = preg_quote(strtolower($forbiddenFile));
+                $checkPattern = preg_quote(mb_strtolower($forbiddenFile));
 
                 /*
                  * check for not allowed files
                  */
-                if (preg_match('/^.*' . $checkPattern . '$/', strtolower($fileInfo['name']))) {
+                if (preg_match('/^.*' . $checkPattern . '$/', mb_strtolower($fileInfo['name']))) {
                     $context->addViolation(sprintf('Not allowed file or folder %s detected. Please remove it', $forbiddenFile));
                 }
             }
@@ -66,6 +66,6 @@ class NotAllowedFilesInZipChecker implements ValidationInterface
 
     private static function endsWith($haystack, $needle): bool
     {
-        return substr($haystack, -strlen($needle)) === $needle;
+        return mb_substr($haystack, -mb_strlen($needle)) === $needle;
     }
 }

@@ -9,6 +9,10 @@ use FroshPluginUploader\Components\PluginValidator\ShopwareAppSystem\ManifestChe
 use FroshPluginUploader\Structs\ViolationContext;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class ManifestCheckerTest extends TestCase
 {
     public function testEmptyManifest(): void

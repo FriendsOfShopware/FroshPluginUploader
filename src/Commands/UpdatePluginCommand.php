@@ -24,13 +24,14 @@ class UpdatePluginCommand extends Command
         $this->pluginUpdater = $pluginUpdater;
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setName('ext:update')
             ->setAliases(['plugin:update'])
             ->setDescription('Synchronize the Resources/store to the account')
-            ->addArgument('path', InputArgument::REQUIRED, 'Path to plugin folder');
+            ->addArgument('path', InputArgument::REQUIRED, 'Path to plugin folder')
+        ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
