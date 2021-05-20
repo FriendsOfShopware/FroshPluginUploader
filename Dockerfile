@@ -4,7 +4,7 @@ RUN apk add --no-cache wget && \
     wget -O php-scoper.phar https://github.com/humbug/php-scoper/releases/download/0.14.0/php-scoper.phar && \
     chmod +x php-scoper.phar
 
-FROM php:7.4-cli-alpine
+FROM php:8.0-cli-alpine
 
 COPY --from=composer /usr/bin/composer /usr/bin/composer
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/bin/
