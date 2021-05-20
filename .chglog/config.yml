@@ -24,9 +24,10 @@ options:
        compat: Compability
        chore: Chore
   header:
-    pattern: "^(\\w*)\\:\\s(.*)$"
+    pattern: '^(\w*)(?:\((\w*)\))?:\s(.*)$'
     pattern_maps:
       - Type
+      - Scope
       - Subject
   notes:
     keywords:
