@@ -9,7 +9,7 @@ class BufferedWriter implements Writer
 {
     private array $output = [];
 
-    public function write($string)
+    public function write($string): void
     {
         $this->output[] = $string;
     }

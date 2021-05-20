@@ -7,6 +7,10 @@ use FroshPluginUploader\Components\PluginValidator\General\NotAllowedFilesInZipC
 use FroshPluginUploader\Structs\ViolationContext;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class NotAllowedFilesInZipCheckerTest extends TestCase
 {
     public function testChecker(): void

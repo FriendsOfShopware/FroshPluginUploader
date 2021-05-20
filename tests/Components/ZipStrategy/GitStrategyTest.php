@@ -6,6 +6,10 @@ use FroshPluginUploader\Components\ZipStrategy\GitStrategy;
 use FroshPluginUploader\Tests\Components\IoHelper;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class GitStrategyTest extends TestCase
 {
     public function testFolderWithGit(): void

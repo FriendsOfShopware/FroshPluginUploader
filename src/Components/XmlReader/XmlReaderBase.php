@@ -61,7 +61,7 @@ abstract class XmlReaderBase implements XmlReaderInterface
      * Returns all element child values by nodeName.
      *
      * @param string $name
-     * @param bool   $throwException
+     * @param bool $throwException
      *
      * @throws InvalidArgumentException
      *

@@ -6,6 +6,10 @@ use FroshPluginUploader\Components\ZipStrategy\PlainStrategy;
 use FroshPluginUploader\Tests\Components\IoHelper;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class PlainStrategyTest extends TestCase
 {
     public function testFolderWithoutGit(): void

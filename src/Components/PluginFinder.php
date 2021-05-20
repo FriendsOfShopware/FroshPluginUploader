@@ -12,7 +12,7 @@ class PluginFinder
 {
     public static function findPluginByZipFile(string $unpackedFolder)
     {
-        $dir = current(array_filter(scandir($unpackedFolder, SCANDIR_SORT_NONE), function ($value) {
+        $dir = current(array_filter(scandir($unpackedFolder, \SCANDIR_SORT_NONE), function ($value) {
             return $value[0] !== '.';
         }));
 

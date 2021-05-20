@@ -72,7 +72,7 @@ class StoreJsonLoader
         }
     }
 
-    public function applyToPlugin(Plugin $plugin, array $globalInformation)
+    public function applyToPlugin(Plugin $plugin, array $globalInformation): void
     {
         $this->mapData($plugin, $globalInformation['locales'], 'standardLocale', 'name');
         $this->mapData($plugin, $globalInformation['storeAvailabilities'], 'storeAvailabilities', 'name');
@@ -173,26 +173,26 @@ class StoreJsonLoader
         }
     }
 
-    private function mapData(Plugin $plugin, array $data, string $pluginField, string $sourceField)
+    private function mapData(Plugin $plugin, array $data, string $pluginField, string $sourceField): void
     {
-        if (is_string($this->$pluginField)) {
+        if (is_string($this->{$pluginField})) {
             foreach ($data as $item) {
-                if ($item[$sourceField] === $this->$pluginField) {
-                    $plugin->$pluginField = $item;
+                if ($item[$sourceField] === $this->{$pluginField}) {
+                    $plugin->{$pluginField} = $item;
 
                     return;
                 }
             }
         }
 
-        if (is_array($this->$pluginField)) {
-            $plugin->$pluginField = [];
-            foreach ($this->$pluginField as $newValue) {
+        if (is_array($this->{$pluginField})) {
+            $plugin->{$pluginField} = [];
+            foreach ($this->{$pluginField} as $newValue) {
                 $found = false;
 
                 foreach ($data as $item) {
                     if ($item[$sourceField] === $newValue) {
-                        $plugin->$pluginField[] = $item;
+                        $plugin->{$pluginField}[] = $item;
                         $found = true;
                         break;
                     }
@@ -205,7 +205,7 @@ class StoreJsonLoader
         }
     }
 
-    private function assignTags(Plugin $plugin)
+    private function assignTags(Plugin $plugin): void
     {
         foreach ($this->tags as $lang => $tags) {
             if (count($tags) > 5) {
@@ -213,7 +213,7 @@ class StoreJsonLoader
             }
 
             foreach ($plugin->infos as $infoTranslation) {
-                $language = substr($infoTranslation->locale->name, 0, 2);
+                $language = mb_substr($infoTranslation->locale->name, 0, 2);
 
                 if ($language === $lang) {
                     $infoTranslation->tags = array_map(function (string $name) {
@@ -224,7 +224,7 @@ class StoreJsonLoader
         }
     }
 
-    private function assignVideos(Plugin $plugin)
+    private function assignVideos(Plugin $plugin): void
     {
         foreach ($this->videos as $lang => $videos) {
             if (count($videos) > 2) {
@@ -232,7 +232,7 @@ class StoreJsonLoader
             }
 
             foreach ($plugin->infos as $infoTranslation) {
-                $language = substr($infoTranslation->locale->name, 0, 2);
+                $language = mb_substr($infoTranslation->locale->name, 0, 2);
 
                 if ($language === $lang) {
                     $infoTranslation->videos = array_map(function (string $name) {

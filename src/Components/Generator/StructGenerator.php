@@ -31,9 +31,10 @@ class StructGenerator
 
         $class->addProperty('mappedFields')
             ->setValue($mappedFields)
-            ->setStatic();
+            ->setStatic()
+        ;
 
-        file_put_contents('src/Structs/' . $fileName . '.php', '<?php' . PHP_EOL . $phpNamespace);
+        file_put_contents('src/Structs/' . $fileName . '.php', '<?php' . \PHP_EOL . $phpNamespace);
     }
 
     private function addProperty(ClassType $class, string $key, $value)
@@ -56,9 +57,10 @@ class StructGenerator
 
                 $class->addProperty('mappedFields')
                     ->setValue($mappedFields)
-                    ->setStatic();
+                    ->setStatic()
+                ;
 
-                file_put_contents('src/Structs/' . ucfirst($key) . '.php', '<?php' . PHP_EOL . $ns);
+                file_put_contents('src/Structs/' . ucfirst($key) . '.php', '<?php' . \PHP_EOL . $ns);
                 $type = ucfirst($key);
             } else {
                 $value = $value[0];
@@ -70,13 +72,14 @@ class StructGenerator
                     $this->addProperty($innerClass, $key2, $value2);
                 }
 
-                file_put_contents('src/Structs/' . ucfirst($key) . '.php', '<?php' . PHP_EOL . $ns);
+                file_put_contents('src/Structs/' . ucfirst($key) . '.php', '<?php' . \PHP_EOL . $ns);
                 $type = ucfirst($key) . '[]';
             }
         }
 
         $class->addProperty($key)
-            ->addComment('@var ' . $type);
+            ->addComment('@var ' . $type)
+        ;
 
         if (!is_array($value)) {
             return null;

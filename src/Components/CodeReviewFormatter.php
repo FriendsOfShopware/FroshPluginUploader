@@ -19,9 +19,9 @@ class CodeReviewFormatter
                 continue;
             }
 
-            $message .= sprintf('=== %s ===' . PHP_EOL, $subCheckResult->subCheck);
+            $message .= sprintf('=== %s ===' . \PHP_EOL, $subCheckResult->subCheck);
             $message .= strip_tags($subCheckResult->message);
-            $message .= PHP_EOL . PHP_EOL;
+            $message .= \PHP_EOL . \PHP_EOL;
 
             if ($subCheckResult->hasWarnings) {
                 $hasWarnings = true;

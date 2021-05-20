@@ -56,7 +56,7 @@ class Github implements ReleaseInterface
 
         // Remove already existing asset
         foreach ($assets as $asset) {
-            if ($asset['name'] == $ourAssetName) {
+            if ($asset['name'] === $ourAssetName) {
                 $this->client->repo()->releases()->assets()->remove($this->user, $this->repo, $asset['id']);
             }
         }

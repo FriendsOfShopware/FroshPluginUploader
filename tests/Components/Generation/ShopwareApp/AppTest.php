@@ -6,6 +6,10 @@ use FroshPluginUploader\Components\Generation\ShopwareApp\App;
 use FroshPluginUploader\Components\StoreJsonLoader;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class AppTest extends TestCase
 {
     public function testReading(): void

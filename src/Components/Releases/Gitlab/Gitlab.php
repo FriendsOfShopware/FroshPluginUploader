@@ -39,7 +39,7 @@ class Gitlab implements ReleaseInterface
         return new Release('');
     }
 
-    private function updateAndUploadZip(PluginInterface $plugin, string $zipPath)
+    private function updateAndUploadZip(PluginInterface $plugin, string $zipPath): void
     {
         $this->client->repositories()->updateRelease(
             $_SERVER['CI_PROJECT_ID'],
@@ -48,11 +48,11 @@ class Gitlab implements ReleaseInterface
         );
 
         $ch = curl_init(sprintf('https://gitlab.com/api/v4/projects/%s/packages/generic/%s/%s/%s', $_SERVER['CI_PROJECT_ID'], $plugin->getName(), $plugin->getReader()->getVersion(), $plugin->getName() . '.zip'));
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
-        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        curl_setopt($ch, \CURLOPT_CUSTOMREQUEST, 'PUT');
+        curl_setopt($ch, \CURLOPT_HTTPHEADER, [
             'PRIVATE-TOKEN: ' . $_SERVER['CI_JOB_TOKEN'],
         ]);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, file_get_contents($zipPath));
+        curl_setopt($ch, \CURLOPT_POSTFIELDS, file_get_contents($zipPath));
 
         var_dump(curl_exec($ch));
     }

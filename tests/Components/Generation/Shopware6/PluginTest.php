@@ -6,6 +6,10 @@ use FroshPluginUploader\Components\Generation\ShopwarePlatform\Plugin;
 use FroshPluginUploader\Components\StoreJsonLoader;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class PluginTest extends TestCase
 {
     public function testPlugin(): void
@@ -27,23 +31,23 @@ class PluginTest extends TestCase
             [
                 'selectable' => false,
                 'major' => 'Shopware 6',
-                'name' => '5.2'
+                'name' => '5.2',
             ],
             [
                 'selectable' => true,
                 'major' => 'Shopware 5',
-                'name' => '5.2'
+                'name' => '5.2',
             ],
             [
                 'selectable' => true,
                 'major' => 'Shopware 6',
-                'name' => '6.1.0-ea1'
+                'name' => '6.1.0-ea1',
             ],
             [
                 'selectable' => true,
                 'major' => 'Shopware 6',
-                'name' => '6.1.0'
-            ]
+                'name' => '6.1.0',
+            ],
         ]);
 
         static::assertSame('6.1.0', $versions[0]['name']);

@@ -16,7 +16,7 @@ class Struct
 
         foreach (get_object_vars($object) as $key => $value) {
             if (empty($value)) {
-                $newObject->$key = $value;
+                $newObject->{$key} = $value;
                 continue;
             }
 
@@ -28,15 +28,15 @@ class Struct
                         $data[] = static::$mappedFields[$key]::map($item);
                     }
 
-                    $newObject->$key = $data;
+                    $newObject->{$key} = $data;
                 } else {
-                    $newObject->$key = static::$mappedFields[$key]::map($value);
+                    $newObject->{$key} = static::$mappedFields[$key]::map($value);
                 }
 
                 continue;
             }
 
-            $newObject->$key = $value;
+            $newObject->{$key} = $value;
         }
 
         return $newObject;
@@ -62,7 +62,7 @@ class Struct
 
         foreach ($data as $key => $value) {
             if (empty($value)) {
-                $newObject->$key = $value;
+                $newObject->{$key} = $value;
                 continue;
             }
 
@@ -74,15 +74,15 @@ class Struct
                         $data[] = static::$mappedFields[$key]::make($item);
                     }
 
-                    $newObject->$key = $data;
+                    $newObject->{$key} = $data;
                 } else {
-                    $newObject->$key = static::$mappedFields[$key]::make($value);
+                    $newObject->{$key} = static::$mappedFields[$key]::make($value);
                 }
 
                 continue;
             }
 
-            $newObject->$key = $value;
+            $newObject->{$key} = $value;
         }
 
         return $newObject;
