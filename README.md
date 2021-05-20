@@ -17,6 +17,9 @@ Required Environment variables
 | ACCOUNT_PASSWORD 	|         	| Shopware ID password                                                	|
 | ~~PLUGIN_ID~~    	|         	| Removed with Version 0.3.0 	                                        |
 
+
+Test
+
 Requirements for Plugin
 
 * [Shopware 5](https://github.com/FriendsOfShopware/FroshPluginUploader/wiki/Shopware-5-Plugins)
