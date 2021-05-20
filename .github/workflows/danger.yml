@@ -13,4 +13,4 @@ jobs:
         npm install danger
         node node_modules/.bin/danger ci --base master
       env:
-        GITHUB_TOKEN: ${{ secrets.DANGER_GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
