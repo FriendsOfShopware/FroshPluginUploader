@@ -24,10 +24,10 @@ options:
        compat: Compability
        chore: Chore
   header:
-    pattern: "^((\\w+)\\s.*)$"
+    pattern: "^(\\w*)\\:\\s(.*)$"
     pattern_maps:
-      - Subject
       - Type
+      - Subject
   notes:
     keywords:
       - BREAKING CHANGE
