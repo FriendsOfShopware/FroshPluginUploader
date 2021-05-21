@@ -13,6 +13,7 @@ class DependencyInjection
 {
     public static function getContainer(): ContainerBuilder
     {
+     echo "foobar";
         $container = new ContainerBuilder();
         $container->registerForAutoconfiguration(Command::class)->addTag('console.command');
         $container->registerForAutoconfiguration(ValidationInterface::class)->addTag('uploader.validation');
