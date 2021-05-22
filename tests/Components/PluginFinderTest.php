@@ -15,7 +15,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
- * @coversNothing
  */
 class PluginFinderTest extends TestCase
 {

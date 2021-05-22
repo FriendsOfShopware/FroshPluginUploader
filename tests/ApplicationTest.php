@@ -8,7 +8,6 @@ use Symfony\Component\Console\Command\Command;
 
 /**
  * @internal
- * @coversNothing
  */
 class ApplicationTest extends TestCase
 {

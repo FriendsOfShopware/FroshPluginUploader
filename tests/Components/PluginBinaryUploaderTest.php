@@ -15,7 +15,6 @@ use Prophecy\PhpUnit\ProphecyTrait;
 
 /**
  * @internal
- * @coversNothing
  */
 class PluginBinaryUploaderTest extends TestCase
 {

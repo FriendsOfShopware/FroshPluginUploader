@@ -9,7 +9,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
- * @coversNothing
  */
 class CodeReviewFormatterTest extends TestCase
 {

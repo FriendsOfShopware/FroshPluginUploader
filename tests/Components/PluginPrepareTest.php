@@ -8,7 +8,6 @@ use Symfony\Component\Console\Output\NullOutput;
 
 /**
  * @internal
- * @coversNothing
  */
 class PluginPrepareTest extends TestCase
 {

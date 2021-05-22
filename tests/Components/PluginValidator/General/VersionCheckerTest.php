@@ -11,7 +11,6 @@ use ZipArchive;
 
 /**
  * @internal
- * @coversNothing
  */
 class VersionCheckerTest extends TestCase
 {

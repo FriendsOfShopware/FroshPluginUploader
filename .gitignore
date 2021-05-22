@@ -6,5 +6,6 @@
 /test
 /*.zip
 /.phpunit.result.cache
+/.php-cs-fixer.cache
 /clover.xml
 /vendor-bin/**/vendor

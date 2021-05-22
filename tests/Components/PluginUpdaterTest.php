@@ -13,7 +13,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
- * @coversNothing
  */
 class PluginUpdaterTest extends TestCase
 {

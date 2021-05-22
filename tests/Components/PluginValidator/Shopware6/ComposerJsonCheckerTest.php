@@ -12,7 +12,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
- * @coversNothing
  */
 class ComposerJsonCheckerTest extends TestCase
 {

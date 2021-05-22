@@ -15,7 +15,6 @@ use Symfony\Component\Console\Output\NullOutput;
 
 /**
  * @internal
- * @coversNothing
  */
 class ResourcesDownloaderTest extends TestCase
 {

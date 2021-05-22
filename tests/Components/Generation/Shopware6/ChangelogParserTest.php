@@ -9,7 +9,6 @@ use Symfony\Component\Filesystem\Exception\FileNotFoundException;
 
 /**
  * @internal
- * @coversNothing
  */
 class ChangelogParserTest extends TestCase
 {

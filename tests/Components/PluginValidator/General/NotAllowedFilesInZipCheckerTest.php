@@ -9,7 +9,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
- * @coversNothing
  */
 class NotAllowedFilesInZipCheckerTest extends TestCase
 {

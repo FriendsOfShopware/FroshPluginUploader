@@ -9,7 +9,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
- * @coversNothing
  */
 class PhpLinterTest extends TestCase
 {

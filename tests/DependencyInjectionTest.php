@@ -7,7 +7,6 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * @internal
- * @coversNothing
  */
 class DependencyInjectionTest extends TestCase
 {

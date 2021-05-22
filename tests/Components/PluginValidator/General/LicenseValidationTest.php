@@ -11,7 +11,6 @@ use ZipArchive;
 
 /**
  * @internal
- * @coversNothing
  */
 class LicenseValidationTest extends TestCase
 {

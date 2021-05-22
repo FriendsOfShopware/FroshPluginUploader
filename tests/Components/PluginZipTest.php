@@ -11,7 +11,6 @@ use Symfony\Component\Console\Output\NullOutput;
 
 /**
  * @internal
- * @coversNothing
  */
 class PluginZipTest extends TestCase
 {
