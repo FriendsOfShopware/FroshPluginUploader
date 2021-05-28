@@ -38,7 +38,7 @@ jobs:
       run: php box.phar compile
 
     - name: Upload artifact
-      uses: actions/upload-artifact@v1.0.0
+      uses: actions/upload-artifact@v2.2.3
       with:
         name: frosh-plugin-upload.zip
         path: frosh-plugin-upload.phar
