@@ -9,5 +9,4 @@ return (new Config())
     ->useRule(new CommitRegexRule('/^(feat|fix|docs|perf|refactor|compat|chore)(\(.+\))?\:\s(.{3,})/m'))
     ->useRule(new MaxCommitRule(1))
     ->useRule(new CheckPhpCsFixerRule())
-    ->useGithubCommentProxy('https://kpovtvr2t0.execute-api.eu-central-1.amazonaws.com')
 ;
