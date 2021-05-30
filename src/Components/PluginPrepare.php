@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace FroshPluginUploader\Components;
 
+use FroshPluginUploader\Components\Generation\ShopwarePlatform\Plugin;
 use FroshPluginUploader\Traits\ExecTrait;
 use JakubOnderka\PhpVarDumpCheck\Manager;
 use JakubOnderka\PhpVarDumpCheck\Output;
@@ -17,6 +18,8 @@ class PluginPrepare
 
     public function prepare(string $directory, bool $scopeDependencies, OutputInterface $output): void
     {
+        $plugin = PluginFinder::findPluginByRootFolder($directory);
+
         $composerJson = $directory . '/composer.json';
         $composerJsonBackup = $composerJson . '.bak';
         $composerLock = $directory . '/composer.lock';
@@ -25,7 +28,7 @@ class PluginPrepare
 
         if (file_exists($composerJson)) {
             copy($composerJson, $composerJsonBackup);
-            $this->filterShopwareDependencies($composerJson);
+            $this->filterShopwareDependencies($plugin, $composerJson);
 
             // Install composer dependencies
             if ($this->needComposerToRun($composerJson)) {
@@ -95,11 +98,45 @@ class PluginPrepare
      * Remove Shopware base packages from composer.json
      * so they aren't bundled with the plugin.
      */
-    private function filterShopwareDependencies(string $composerJsonPath): void
+    private function filterShopwareDependencies(PluginInterface $plugin, string $composerJsonPath): void
     {
+        $keys = ['shopware/platform', 'shopware/core', 'shopware/storefront', 'shopware/administration', 'composer/installers'];
+
         $json = json_decode(file_get_contents($composerJsonPath), true);
 
-        $keys = ['shopware/platform', 'shopware/core', 'shopware/storefront', 'shopware/administration', 'composer/installers'];
+        if ($plugin instanceof Plugin) {
+            $metaDataVersions = json_decode(file_get_contents('https://swagger.docs.fos.gg/composer/versions.json'), true);
+            $compatibleVersions = $plugin->getCompatibleVersions(array_filter(array_map(function ($version) {
+                if (stripos($version, 'rc') !== false) {
+                    return null;
+                }
+
+                return [
+                    'name' => $version,
+                    'major' => 'Shopware 6',
+                    'selectable' => true
+                ];
+            }, $metaDataVersions)));
+
+            if (count($compatibleVersions)) {
+                $version = array_reverse($compatibleVersions)[0]['name'];
+
+                foreach (['core', 'administration', 'storefront', 'elasticsearch'] as $component) {
+                    $packageName = 'shopware/' . $component;
+
+                    if (!isset($json['require'][$packageName])) {
+                        continue;
+                    }
+
+                    $componentJson = json_decode(file_get_contents(sprintf('https://swagger.docs.fos.gg/composer/%s/%s.json', $version, $component)), true);
+
+                    foreach ($componentJson as $replaceName => $replaceValue) {
+                        $json['replace'][$replaceName] = $replaceValue;
+                    }
+                }
+            }
+        }
+
         foreach ($keys as $key) {
             if (isset($json['require'][$key])) {
                 unset($json['require'][$key]);
