@@ -107,14 +107,14 @@ class PluginPrepare
         if ($plugin instanceof Plugin) {
             $metaDataVersions = json_decode(file_get_contents('https://swagger.docs.fos.gg/composer/versions.json'), true);
             $compatibleVersions = $plugin->getCompatibleVersions(array_filter(array_map(function ($version) {
-                if (stripos($version, 'rc') !== false) {
+                if (mb_stripos($version, 'rc') !== false) {
                     return null;
                 }
 
                 return [
                     'name' => $version,
                     'major' => 'Shopware 6',
-                    'selectable' => true
+                    'selectable' => true,
                 ];
             }, $metaDataVersions)));
 

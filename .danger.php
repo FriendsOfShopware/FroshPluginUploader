@@ -8,5 +8,4 @@ use Danger\Rule\MaxCommitRule;
 return (new Config())
     ->useRule(new CommitRegexRule('/^(feat|fix|docs|perf|refactor|compat|chore)(\(.+\))?\:\s(.{3,})/m'))
     ->useRule(new MaxCommitRule(1))
-    ->useRule(new CheckPhpCsFixerRule())
 ;
