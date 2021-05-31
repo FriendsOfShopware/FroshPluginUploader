@@ -28,7 +28,7 @@
     "symfony/config": "~5.3",
     "symfony/dependency-injection": "~5.2",
     "symfony/dotenv": "^5.3",
-    "symfony/finder": "^5.2",
+    "symfony/finder": "^5.3",
     "guzzlehttp/guzzle": "~7.3",
     "composer/semver": "^3.2",
     "composer/spdx-licenses": "^1.5",
