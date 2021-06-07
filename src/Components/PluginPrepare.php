@@ -45,36 +45,6 @@ class PluginPrepare
                     $this->scopeDependencies($io, $plugin, $directory);
                 }
                 $this->exec('composer dump -o -d ' . escapeshellarg($directory));
-
-                // The InstalledVersions from composer 2 introduces issues when they exists multiple times. This patches it out
-                $installedVersions = $directory . '/vendor/composer/InstalledVersions.php';
-
-                $stripInstalledVersionRegex = '/\s*\'Composer\\\\\\\\InstalledVersions.*,$/m';
-
-                $autoloadClassMap = $directory . '/vendor/composer/autoload_classmap.php';
-                $autoloadStatic = $directory . '/vendor/composer/autoload_static.php';
-                $installedJson = $directory . '/vendor/composer/installed.json';
-                $installedPhp = $directory . '/vendor/composer/installed.php';
-
-                if (is_file($installedVersions)) {
-                    unlink($installedVersions);
-
-                    if (is_file($autoloadClassMap)) {
-                        \file_put_contents($autoloadClassMap, preg_replace($stripInstalledVersionRegex, '', file_get_contents($autoloadClassMap)));
-                    }
-
-                    if (is_file($autoloadStatic)) {
-                        \file_put_contents($autoloadStatic, preg_replace($stripInstalledVersionRegex, '', file_get_contents($autoloadStatic)));
-                    }
-
-                    if (is_file($installedPhp)) {
-                        unlink($installedPhp);
-                    }
-
-                    if (is_file($installedJson)) {
-                        unlink($installedJson);
-                    }
-                }
             }
 
             rename($composerJsonBackup, $composerJson);
