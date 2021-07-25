@@ -40,7 +40,9 @@ jobs:
         run: sed -i -e "s/__VERSION__/${{ steps.get_version.outputs.VERSION }}/g" src/Application.php
 
       - name: Build phar
-        run: php box.phar compile
+        run: |
+          php box.phar compile
+          sha512sum frosh-plugin-upload.phar > frosh-plugin-upload.version
 
       - name: Create Release
         id: create_release
@@ -48,7 +50,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          files: frosh-plugin-upload.phar
+          files: | 
+            frosh-plugin-upload.phar
+            frosh-plugin-upload.version
           tag_name: ${{ steps.get_version.outputs.VERSION }}
           name: ${{ steps.get_version.outputs.VERSION }}
           body: "${{ steps.changelog.outputs.CHANGELOG }}"
