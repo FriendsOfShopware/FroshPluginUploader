@@ -1,9 +1,11 @@
 <?php
 declare(strict_types=1);
 
+use FroshPluginUploader\Commands\SelfUpdateCommand;
 use FroshPluginUploader\Commands\ValidatePluginCommand;
 use Symfony\Component\DependencyInjection\Argument\TaggedIteratorArgument;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Symfony\Component\DependencyInjection\Parameter;
 
 return static function (ContainerConfigurator $configurator): void {
     $configurator->parameters()->set('project_dir', __DIR__ . '/../..');
@@ -22,5 +24,11 @@ return static function (ContainerConfigurator $configurator): void {
         ->services()
         ->get(ValidatePluginCommand::class)
         ->arg('$validators', new TaggedIteratorArgument('uploader.validation'))
+    ;
+
+    $configurator
+        ->services()
+        ->get(SelfUpdateCommand::class)
+        ->arg('$currentVersion', new Parameter('app.version'))
     ;
 };

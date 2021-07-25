@@ -36,7 +36,8 @@
     "knplabs/github-api": "^3.3",
     "http-interop/http-factory-guzzle": "^1.2",
     "m4tthumphrey/php-gitlab-api": "^11.4",
-    "league/commonmark": "^1.6"
+    "league/commonmark": "^1.6",
+    "laravel-zero/phar-updater": "^1.1"
   },
   "replace": {
     "symfony/polyfill-intl-normalizer": "*",

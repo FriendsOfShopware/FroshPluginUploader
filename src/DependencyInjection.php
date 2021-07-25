@@ -11,11 +11,12 @@ use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 
 class DependencyInjection
 {
-    public static function getContainer(): ContainerBuilder
+    public static function getContainer(string $currentVersion): ContainerBuilder
     {
         $container = new ContainerBuilder();
         $container->registerForAutoconfiguration(Command::class)->addTag('console.command');
         $container->registerForAutoconfiguration(ValidationInterface::class)->addTag('uploader.validation');
+        $container->setParameter('app.version', $currentVersion);
 
         $loader = new PhpFileLoader($container, new FileLocator(__DIR__ . '/Resources'));
         $loader->load('services.php');
