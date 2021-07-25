@@ -12,7 +12,7 @@ class DependencyInjectionTest extends TestCase
 {
     public function testCompiled(): void
     {
-        $container = DependencyInjection::getContainer();
+        $container = DependencyInjection::getContainer('__VERSION__');
         static::assertTrue($container->isCompiled());
 
         static::assertNotEmpty($container->findTaggedServiceIds('console.command'));
