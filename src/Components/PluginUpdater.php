@@ -87,13 +87,13 @@ class PluginUpdater
 
             if ($language === 'de') {
                 if ($plugin->getReader()->getDescriptionGerman()) {
-                    $infoTranslation->shortDescription = $plugin->getReader()->getDescriptionGerman();
+                    $infoTranslation->shortDescription = mb_substr($plugin->getReader()->getDescriptionGerman(), 0, 185);
                 }
 
                 $infoTranslation->name = $plugin->getReader()->getLabelGerman();
             } else {
                 if ($plugin->getReader()->getDescriptionEnglish()) {
-                    $infoTranslation->shortDescription = $plugin->getReader()->getDescriptionEnglish();
+                    $infoTranslation->shortDescription = mb_substr($plugin->getReader()->getDescriptionEnglish(), 0, 185);
                 }
 
                 $infoTranslation->name = $plugin->getReader()->getLabelEnglish();
