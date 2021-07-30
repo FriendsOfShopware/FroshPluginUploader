@@ -13,7 +13,7 @@ jobs:
         run: composer install
 
       - name: Download latest Danger
-        run: wget https://github.com/shyim/danger-php/releases/download/0.0.1/danger.phar
+        run: wget https://github.com/shyim/danger-php/releases/download/0.2.2/danger.phar
 
       - name: Danger
         run: php danger.phar ci
