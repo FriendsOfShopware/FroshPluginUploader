@@ -7,9 +7,11 @@ use FroshPluginUploader\Components\SBP\Client;
 use FroshPluginUploader\Components\SBP\FaqReader;
 use FroshPluginUploader\Structs\Plugin;
 use League\CommonMark\CommonMarkConverter;
-use League\CommonMark\Environment;
+use League\CommonMark\Environment\Environment;
+use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\Extension\DisallowedRawHtml\DisallowedRawHtmlExtension;
 use League\CommonMark\Extension\ExternalLink\ExternalLinkExtension;
+use League\CommonMark\MarkdownConverter;
 
 class PluginUpdater
 {
@@ -27,7 +29,6 @@ class PluginUpdater
     {
         $this->client = $client;
 
-        $environment = Environment::createCommonMarkEnvironment();
         $config = [
             'external_link' => [
                 'internal_hosts' => '/(^|.)shopware.com/',
@@ -35,10 +36,13 @@ class PluginUpdater
                 'noreferrer' => 'external',
             ],
         ];
+
+        $environment = new Environment($config);
+        $environment->addExtension(new CommonMarkCoreExtension());
         $environment->addExtension(new DisallowedRawHtmlExtension());
         $environment->addExtension(new ExternalLinkExtension());
 
-        $this->markdownParser = new CommonMarkConverter($config, $environment);
+        $this->markdownParser = new MarkdownConverter($environment);
     }
 
     public function sync(PluginInterface $plugin, Plugin $storePlugin): void
@@ -60,7 +64,7 @@ class PluginUpdater
             }
 
             if (file_exists($languageFileMarkdown)) {
-                $infoTranslation->description = $this->convertDescription($this->markdownParser->convertToHtml(file_get_contents($languageFileMarkdown)));
+                $infoTranslation->description = $this->convertDescription($this->markdownParser->convertToHtml(file_get_contents($languageFileMarkdown))->getContent());
             }
 
             $infoTranslation->installationManual = '';
@@ -70,7 +74,7 @@ class PluginUpdater
             }
 
             if (file_exists($languageManualFileMarkdown)) {
-                $infoTranslation->installationManual = $this->convertDescription($this->markdownParser->convertToHtml(file_get_contents($languageManualFileMarkdown)));
+                $infoTranslation->installationManual = $this->convertDescription($this->markdownParser->convertToHtml(file_get_contents($languageManualFileMarkdown))->getContent());
             }
 
             if (file_exists($languageHighlightsFile)) {
