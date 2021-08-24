@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace FroshPluginUploader\Commands;
 
-use FroshPluginUploader\Components\Updater\GithubReleaseStrategy;
+use Humbug\SelfUpdate\Strategy\GithubStrategy;
 use Humbug\SelfUpdate\Updater;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -36,7 +36,7 @@ class SelfUpdateCommand extends Command
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $updater = new Updater(null, false, Updater::STRATEGY_SHA512);
-        $updater->setStrategyObject(new GithubReleaseStrategy());
+        $updater->setStrategyObject(new GithubStrategy());
         $updater->getStrategy()->setPackageName('frosh/plugin-uploader');
         $updater->getStrategy()->setPharName('frosh-plugin-upload.phar');
         $updater->getStrategy()->setCurrentLocalVersion($this->currentVersion);
