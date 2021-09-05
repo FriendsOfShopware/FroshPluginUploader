@@ -1,0 +1,39 @@
+name: AUR
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4'
+    
+    - name: Download box
+      run: wget https://github.com/humbug/box/releases/download/3.11.0/box.phar
+    - name: Remove dev deps
+      run: composer install --no-dev
+      
+    - name: Build phar
+      run: php box.phar compile
+    
+    - name: Create AUR PKGBUILD
+      run: |
+        mkdir aur-package && cd aur-package
+        cp ../template/archlinux/PKGBUILD .
+        sed -i -e "s/__VERSION__/0.3.15/g" PKGBUILD
+        sed -i -e "s/__PHAR_SHA_SUM__/$(sha256sum ../frosh-plugin-upload.phar|cut -f1 -d' '|tr -d $'\n')/g" PKGBUILD
+        sed -i -e "s/__LICENSE_SHA_SUM__/$(sha256sum ../LICENSE|cut -f1 -d' '|tr -d $'\n')/g" PKGBUILD
+    - name: Publish to the AUR
+      uses: KSXGitHub/github-actions-deploy-aur@v2.2.5
+      with:
+        pkgname: php-sw-frosh-plugin-uploader
+        pkgbuild: ./aur-package/PKGBUILD
+        commit_username: ${{ secrets.AUR_USERNAME }}
+        commit_email: ${{ secrets.AUR_EMAIL }}
+        ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
+        commit_message: "Version 0.3.15"
