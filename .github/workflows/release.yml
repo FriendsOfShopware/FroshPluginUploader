@@ -73,3 +73,21 @@ jobs:
           docker push ghcr.io/friendsofshopware/plugin-uploader:${{ steps.get_version.outputs.VERSION }}
           docker push friendsofshopware/plugin-uploader
           docker push ghcr.io/friendsofshopware/plugin-uploader
+          
+      - name: Create AUR PKGBUILD
+        run: |
+          mkdir aur-package && cd aur-package
+          cp ../template/archlinux/PKGBUILD .
+          sed -i -e "s/__VERSION__/${{ steps.get_version.outputs.VERSION }}/g" PKGBUILD
+          sed -i -e "s/__PHAR_SHA_SUM__/$(sha256sum ../frosh-plugin-upload.phar|cut -f1 -d' '|tr -d $'\n')/g" PKGBUILD
+          sed -i -e "s/__LICENSE_SHA_SUM__/$(sha256sum ../LICENSE|cut -f1 -d' '|tr -d $'\n')/g" PKGBUILD
+
+      - name: Publish to the AUR
+        uses: KSXGitHub/github-actions-deploy-aur@v2.2.5
+        with:
+          pkgname: php-sw-frosh-plugin-uploader
+          pkgbuild: ./aur-package/PKGBUILD
+          commit_username: ${{ secrets.AUR_USERNAME }}
+          commit_email: ${{ secrets.AUR_EMAIL }}
+          ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
+          commit_message: "Version ${{ steps.get_version.outputs.VERSION }}"
