@@ -33,6 +33,10 @@ Example:
  [OK] Has been successfully validated                                           
 ```
 
+## Archlinux User Repository (AUR)
+
+Install using AUR package [php-sw-frosh-plugin-uploader](https://aur.archlinux.org/packages/php-sw-frosh-plugin-uploader)
+
 ## CI-Integration
 
 See [examples](https://github.com/FriendsOfShopware/FroshPluginUploader/tree/master/examples/ci) folder for how the Uploader could be integrated.
