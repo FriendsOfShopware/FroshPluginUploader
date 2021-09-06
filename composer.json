@@ -49,7 +49,7 @@
   "require-dev": {
     "ext-phar": "*",
     "roave/security-advisories": "dev-master",
-    "nette/php-generator": "^3.5",
+    "nette/php-generator": "^3.6",
     "phpunit/phpunit": "^9.5",
     "phpspec/prophecy-phpunit": "^2.0",
     "friendsofphp/php-cs-fixer": "^3.1"
