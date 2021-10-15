@@ -5,19 +5,19 @@
 [![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/FriendsOfShopware/FroshPluginUploader.svg)](https://github.com/FriendsOfShopware/FroshPluginUploader/pulls)
 [![Slack](https://img.shields.io/badge/chat-on%20slack-%23ECB22E)](https://slack.shopware.com?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-Tool for uploading new plugin releases to Shopware Store
+Tool for uploading new plugin releases to Shopware Store.
 
-**This Tool works only for the new plugin system, Shopware Platform and app system**
+**This Tool works only for the new plugin system, Shopware Platform and app system.**
 
-Required Environment variables
+Required Environment variables:
 
 | Name             	| Default 	| Description                                                         	|
 |------------------	|---------	|---------------------------------------------------------------------	|
-| ACCOUNT_USER     	|         	| Shopware ID                                                         	|
-| ACCOUNT_PASSWORD 	|         	| Shopware ID password                                                	|
-| ~~PLUGIN_ID~~    	|         	| Removed with Version 0.3.0 	                                        |
+| ACCOUNT_USER     	|         	| Shopware Account e-mail address                                     	|
+| ACCOUNT_PASSWORD 	|         	| Shopware Account password                                           	|
+| ~~PLUGIN_ID~~    	|         	| Removed with Version 0.3.0 	                                         |
 
-Requirements for Plugin
+Requirements for Plugin:
 
 * [Shopware 5](https://github.com/FriendsOfShopware/FroshPluginUploader/wiki/Shopware-5-Plugins)
 * [Shopware Platform](https://github.com/FriendsOfShopware/FroshPluginUploader/wiki/Shopware-Platform-Plugin)
@@ -35,7 +35,7 @@ Example:
 
 ## Archlinux User Repository (AUR)
 
-Install using AUR package [php-sw-frosh-plugin-uploader](https://aur.archlinux.org/packages/php-sw-frosh-plugin-uploader)
+Install using AUR package [php-sw-frosh-plugin-uploader](https://aur.archlinux.org/packages/php-sw-frosh-plugin-uploader).
 
 ## CI-Integration
 
@@ -46,7 +46,7 @@ See [examples](https://github.com/FriendsOfShopware/FroshPluginUploader/tree/mas
 ## ext:upload
 
 Will upload the zip to the store and triggers a code review.
-**Plugin version can be deployed multiple times, which updates the version**
+**Plugin version can be deployed multiple times, which updates the version.**
 
 Valid arguments are:
 
@@ -63,7 +63,7 @@ Valid options are:
 
 ## ext:update
 
-Will update informations about the plugin from the `Resources/store`-folder
+Will update informations about the plugin from the `Resources`-folder.
 
 Valid arguments are:
 
@@ -71,11 +71,11 @@ Valid arguments are:
 path - path to the plugin folder
 ```
 
-For more Information about the Resources/store folder checkout [this](https://github.com/FriendsOfShopware/FroshPluginUploader/wiki/Resources-store-Folder)
+For more Information about the Resources folder checkout [this](https://github.com/FriendsOfShopware/FroshPluginUploader/wiki/Resources-store-Folder).
 
 ## ext:validate
 
-Will check the plugin for validation exceptions for Code Review
+Will check the plugin for validation exceptions for Code Review.
 
 Valid arguments are:
 
@@ -94,11 +94,11 @@ Shows all plugins in the account with the id, name, latest version and last chan
 
 ## ext:download:resources
 
-Downloads all store resources from store to the given folder
+Downloads all store resources from store to the given folder.
 
 ## ext:zip
 
-Allows to zip the git repository or folder of the plugin
+Allows to zip the git repository or folder of the plugin.
 
 Valid arguments are:
 ```
