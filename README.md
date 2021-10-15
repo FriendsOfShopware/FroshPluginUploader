@@ -63,7 +63,7 @@ Valid options are:
 
 ## ext:update
 
-Will update informations about the plugin from the `Resources`-folder.
+Will update informations about the plugin from the `Resources/store`-folder.
 
 Valid arguments are:
 
@@ -71,7 +71,7 @@ Valid arguments are:
 path - path to the plugin folder
 ```
 
-For more Information about the Resources folder checkout [this](https://github.com/FriendsOfShopware/FroshPluginUploader/wiki/Resources-store-Folder).
+For more Information about the Resources/store folder checkout [this](https://github.com/FriendsOfShopware/FroshPluginUploader/wiki/Resources-store-Folder).
 
 ## ext:validate
 
