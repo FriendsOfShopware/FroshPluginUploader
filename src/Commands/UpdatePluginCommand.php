@@ -29,7 +29,7 @@ class UpdatePluginCommand extends Command
         $this
             ->setName('ext:update')
             ->setAliases(['plugin:update'])
-            ->setDescription('Synchronize the Resources/store to the account')
+            ->setDescription('Synchronize the plugin information to the Shopware store, for plugins it should be located at Resources/store, for apps the store folder in the plugin root folder is used.')
             ->addArgument('path', InputArgument::REQUIRED, 'Path to plugin folder')
         ;
     }
