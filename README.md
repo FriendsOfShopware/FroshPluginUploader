@@ -63,7 +63,7 @@ Valid options are:
 
 ## ext:update
 
-Will update informations about the plugin from the `Resources/store`-folder.
+Update Shopware store informations about the plugin. For plugins the files from the `${path}/Resources/store`-folder are used. For apps the store folder should be placed directly in the root folder of the app, i.e. the folder is `${path}/store` furthermore the plugin name and so on are read from the app `manifest.xml`.
 
 Valid arguments are:
 
