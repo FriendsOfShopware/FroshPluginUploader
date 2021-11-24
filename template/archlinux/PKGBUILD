@@ -12,7 +12,7 @@ depends=('php>=7.4.0')
 source=("frosh-plugin-upload-${pkgver}.phar::https://github.com/FriendsOfShopware/FroshPluginUploader/releases/download/${pkgver}/frosh-plugin-upload.phar"
         "LICENSE-${pkgver}::https://raw.githubusercontent.com/FriendsOfShopware/FroshPluginUploader/${pkgver}/LICENSE")
 sha256sums=('__PHAR_SHA_SUM__'
-            '__LICENSE_SHA_SUM__')
+            'SKIP')
 
 package() {
   install -D -m 644 "${srcdir}/LICENSE-${pkgver}" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
