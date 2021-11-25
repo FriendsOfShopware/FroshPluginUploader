@@ -9,14 +9,8 @@ jobs:
       - name: Clone
         uses: actions/checkout@v2.4.0
 
-      - name: Composer Install
-        run: composer install
-
-      - name: Download latest Danger
-        run: wget https://github.com/shyim/danger-php/releases/download/0.2.2/danger.phar
-
       - name: Danger
-        run: php danger.phar ci
+        run: docker://ghcr.io/shyim/danger-php:latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_PULL_REQUEST_ID: ${{ github.event.pull_request.number }}
