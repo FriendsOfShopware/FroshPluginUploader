@@ -10,7 +10,7 @@ jobs:
         uses: actions/checkout@v2.4.0
 
       - name: Danger
-        run: docker://ghcr.io/shyim/danger-php:latest
+        uses: docker://ghcr.io/shyim/danger-php:latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_PULL_REQUEST_ID: ${{ github.event.pull_request.number }}
