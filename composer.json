@@ -52,6 +52,6 @@
     "nette/php-generator": "^3.6",
     "phpunit/phpunit": "^9.5",
     "phpspec/prophecy-phpunit": "^2.0",
-    "friendsofphp/php-cs-fixer": "^3.3"
+    "friendsofphp/php-cs-fixer": "^3.4"
   }
 }
