@@ -51,6 +51,7 @@ abstract class XmlReaderBase implements XmlReaderInterface
             $language = $item->getAttribute('lang') ?: self::DEFAULT_LANG;
             // XSD Requires en-GB, Zend uses en_GB
             $language = str_replace('-', '_', $language);
+            assert(!is_array($language));
             $translations[$language] = trim($item->nodeValue);
         }
 
