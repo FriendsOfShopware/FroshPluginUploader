@@ -7,6 +7,7 @@ use FroshPluginUploader\Components\SBP\Components\General;
 use FroshPluginUploader\Components\SBP\Components\Plugin;
 use FroshPluginUploader\Components\SBP\Components\Producer;
 use FroshPluginUploader\Structs\Producer as ProducerStruct;
+use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\UriInterface;
@@ -27,26 +28,10 @@ use Psr\Http\Message\UriInterface;
  */
 class Client
 {
-    /**
-     * @var \GuzzleHttp\Client
-     */
-    private $apiClient;
-
-    /**
-     * @var array
-     */
-    private $components;
-
-    /**
-     * @var int
-     */
-    private $userId;
-
-    /**
-     * @var ProducerStruct
-     */
-    private $producer;
-
+    private GuzzleHttpClient $apiClient;
+    private array $components = [];
+    private ?int $userId;
+    private ?ProducerStruct $producer;
     private bool $connected = false;
 
     public function __construct()
@@ -121,15 +106,23 @@ class Client
 
     public function getUserId(): int
     {
+        if (!isset($this->userId)) {
+            throw new \RuntimeException('No user id could be found');
+        }
+
         return $this->userId;
     }
 
     public function getProducer(): ProducerStruct
     {
+        if (!isset($this->producer)) {
+            throw new \RuntimeException('No producer could be found');
+        }
+
         return $this->producer;
     }
 
-    private function createClient(?string $token): \GuzzleHttp\Client
+    private function createClient(?string $token): GuzzleHttpClient
     {
         $options = [
             'base_uri' => $_SERVER['API_ENDPOINT'] ?? 'https://api.shopware.com',
