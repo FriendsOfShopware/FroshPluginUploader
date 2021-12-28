@@ -56,7 +56,7 @@ class NotAllowedFilesInZipChecker implements ValidationInterface
                 /**
                  * user lowercase for comparison and escape metacharacters
                  */
-                $checkPattern = preg_quote(mb_strtolower($forbiddenFile));
+                $checkPattern = preg_quote(mb_strtolower($forbiddenFile), '/');
 
                 /*
                  * check for not allowed files
