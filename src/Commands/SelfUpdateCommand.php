@@ -46,12 +46,12 @@ class SelfUpdateCommand extends Command
         if ($input->getOption('rollback')) {
             if ($updater->rollback()) {
                 $io->success('Rollback successfully to old version');
-                return self::SUCCESS;
-            } else {
-                $io->error('Could not rollback to old version');
 
-                return self::FAILURE;
+                return self::SUCCESS;
             }
+            $io->error('Could not rollback to old version');
+
+            return self::FAILURE;
         }
 
         if ($updater->hasUpdate()) {
