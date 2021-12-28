@@ -24,7 +24,7 @@ class FaqReader
                         throw new InvalidArgumentException(sprintf('FAQ in path "%s" is invalid', $path));
                     }
 
-                    if (mb_strlen(trim($line)) === 0) {
+                    if (trim($line) === '') {
                         break;
                     }
 

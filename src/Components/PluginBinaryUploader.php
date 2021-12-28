@@ -25,10 +25,10 @@ class PluginBinaryUploader
     {
         $binaries = $this->client->Plugins()->getAvailableBinaries($input->getStorePlugin()->id);
 
-        if (!$this->client->Plugins()->hasVersion($binaries, $input->getPlugin()->getReader()->getVersion())) {
-            $binary = $this->client->Plugins()->createBinaryFile($input->getZipPath(), $input->getStorePlugin()->id);
-        } else {
+        if ($this->client->Plugins()->hasVersion($binaries, $input->getPlugin()->getReader()->getVersion())) {
             $binary = $this->updateBinary($binaries, $input->getPlugin()->getReader()->getVersion(), $input->getZipPath(), $input->getStorePlugin()->id);
+        } else {
+            $binary = $this->client->Plugins()->createBinaryFile($input->getZipPath(), $input->getStorePlugin()->id);
         }
 
         $binary->version = $input->getPlugin()->getReader()->getVersion();
@@ -41,7 +41,7 @@ class PluginBinaryUploader
         // Patch the binary changelog and version
         $this->client->Plugins()->updateBinary($binary, $input->getStorePlugin()->id);
 
-        $currentReviews = count($this->client->Plugins()->getCodeReviewResults($input->getStorePlugin()->id, $binary->id));
+        $currentReviews = \count($this->client->Plugins()->getCodeReviewResults($input->getStorePlugin()->id, $binary->id));
 
         if ($input->isSkipCodeReview()) {
             return new UploadPluginResult(true, false);
@@ -78,8 +78,8 @@ class PluginBinaryUploader
         while (true) {
             $results = $this->client->Plugins()->getCodeReviewResults($pluginId, $binaryId);
 
-            if ($counter !== count($results)) {
-                $result = $results[count($results) - 1];
+            if ($counter !== \count($results)) {
+                $result = $results[\count($results) - 1];
 
                 // Still pending
                 // @codeCoverageIgnoreStart

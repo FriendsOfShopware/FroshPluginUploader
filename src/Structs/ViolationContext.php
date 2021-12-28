@@ -49,7 +49,7 @@ class ViolationContext
 
     public function hasViolations(): bool
     {
-        return count($this->violations) > 0;
+        return \count($this->violations) > 0;
     }
 
     public function getViolations(): array
