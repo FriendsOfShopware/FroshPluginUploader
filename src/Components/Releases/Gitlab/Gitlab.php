@@ -57,6 +57,6 @@ class Gitlab implements ReleaseInterface
         ]);
         curl_setopt($ch, CURLOPT_POSTFIELDS, file_get_contents($zipPath));
 
-        var_dump(curl_exec($ch));
+        curl_exec($ch);
     }
 }

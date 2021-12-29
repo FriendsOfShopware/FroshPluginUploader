@@ -8,6 +8,7 @@ use FroshPluginUploader\Components\SBP\Components\Plugin;
 use FroshPluginUploader\Components\SBP\Components\Producer;
 use FroshPluginUploader\Structs\Producer as ProducerStruct;
 use GuzzleHttp\Promise\PromiseInterface;
+use const JSON_THROW_ON_ERROR;
 use function mb_strtolower;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\UriInterface;
@@ -62,7 +63,7 @@ class Client
 
         $lowerName = mb_strtolower($name);
 
-        return $this->components[$lowerName] ?? call_user_func_array([$this->apiClient, $name], $arguments);
+        return $this->components[$lowerName] ?? \call_user_func_array([$this->apiClient, $name], $arguments);
     }
 
     public function login(): void
@@ -80,7 +81,7 @@ class Client
             ],
         ]);
 
-        $data = json_decode($response->getBody()->__toString(), true, 512, \JSON_THROW_ON_ERROR);
+        $data = json_decode($response->getBody()->__toString(), true, 512, JSON_THROW_ON_ERROR);
 
         if (isset($data['success']) && $data['success'] === false) {
             throw new RuntimeException(sprintf('Login to Account failed with code %s', $data['code']));

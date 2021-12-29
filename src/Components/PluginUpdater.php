@@ -3,9 +3,11 @@ declare(strict_types=1);
 
 namespace FroshPluginUploader\Components;
 
+use function count;
 use FroshPluginUploader\Components\SBP\Client;
 use FroshPluginUploader\Components\SBP\FaqReader;
 use FroshPluginUploader\Structs\Plugin;
+use function in_array;
 use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\Environment\Environment;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
@@ -60,29 +62,29 @@ class PluginUpdater
             $languageFeaturesFile = $resourcesFolderPath . '/' . $language . '_features.txt';
             $languageFaqFile = $resourcesFolderPath . '/' . $language . '_faq.md';
 
-            if (file_exists($languageFile)) {
+            if (is_file($languageFile)) {
                 $infoTranslation->description = $this->convertDescription(file_get_contents($languageFile));
             }
 
-            if (file_exists($languageFileMarkdown)) {
+            if (is_file($languageFileMarkdown)) {
                 $infoTranslation->description = $this->convertDescription($this->markdownParser->convertToHtml(file_get_contents($languageFileMarkdown))->getContent());
             }
 
             $infoTranslation->installationManual = '';
 
-            if (file_exists($languageManualFile)) {
+            if (is_file($languageManualFile)) {
                 $infoTranslation->installationManual = $this->convertDescription(file_get_contents($languageManualFile));
             }
 
-            if (file_exists($languageManualFileMarkdown)) {
+            if (is_file($languageManualFileMarkdown)) {
                 $infoTranslation->installationManual = $this->convertDescription($this->markdownParser->convertToHtml(file_get_contents($languageManualFileMarkdown))->getContent());
             }
 
-            if (file_exists($languageHighlightsFile)) {
+            if (is_file($languageHighlightsFile)) {
                 $infoTranslation->highlights = file_get_contents($languageHighlightsFile);
             }
 
-            if (file_exists($languageFeaturesFile)) {
+            if (is_file($languageFeaturesFile)) {
                 $infoTranslation->features = file_get_contents($languageFeaturesFile);
             }
 
@@ -105,9 +107,7 @@ class PluginUpdater
             }
         }
 
-        unset($infoTranslation);
-
-        if (\count($storePlugin->localizations) < 2) {
+        if (count($storePlugin->localizations) < 2) {
             $this->addDefaultLocales($storePlugin);
         }
 
@@ -125,7 +125,7 @@ class PluginUpdater
 
         $imageDir = $resourcesFolderPath . '/images';
 
-        if (file_exists($imageDir)) {
+        if (is_dir($imageDir)) {
             $images = $this->client->Plugins()->getImages($storePlugin->id);
 
             foreach ($images as $image) {
@@ -166,7 +166,7 @@ class PluginUpdater
 
         $availableLicenses = array_column($availableStoreLicenses, 'name');
 
-        if (!\in_array($license, $availableLicenses, true)) {
+        if (!in_array($license, $availableLicenses, true)) {
             $license = 'open_source';
         }
 

@@ -33,13 +33,14 @@ class SelfUpdateCommand extends Command
         $this->addOption('rollback', null, InputOption::VALUE_OPTIONAL, 'Rollback to previous version');
     }
 
-    public function execute(InputInterface $input, OutputInterface $output)
+    public function execute(InputInterface $input, OutputInterface $output): int
     {
         $updater = new Updater(null, false, Updater::STRATEGY_SHA512);
-        $updater->setStrategyObject(new GithubStrategy());
-        $updater->getStrategy()->setPackageName('frosh/plugin-uploader');
-        $updater->getStrategy()->setPharName('frosh-plugin-upload.phar');
-        $updater->getStrategy()->setCurrentLocalVersion($this->currentVersion);
+        $strategy = new GithubStrategy();
+        $strategy->setPackageName('frosh/plugin-uploader');
+        $strategy->setPharName('frosh-plugin-upload.phar');
+        $strategy->setCurrentLocalVersion($this->currentVersion);
+        $updater->setStrategyObject($strategy);
 
         $io = new SymfonyStyle($input, $output);
 

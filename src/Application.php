@@ -5,17 +5,10 @@ namespace FroshPluginUploader;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Dotenv\Dotenv;
 
 class Application extends \Symfony\Component\Console\Application
 {
-    /**
-     * @var ContainerInterface
-     */
-    private $container;
-
     public function __construct()
     {
         $env = getcwd() . '/.env';
@@ -25,22 +18,17 @@ class Application extends \Symfony\Component\Console\Application
         }
 
         parent::__construct('FroshPluginUploader', '__VERSION__');
-        $this->container = DependencyInjection::getContainer($this->getVersion());
+        $container = DependencyInjection::getContainer($this->getVersion());
 
-        foreach (array_keys($this->container->findTaggedServiceIds('console.command')) as $command) {
+        foreach (array_keys($container->findTaggedServiceIds('console.command')) as $commandName) {
             /** @var Command $command */
-            $command = $this->container->get($command);
+            $command = $container->get($commandName);
 
             if ($command instanceof ContainerAwareInterface) {
-                $command->setContainer($this->container);
+                $command->setContainer($container);
             }
 
             $this->add($command);
         }
-    }
-
-    public function getContainer(): ContainerBuilder
-    {
-        return $this->container;
     }
 }

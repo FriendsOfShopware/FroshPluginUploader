@@ -8,8 +8,6 @@ class Changelogs extends Struct
     /** @var int */
     public $id;
 
-    public static $mappedFields = [];
-
     /** @var Locale */
     public $locale;
 

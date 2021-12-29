@@ -17,5 +17,5 @@ class Image extends Struct
     /** @var int */
     public $priority;
 
-    public static $mappedFields = ['details' => \FroshPluginUploader\Structs\ImageDetail::class];
+    public static $mappedFields = ['details' => ImageDetail::class];
 }

@@ -3,11 +3,16 @@ declare(strict_types=1);
 
 namespace FroshPluginUploader\Components;
 
+use function count;
 use FroshPluginUploader\Components\Generation\ShopwarePlatform\Plugin;
 use FroshPluginUploader\Traits\ExecTrait;
 use JakubOnderka\PhpVarDumpCheck\Manager;
 use JakubOnderka\PhpVarDumpCheck\Output;
 use JakubOnderka\PhpVarDumpCheck\Settings;
+use const JSON_PRETTY_PRINT;
+use const JSON_THROW_ON_ERROR;
+use const JSON_UNESCAPED_SLASHES;
+use const JSON_UNESCAPED_UNICODE;
 use RuntimeException;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -73,10 +78,10 @@ class PluginPrepare
     {
         $keys = ['shopware/platform', 'shopware/core', 'shopware/storefront', 'shopware/administration', 'composer/installers'];
 
-        $json = json_decode(file_get_contents($composerJsonPath), true, 512, \JSON_THROW_ON_ERROR);
+        $json = json_decode(file_get_contents($composerJsonPath), true, 512, JSON_THROW_ON_ERROR);
 
         if ($plugin instanceof Plugin) {
-            $metaDataVersions = json_decode(file_get_contents('https://swagger.docs.fos.gg/composer/versions.json'), true, 512, \JSON_THROW_ON_ERROR);
+            $metaDataVersions = json_decode(file_get_contents('https://swagger.docs.fos.gg/composer/versions.json'), true, 512, JSON_THROW_ON_ERROR);
             $compatibleVersions = $plugin->getCompatibleVersions(array_filter(array_map(static function ($version) {
                 if (mb_stripos($version, 'rc') !== false) {
                     return null;
@@ -89,7 +94,7 @@ class PluginPrepare
                 ];
             }, $metaDataVersions)));
 
-            if (\count($compatibleVersions)) {
+            if (count($compatibleVersions)) {
                 $version = array_reverse($compatibleVersions)[0]['name'];
 
                 foreach (['core', 'administration', 'storefront', 'elasticsearch'] as $component) {
@@ -99,7 +104,7 @@ class PluginPrepare
                         continue;
                     }
 
-                    $componentJson = json_decode(file_get_contents(sprintf('https://swagger.docs.fos.gg/composer/%s/%s.json', $version, $component)), true, 512, \JSON_THROW_ON_ERROR);
+                    $componentJson = json_decode(file_get_contents(sprintf('https://swagger.docs.fos.gg/composer/%s/%s.json', $version, $component)), true, 512, JSON_THROW_ON_ERROR);
 
                     foreach ($componentJson as $replaceName => $replaceValue) {
                         $json['replace'][$replaceName] = $replaceValue;
@@ -115,17 +120,17 @@ class PluginPrepare
         }
 
         // Add these packages as provided by the plugin
-        $json['provide'] = array_combine($keys, array_fill(0, \count($keys), '*'));
+        $json['provide'] = array_combine($keys, array_fill(0, count($keys), '*'));
 
         file_put_contents(
             $composerJsonPath,
-            json_encode($json, \JSON_THROW_ON_ERROR | \JSON_PRETTY_PRINT | \JSON_UNESCAPED_SLASHES | \JSON_UNESCAPED_UNICODE)
+            json_encode($json, JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
         );
     }
 
     private function needComposerToRun(string $composerJsonPath): bool
     {
-        $json = json_decode(file_get_contents($composerJsonPath), true, 512, \JSON_THROW_ON_ERROR);
+        $json = json_decode(file_get_contents($composerJsonPath), true, 512, JSON_THROW_ON_ERROR);
 
         // Plugin does not require anything
         if (empty($json['require'])) {

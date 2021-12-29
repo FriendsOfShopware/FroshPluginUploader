@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace FroshPluginUploader\Structs;
 
+use function count;
 use FroshPluginUploader\Components\PluginInterface;
 use ZipArchive;
 
@@ -48,7 +49,7 @@ class ViolationContext
 
     public function hasViolations(): bool
     {
-        return \count($this->violations) > 0;
+        return count($this->violations) > 0;
     }
 
     public function getViolations(): array

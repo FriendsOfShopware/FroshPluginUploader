@@ -10,8 +10,6 @@ class SubCheckResult extends Struct
     public const STATUS_COMPLETED = 'completed';
     public const STATUS_SKIPPED = 'skipped';
 
-    public static $mappedFields = [];
-
     /**
      * @var string
      */

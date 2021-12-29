@@ -17,10 +17,7 @@ abstract class XmlReaderBase implements XmlReaderInterface
 {
     private const DEFAULT_LANG = 'en';
 
-    /**
-     * @var string should be set in instance that extends this class
-     */
-    protected $xsdFile;
+    protected ?string $xsdFile = null;
 
     /**
      * load and validate xml file - parse to array
@@ -38,10 +35,8 @@ abstract class XmlReaderBase implements XmlReaderInterface
 
     /**
      * Parses translatable node list.
-     *
-     * @return array|null
      */
-    public static function parseTranslatableNodeList(DOMNodeList $list)
+    public static function parseTranslatableNodeList(DOMNodeList $list): ?array
     {
         if ($list->length === 0) {
             return null;
@@ -61,14 +56,9 @@ abstract class XmlReaderBase implements XmlReaderInterface
     /**
      * Returns all element child values by nodeName.
      *
-     * @param string $name
-     * @param bool $throwException
-     *
-     * @throws InvalidArgumentException
-     *
-     * @return string|null
+     *@throws InvalidArgumentException
      */
-    public static function getElementChildValueByName(DOMElement $element, $name, $throwException = false)
+    public static function getElementChildValueByName(DOMElement $element, string $name, bool $throwException = false): ?string
     {
         $children = $element->getElementsByTagName($name);
         if ($children->length === 0) {
@@ -84,8 +74,6 @@ abstract class XmlReaderBase implements XmlReaderInterface
 
     /**
      * This method should be overridden as main entry point to parse a xml file.
-     *
-     * @return array
      */
-    abstract protected function parseFile(DOMDocument $xml);
+    abstract protected function parseFile(DOMDocument $xml): array;
 }

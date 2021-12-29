@@ -11,8 +11,6 @@ class Producer extends Struct
     /** @var string */
     public $prefix;
 
-    public static $mappedFields = [];
-
     /** @var Contract */
     public $contract;
 

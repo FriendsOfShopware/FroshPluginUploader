@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace FroshPluginUploader\Structs;
 
+use function is_array;
+use function is_object;
 use stdClass;
 
 class Struct
@@ -12,7 +14,7 @@ class Struct
     /**
      * @return static
      */
-    public static function map(stdClass $object)
+    public static function map(stdClass $object): self
     {
         $newObject = new static();
 
@@ -23,7 +25,7 @@ class Struct
             }
 
             if (isset(static::$mappedFields[$key])) {
-                if (\is_array($value) && \is_object($value[0])) {
+                if (is_array($value) && is_object($value[0])) {
                     $data = [];
 
                     foreach ($value as $item) {
@@ -47,7 +49,7 @@ class Struct
     /**
      * @return static[]
      */
-    public static function mapList(array $data)
+    public static function mapList(array $data): array
     {
         if (empty($data)) {
             return [];
@@ -58,7 +60,7 @@ class Struct
         }, $data);
     }
 
-    public static function make(array $data)
+    public static function make(array $data): self
     {
         $newObject = new static();
 
@@ -69,7 +71,7 @@ class Struct
             }
 
             if (isset(static::$mappedFields[$key])) {
-                if (\is_array($value) && isset($value[0])) {
+                if (is_array($value) && isset($value[0])) {
                     $data = [];
 
                     foreach ($value as $item) {
@@ -92,7 +94,7 @@ class Struct
 
     private static function arrayToObject($d)
     {
-        if (\is_array($d)) {
+        if (is_array($d)) {
             return (object) array_map([static::class, 'arrayToObject'], $d);
         }
 

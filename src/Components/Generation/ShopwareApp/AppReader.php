@@ -87,4 +87,14 @@ class AppReader implements PluginReaderInterface
 
         return $this->changelogReader;
     }
+
+    public function getMinVersion(): string
+    {
+        return '';
+    }
+
+    public function getMaxVersion(): ?string
+    {
+        return null;
+    }
 }

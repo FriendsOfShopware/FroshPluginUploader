@@ -11,8 +11,6 @@ class Certification extends Struct
     /** @var string */
     public $creationDate;
 
-    public static $mappedFields = [];
-
     /** @var BronzeResult */
     public $bronzeResult;
 

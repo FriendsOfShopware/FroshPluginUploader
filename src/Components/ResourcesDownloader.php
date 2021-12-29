@@ -5,6 +5,8 @@ namespace FroshPluginUploader\Components;
 
 use FroshPluginUploader\Components\SBP\Client;
 use FroshPluginUploader\Structs\Plugin;
+use const JSON_PRETTY_PRINT;
+use const JSON_THROW_ON_ERROR;
 use RuntimeException;
 
 class ResourcesDownloader
@@ -50,7 +52,7 @@ class ResourcesDownloader
             }
         }
 
-        file_put_contents($path . '/store.json', json_encode($this->generateStoreJson($plugin), \JSON_THROW_ON_ERROR | \JSON_PRETTY_PRINT));
+        file_put_contents($path . '/store.json', json_encode($this->generateStoreJson($plugin), JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT));
 
         $pictures = $this->client->Plugins()->getImages($plugin->id);
 

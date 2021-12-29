@@ -14,8 +14,6 @@ class Details extends Struct
     /** @var string */
     public $description;
 
-    public static $mappedFields = [];
-
     /** @var Locale */
     public $locale;
 }

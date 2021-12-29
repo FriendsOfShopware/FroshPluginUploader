@@ -14,12 +14,9 @@ class PluginZip
 {
     use ExecTrait;
 
-    /**
-     * @var PluginPrepare
-     */
-    private $pluginPrepare;
+    private PluginPrepare $pluginPrepare;
 
-    private $defaultBlacklist = [
+    private const DEFAULT_BLACKLIST = [
         '.travis.yml',
         '.gitlab-ci.yml',
         'build.sh',
@@ -56,15 +53,17 @@ class PluginZip
         $version = $strategy->copyFolder($directory, $pluginTmpDir);
         $this->pluginPrepare->prepare($pluginTmpDir, $scopeDependencies, $output);
 
+        $defaultBlacklist = self::DEFAULT_BLACKLIST;
+
         if (file_exists($pluginTmpDir . '/.sw-zip-blacklist')) {
             $io->warning('Use of .sw-zip-blacklist is deprecated, use .gitattributes with export-ignore. It will be removed with 0.4.0');
             $blackList = file_get_contents($directory . '/.sw-zip-blacklist');
             $blackList = array_filter(explode("\n", $blackList));
-            $this->defaultBlacklist = array_merge($this->defaultBlacklist, $blackList);
+            $defaultBlacklist = array_merge($defaultBlacklist, $blackList);
         }
 
         // Cleanup directory using blacklist
-        foreach ($this->defaultBlacklist as $item) {
+        foreach ($defaultBlacklist as $item) {
             $this->exec('rm -rf ' . escapeshellarg($pluginTmpDir . '/' . $item));
         }
 
@@ -73,7 +72,7 @@ class PluginZip
         // Clean branch name for filename
 
         if ($version) {
-            $version = preg_replace('/[^a-z\.0-9]+/', '-', mb_strtolower($version));
+            $version = preg_replace('/[^a-z.0-9]+/', '-', mb_strtolower($version));
             $fileName = $plugin->getName() . '-' . $version . '.zip';
         } else {
             $fileName = $plugin->getName() . '.zip';

@@ -9,17 +9,16 @@ use DOMXPath;
 
 class XmlPluginReader extends XmlReaderBase
 {
-    /**
-     * @var string
-     */
-    protected $xsdFile = __DIR__ . '/schema/plugin.xsd';
+    public function __construct()
+    {
+        $this->xsdFile = __DIR__ . '/schema/plugin.xsd';
+    }
 
     protected function parseFile(DOMDocument $xml): array
     {
         $xpath = new DOMXPath($xml);
-        $plugin = $xpath->query('//plugin');
         /** @var DOMElement $pluginData */
-        $pluginData = $plugin->item(0);
+        $pluginData = $xpath->query('//plugin')->item(0);
         $info = [];
 
         if ($label = self::parseTranslatableNodeList($xpath->query('//plugin/label'))) {
@@ -30,8 +29,7 @@ class XmlPluginReader extends XmlReaderBase
             $info['description'] = $description;
         }
 
-        $simpleFields = ['version', 'license', 'author', 'copyright', 'link'];
-        foreach ($simpleFields as $simpleField) {
+        foreach (['version', 'license', 'author', 'copyright', 'link'] as $simpleField) {
             if (($fieldValue = self::getElementChildValueByName($pluginData, $simpleField)) !== null) {
                 $info[$simpleField] = $fieldValue;
             }

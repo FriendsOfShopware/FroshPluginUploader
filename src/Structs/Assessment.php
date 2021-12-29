@@ -17,8 +17,6 @@ class Assessment extends Struct
     /** @var string */
     public $comment;
 
-    public static $mappedFields = [];
-
     /** @var Factors */
     public $factors;
 

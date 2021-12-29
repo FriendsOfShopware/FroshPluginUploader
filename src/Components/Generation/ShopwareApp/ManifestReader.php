@@ -9,7 +9,7 @@ use FroshPluginUploader\Components\XmlReader\XmlReaderBase;
 
 class ManifestReader extends XmlReaderBase
 {
-    protected function parseFile(DOMDocument $xml)
+    protected function parseFile(DOMDocument $xml): array
     {
         $xpath = new DOMXPath($xml);
         $info = [];

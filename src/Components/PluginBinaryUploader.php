@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace FroshPluginUploader\Components;
 
+use function count;
 use FroshPluginUploader\Components\SBP\Client;
 use FroshPluginUploader\Structs\Binary;
 use FroshPluginUploader\Structs\Input\UploadPluginInput;
@@ -40,7 +41,7 @@ class PluginBinaryUploader
         // Patch the binary changelog and version
         $this->client->Plugins()->updateBinary($binary, $input->getStorePlugin()->id);
 
-        $currentReviews = \count($this->client->Plugins()->getCodeReviewResults($input->getStorePlugin()->id, $binary->id));
+        $currentReviews = count($this->client->Plugins()->getCodeReviewResults($input->getStorePlugin()->id, $binary->id));
 
         if ($input->isSkipCodeReview()) {
             return new UploadPluginResult(true, false);
@@ -77,8 +78,8 @@ class PluginBinaryUploader
         while (true) {
             $results = $this->client->Plugins()->getCodeReviewResults($pluginId, $binaryId);
 
-            if ($counter !== \count($results)) {
-                $result = $results[\count($results) - 1];
+            if ($counter !== count($results)) {
+                $result = $results[count($results) - 1];
 
                 // Still pending
                 // @codeCoverageIgnoreStart

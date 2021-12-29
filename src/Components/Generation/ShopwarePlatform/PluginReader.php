@@ -4,13 +4,15 @@ declare(strict_types=1);
 namespace FroshPluginUploader\Components\Generation\ShopwarePlatform;
 
 use FroshPluginUploader\Components\PluginReaderInterface;
+use function is_array;
+use const JSON_THROW_ON_ERROR;
 
 class PluginReader implements PluginReaderInterface
 {
     /**
      * @var array
      */
-    private $composerJson = [];
+    private $composerJson;
 
     /**
      * @var string
@@ -24,7 +26,7 @@ class PluginReader implements PluginReaderInterface
 
     public function __construct(string $path)
     {
-        $this->composerJson = json_decode(file_get_contents($path . '/composer.json'), true, 512, \JSON_THROW_ON_ERROR);
+        $this->composerJson = json_decode(file_get_contents($path . '/composer.json'), true, 512, JSON_THROW_ON_ERROR);
         $this->rootDir = $path;
     }
 
@@ -75,7 +77,7 @@ class PluginReader implements PluginReaderInterface
 
     public function getLicense(): string
     {
-        return mb_strtolower(\is_array($this->composerJson['license']) ? $this->composerJson['license'][0] : $this->composerJson['license']);
+        return mb_strtolower(is_array($this->composerJson['license']) ? $this->composerJson['license'][0] : $this->composerJson['license']);
     }
 
     public function getName(): string
@@ -92,5 +94,15 @@ class PluginReader implements PluginReaderInterface
         }
 
         return $this->changelogReader;
+    }
+
+    public function getMinVersion(): string
+    {
+        return '';
+    }
+
+    public function getMaxVersion(): ?string
+    {
+        return null;
     }
 }

@@ -29,7 +29,7 @@ class ChangelogReader
         $this->readFiles($files);
     }
 
-    public function getChangelog(string $locale, string $version)
+    public function getChangelog(string $locale, string $version): string
     {
         $localeStorage = $this->storage[$locale] ?? null;
 
@@ -68,7 +68,7 @@ class ChangelogReader
         }
     }
 
-    private function getLocaleFromFileName(string $fileName)
+    private function getLocaleFromFileName(string $fileName): string
     {
         $fileName = basename($fileName, '.md');
 

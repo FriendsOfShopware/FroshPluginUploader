@@ -6,12 +6,13 @@ namespace FroshPluginUploader\Components\SBP\Components;
 use FroshPluginUploader\Exception\PluginNotFoundInAccount;
 use FroshPluginUploader\Structs\Plugin;
 use FroshPluginUploader\Structs\Producer as ProducerStruct;
+use const JSON_THROW_ON_ERROR;
 
 class Producer extends AbstractComponent
 {
     public function getProducer(): ProducerStruct
     {
-        return ProducerStruct::map(json_decode((string) $this->client->get('/producers?companyId=' . $this->client->getUserId())->getBody(), false, 512, \JSON_THROW_ON_ERROR)[0]);
+        return ProducerStruct::map(json_decode((string) $this->client->get('/producers?companyId=' . $this->client->getUserId())->getBody(), false, 512, JSON_THROW_ON_ERROR)[0]);
     }
 
     /**
@@ -31,7 +32,7 @@ class Producer extends AbstractComponent
             $query['search'] = $search;
         }
 
-        return Plugin::mapList(json_decode((string) $this->client->get('/plugins', ['query' => $query])->getBody(), false, 512, \JSON_THROW_ON_ERROR));
+        return Plugin::mapList(json_decode((string) $this->client->get('/plugins', ['query' => $query])->getBody(), false, 512, JSON_THROW_ON_ERROR));
     }
 
     public function getPlugin(string $name): Plugin
@@ -58,7 +59,7 @@ class Producer extends AbstractComponent
             ],
         ])->getBody();
 
-        $createdPlugin = Plugin::map(json_decode($plugin, false, 512, \JSON_THROW_ON_ERROR));
+        $createdPlugin = Plugin::map(json_decode($plugin, false, 512, JSON_THROW_ON_ERROR));
         $createdPlugin->name = $name;
 
         return $this->client->Plugins()->put($createdPlugin->id, $createdPlugin);
