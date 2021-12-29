@@ -24,7 +24,7 @@ class PluginReader implements PluginReaderInterface
 
     public function __construct(string $path)
     {
-        $this->composerJson = json_decode(file_get_contents($path . '/composer.json'), true);
+        $this->composerJson = json_decode(file_get_contents($path . '/composer.json'), true, 512, \JSON_THROW_ON_ERROR);
         $this->rootDir = $path;
     }
 
@@ -75,7 +75,7 @@ class PluginReader implements PluginReaderInterface
 
     public function getLicense(): string
     {
-        return mb_strtolower(is_array($this->composerJson['license']) ? $this->composerJson['license'][0] : $this->composerJson['license']);
+        return mb_strtolower(\is_array($this->composerJson['license']) ? $this->composerJson['license'][0] : $this->composerJson['license']);
     }
 
     public function getName(): string

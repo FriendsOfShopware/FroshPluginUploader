@@ -45,7 +45,7 @@ class PluginReader implements PluginReaderInterface
     {
         $data = $this->xml['changelog'][$this->xml['version']]['de'] ?? $this->xml['changelog'][$this->xml['version']]['en'];
 
-        if (is_array($data)) {
+        if (\is_array($data)) {
             $data = implode('', $data);
         }
 
@@ -56,7 +56,7 @@ class PluginReader implements PluginReaderInterface
     {
         $data = $this->xml['changelog'][$this->xml['version']]['en'];
 
-        if (is_array($data)) {
+        if (\is_array($data)) {
             $data = implode('', $data);
         }
 

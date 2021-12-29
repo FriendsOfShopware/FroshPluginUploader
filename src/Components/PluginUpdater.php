@@ -12,6 +12,7 @@ use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\Extension\DisallowedRawHtml\DisallowedRawHtmlExtension;
 use League\CommonMark\Extension\ExternalLink\ExternalLinkExtension;
 use League\CommonMark\MarkdownConverter;
+use const SCANDIR_SORT_ASCENDING;
 
 class PluginUpdater
 {
@@ -49,7 +50,7 @@ class PluginUpdater
     {
         $resourcesFolderPath = $plugin->getResourcesFolderPath();
 
-        foreach ($storePlugin->infos as &$infoTranslation) {
+        foreach ($storePlugin->infos as $infoTranslation) {
             $language = mb_substr($infoTranslation->locale->name, 0, 2);
             $languageFile = $resourcesFolderPath . '/' . $language . '.html';
             $languageFileMarkdown = $resourcesFolderPath . '/' . $language . '.md';
@@ -106,7 +107,7 @@ class PluginUpdater
 
         unset($infoTranslation);
 
-        if (count($storePlugin->localizations) < 2) {
+        if (\count($storePlugin->localizations) < 2) {
             $this->addDefaultLocales($storePlugin);
         }
 
@@ -131,7 +132,7 @@ class PluginUpdater
                 $this->client->Plugins()->deleteImage($storePlugin->id, $image->id);
             }
 
-            foreach (scandir($imageDir, \SCANDIR_SORT_ASCENDING) as $image) {
+            foreach (scandir($imageDir, SCANDIR_SORT_ASCENDING) as $image) {
                 if ($image[0] === '.') {
                     continue;
                 }
@@ -165,7 +166,7 @@ class PluginUpdater
 
         $availableLicenses = array_column($availableStoreLicenses, 'name');
 
-        if (!in_array($license, $availableLicenses, true)) {
+        if (!\in_array($license, $availableLicenses, true)) {
             $license = 'open_source';
         }
 

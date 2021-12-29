@@ -6,6 +6,7 @@ namespace FroshPluginUploader\Components\PluginValidator\General;
 use Composer\Semver\VersionParser;
 use FroshPluginUploader\Components\PluginValidator\ValidationInterface;
 use FroshPluginUploader\Structs\ViolationContext;
+use UnexpectedValueException;
 
 class VersionChecker implements ValidationInterface
 {
@@ -18,7 +19,7 @@ class VersionChecker implements ValidationInterface
     {
         try {
             (new VersionParser())->normalize($context->getPlugin()->getReader()->getVersion());
-        } catch (\UnexpectedValueException $e) {
+        } catch (UnexpectedValueException $e) {
             $context->addViolation(sprintf('Semver validation of plugin version has been failed with "%s"', $e->getMessage()));
         }
     }

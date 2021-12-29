@@ -13,12 +13,12 @@ class Plugin extends AbstractComponent
 {
     public function get(int $pluginId): StorePlugin
     {
-        return StorePlugin::map(json_decode((string) $this->client->get(sprintf('/plugins/%d', $pluginId))->getBody()));
+        return StorePlugin::map(json_decode((string) $this->client->get(sprintf('/plugins/%d', $pluginId))->getBody(), false, 512, \JSON_THROW_ON_ERROR));
     }
 
     public function put(int $pluginId, object $data): StorePlugin
     {
-        return StorePlugin::map(json_decode((string) $this->client->put(sprintf('/plugins/%d', $pluginId), ['json' => $data])->getBody()));
+        return StorePlugin::map(json_decode((string) $this->client->put(sprintf('/plugins/%d', $pluginId), ['json' => $data])->getBody(), false, 512, \JSON_THROW_ON_ERROR));
     }
 
     /**
@@ -26,7 +26,7 @@ class Plugin extends AbstractComponent
      */
     public function getImages(int $pluginId): array
     {
-        return Picture::mapList(json_decode((string) $this->client->get(sprintf('/plugins/%d/pictures', $pluginId))->getBody()));
+        return Picture::mapList(json_decode((string) $this->client->get(sprintf('/plugins/%d/pictures', $pluginId))->getBody(), false, 512, \JSON_THROW_ON_ERROR));
     }
 
     public function deleteImage(int $pluginId, int $imageId): void
@@ -45,7 +45,7 @@ class Plugin extends AbstractComponent
             ],
         ])->getBody();
 
-        return Image::mapList(json_decode($json))[0];
+        return Image::mapList(json_decode($json, false, 512, \JSON_THROW_ON_ERROR))[0];
     }
 
     public function updateImage(int $pluginId, Image $image): void
@@ -72,7 +72,7 @@ class Plugin extends AbstractComponent
      */
     public function getAvailableBinaries(int $pluginId): array
     {
-        return Binary::mapList(json_decode((string) $this->client->get(sprintf('/plugins/%d/binaries', $pluginId))->getBody()));
+        return Binary::mapList(json_decode((string) $this->client->get(sprintf('/plugins/%d/binaries', $pluginId))->getBody(), false, 512, \JSON_THROW_ON_ERROR));
     }
 
     public function createBinaryFile(string $binaryPath, int $pluginId): Binary
@@ -86,7 +86,7 @@ class Plugin extends AbstractComponent
             ],
         ]);
 
-        return Binary::map(json_decode((string) $response->getBody())[0]);
+        return Binary::map(json_decode((string) $response->getBody(), false, 512, \JSON_THROW_ON_ERROR)[0]);
     }
 
     public function updateBinaryFile(int $binaryId, string $binaryPath, int $pluginId): void
@@ -115,7 +115,7 @@ class Plugin extends AbstractComponent
 
     public function getVersion(array $binaries, string $version): ?Binary
     {
-        $versionArray = array_values(array_filter($binaries, function (Binary $binary) use ($version) {
+        $versionArray = array_values(array_filter($binaries, static function (Binary $binary) use ($version) {
             return $binary->version === $version;
         }));
 
@@ -132,6 +132,6 @@ class Plugin extends AbstractComponent
      */
     public function getCodeReviewResults(int $pluginId, int $binaryId): array
     {
-        return CodeReview::mapList(json_decode((string) $this->client->get(sprintf('/plugins/%d/binaries/%d/checkresults', $pluginId, $binaryId))->getBody()));
+        return CodeReview::mapList(json_decode((string) $this->client->get(sprintf('/plugins/%d/binaries/%d/checkresults', $pluginId, $binaryId))->getBody(), false, 512, \JSON_THROW_ON_ERROR));
     }
 }

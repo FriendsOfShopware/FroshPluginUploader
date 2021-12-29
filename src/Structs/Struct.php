@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace FroshPluginUploader\Structs;
 
+use stdClass;
+
 class Struct
 {
     public static $mappedFields = [];
@@ -10,7 +12,7 @@ class Struct
     /**
      * @return static
      */
-    public static function map(\stdClass $object)
+    public static function map(stdClass $object)
     {
         $newObject = new static();
 
@@ -21,7 +23,7 @@ class Struct
             }
 
             if (isset(static::$mappedFields[$key])) {
-                if (is_array($value) && is_object($value[0])) {
+                if (\is_array($value) && \is_object($value[0])) {
                     $data = [];
 
                     foreach ($value as $item) {
@@ -51,7 +53,7 @@ class Struct
             return [];
         }
 
-        return array_map(function ($item) {
+        return array_map(static function ($item) {
             return static::map($item);
         }, $data);
     }
@@ -67,7 +69,7 @@ class Struct
             }
 
             if (isset(static::$mappedFields[$key])) {
-                if (is_array($value) && isset($value[0])) {
+                if (\is_array($value) && isset($value[0])) {
                     $data = [];
 
                     foreach ($value as $item) {
@@ -90,7 +92,7 @@ class Struct
 
     private static function arrayToObject($d)
     {
-        if (is_array($d)) {
+        if (\is_array($d)) {
             return (object) array_map([static::class, 'arrayToObject'], $d);
         }
 

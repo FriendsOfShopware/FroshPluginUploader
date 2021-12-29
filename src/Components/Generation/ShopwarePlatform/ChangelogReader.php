@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace FroshPluginUploader\Components\Generation\ShopwarePlatform;
 
 use FroshPluginUploader\Exception\MissingChangelogException;
+use RuntimeException;
 use Symfony\Component\Finder\Finder;
 
 class ChangelogReader
@@ -30,15 +31,11 @@ class ChangelogReader
 
     public function getChangelog(string $locale, string $version)
     {
-        $localeStorage = null;
-
-        if (isset($this->storage[$locale])) {
-            $localeStorage = $this->storage[$locale];
-        }
+        $localeStorage = $this->storage[$locale] ?? null;
 
         if ($localeStorage === null) {
             if (!isset($this->storage[self::FALLBACK_LOCALE])) {
-                throw new \RuntimeException(sprintf('Changelog for locale "%s" does not exist', $locale));
+                throw new RuntimeException(sprintf('Changelog for locale "%s" does not exist', $locale));
             }
 
             $localeStorage = $this->storage[self::FALLBACK_LOCALE];
@@ -48,7 +45,7 @@ class ChangelogReader
             return $this->renderChangelogAsUl($localeStorage[$version]);
         }
 
-        throw new \RuntimeException(sprintf('Cannot find changelog for version "%s" with locale "%s"', $version, $locale));
+        throw new RuntimeException(sprintf('Cannot find changelog for version "%s" with locale "%s"', $version, $locale));
     }
 
     private function renderChangelogAsUl(array $changelog): string

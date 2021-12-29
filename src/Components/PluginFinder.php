@@ -7,12 +7,13 @@ use FroshPluginUploader\Components\Generation\Shopware5\Plugin as Plugin5;
 use FroshPluginUploader\Components\Generation\ShopwareApp\App;
 use FroshPluginUploader\Components\Generation\ShopwarePlatform\Plugin as PluginPlatform;
 use FroshPluginUploader\Exception\PluginGenerationException;
+use const SCANDIR_SORT_NONE;
 
 class PluginFinder
 {
     public static function findPluginByZipFile(string $unpackedFolder)
     {
-        $dir = current(array_filter(scandir($unpackedFolder, \SCANDIR_SORT_NONE), function ($value) {
+        $dir = current(array_filter(scandir($unpackedFolder, SCANDIR_SORT_NONE), static function ($value) {
             return $value[0] !== '.';
         }));
 
@@ -29,11 +30,11 @@ class PluginFinder
             return new App($rootFolder, basename($rootFolder));
         }
 
-        if (!file_exists($pluginComposerJsonPath = $rootFolder . '/composer.json')) {
+        if (!is_file($pluginComposerJsonPath = $rootFolder . '/composer.json')) {
             throw new PluginGenerationException('Cannot detect plugin generation');
         }
 
-        $data = json_decode(file_get_contents($pluginComposerJsonPath), true);
+        $data = json_decode(file_get_contents($pluginComposerJsonPath), true, 512, \JSON_THROW_ON_ERROR);
         $type = $data['type'] ?? null;
 
         if ($type !== 'shopware-platform-plugin') {

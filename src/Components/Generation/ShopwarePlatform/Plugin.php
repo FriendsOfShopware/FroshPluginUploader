@@ -7,6 +7,7 @@ use Composer\Semver\Semver;
 use FroshPluginUploader\Components\PluginInterface;
 use FroshPluginUploader\Components\PluginReaderInterface;
 use FroshPluginUploader\Components\StoreJsonLoader;
+use UnexpectedValueException;
 
 class Plugin implements PluginInterface
 {
@@ -22,7 +23,7 @@ class Plugin implements PluginInterface
     public function __construct(string $rootFolder, string $pluginName)
     {
         $this->rootFolder = $rootFolder;
-        $composerJson = json_decode(file_get_contents($rootFolder . '/composer.json'), true)['extra'];
+        $composerJson = json_decode(file_get_contents($rootFolder . '/composer.json'), true, 512, \JSON_THROW_ON_ERROR)['extra'];
         $className = explode('\\', $composerJson['shopware-plugin-class']);
 
         $this->pluginName = end($className);
@@ -62,7 +63,7 @@ class Plugin implements PluginInterface
     {
         $constraints = $this->getReader()->getCoreConstraint();
 
-        return array_values(array_filter($versions, function ($version) use ($constraints) {
+        return array_values(array_filter($versions, static function ($version) use ($constraints) {
             if ($version['major'] !== 'Shopware 6') {
                 return null;
             }
@@ -73,7 +74,7 @@ class Plugin implements PluginInterface
 
             try {
                 return Semver::satisfies($version['name'], $constraints);
-            } catch (\UnexpectedValueException $e) {
+            } catch (UnexpectedValueException $e) {
                 // EA is not semver compatible
                 return null;
             }

@@ -30,11 +30,11 @@ class NotAllowedFilesInZipChecker implements ValidationInterface
             /*
              * Check for a directory traversal attack
              */
-            if (mb_strpos($fileInfo['name'], '../') !== false) {
+            if (str_contains($fileInfo['name'], '../')) {
                 $context->addViolation('Directory traversal detected');
             }
 
-            if (!$foundVcsDir && (mb_strpos($fileInfo['name'], '/.git/') !== false || mb_strpos($fileInfo['name'], '.git/') === 0)) {
+            if (!$foundVcsDir && (str_contains($fileInfo['name'], '/.git/') || str_starts_with($fileInfo['name'], '.git/'))) {
                 $context->addViolation('Found vcs repository inside zip.');
                 $foundVcsDir = true;
             }
@@ -66,6 +66,6 @@ class NotAllowedFilesInZipChecker implements ValidationInterface
 
     private static function endsWith($haystack, $needle): bool
     {
-        return mb_substr($haystack, -mb_strlen($needle)) === $needle;
+        return str_ends_with($haystack, $needle);
     }
 }

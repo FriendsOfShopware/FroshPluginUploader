@@ -5,6 +5,7 @@ namespace FroshPluginUploader\Components;
 
 use FroshPluginUploader\Structs\CodeReview\CodeReview;
 use FroshPluginUploader\Structs\Input\UploadPluginResult;
+use const PHP_EOL;
 
 class CodeReviewFormatter
 {
@@ -19,9 +20,9 @@ class CodeReviewFormatter
                 continue;
             }
 
-            $message .= sprintf('=== %s ===' . \PHP_EOL, $subCheckResult->subCheck);
+            $message .= sprintf('=== %s ===' . PHP_EOL, $subCheckResult->subCheck);
             $message .= strip_tags($subCheckResult->message);
-            $message .= \PHP_EOL . \PHP_EOL;
+            $message .= PHP_EOL . PHP_EOL;
 
             if ($subCheckResult->hasWarnings) {
                 $hasWarnings = true;

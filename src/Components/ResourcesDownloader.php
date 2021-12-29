@@ -5,6 +5,7 @@ namespace FroshPluginUploader\Components;
 
 use FroshPluginUploader\Components\SBP\Client;
 use FroshPluginUploader\Structs\Plugin;
+use RuntimeException;
 
 class ResourcesDownloader
 {
@@ -21,16 +22,16 @@ class ResourcesDownloader
     public function download(string $pluginName, string $path): void
     {
         // @codeCoverageIgnoreStart
-        if (!file_exists($path)) {
+        if (!is_dir($path)) {
             if (!mkdir($path) && !is_dir($path)) {
-                throw new \RuntimeException(sprintf('Directory "%s" was not created', $path));
+                throw new RuntimeException(sprintf('Directory "%s" was not created', $path));
             }
         }
 
         $imagesPath = $path . '/images/';
-        if (!file_exists($imagesPath)) {
+        if (!is_dir($imagesPath)) {
             if (!mkdir($imagesPath) && !is_dir($imagesPath)) {
-                throw new \RuntimeException(sprintf('Directory "%s" was not created', $imagesPath));
+                throw new RuntimeException(sprintf('Directory "%s" was not created', $imagesPath));
             }
         }
         // @codeCoverageIgnoreEnd
@@ -49,7 +50,7 @@ class ResourcesDownloader
             }
         }
 
-        file_put_contents($path . '/store.json', json_encode($this->generateStoreJson($plugin), \JSON_PRETTY_PRINT));
+        file_put_contents($path . '/store.json', json_encode($this->generateStoreJson($plugin), \JSON_THROW_ON_ERROR | \JSON_PRETTY_PRINT));
 
         $pictures = $this->client->Plugins()->getImages($plugin->id);
 

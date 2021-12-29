@@ -8,6 +8,7 @@ use FroshPluginUploader\Traits\ExecTrait;
 use JakubOnderka\PhpVarDumpCheck\Manager;
 use JakubOnderka\PhpVarDumpCheck\Output;
 use JakubOnderka\PhpVarDumpCheck\Settings;
+use RuntimeException;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
@@ -26,14 +27,14 @@ class PluginPrepare
 
         $io = new SymfonyStyle(new ArgvInput(), $output);
 
-        if (file_exists($composerJson)) {
+        if (is_file($composerJson)) {
             copy($composerJson, $composerJsonBackup);
             $this->filterShopwareDependencies($plugin, $composerJson);
 
             // Install composer dependencies
             if ($this->needComposerToRun($composerJson)) {
                 // delete composer.lock file before calling `composer install` - see #112 for details
-                if (file_exists($composerLock)) {
+                if (is_file($composerLock)) {
                     unlink($composerLock);
                 }
 
@@ -72,11 +73,11 @@ class PluginPrepare
     {
         $keys = ['shopware/platform', 'shopware/core', 'shopware/storefront', 'shopware/administration', 'composer/installers'];
 
-        $json = json_decode(file_get_contents($composerJsonPath), true);
+        $json = json_decode(file_get_contents($composerJsonPath), true, 512, \JSON_THROW_ON_ERROR);
 
         if ($plugin instanceof Plugin) {
-            $metaDataVersions = json_decode(file_get_contents('https://swagger.docs.fos.gg/composer/versions.json'), true);
-            $compatibleVersions = $plugin->getCompatibleVersions(array_filter(array_map(function ($version) {
+            $metaDataVersions = json_decode(file_get_contents('https://swagger.docs.fos.gg/composer/versions.json'), true, 512, \JSON_THROW_ON_ERROR);
+            $compatibleVersions = $plugin->getCompatibleVersions(array_filter(array_map(static function ($version) {
                 if (mb_stripos($version, 'rc') !== false) {
                     return null;
                 }
@@ -88,7 +89,7 @@ class PluginPrepare
                 ];
             }, $metaDataVersions)));
 
-            if (count($compatibleVersions)) {
+            if (\count($compatibleVersions)) {
                 $version = array_reverse($compatibleVersions)[0]['name'];
 
                 foreach (['core', 'administration', 'storefront', 'elasticsearch'] as $component) {
@@ -98,7 +99,7 @@ class PluginPrepare
                         continue;
                     }
 
-                    $componentJson = json_decode(file_get_contents(sprintf('https://swagger.docs.fos.gg/composer/%s/%s.json', $version, $component)), true);
+                    $componentJson = json_decode(file_get_contents(sprintf('https://swagger.docs.fos.gg/composer/%s/%s.json', $version, $component)), true, 512, \JSON_THROW_ON_ERROR);
 
                     foreach ($componentJson as $replaceName => $replaceValue) {
                         $json['replace'][$replaceName] = $replaceValue;
@@ -114,17 +115,17 @@ class PluginPrepare
         }
 
         // Add these packages as provided by the plugin
-        $json['provide'] = array_combine($keys, array_fill(0, count($keys), '*'));
+        $json['provide'] = array_combine($keys, array_fill(0, \count($keys), '*'));
 
         file_put_contents(
             $composerJsonPath,
-            json_encode($json, \JSON_PRETTY_PRINT | \JSON_UNESCAPED_SLASHES | \JSON_UNESCAPED_UNICODE)
+            json_encode($json, \JSON_THROW_ON_ERROR | \JSON_PRETTY_PRINT | \JSON_UNESCAPED_SLASHES | \JSON_UNESCAPED_UNICODE)
         );
     }
 
     private function needComposerToRun(string $composerJsonPath): bool
     {
-        $json = json_decode(file_get_contents($composerJsonPath), true);
+        $json = json_decode(file_get_contents($composerJsonPath), true, 512, \JSON_THROW_ON_ERROR);
 
         // Plugin does not require anything
         if (empty($json['require'])) {
@@ -144,7 +145,7 @@ class PluginPrepare
     ): void {
         try {
             $this->exec('command -v php-scoper');
-        } catch (\RuntimeException $e) {
+        } catch (RuntimeException $e) {
             $io->warning('Could not find php-scoper executable in PATH');
 
             return;

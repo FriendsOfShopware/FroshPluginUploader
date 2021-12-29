@@ -5,7 +5,7 @@ namespace FroshPluginUploader\Commands;
 
 use FroshPluginUploader\Components\SBP\Client;
 use FroshPluginUploader\Structs\CompatibleSoftwareVersions;
-use FroshPluginUploader\Structs\Plugin;
+use const STR_PAD_LEFT;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Helper\TableStyle;
@@ -36,10 +36,9 @@ class ListPluginsCommand extends Command
         $plugins = $this->client->Producer()->getPlugins();
         $table = new Table($output);
         $tblStyle = new TableStyle();
-        $alignRight = $tblStyle->setPadType(\STR_PAD_LEFT);
+        $alignRight = $tblStyle->setPadType(STR_PAD_LEFT);
         $table->setHeaders(['Id', 'Name', 'Generation', 'Status', 'Latest Version', 'Version Compatibility', 'Last Change']);
 
-        /** @var Plugin $plugin */
         foreach ($plugins as $plugin) {
             $fromVersion = null;
             $toVersion = null;
@@ -75,8 +74,9 @@ class ListPluginsCommand extends Command
                     $generation,
                     $plugin->activationStatus->description,
                     $plugin->latestBinary->version ?? 'n/a',
-                    "min {$fromVersion->name} | max {$toVersion->name}",
-                    $plugin->lastChange, ]
+                    sprintf('min %s | max %s', $fromVersion->name, $toVersion->name),
+                    $plugin->lastChange,
+                ]
             );
         }
         $table->setColumnStyle(3, $alignRight);

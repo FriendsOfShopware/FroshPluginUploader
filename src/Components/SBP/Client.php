@@ -8,8 +8,10 @@ use FroshPluginUploader\Components\SBP\Components\Plugin;
 use FroshPluginUploader\Components\SBP\Components\Producer;
 use FroshPluginUploader\Structs\Producer as ProducerStruct;
 use GuzzleHttp\Promise\PromiseInterface;
+use function mb_strtolower;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\UriInterface;
+use RuntimeException;
 
 /**
  * @method ResponseInterface get(string|UriInterface $uri, array $options = [])
@@ -58,13 +60,9 @@ class Client
     {
         $this->ensureConnected();
 
-        $lowerName = \mb_strtolower($name);
+        $lowerName = mb_strtolower($name);
 
-        if (isset($this->components[$lowerName])) {
-            return $this->components[$lowerName];
-        }
-
-        return call_user_func_array([$this->apiClient, $name], $arguments);
+        return $this->components[$lowerName] ?? call_user_func_array([$this->apiClient, $name], $arguments);
     }
 
     public function login(): void
@@ -72,7 +70,7 @@ class Client
         $username = $_SERVER['ACCOUNT_USER'] ?? '';
         $password = $_SERVER['ACCOUNT_PASSWORD'] ?? '';
         if (empty($username) || empty($password)) {
-            throw new \RuntimeException('The environment variable $ACCOUNT_USER and $ACCOUNT_PASSWORD are required');
+            throw new RuntimeException('The environment variable $ACCOUNT_USER and $ACCOUNT_PASSWORD are required');
         }
 
         $response = $this->apiClient->post('/accesstokens', [
@@ -82,10 +80,10 @@ class Client
             ],
         ]);
 
-        $data = json_decode($response->getBody()->__toString(), true);
+        $data = json_decode($response->getBody()->__toString(), true, 512, \JSON_THROW_ON_ERROR);
 
         if (isset($data['success']) && $data['success'] === false) {
-            throw new \RuntimeException(sprintf('Login to Account failed with code %s', $data['code']));
+            throw new RuntimeException(sprintf('Login to Account failed with code %s', $data['code']));
         }
 
         $this->apiClient = $this->createClient($data['token']);

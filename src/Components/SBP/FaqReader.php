@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace FroshPluginUploader\Components\SBP;
 
+use Generator;
+use InvalidArgumentException;
 use Symfony\Component\Filesystem\Exception\FileNotFoundException;
 
 class FaqReader
@@ -19,7 +21,7 @@ class FaqReader
                     break;
                 default:
                     if (!$currentQuestion) {
-                        throw new \InvalidArgumentException(sprintf('FAQ in path "%s" is invalid', $path));
+                        throw new InvalidArgumentException(sprintf('FAQ in path "%s" is invalid', $path));
                     }
 
                     if (mb_strlen(trim($line)) === 0) {
@@ -44,9 +46,9 @@ class FaqReader
         return $formattedQuestions;
     }
 
-    private function parse(string $path): \Generator
+    private function parse(string $path): Generator
     {
-        if (!file_exists($path)) {
+        if (!is_file($path)) {
             throw new FileNotFoundException(null, 0, null, $path);
         }
 

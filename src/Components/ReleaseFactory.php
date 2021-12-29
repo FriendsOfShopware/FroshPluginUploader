@@ -5,6 +5,7 @@ namespace FroshPluginUploader\Components;
 
 use FroshPluginUploader\Components\Releases\Github\Github;
 use FroshPluginUploader\Components\Releases\ReleaseInterface;
+use RuntimeException;
 
 class ReleaseFactory
 {
@@ -19,6 +20,6 @@ class ReleaseFactory
 //            return new Gitlab();
 //        }
 
-        throw new \RuntimeException('Cannot find release provider with provided environment variables');
+        throw new RuntimeException('Cannot find release provider with provided environment variables');
     }
 }

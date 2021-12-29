@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace FroshPluginUploader\Components\PluginValidator\Shopware6;
 
+use Exception;
 use FroshPluginUploader\Components\Generation\ShopwarePlatform\Plugin;
 use FroshPluginUploader\Components\PluginValidator\ValidationInterface;
 use FroshPluginUploader\Structs\ViolationContext;
@@ -85,7 +86,7 @@ class ComposerJsonChecker implements ValidationInterface
         try {
             $context->getPlugin()->getReader()->getNewestChangelogGerman();
             $context->getPlugin()->getReader()->getNewestChangelogEnglish();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $context->addViolation($e->getMessage());
         }
     }
@@ -139,7 +140,7 @@ class ComposerJsonChecker implements ValidationInterface
         $psr4 = $composerJson['autoload']['psr-4'] ?? [];
         $psr0 = $composerJson['autoload']['psr-0'] ?? [];
 
-        if (count($psr0) === 0 && count($psr4) === 0) {
+        if (\count($psr0) === 0 && \count($psr4) === 0) {
             $context->addViolation('At least one of the properties psr-0 or psr-4 are required in the composer.json');
         }
     }

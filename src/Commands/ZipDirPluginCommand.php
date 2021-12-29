@@ -7,6 +7,7 @@ use FroshPluginUploader\Components\PluginZip;
 use FroshPluginUploader\Components\ZipStrategy\AbstractStrategy;
 use FroshPluginUploader\Components\ZipStrategy\GitStrategy;
 use FroshPluginUploader\Components\ZipStrategy\PlainStrategy;
+use RuntimeException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -28,7 +29,7 @@ class ZipDirPluginCommand extends Command
         $path = realpath($input->getArgument('path'));
 
         if (!file_exists($path)) {
-            throw new \RuntimeException(sprintf('Folder by path %s does not exist', $input->getArgument('path')));
+            throw new RuntimeException(sprintf('Folder by path %s does not exist', $input->getArgument('path')));
         }
 
         $this->pluginZip->zip($path, (bool) $input->getOption('scope'), $output, $this->makeStrategy($input));

@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace FroshPluginUploader\Structs;
 
 use FroshPluginUploader\Components\PluginInterface;
+use ZipArchive;
 
 class ViolationContext
 {
@@ -13,7 +14,7 @@ class ViolationContext
     private $plugin;
 
     /**
-     * @var \ZipArchive
+     * @var ZipArchive
      */
     private $zipArchive;
 
@@ -32,7 +33,7 @@ class ViolationContext
      */
     private $violations = [];
 
-    public function __construct(PluginInterface $plugin, \ZipArchive $zipArchive, string $unpackedFolder, ?Plugin $storePlugin = null)
+    public function __construct(PluginInterface $plugin, ZipArchive $zipArchive, string $unpackedFolder, ?Plugin $storePlugin = null)
     {
         $this->plugin = $plugin;
         $this->zipArchive = $zipArchive;
@@ -47,7 +48,7 @@ class ViolationContext
 
     public function hasViolations(): bool
     {
-        return count($this->violations) > 0;
+        return \count($this->violations) > 0;
     }
 
     public function getViolations(): array
@@ -60,7 +61,7 @@ class ViolationContext
         return $this->plugin;
     }
 
-    public function getZipArchive(): \ZipArchive
+    public function getZipArchive(): ZipArchive
     {
         return $this->zipArchive;
     }

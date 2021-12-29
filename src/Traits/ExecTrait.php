@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace FroshPluginUploader\Traits;
 
+use RuntimeException;
+
 trait ExecTrait
 {
     protected function exec(string $command): array
@@ -11,7 +13,7 @@ trait ExecTrait
 
         // @codeCoverageIgnoreStart
         if ($ret !== 0) {
-            throw new \RuntimeException(sprintf('Command "%s" failed with code %d', $command, $ret));
+            throw new RuntimeException(sprintf('Command "%s" failed with code %d', $command, $ret));
         }
         // @codeCoverageIgnoreEnd
 

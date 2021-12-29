@@ -6,6 +6,7 @@ namespace FroshPluginUploader\Components\XmlReader;
 use DOMDocument;
 use DOMElement;
 use DOMNodeList;
+use Exception;
 use InvalidArgumentException;
 use Symfony\Component\Config\Util\XmlUtils;
 
@@ -28,7 +29,7 @@ abstract class XmlReaderBase implements XmlReaderInterface
     {
         try {
             $dom = XmlUtils::loadFile($xmlFile, $this->xsdFile);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             throw new InvalidArgumentException(sprintf('Unable to parse file "%s".', $xmlFile), $e->getCode(), $e);
         }
 

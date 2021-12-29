@@ -8,12 +8,14 @@ use FroshPluginUploader\Components\PluginFinder;
 use FroshPluginUploader\Components\ReleaseFactory;
 use FroshPluginUploader\Components\SBP\Client;
 use FroshPluginUploader\Structs\Input\UploadPluginInput;
+use RuntimeException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use ZipArchive;
 
 class UploadPluginCommand extends Command
 {
@@ -47,11 +49,11 @@ class UploadPluginCommand extends Command
         $this->validateInput($input);
 
         $zipPath = realpath($input->getArgument('zipPath'));
-        $zip = new \ZipArchive();
+        $zip = new ZipArchive();
         $zip->open($zipPath);
 
         if (!mkdir($tmpFolder = sys_get_temp_dir() . '/' . uniqid('uploader', true)) && !is_dir($tmpFolder)) {
-            throw new \RuntimeException(sprintf('Directory "%s" was not created', $tmpFolder));
+            throw new RuntimeException(sprintf('Directory "%s" was not created', $tmpFolder));
         }
 
         $zip->extractTo($tmpFolder);
@@ -93,7 +95,7 @@ class UploadPluginCommand extends Command
         $zipPath = $input->getArgument('zipPath');
 
         if (!file_exists($zipPath)) {
-            throw new \RuntimeException(sprintf('Given path "%s" does not exists', $zipPath));
+            throw new RuntimeException(sprintf('Given path "%s" does not exists', $zipPath));
         }
     }
 }

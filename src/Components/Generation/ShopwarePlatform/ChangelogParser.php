@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace FroshPluginUploader\Components\Generation\ShopwarePlatform;
 
 use FroshPluginUploader\Exception\ChangelogInvalidException;
+use Generator;
 use Symfony\Component\Filesystem\Exception\FileNotFoundException;
 
 class ChangelogParser
@@ -32,9 +33,9 @@ class ChangelogParser
         return $releases;
     }
 
-    private function parse(string $path): \Generator
+    private function parse(string $path): Generator
     {
-        if (!file_exists($path)) {
+        if (!is_file($path)) {
             throw new FileNotFoundException(null, 0, null, $path);
         }
 

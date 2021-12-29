@@ -6,7 +6,9 @@ namespace FroshPluginUploader\Components\Releases\Github;
 use FroshPluginUploader\Components\PluginInterface;
 use FroshPluginUploader\Components\Releases\Release;
 use FroshPluginUploader\Components\Releases\ReleaseInterface;
+use Github\AuthMethod;
 use Github\Client;
+use RuntimeException;
 
 class Github implements ReleaseInterface
 {
@@ -17,10 +19,10 @@ class Github implements ReleaseInterface
     public function create(PluginInterface $plugin, string $zipPath): Release
     {
         $this->client = new Client();
-        $this->client->authenticate($_SERVER['GITHUB_TOKEN'], Client::AUTH_ACCESS_TOKEN);
+        $this->client->authenticate($_SERVER['GITHUB_TOKEN'], AuthMethod::ACCESS_TOKEN);
 
         if (!isset($_SERVER['GITHUB_REPOSITORY'])) {
-            throw new \RuntimeException('$GITHUB_REPOSITORY is missing with content org/repo');
+            throw new RuntimeException('$GITHUB_REPOSITORY is missing with content org/repo');
         }
 
         [$this->user, $this->repo] = explode('/', $_SERVER['GITHUB_REPOSITORY']);

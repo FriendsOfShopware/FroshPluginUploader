@@ -5,6 +5,7 @@ namespace FroshPluginUploader\Components;
 
 use FroshPluginUploader\Structs\Image;
 use FroshPluginUploader\Structs\Plugin;
+use RuntimeException;
 
 class StoreJsonLoader
 {
@@ -74,18 +75,18 @@ class StoreJsonLoader
 
     public function applyToPlugin(Plugin $plugin, array $globalInformation): void
     {
-        $this->mapData($plugin, $globalInformation['locales'], 'standardLocale', 'name');
-        $this->mapData($plugin, $globalInformation['storeAvailabilities'], 'storeAvailabilities', 'name');
-        $this->mapData($plugin, $globalInformation['localizations'], 'localizations', 'name');
-        $this->mapData($plugin, $globalInformation['productTypes'], 'productType', 'name');
+        $this->mapData($plugin, $globalInformation['locales'], 'standardLocale');
+        $this->mapData($plugin, $globalInformation['storeAvailabilities'], 'storeAvailabilities');
+        $this->mapData($plugin, $globalInformation['localizations'], 'localizations');
+        $this->mapData($plugin, $globalInformation['productTypes'], 'productType');
         $plugin->responsive = $this->responsive;
 
         if ($this->categories) {
-            if (count($this->categories) > 2) {
-                throw new \RuntimeException('Only 2 categories are allowed');
+            if (\count($this->categories) > 2) {
+                throw new RuntimeException('Only 2 categories are allowed');
             }
 
-            $this->mapData($plugin, $globalInformation['categories'], 'categories', 'name');
+            $this->mapData($plugin, $globalInformation['categories'], 'categories');
         }
 
         if ($this->tags) {
@@ -134,50 +135,50 @@ class StoreJsonLoader
 
     private function loadFile(string $path): void
     {
-        $data = json_decode(file_get_contents($path), true);
+        $data = json_decode(file_get_contents($path), true, 512, \JSON_THROW_ON_ERROR);
 
-        if (isset($data['storeAvailabilities']) && is_array($data['storeAvailabilities'])) {
+        if (isset($data['storeAvailabilities']) && \is_array($data['storeAvailabilities'])) {
             $this->storeAvailabilities = $data['storeAvailabilities'];
         }
 
-        if (isset($data['localizations']) && is_array($data['localizations'])) {
+        if (isset($data['localizations']) && \is_array($data['localizations'])) {
             $this->localizations = $data['localizations'];
         }
 
-        if (isset($data['categories']) && is_array($data['categories'])) {
+        if (isset($data['categories']) && \is_array($data['categories'])) {
             $this->categories = $data['categories'];
         }
 
-        if (isset($data['tags']) && is_array($data['tags'])) {
+        if (isset($data['tags']) && \is_array($data['tags'])) {
             $this->tags = $data['tags'];
         }
 
-        if (isset($data['videos']) && is_array($data['videos'])) {
+        if (isset($data['videos']) && \is_array($data['videos'])) {
             $this->videos = $data['videos'];
         }
 
-        if (isset($data['standardLocale']) && is_string($data['standardLocale'])) {
+        if (isset($data['standardLocale']) && \is_string($data['standardLocale'])) {
             $this->standardLocale = $data['standardLocale'];
         }
 
-        if (isset($data['productType']) && is_string($data['productType'])) {
+        if (isset($data['productType']) && \is_string($data['productType'])) {
             $this->productType = $data['productType'];
         }
 
-        if (isset($data['responsive']) && is_bool($data['responsive'])) {
+        if (isset($data['responsive']) && \is_bool($data['responsive'])) {
             $this->responsive = $data['responsive'];
         }
 
-        if (isset($data['images']) && is_array($data['images'])) {
+        if (isset($data['images']) && \is_array($data['images'])) {
             $this->images = $data['images'];
         }
     }
 
-    private function mapData(Plugin $plugin, array $data, string $pluginField, string $sourceField): void
+    private function mapData(Plugin $plugin, array $data, string $pluginField): void
     {
-        if (is_string($this->{$pluginField})) {
+        if (\is_string($this->{$pluginField})) {
             foreach ($data as $item) {
-                if ($item[$sourceField] === $this->{$pluginField}) {
+                if ($item['name'] === $this->{$pluginField}) {
                     $plugin->{$pluginField} = $item;
 
                     return;
@@ -185,13 +186,13 @@ class StoreJsonLoader
             }
         }
 
-        if (is_array($this->{$pluginField})) {
+        if (\is_array($this->{$pluginField})) {
             $plugin->{$pluginField} = [];
             foreach ($this->{$pluginField} as $newValue) {
                 $found = false;
 
                 foreach ($data as $item) {
-                    if ($item[$sourceField] === $newValue) {
+                    if ($item['name'] === $newValue) {
                         $plugin->{$pluginField}[] = $item;
                         $found = true;
                         break;
@@ -199,7 +200,6 @@ class StoreJsonLoader
                 }
 
                 if ($found) {
-                    continue;
                 }
             }
         }
@@ -208,15 +208,15 @@ class StoreJsonLoader
     private function assignTags(Plugin $plugin): void
     {
         foreach ($this->tags as $lang => $tags) {
-            if (count($tags) > 5) {
-                throw new \RuntimeException('Only 5 tags are allowed');
+            if (\count($tags) > 5) {
+                throw new RuntimeException('Only 5 tags are allowed');
             }
 
             foreach ($plugin->infos as $infoTranslation) {
                 $language = mb_substr($infoTranslation->locale->name, 0, 2);
 
                 if ($language === $lang) {
-                    $infoTranslation->tags = array_map(function (string $name) {
+                    $infoTranslation->tags = array_map(static function (string $name) {
                         return ['name' => $name];
                     }, $tags);
                 }
@@ -227,15 +227,15 @@ class StoreJsonLoader
     private function assignVideos(Plugin $plugin): void
     {
         foreach ($this->videos as $lang => $videos) {
-            if (count($videos) > 2) {
-                throw new \RuntimeException('Only 2 videos are allowed');
+            if (\count($videos) > 2) {
+                throw new RuntimeException('Only 2 videos are allowed');
             }
 
             foreach ($plugin->infos as $infoTranslation) {
                 $language = mb_substr($infoTranslation->locale->name, 0, 2);
 
                 if ($language === $lang) {
-                    $infoTranslation->videos = array_map(function (string $name) {
+                    $infoTranslation->videos = array_map(static function (string $name) {
                         return ['url' => $name];
                     }, $videos);
                 }

@@ -6,6 +6,7 @@ namespace FroshPluginUploader\Commands;
 use FroshPluginUploader\Components\PluginFinder;
 use FroshPluginUploader\Components\PluginUpdater;
 use FroshPluginUploader\Components\SBP\Client;
+use RuntimeException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -39,7 +40,7 @@ class UpdatePluginCommand extends Command
         $path = realpath($input->getArgument('path'));
 
         if (!file_exists($path)) {
-            throw new \RuntimeException(sprintf('Folder by path %s does not exist', $input->getArgument('path')));
+            throw new RuntimeException(sprintf('Folder by path %s does not exist', $input->getArgument('path')));
         }
 
         $plugin = PluginFinder::findPluginByRootFolder($path);

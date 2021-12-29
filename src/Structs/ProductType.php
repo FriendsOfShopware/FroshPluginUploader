@@ -14,7 +14,7 @@ class ProductType extends Struct
     /** @var string */
     public $description;
 
-    public static $mappedFields = ['details' => 'FroshPluginUploader\Structs\Details'];
+    public static $mappedFields = ['details' => \FroshPluginUploader\Structs\Details::class];
 
     /** @var MainCategory */
     public $mainCategory;

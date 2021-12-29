@@ -20,7 +20,7 @@ class Binary extends Struct
     /** @var string */
     public $lastChangeDate;
 
-    public static $mappedFields = ['factors' => 'FroshPluginUploader\Structs\Factors', 'changelogs' => Changelogs::class];
+    public static $mappedFields = ['factors' => \FroshPluginUploader\Structs\Factors::class, 'changelogs' => Changelogs::class];
 
     /** @var Status */
     public $status;
