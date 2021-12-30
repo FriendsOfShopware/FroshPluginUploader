@@ -3,12 +3,14 @@ declare(strict_types=1);
 
 namespace FroshPluginUploader\Tests\Components;
 
+use function dirname;
 use FroshPluginUploader\Commands\DownloadPluginResourcesCommand;
 use FroshPluginUploader\Components\ResourcesDownloader;
 use FroshPluginUploader\Components\SBP\Client;
 use FroshPluginUploader\Components\SBP\Components\Producer;
 use FroshPluginUploader\Structs\Image;
 use FroshPluginUploader\Structs\Plugin;
+use const JSON_THROW_ON_ERROR;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\NullOutput;
@@ -36,7 +38,7 @@ class ResourcesDownloaderTest extends TestCase
         static::assertFileExists($folder . '/images/0.png');
         static::assertFileExists($folder . '/store.json');
 
-        $json = json_decode(file_get_contents($folder . '/store.json'), true);
+        $json = json_decode(file_get_contents($folder . '/store.json'), true, 512, JSON_THROW_ON_ERROR);
         static::assertSame([
             'storeAvailabilities' => [
                 0 => 'German',
@@ -75,7 +77,7 @@ class ResourcesDownloaderTest extends TestCase
 
     private function makeClient(): Client
     {
-        $plugin = Plugin::map(json_decode(file_get_contents(dirname(__DIR__) . '/fixtures/plugin.json')));
+        $plugin = Plugin::map(json_decode(file_get_contents(dirname(__DIR__) . '/fixtures/plugin.json'), false, 512, JSON_THROW_ON_ERROR));
 
         $producer = $this->createMock(Producer::class);
         $producer->method('getPlugin')

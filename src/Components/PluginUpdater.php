@@ -6,6 +6,7 @@ namespace FroshPluginUploader\Components;
 use function count;
 use FroshPluginUploader\Components\SBP\Client;
 use FroshPluginUploader\Components\SBP\FaqReader;
+use FroshPluginUploader\Structs\License;
 use FroshPluginUploader\Structs\Plugin;
 use function in_array;
 use League\CommonMark\CommonMarkConverter;
@@ -172,7 +173,7 @@ class PluginUpdater
 
         foreach ($availableStoreLicenses as $licenseItem) {
             if ($licenseItem['name'] === $license) {
-                $plugin->license = $licenseItem;
+                $plugin->license = License::make($licenseItem);
             }
         }
     }

@@ -5,6 +5,7 @@ namespace FroshPluginUploader\Tests\Components\ZipStrategy;
 use FroshPluginUploader\Components\ZipStrategy\GitStrategy;
 use FroshPluginUploader\Tests\Components\IoHelper;
 use PHPUnit\Framework\TestCase;
+use RuntimeException;
 
 /**
  * @internal
@@ -24,7 +25,7 @@ class GitStrategyTest extends TestCase
 
     public function testInvalidBranch(): void
     {
-        static::expectException(\RuntimeException::class);
+        static::expectException(RuntimeException::class);
         [$src, $target] = $this->prepare();
 
         $gitStrategy = new GitStrategy('next');

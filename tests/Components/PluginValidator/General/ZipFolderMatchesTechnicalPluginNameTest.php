@@ -6,6 +6,7 @@ use FroshPluginUploader\Components\Generation\Shopware5\Plugin;
 use FroshPluginUploader\Components\PluginValidator\General\ZipFolderMatchesTechnicalPluginName;
 use FroshPluginUploader\Structs\ViolationContext;
 use PHPUnit\Framework\TestCase;
+use ZipArchive;
 
 /**
  * @internal
@@ -14,7 +15,7 @@ class ZipFolderMatchesTechnicalPluginNameTest extends TestCase
 {
     public function testInvalidNaming(): void
     {
-        $context = $this->createContextWithError('test', 'foo');
+        $context = $this->createContextWithError('foo');
         static::assertTrue((new ZipFolderMatchesTechnicalPluginName())->supports($context));
         (new ZipFolderMatchesTechnicalPluginName())->validate($context);
 
@@ -24,17 +25,17 @@ class ZipFolderMatchesTechnicalPluginNameTest extends TestCase
 
     public function testValidNaming(): void
     {
-        $context = $this->createContextWithError('test', 'test');
+        $context = $this->createContextWithError('test');
         (new ZipFolderMatchesTechnicalPluginName())->validate($context);
 
         static::assertFalse($context->hasViolations());
     }
 
-    private function createContextWithError(string $zipName, string $pluginName): ViolationContext
+    private function createContextWithError(string $pluginName): ViolationContext
     {
-        $zip = new \ZipArchive();
-        $zip->open(sys_get_temp_dir() . '/' . uniqid(__METHOD__, true) . '.zip', \ZipArchive::CREATE);
-        $zip->addEmptyDir($zipName);
+        $zip = new ZipArchive();
+        $zip->open(sys_get_temp_dir() . '/' . uniqid(__METHOD__, true) . '.zip', ZipArchive::CREATE);
+        $zip->addEmptyDir('test');
 
         $plugin = $this->createMock(Plugin::class);
         $plugin->method('getName')->willReturn($pluginName);

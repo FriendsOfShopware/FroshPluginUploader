@@ -3,25 +3,26 @@
 namespace FroshPluginUploader\Tests\Components;
 
 use Symfony\Component\Filesystem\Filesystem;
+use ZipArchive;
 
 class IoHelper
 {
-    private static $registered = false;
+    private static bool $registered = false;
 
-    private static $deleteFolderList = [];
+    private static array $deleteFolderList = [];
 
     /**
-     * @var array<string, \ZipArchive>
+     * @var array<string, ZipArchive>
      */
     private static $deleteZipList = [];
 
-    public static function makeZip(): \ZipArchive
+    public static function makeZip(): ZipArchive
     {
         static::registerCleanup();
 
-        $zip = new \ZipArchive();
+        $zip = new ZipArchive();
         $path = sys_get_temp_dir() . '/' . uniqid(__METHOD__, true) . '.zip';
-        $zip->open($path, \ZipArchive::CREATE);
+        $zip->open($path, ZipArchive::CREATE);
 
         static::$deleteZipList[$path] = $zip;
 

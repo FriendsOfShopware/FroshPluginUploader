@@ -2,10 +2,12 @@
 
 namespace FroshPluginUploader\Tests\Components\PluginValidator\General;
 
+use function dirname;
 use FroshPluginUploader\Components\Generation\Shopware5\Plugin;
 use FroshPluginUploader\Components\PluginValidator\General\PhpLinter;
 use FroshPluginUploader\Structs\ViolationContext;
 use PHPUnit\Framework\TestCase;
+use ZipArchive;
 
 /**
  * @internal
@@ -35,6 +37,6 @@ class PhpLinterTest extends TestCase
 
     private function createContext(string $folder): ViolationContext
     {
-        return new ViolationContext($this->createMock(Plugin::class), new \ZipArchive(), $folder);
+        return new ViolationContext($this->createMock(Plugin::class), new ZipArchive(), $folder);
     }
 }

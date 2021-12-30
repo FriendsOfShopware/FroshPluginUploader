@@ -2,6 +2,7 @@
 
 namespace FroshPluginUploader\Tests\Components;
 
+use function dirname;
 use FroshPluginUploader\Components\PluginPrepare;
 use FroshPluginUploader\Components\PluginZip;
 use FroshPluginUploader\Components\ZipStrategy\GitStrategy;
@@ -14,10 +15,7 @@ use Symfony\Component\Console\Output\NullOutput;
  */
 class PluginZipTest extends TestCase
 {
-    /**
-     * @var PluginPrepare
-     */
-    private $pluginPrepare;
+    private PluginPrepare $pluginPrepare;
 
     protected function setUp(): void
     {

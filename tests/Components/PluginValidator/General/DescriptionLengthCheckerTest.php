@@ -1,10 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace FroshPluginUploader\Components\PluginValidator\General;
+namespace FroshPluginUploader\Tests\Components\PluginValidator\General;
 
 use FroshPluginUploader\Components\Generation\ShopwareApp\App;
 use FroshPluginUploader\Components\Generation\ShopwarePlatform\Plugin;
 use FroshPluginUploader\Components\Generation\ShopwarePlatform\PluginReader;
+use FroshPluginUploader\Components\PluginInterface;
+use FroshPluginUploader\Components\PluginValidator\General\DescriptionLengthChecker;
 use FroshPluginUploader\Structs\ViolationContext;
 use PHPUnit\Framework\TestCase;
 use ZipArchive;
@@ -60,6 +62,9 @@ class DescriptionLengthCheckerTest extends TestCase
 
     private function makePluginContext(string $plugin): ViolationContext
     {
-        return new ViolationContext($this->createMock($plugin), new ZipArchive(), __DIR__, null);
+        /** @var PluginInterface $obj */
+        $obj = $this->createMock($plugin);
+
+        return new ViolationContext($obj, new ZipArchive(), __DIR__, null);
     }
 }

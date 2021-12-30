@@ -60,6 +60,9 @@ class Struct
         }, $data);
     }
 
+    /**
+     * @return static
+     */
     public static function make(array $data): self
     {
         $newObject = new static();
@@ -90,6 +93,20 @@ class Struct
         }
 
         return $newObject;
+    }
+
+    /**
+     * @return static[]
+     */
+    public static function makeList(array $data): array
+    {
+        if (empty($data)) {
+            return [];
+        }
+
+        return array_map(static function ($item) {
+            return static::make($item);
+        }, $data);
     }
 
     private static function arrayToObject($d)

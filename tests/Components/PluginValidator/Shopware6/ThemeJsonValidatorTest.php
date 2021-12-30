@@ -7,7 +7,10 @@ use FroshPluginUploader\Components\Generation\ShopwarePlatform\PluginReader;
 use FroshPluginUploader\Components\PluginValidator\Shopware6\ThemeJsonValidator;
 use FroshPluginUploader\Structs\ViolationContext;
 use FroshPluginUploader\Tests\Components\IoHelper;
+use JsonException;
+use function mkdir;
 use PHPUnit\Framework\TestCase;
+use ZipArchive;
 
 /**
  * @internal
@@ -27,7 +30,7 @@ class ThemeJsonValidatorTest extends TestCase
     {
         $context = $this->makeContext('Test');
 
-        static::expectException(\JsonException::class);
+        static::expectException(JsonException::class);
         static::assertTrue((new ThemeJsonValidator())->supports($context));
         (new ThemeJsonValidator())->validate($context);
     }
@@ -77,7 +80,7 @@ class ThemeJsonValidatorTest extends TestCase
         $plugin->method('getName')->willReturn('SwagTest');
 
         $folder = IoHelper::makeFolder();
-        \mkdir($folder . '/SwagTest/src/Resources/', 0777, true);
+        mkdir($folder . '/SwagTest/src/Resources/', 0777, true);
 
         if ($json) {
             file_put_contents($folder . '/SwagTest/src/Resources/theme.json', $json);
@@ -87,6 +90,6 @@ class ThemeJsonValidatorTest extends TestCase
             file_put_contents($folder . '/SwagTest/src/Resources/logo.png', 'Test');
         }
 
-        return new ViolationContext($plugin, new \ZipArchive(), $folder);
+        return new ViolationContext($plugin, new ZipArchive(), $folder);
     }
 }

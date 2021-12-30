@@ -2,6 +2,8 @@
 
 namespace FroshPluginUploader\Tests\Components\XmlReader;
 
+use DOMElement;
+use DOMNodeList;
 use FroshPluginUploader\Components\XmlReader\XmlPluginReader;
 use FroshPluginUploader\Components\XmlReader\XmlReaderBase;
 use InvalidArgumentException;
@@ -21,12 +23,12 @@ class XmlReaderBaseTest extends TestCase
 
     public function testParseTranslatableNodeList(): void
     {
-        static::assertNull(XmlReaderBase::parseTranslatableNodeList(new \DOMNodeList()));
+        static::assertNull(XmlReaderBase::parseTranslatableNodeList(new DOMNodeList()));
     }
 
     public function testGetNotExistingElement(): void
     {
-        static::expectException(\InvalidArgumentException::class);
-        XmlReaderBase::getElementChildValueByName(new \DOMElement('test', null, 'test'), 'foo', true);
+        static::expectException(InvalidArgumentException::class);
+        XmlReaderBase::getElementChildValueByName(new DOMElement('test', null, 'test'), 'foo', true);
     }
 }

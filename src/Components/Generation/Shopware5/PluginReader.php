@@ -5,7 +5,6 @@ namespace FroshPluginUploader\Components\Generation\Shopware5;
 
 use FroshPluginUploader\Components\PluginReaderInterface;
 use FroshPluginUploader\Components\XmlReader\XmlPluginReader;
-use function is_array;
 
 class PluginReader implements PluginReaderInterface
 {
@@ -13,11 +12,6 @@ class PluginReader implements PluginReaderInterface
      * @var array
      */
     private $xml;
-
-    /**
-     * @var array
-     */
-    private $config;
 
     /**
      * @var string
@@ -46,7 +40,7 @@ class PluginReader implements PluginReaderInterface
     {
         $data = $this->xml['changelog'][$this->xml['version']]['de'] ?? $this->xml['changelog'][$this->xml['version']]['en'];
 
-        if (\is_array($data)) {
+        if (is_array($data)) {
             $data = implode('', $data);
         }
 
@@ -57,7 +51,7 @@ class PluginReader implements PluginReaderInterface
     {
         $data = $this->xml['changelog'][$this->xml['version']]['en'];
 
-        if (\is_array($data)) {
+        if (is_array($data)) {
             $data = implode('', $data);
         }
 

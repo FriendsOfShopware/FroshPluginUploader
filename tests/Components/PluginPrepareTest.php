@@ -2,6 +2,7 @@
 
 namespace FroshPluginUploader\Tests\Components;
 
+use function dirname;
 use FroshPluginUploader\Components\PluginPrepare;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Output\NullOutput;

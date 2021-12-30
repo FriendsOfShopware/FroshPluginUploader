@@ -60,7 +60,8 @@ class PluginBinaryUploaderTest extends TestCase
         static::assertTrue($result->isPassed());
     }
 
-    private function create(bool $binaryExists = false, $skipCodeReview = false, $skipWaitingForCodeReview = false): PluginBinaryUploader
+    /** @noinspection PhpUndefinedMethodInspection */
+    private function create(bool $binaryExists = false, bool $skipCodeReview = false, bool $skipWaitingForCodeReview = false): PluginBinaryUploader
     {
         $client = $this->createMock(Client::class);
 

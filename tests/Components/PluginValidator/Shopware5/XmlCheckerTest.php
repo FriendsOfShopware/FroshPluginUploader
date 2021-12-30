@@ -2,11 +2,13 @@
 
 namespace FroshPluginUploader\Tests\Components\PluginValidator\Shopware5;
 
+use function dirname;
 use FroshPluginUploader\Components\Generation\Shopware5\Plugin;
 use FroshPluginUploader\Components\Generation\Shopware5\PluginReader;
 use FroshPluginUploader\Components\PluginValidator\Shopware5\XmlChecker;
 use FroshPluginUploader\Structs\ViolationContext;
 use PHPUnit\Framework\TestCase;
+use ZipArchive;
 
 /**
  * @internal
@@ -64,6 +66,6 @@ class XmlCheckerTest extends TestCase
             ->willReturn($reader)
         ;
 
-        return new ViolationContext($plugin, new \ZipArchive(), $dir);
+        return new ViolationContext($plugin, new ZipArchive(), $dir);
     }
 }

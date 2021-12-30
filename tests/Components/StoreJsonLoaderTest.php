@@ -2,10 +2,13 @@
 
 namespace FroshPluginUploader\Tests\Components;
 
+use function dirname;
 use FroshPluginUploader\Components\StoreJsonLoader;
 use FroshPluginUploader\Structs\Image;
 use FroshPluginUploader\Structs\Plugin;
+use const JSON_THROW_ON_ERROR;
 use PHPUnit\Framework\TestCase;
+use RuntimeException;
 
 /**
  * @internal
@@ -23,9 +26,9 @@ class StoreJsonLoaderTest extends TestCase
             ],
         ]);
 
-        $before = json_encode($image);
+        $before = json_encode($image, JSON_THROW_ON_ERROR);
         $loader->applyImageUpdate($image, 'test');
-        static::assertSame($before, json_encode($image));
+        static::assertSame($before, json_encode($image, JSON_THROW_ON_ERROR));
     }
 
     public function testLoadImage(): void
@@ -46,9 +49,9 @@ class StoreJsonLoaderTest extends TestCase
             ],
         ]);
 
-        $before = json_encode($image);
+        $before = json_encode($image, JSON_THROW_ON_ERROR);
         $loader->applyImageUpdate($image, 'nice_english_image.jpg');
-        static::assertNotSame($before, json_encode($image));
+        static::assertNotSame($before, json_encode($image, JSON_THROW_ON_ERROR));
 
         static::assertSame(5, $image->priority);
         static::assertFalse($image->details[0]->activated);
@@ -78,12 +81,12 @@ class StoreJsonLoaderTest extends TestCase
             ],
         ]);
 
-        $allData = json_decode(file_get_contents(dirname(__DIR__) . '/fixtures/store_data.json'), true);
+        $allData = json_decode(file_get_contents(dirname(__DIR__) . '/fixtures/store_data.json'), true, 512, JSON_THROW_ON_ERROR);
 
         $loader->applyToPlugin($plugin, $allData);
         static::assertTrue($plugin->responsive);
         static::assertSame(['thumbnail', 'performance', 'space'], array_column($plugin->infos[0]->tags, 'name'));
-        static::assertSame('en_GB', $plugin->standardLocale['name']);
+        static::assertSame('en_GB', $plugin->standardLocale->name);
     }
 
     public function testPluginTooMuchTags(): void
@@ -109,8 +112,8 @@ class StoreJsonLoaderTest extends TestCase
             ],
         ]);
 
-        $allData = json_decode(file_get_contents(dirname(__DIR__) . '/fixtures/store_data.json'), true);
-        static::expectException(\RuntimeException::class);
+        $allData = json_decode(file_get_contents(dirname(__DIR__) . '/fixtures/store_data.json'), true, 512, JSON_THROW_ON_ERROR);
+        static::expectException(RuntimeException::class);
         static::expectExceptionMessage('Only 5 tags are allowed');
 
         $loader->applyToPlugin($plugin, $allData);
@@ -139,8 +142,8 @@ class StoreJsonLoaderTest extends TestCase
             ],
         ]);
 
-        $allData = json_decode(file_get_contents(dirname(__DIR__) . '/fixtures/store_data.json'), true);
-        static::expectException(\RuntimeException::class);
+        $allData = json_decode(file_get_contents(dirname(__DIR__) . '/fixtures/store_data.json'), true, 512, JSON_THROW_ON_ERROR);
+        static::expectException(RuntimeException::class);
         static::expectExceptionMessage('Only 2 categories are allowed');
 
         $loader->applyToPlugin($plugin, $allData);
@@ -169,8 +172,8 @@ class StoreJsonLoaderTest extends TestCase
             ],
         ]);
 
-        $allData = json_decode(file_get_contents(dirname(__DIR__) . '/fixtures/store_data.json'), true);
-        static::expectException(\RuntimeException::class);
+        $allData = json_decode(file_get_contents(dirname(__DIR__) . '/fixtures/store_data.json'), true, 512, JSON_THROW_ON_ERROR);
+        static::expectException(RuntimeException::class);
         static::expectExceptionMessage('Only 2 videos are allowed');
 
         $loader->applyToPlugin($plugin, $allData);

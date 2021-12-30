@@ -8,6 +8,7 @@ use FroshPluginUploader\Components\Generation\ShopwareApp\AppReader;
 use FroshPluginUploader\Components\PluginValidator\ShopwareAppSystem\ManifestChecker;
 use FroshPluginUploader\Structs\ViolationContext;
 use PHPUnit\Framework\TestCase;
+use ZipArchive;
 
 /**
  * @internal
@@ -27,8 +28,8 @@ class ManifestCheckerTest extends TestCase
 
     public function testSupportsOnlyApp(): void
     {
-        static::assertTrue((new ManifestChecker())->supports(new ViolationContext($this->createMock(App::class), new \ZipArchive(), __DIR__)));
-        static::assertFalse((new ManifestChecker())->supports(new ViolationContext($this->createMock(Plugin::class), new \ZipArchive(), __DIR__)));
+        static::assertTrue((new ManifestChecker())->supports(new ViolationContext($this->createMock(App::class), new ZipArchive(), __DIR__)));
+        static::assertFalse((new ManifestChecker())->supports(new ViolationContext($this->createMock(Plugin::class), new ZipArchive(), __DIR__)));
     }
 
     public function testValidManifest(): void
@@ -47,6 +48,6 @@ class ManifestCheckerTest extends TestCase
         $plugin = $this->createMock(App::class);
         $plugin->method('getReader')->willReturn($reader);
 
-        return new ViolationContext($plugin, new \ZipArchive(), __DIR__);
+        return new ViolationContext($plugin, new ZipArchive(), __DIR__);
     }
 }

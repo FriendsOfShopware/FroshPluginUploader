@@ -4,8 +4,13 @@ declare(strict_types=1);
 namespace FroshPluginUploader\Components;
 
 use function count;
+use FroshPluginUploader\Structs\Categories;
 use FroshPluginUploader\Structs\Image;
+use FroshPluginUploader\Structs\Localizations;
 use FroshPluginUploader\Structs\Plugin;
+use FroshPluginUploader\Structs\ProductType;
+use FroshPluginUploader\Structs\StandardLocale;
+use FroshPluginUploader\Structs\StoreAvailabilities;
 use function is_array;
 use function is_bool;
 use function is_string;
@@ -83,10 +88,10 @@ class StoreJsonLoader
 
     public function applyToPlugin(Plugin $plugin, array $globalInformation): void
     {
-        $this->mapData($plugin, $globalInformation['locales'], 'standardLocale');
-        $this->mapData($plugin, $globalInformation['storeAvailabilities'], 'storeAvailabilities');
-        $this->mapData($plugin, $globalInformation['localizations'], 'localizations');
-        $this->mapData($plugin, $globalInformation['productTypes'], 'productType');
+        $this->mapData($plugin, $globalInformation['locales'], 'standardLocale', StandardLocale::class);
+        $this->mapData($plugin, $globalInformation['storeAvailabilities'], 'storeAvailabilities', StoreAvailabilities::class);
+        $this->mapData($plugin, $globalInformation['localizations'], 'localizations', Localizations::class);
+        $this->mapData($plugin, $globalInformation['productTypes'], 'productType', ProductType::class);
         $plugin->responsive = $this->responsive;
 
         if ($this->categories) {
@@ -94,7 +99,7 @@ class StoreJsonLoader
                 throw new RuntimeException('Only 2 categories are allowed');
             }
 
-            $this->mapData($plugin, $globalInformation['categories'], 'categories');
+            $this->mapData($plugin, $globalInformation['categories'], 'categories', Categories::class);
         }
 
         if ($this->tags) {
@@ -182,12 +187,15 @@ class StoreJsonLoader
         }
     }
 
-    private function mapData(Plugin $plugin, array $data, string $pluginField): void
+    private function mapData(Plugin $plugin, array $data, string $pluginField, ?string $mapperClass = null): void
     {
         if (is_string($this->{$pluginField})) {
             foreach ($data as $item) {
                 if ($item['name'] === $this->{$pluginField}) {
                     $plugin->{$pluginField} = $item;
+                    if ($mapperClass) {
+                        $plugin->{$pluginField} = $mapperClass::make($plugin->{$pluginField});
+                    }
 
                     return;
                 }
@@ -203,6 +211,10 @@ class StoreJsonLoader
                         break;
                     }
                 }
+            }
+
+            if ($mapperClass) {
+                $plugin->{$pluginField} = $mapperClass::makeList($plugin->{$pluginField});
             }
         }
     }

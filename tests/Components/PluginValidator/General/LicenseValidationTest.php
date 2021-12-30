@@ -5,6 +5,7 @@ namespace FroshPluginUploader\Tests\Components\PluginValidator\General;
 use FroshPluginUploader\Components\Generation\Shopware5\Plugin;
 use FroshPluginUploader\Components\Generation\Shopware5\PluginReader;
 use FroshPluginUploader\Components\PluginValidator\General\LicenseValidation;
+use FroshPluginUploader\Structs\License;
 use FroshPluginUploader\Structs\ViolationContext;
 use PHPUnit\Framework\TestCase;
 use ZipArchive;
@@ -49,7 +50,7 @@ class LicenseValidationTest extends TestCase
         ;
 
         $storePlugin = new \FroshPluginUploader\Structs\Plugin();
-        $storePlugin->license = new \FroshPluginUploader\Structs\License();
+        $storePlugin->license = new License();
         $storePlugin->license->name = $storeLicense;
 
         return new ViolationContext($plugin, new ZipArchive(), __DIR__, $storePlugin);

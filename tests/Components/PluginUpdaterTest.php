@@ -2,6 +2,7 @@
 
 namespace FroshPluginUploader\Tests\Components;
 
+use function dirname;
 use FroshPluginUploader\Components\Generation\Shopware5\PluginReader;
 use FroshPluginUploader\Components\PluginUpdater;
 use FroshPluginUploader\Components\SBP\Client;
@@ -9,6 +10,7 @@ use FroshPluginUploader\Components\SBP\Components\General;
 use FroshPluginUploader\Components\StoreJsonLoader;
 use FroshPluginUploader\Structs\Image;
 use FroshPluginUploader\Structs\Plugin;
+use const JSON_THROW_ON_ERROR;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -99,12 +101,12 @@ class PluginUpdaterTest extends TestCase
 
         static::assertSame('<p>Test</p>', trim($storePlugin->infos[0]->description));
         static::assertSame('<p>Test</p>', trim($storePlugin->infos[0]->installationManual));
-        static::assertSame('proprietary', $storePlugin->license['name']);
+        static::assertSame('proprietary', $storePlugin->license->name);
     }
 
     private function createClient(): Client
     {
-        $storeData = json_decode(file_get_contents(dirname(__DIR__) . '/fixtures/store_data.json'), true);
+        $storeData = json_decode(file_get_contents(dirname(__DIR__) . '/fixtures/store_data.json'), true, 512, JSON_THROW_ON_ERROR);
         $plugin = $this->createMock(\FroshPluginUploader\Components\SBP\Components\Plugin::class);
         $plugin->method('put')->withAnyParameters()->willReturn(new Plugin());
         $plugin->method('getImages')->willReturn([Image::make(['id' => 1])]);

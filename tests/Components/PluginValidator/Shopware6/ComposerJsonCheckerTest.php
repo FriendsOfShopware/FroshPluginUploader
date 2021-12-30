@@ -8,6 +8,7 @@ use FroshPluginUploader\Components\PluginValidator\Shopware6\ComposerJsonChecker
 use FroshPluginUploader\Exception\MissingChangelogException;
 use FroshPluginUploader\Structs\ViolationContext;
 use FroshPluginUploader\Tests\Components\IoHelper;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -260,7 +261,7 @@ class ComposerJsonCheckerTest extends TestCase
             ],
         ]);
 
-        /** @var \PHPUnit\Framework\MockObject\MockObject $pluginReader */
+        /** @var MockObject $pluginReader */
         $pluginReader = $context->getPlugin()->getReader();
         $pluginReader->method('getNewestChangelogGerman')
             ->will($this->throwException(new MissingChangelogException('Changelogs are missing for plugin')))
@@ -273,7 +274,7 @@ class ComposerJsonCheckerTest extends TestCase
         static::assertContains('Changelogs are missing for plugin', $context->getViolations());
     }
 
-    private function makeContext(array $xml = [], string $pluginName = 'SwagTest'): ViolationContext
+    private function makeContext(array $xml = []): ViolationContext
     {
         $reader = $this->createMock(PluginReader::class);
 
@@ -287,7 +288,7 @@ class ComposerJsonCheckerTest extends TestCase
             ->willReturn($reader)
         ;
 
-        $plugin->method('getName')->willReturn($pluginName);
+        $plugin->method('getName')->willReturn('SwagTest');
 
         $zip = IoHelper::makeZip();
         $zip->addFromString('SwagTest/src/SwagTest.php', 'Test');

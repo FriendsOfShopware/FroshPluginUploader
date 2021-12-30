@@ -6,6 +6,7 @@ use FroshPluginUploader\Components\Generation\Shopware5\Plugin;
 use FroshPluginUploader\Components\PluginValidator\General\NotAllowedFilesInZipChecker;
 use FroshPluginUploader\Structs\ViolationContext;
 use PHPUnit\Framework\TestCase;
+use ZipArchive;
 
 /**
  * @internal
@@ -33,8 +34,8 @@ class NotAllowedFilesInZipCheckerTest extends TestCase
 
     private function createContextWithAllErrors(): ViolationContext
     {
-        $zip = new \ZipArchive();
-        $zip->open(sys_get_temp_dir() . '/' . uniqid(__METHOD__, true) . '.zip', \ZipArchive::CREATE);
+        $zip = new ZipArchive();
+        $zip->open(sys_get_temp_dir() . '/' . uniqid(__METHOD__, true) . '.zip', ZipArchive::CREATE);
         $zip->addFromString('../test.txt', 'Huhu');
         $zip->addFromString('.git/.gitconfig', 'Huhu');
         $zip->addFromString('test.zip', 'Huhu');

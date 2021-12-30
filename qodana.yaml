@@ -5,3 +5,4 @@ exclude:
     paths:
       - var
       - vendor
+      - tests/Components/XmlReader/broken.xml

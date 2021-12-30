@@ -12,6 +12,7 @@ use FroshPluginUploader\Components\PluginFinder;
 use FroshPluginUploader\Components\PluginReaderInterface;
 use FroshPluginUploader\Exception\PluginGenerationException;
 use PHPUnit\Framework\TestCase;
+use ZipArchive;
 
 /**
  * @internal
@@ -47,7 +48,7 @@ class PluginFinderTest extends TestCase
 
     public function testShopwareAppZip(): void
     {
-        $zip = new \ZipArchive();
+        $zip = new ZipArchive();
         $zip->open(__DIR__ . '/../fixtures/plugins/ShopwareApp.zip');
         $tmpFolder = sys_get_temp_dir() . '/' . uniqid(__FUNCTION__, true);
         mkdir($tmpFolder);

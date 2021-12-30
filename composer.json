@@ -46,6 +46,7 @@
     "symfony/polyfill-intl-grapheme": "*",
     "symfony/polyfill-ctype": "*",
     "symfony/polyfill-php72": "*",
+    "symfony/polyfill-php73": "*",
     "symfony/polyfill-intl-idn": "*"
   },
   "require-dev": {

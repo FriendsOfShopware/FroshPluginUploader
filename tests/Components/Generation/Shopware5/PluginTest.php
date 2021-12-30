@@ -2,8 +2,8 @@
 
 namespace FroshPluginUploader\Tests\Components\Generation\Shopware5;
 
+use function dirname;
 use FroshPluginUploader\Components\Generation\Shopware5\Plugin;
-use FroshPluginUploader\Components\StoreJsonLoader;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -19,7 +19,6 @@ class PluginTest extends TestCase
         static::assertSame('Shopware5Plugin', $plugin->getReader()->getName());
         static::assertSame($rootDir, $plugin->getRootDir());
         static::assertFalse($plugin->hasStoreJson());
-        static::assertInstanceOf(StoreJsonLoader::class, $plugin->getStoreJson());
         static::assertIsArray($plugin->getReader()->all());
         static::assertSame('1.0.0', $plugin->getReader()->getVersion());
         static::assertSame('mit', $plugin->getReader()->getLicense());
@@ -62,7 +61,6 @@ class PluginTest extends TestCase
         static::assertSame('Shopware5PluginWithoutCompability', $plugin->getReader()->getName());
         static::assertSame($rootDir, $plugin->getRootDir());
         static::assertFalse($plugin->hasStoreJson());
-        static::assertInstanceOf(StoreJsonLoader::class, $plugin->getStoreJson());
         static::assertIsArray($plugin->getReader()->all());
         static::assertSame('1.0.0', $plugin->getReader()->getVersion());
         static::assertSame('mit', $plugin->getReader()->getLicense());

@@ -5,6 +5,7 @@ namespace FroshPluginUploader\Tests\Components\Generation\Shopware6;
 use FroshPluginUploader\Components\Generation\ShopwarePlatform\ChangelogReader;
 use FroshPluginUploader\Exception\MissingChangelogException;
 use PHPUnit\Framework\TestCase;
+use RuntimeException;
 
 /**
  * @internal
@@ -32,7 +33,7 @@ class ChangelogReaderTest extends TestCase
 
     public function testChangelogNotFoundLocale(): void
     {
-        static::expectException(\RuntimeException::class);
+        static::expectException(RuntimeException::class);
         static::expectExceptionMessage('Changelog for locale "en-GB" does not exist');
         $reader = new ChangelogReader(__DIR__ . '/test2');
         static::assertSame('<ul><li>Test</li></ul>', $reader->getChangelog('en-GB', '1.0.0'));

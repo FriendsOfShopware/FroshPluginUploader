@@ -2,8 +2,8 @@
 
 namespace FroshPluginUploader\Tests\Components\Generation\Shopware6;
 
+use function dirname;
 use FroshPluginUploader\Components\Generation\ShopwarePlatform\Plugin;
-use FroshPluginUploader\Components\StoreJsonLoader;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -22,7 +22,6 @@ class PluginTest extends TestCase
         static::assertSame('platform', $plugin->getStoreType());
         static::assertSame('1.0.0', $plugin->getReader()->getVersion());
         static::assertFalse($plugin->hasStoreJson());
-        static::assertInstanceOf(StoreJsonLoader::class, $plugin->getStoreJson());
         static::assertIsArray($plugin->getReader()->all());
         static::assertSame('mit', $plugin->getReader()->getLicense());
 

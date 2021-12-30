@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace FroshPluginUploader\Components\SBP;
 
+use function call_user_func_array;
 use FroshPluginUploader\Components\SBP\Components\General;
 use FroshPluginUploader\Components\SBP\Components\Plugin;
 use FroshPluginUploader\Components\SBP\Components\Producer;
@@ -48,7 +49,7 @@ class Client
 
         $lowerName = mb_strtolower($name);
 
-        return $this->components[$lowerName] ?? \call_user_func_array([$this->apiClient, $name], $arguments);
+        return $this->components[$lowerName] ?? call_user_func_array([$this->apiClient, $name], $arguments);
     }
 
     public function login(): void
@@ -106,7 +107,7 @@ class Client
     public function getUserId(): int
     {
         if (!isset($this->userId)) {
-            throw new \RuntimeException('No user id could be found');
+            throw new RuntimeException('No user id could be found');
         }
 
         return $this->userId;
@@ -115,7 +116,7 @@ class Client
     public function getProducer(): ProducerStruct
     {
         if (!isset($this->producer)) {
-            throw new \RuntimeException('No producer could be found');
+            throw new RuntimeException('No producer could be found');
         }
 
         return $this->producer;
@@ -134,7 +135,7 @@ class Client
             ];
         }
 
-        return new \GuzzleHttp\Client($options);
+        return new GuzzleHttpClient($options);
     }
 
     private function ensureConnected(): void
