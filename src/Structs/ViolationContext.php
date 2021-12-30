@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace FroshPluginUploader\Structs;
 
+use function count;
 use FroshPluginUploader\Components\PluginInterface;
 use ZipArchive;
 

@@ -24,17 +24,13 @@ class ResourcesDownloader
     public function download(string $pluginName, string $path): void
     {
         // @codeCoverageIgnoreStart
-        if (!is_dir($path)) {
-            if (!mkdir($path) && !is_dir($path)) {
-                throw new RuntimeException(sprintf('Directory "%s" was not created', $path));
-            }
+        if (!is_dir($path) && !mkdir($path) && !is_dir($path)) {
+            throw new RuntimeException(sprintf('Directory "%s" was not created', $path));
         }
 
         $imagesPath = $path . '/images/';
-        if (!is_dir($imagesPath)) {
-            if (!mkdir($imagesPath) && !is_dir($imagesPath)) {
-                throw new RuntimeException(sprintf('Directory "%s" was not created', $imagesPath));
-            }
+        if (!is_dir($imagesPath) && !mkdir($imagesPath) && !is_dir($imagesPath)) {
+            throw new RuntimeException(sprintf('Directory "%s" was not created', $imagesPath));
         }
         // @codeCoverageIgnoreEnd
 

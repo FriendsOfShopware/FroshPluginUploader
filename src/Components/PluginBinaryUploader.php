@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace FroshPluginUploader\Components;
 
+use function count;
 use FroshPluginUploader\Components\SBP\Client;
 use FroshPluginUploader\Structs\Binary;
 use FroshPluginUploader\Structs\Input\UploadPluginInput;

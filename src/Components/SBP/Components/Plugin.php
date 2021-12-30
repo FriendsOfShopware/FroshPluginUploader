@@ -41,7 +41,7 @@ class Plugin extends AbstractComponent
             'multipart' => [
                 [
                     'name' => 'file',
-                    'contents' => fopen($path, 'r'),
+                    'contents' => fopen($path, 'rb'),
                 ],
             ],
         ])->getBody();
@@ -62,7 +62,7 @@ class Plugin extends AbstractComponent
             'multipart' => [
                 [
                     'name' => 'file',
-                    'contents' => fopen($path, 'r'),
+                    'contents' => fopen($path, 'rb'),
                 ],
             ],
         ]);
@@ -82,7 +82,7 @@ class Plugin extends AbstractComponent
             'multipart' => [
                 [
                     'name' => 'file',
-                    'contents' => fopen($binaryPath, 'r'),
+                    'contents' => fopen($binaryPath, 'rb'),
                 ],
             ],
         ]);
@@ -96,7 +96,7 @@ class Plugin extends AbstractComponent
             'multipart' => [
                 [
                     'name' => 'file',
-                    'contents' => fopen($binaryPath, 'r'),
+                    'contents' => fopen($binaryPath, 'rb'),
                 ],
             ],
         ]);

@@ -3,11 +3,13 @@ declare(strict_types=1);
 
 namespace FroshPluginUploader\Components\XmlReader;
 
+use function assert;
 use DOMDocument;
 use DOMElement;
 use DOMNodeList;
 use Exception;
 use InvalidArgumentException;
+use function is_array;
 use Symfony\Component\Config\Util\XmlUtils;
 
 /**
@@ -47,7 +49,7 @@ abstract class XmlReaderBase implements XmlReaderInterface
             $language = $item->getAttribute('lang') ?: self::DEFAULT_LANG;
             // XSD Requires en-GB, Zend uses en_GB
             $language = str_replace('-', '_', $language);
-            \assert(!\is_array($language));
+            assert(!is_array($language));
             $translations[$language] = trim($item->nodeValue);
         }
 

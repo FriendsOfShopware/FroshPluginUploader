@@ -5,6 +5,7 @@ namespace FroshPluginUploader\Components\Generation\Shopware5;
 
 use FroshPluginUploader\Components\PluginReaderInterface;
 use FroshPluginUploader\Components\XmlReader\XmlPluginReader;
+use function is_array;
 
 class PluginReader implements PluginReaderInterface
 {

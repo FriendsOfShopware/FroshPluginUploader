@@ -52,7 +52,7 @@ class FaqReader
             throw new FileNotFoundException(null, 0, null, $path);
         }
 
-        $file = fopen($path, 'r');
+        $file = fopen($path, 'rb');
 
         while ($line = fgets($file)) {
             yield $line;
