@@ -27,6 +27,10 @@ class NotAllowedFilesInZipChecker implements ValidationInterface
         for ($i = 0; $i < $context->getZipArchive()->numFiles; $i++) {
             $fileInfo = $context->getZipArchive()->statIndex($i);
 
+            if ($fileInfo === false) {
+                $context->addViolation(sprintf('Cannot read file at position %u, please check if the ZIP file is corrupt.', $i));
+            }
+
             /*
              * Check for a directory traversal attack
              */
@@ -52,7 +56,7 @@ class NotAllowedFilesInZipChecker implements ValidationInterface
                 /**
                  * user lowercase for comparison and escape metacharacters
                  */
-                $checkPattern = preg_quote(mb_strtolower($forbiddenFile));
+                $checkPattern = preg_quote(mb_strtolower($forbiddenFile), '/');
 
                 /*
                  * check for not allowed files

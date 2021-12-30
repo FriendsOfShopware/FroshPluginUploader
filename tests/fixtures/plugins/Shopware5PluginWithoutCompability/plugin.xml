@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:noNamespaceSchemaLocation="../../../engine/Shopware/Components/Plugin/schema/plugin.xsd">
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/master/engine/Shopware/Components/Plugin/schema/plugin.xsd">
     <label lang="de">Label DE</label>
     <label lang="en">Label EN</label>
     <version>1.0.0</version>
