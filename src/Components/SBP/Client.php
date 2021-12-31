@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace FroshPluginUploader\Components\SBP;
 
+use function assert;
 use function call_user_func_array;
 use FroshPluginUploader\Components\SBP\Components\General;
 use FroshPluginUploader\Components\SBP\Components\Plugin;
@@ -10,6 +11,7 @@ use FroshPluginUploader\Components\SBP\Components\Producer;
 use FroshPluginUploader\Structs\Producer as ProducerStruct;
 use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\Promise\PromiseInterface;
+use function is_string;
 use const JSON_THROW_ON_ERROR;
 use function mb_strtolower;
 use Psr\Http\Message\ResponseInterface;
@@ -48,6 +50,7 @@ class Client
         $this->ensureConnected();
 
         $lowerName = mb_strtolower($name);
+        assert(is_string($lowerName));
 
         return $this->components[$lowerName] ?? call_user_func_array([$this->apiClient, $name], $arguments);
     }

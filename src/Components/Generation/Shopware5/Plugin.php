@@ -1,4 +1,6 @@
-<?php
+<?php /** @noinspection PhpMissingFieldTypeInspection */
+/** @noinspection PhpMissingFieldTypeInspection */
+/** @noinspection PhpMissingFieldTypeInspection */
 declare(strict_types=1);
 
 namespace FroshPluginUploader\Components\Generation\Shopware5;
@@ -77,6 +79,8 @@ class Plugin implements PluginInterface
             }
 
             $versionName = $version['name'];
+
+            /** @var string[] $versionSplit */
             $versionSplit = explode('-', $versionName);
             if (empty($versionSplit[0])) {
                 continue;

@@ -7,12 +7,9 @@ use FroshPluginUploader\Structs\Struct;
 
 class Type extends Struct
 {
-    /** @var int */
-    public $id;
+    public int $id;
 
-    /** @var string */
-    public $name;
+    public string $name;
 
-    /** @var string */
-    public $description;
+    public string $description;
 }

@@ -11,10 +11,7 @@ class ChangelogReader
 {
     private const FALLBACK_LOCALE = 'en-GB';
 
-    /**
-     * @var array
-     */
-    private $storage;
+    private array $storage = [];
 
     public function __construct(string $pluginPath)
     {

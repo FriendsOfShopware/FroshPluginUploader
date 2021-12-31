@@ -1,4 +1,5 @@
 <?php
+/** @noinspection PhpMissingFieldTypeInspection */
 declare(strict_types=1);
 
 namespace FroshPluginUploader\Structs;
@@ -20,7 +21,7 @@ class Binary extends Struct
     /** @var string */
     public $lastChangeDate;
 
-    public static $mappedFields = ['factors' => Factors::class, 'changelogs' => Changelogs::class];
+    public static $mappedFields = ['changelogs' => Changelogs::class];
 
     /** @var Status */
     public $status;

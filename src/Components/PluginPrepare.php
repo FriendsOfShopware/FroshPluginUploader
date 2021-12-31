@@ -14,6 +14,7 @@ use const JSON_THROW_ON_ERROR;
 use const JSON_UNESCAPED_SLASHES;
 use const JSON_UNESCAPED_UNICODE;
 use RuntimeException;
+use function sprintf;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
@@ -151,7 +152,7 @@ class PluginPrepare
         try {
             $this->exec('command -v php-scoper');
         } catch (RuntimeException $e) {
-            $io->warning('Could not find php-scoper executable in PATH');
+            $io->warning(sprintf('Could not find php-scoper executable in PATH: %s', $e->getMessage()));
 
             return;
         }

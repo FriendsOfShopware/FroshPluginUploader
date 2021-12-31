@@ -11,11 +11,10 @@ Tool for uploading new plugin releases to Shopware Store.
 
 Required Environment variables:
 
-| Name             	| Default 	| Description                                                         	|
-|------------------	|---------	|---------------------------------------------------------------------	|
-| ACCOUNT_USER     	|         	| Shopware Account e-mail address                                     	|
-| ACCOUNT_PASSWORD 	|         	| Shopware Account password                                           	|
-| ~~PLUGIN_ID~~    	|         	| Removed with Version 0.3.0 	                                         |
+| Name             	 | Default 	 | Description                                                         	 |
+|--------------------|-----------|-----------------------------------------------------------------------|
+| ACCOUNT_USER     	 | 	         | Shopware Account e-mail address                                     	 |
+| ACCOUNT_PASSWORD 	 | 	         | Shopware Account password                                           	 |
 
 Requirements for Plugin:
 

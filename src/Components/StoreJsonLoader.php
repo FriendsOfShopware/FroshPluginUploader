@@ -1,4 +1,12 @@
-<?php
+<?php /** @noinspection PhpMissingFieldTypeInspection */
+/** @noinspection PhpMissingFieldTypeInspection */
+/** @noinspection PhpMissingFieldTypeInspection */
+/** @noinspection PhpMissingFieldTypeInspection */
+/** @noinspection PhpMissingFieldTypeInspection */
+/** @noinspection PhpMissingFieldTypeInspection */
+/** @noinspection PhpMissingFieldTypeInspection */
+/** @noinspection PhpMissingFieldTypeInspection */
+/** @noinspection PhpMissingFieldTypeInspection */
 declare(strict_types=1);
 
 namespace FroshPluginUploader\Components;
@@ -11,6 +19,7 @@ use FroshPluginUploader\Structs\Plugin;
 use FroshPluginUploader\Structs\ProductType;
 use FroshPluginUploader\Structs\StandardLocale;
 use FroshPluginUploader\Structs\StoreAvailabilities;
+use FroshPluginUploader\Structs\Struct;
 use function is_array;
 use function is_bool;
 use function is_string;
@@ -187,6 +196,9 @@ class StoreJsonLoader
         }
     }
 
+    /**
+     * @param Struct|null $mapperClass
+     */
     private function mapData(Plugin $plugin, array $data, string $pluginField, ?string $mapperClass = null): void
     {
         if (is_string($this->{$pluginField})) {

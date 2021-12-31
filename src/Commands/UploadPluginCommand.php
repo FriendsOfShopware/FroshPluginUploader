@@ -8,6 +8,7 @@ use FroshPluginUploader\Components\PluginFinder;
 use FroshPluginUploader\Components\ReleaseFactory;
 use FroshPluginUploader\Components\SBP\Client;
 use FroshPluginUploader\Structs\Input\UploadPluginInput;
+use FroshPluginUploader\Traits\ValidateZipTrait;
 use RuntimeException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -17,8 +18,11 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use ZipArchive;
 
+/** @noinspection PhpUnused */
 class UploadPluginCommand extends Command
 {
+    use ValidateZipTrait;
+
     private Client $client;
     private PluginBinaryUploader $pluginBinaryUploader;
     private ReleaseFactory $releaseFactory;
@@ -88,14 +92,5 @@ class UploadPluginCommand extends Command
         }
 
         return $result->isPassed() ? 0 : -1;
-    }
-
-    private function validateInput(InputInterface $input): void
-    {
-        $zipPath = $input->getArgument('zipPath');
-
-        if (!file_exists($zipPath)) {
-            throw new RuntimeException(sprintf('Given path "%s" does not exists', $zipPath));
-        }
     }
 }

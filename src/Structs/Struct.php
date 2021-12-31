@@ -1,4 +1,5 @@
 <?php
+/** @noinspection PhpMissingFieldTypeInspection */
 declare(strict_types=1);
 
 namespace FroshPluginUploader\Structs;
@@ -107,14 +108,5 @@ class Struct
         return array_map(static function ($item) {
             return static::make($item);
         }, $data);
-    }
-
-    private static function arrayToObject($d)
-    {
-        if (is_array($d)) {
-            return (object) array_map([static::class, 'arrayToObject'], $d);
-        }
-
-        return $d;
     }
 }

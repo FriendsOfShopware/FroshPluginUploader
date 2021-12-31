@@ -8,17 +8,11 @@ use FroshPluginUploader\Components\PluginReaderInterface;
 
 class AppReader implements PluginReaderInterface
 {
-    private $config;
+    private array $config;
 
-    /**
-     * @var string
-     */
-    private $rootDir;
+    private string $rootDir;
 
-    /**
-     * @var ChangelogReader
-     */
-    private $changelogReader;
+    private ?ChangelogReader $changelogReader = null;
 
     public function __construct(string $rootDir)
     {

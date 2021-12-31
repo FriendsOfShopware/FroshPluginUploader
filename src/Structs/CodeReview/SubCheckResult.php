@@ -7,31 +7,13 @@ use FroshPluginUploader\Structs\Struct;
 
 class SubCheckResult extends Struct
 {
-    public const STATUS_COMPLETED = 'completed';
-    public const STATUS_SKIPPED = 'skipped';
+    public string $subCheck;
 
-    /**
-     * @var string
-     */
-    public $subCheck;
+    public string $status;
 
-    /**
-     * @var string
-     */
-    public $status;
+    public bool $passed;
 
-    /**
-     * @var bool
-     */
-    public $passed;
+    public string $message;
 
-    /**
-     * @var string
-     */
-    public $message;
-
-    /**
-     * @var bool
-     */
-    public $hasWarnings;
+    public bool $hasWarnings;
 }

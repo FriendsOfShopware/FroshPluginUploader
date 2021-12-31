@@ -10,6 +10,7 @@ use FroshPluginUploader\Components\SBP\Client;
 use FroshPluginUploader\Exception\PluginNotFoundInAccount;
 use FroshPluginUploader\Structs\Plugin;
 use FroshPluginUploader\Structs\ViolationContext;
+use FroshPluginUploader\Traits\ValidateZipTrait;
 use RuntimeException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
@@ -20,12 +21,15 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use ZipArchive;
 
+/** @noinspection EfferentObjectCouplingInspection */
 class ValidatePluginCommand extends Command
 {
+    use ValidateZipTrait;
+
     /**
      * @var ValidationInterface[]
      */
-    private $validators;
+    private iterable $validators;
 
     private Client $client;
 
@@ -90,15 +94,6 @@ class ValidatePluginCommand extends Command
         $io->success('Has been successfully validated');
 
         return 0;
-    }
-
-    private function validateInput(InputInterface $input): void
-    {
-        $zipPath = $input->getArgument('zipPath');
-
-        if (!file_exists($zipPath)) {
-            throw new RuntimeException(sprintf('Given path "%s" does not exists', $zipPath));
-        }
     }
 
     private function validateTechnicalName(PluginInterface $plugin, bool $createIfNotExists = false): ?Plugin

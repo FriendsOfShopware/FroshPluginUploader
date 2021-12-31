@@ -1,4 +1,5 @@
 <?php
+/** @noinspection PhpMissingFieldTypeInspection */
 declare(strict_types=1);
 
 namespace FroshPluginUploader\Components;
@@ -8,6 +9,7 @@ use FroshPluginUploader\Components\SBP\Client;
 use FroshPluginUploader\Structs\Binary;
 use FroshPluginUploader\Structs\Input\UploadPluginInput;
 use FroshPluginUploader\Structs\Input\UploadPluginResult;
+use RuntimeException;
 
 class PluginBinaryUploader
 {
@@ -57,12 +59,13 @@ class PluginBinaryUploader
         return $this->waitForResult($currentReviews, $input->getStorePlugin()->id, $binary->id);
     }
 
-    /**
-     * @return Binary
-     */
-    private function updateBinary(array $binaries, string $version, string $binaryPath, int $pluginId)
+    private function updateBinary(array $binaries, string $version, string $binaryPath, int $pluginId): Binary
     {
         $binary = $this->client->Plugins()->getVersion($binaries, $version);
+
+        if ($binary === null) {
+            throw new RuntimeException(sprintf('Cannot find binary with version %s', $version));
+        }
 
         $this->client->Plugins()->updateBinaryFile($binary->id, $binaryPath, $pluginId);
 

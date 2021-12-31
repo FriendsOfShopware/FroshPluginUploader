@@ -5,4 +5,5 @@ namespace FroshPluginUploader\Structs;
 
 class Videos extends Struct
 {
+    public string $url;
 }

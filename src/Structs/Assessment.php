@@ -1,8 +1,10 @@
 <?php
+/** @noinspection PhpMissingFieldTypeInspection */
 declare(strict_types=1);
 
 namespace FroshPluginUploader\Structs;
 
+/** @noinspection PhpMissingFieldTypeInspection */
 class Assessment extends Struct
 {
     /** @var int */
@@ -16,9 +18,6 @@ class Assessment extends Struct
 
     /** @var string */
     public $comment;
-
-    /** @var Factors */
-    public $factors;
 
     /** @var string */
     public $assessmentDate;

@@ -15,32 +15,29 @@ class FaqReader
         $currentQuestion = null;
 
         foreach ($this->parse($path) as $line) {
-            switch ($line[0]) {
-                case '#':
-                    $currentQuestion = $this->parseTitle($line);
+            if ($line[0] === '#') {
+                $currentQuestion = $this->parseTitle($line);
+            } else {
+                if (!$currentQuestion) {
+                    throw new InvalidArgumentException(sprintf('FAQ in path "%s" is invalid', $path));
+                }
+
+                if (trim($line) === '') {
                     break;
-                default:
-                    if (!$currentQuestion) {
-                        throw new InvalidArgumentException(sprintf('FAQ in path "%s" is invalid', $path));
-                    }
+                }
 
-                    if (trim($line) === '') {
-                        break;
-                    }
+                if (!isset($questions[$currentQuestion])) {
+                    $questions[$currentQuestion] = '';
+                }
 
-                    if (!isset($questions[$currentQuestion])) {
-                        $questions[$currentQuestion] = '';
-                    }
-
-                    $questions[$currentQuestion] .= $line;
-                    break;
+                $questions[$currentQuestion] .= $line;
             }
         }
 
         $formattedQuestions = [];
 
         foreach ($questions as $question => $answer) {
-            $formattedQuestions[] = ['question' => $question, 'answer' => $answer];
+            $formattedQuestions[] = compact('question', 'answer');
         }
 
         return $formattedQuestions;

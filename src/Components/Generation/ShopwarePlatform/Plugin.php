@@ -1,8 +1,10 @@
 <?php
+/** @noinspection PhpMissingFieldTypeInspection */
 declare(strict_types=1);
 
 namespace FroshPluginUploader\Components\Generation\ShopwarePlatform;
 
+use function assert;
 use Composer\Semver\Semver;
 use FroshPluginUploader\Components\PluginInterface;
 use FroshPluginUploader\Components\PluginReaderInterface;
@@ -21,6 +23,7 @@ class Plugin implements PluginInterface
      */
     private $pluginName;
 
+    /** @noinspection PhpUnusedParameterInspection */
     public function __construct(string $rootFolder, string $pluginName)
     {
         $this->rootFolder = $rootFolder;
@@ -60,9 +63,12 @@ class Plugin implements PluginInterface
         return $this->rootFolder;
     }
 
+    /** @noinspection BadExceptionsProcessingInspection */
     public function getCompatibleVersions(array $versions): array
     {
-        $constraints = $this->getReader()->getCoreConstraint();
+        $reader = $this->getReader();
+        assert($reader instanceof PluginReader);
+        $constraints = $reader->getCoreConstraint();
 
         return array_values(array_filter($versions, static function ($version) use ($constraints) {
             if ($version['major'] !== 'Shopware 6') {

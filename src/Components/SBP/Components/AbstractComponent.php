@@ -7,10 +7,7 @@ use FroshPluginUploader\Components\SBP\Client;
 
 class AbstractComponent
 {
-    /**
-     * @var Client
-     */
-    protected $client;
+    protected Client $client;
 
     public function __construct(Client $client)
     {

@@ -5,4 +5,5 @@ namespace FroshPluginUploader\Structs;
 
 class Tags extends Struct
 {
+    public string $name;
 }

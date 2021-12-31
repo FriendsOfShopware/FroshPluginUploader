@@ -12,33 +12,15 @@ class CodeReview extends Struct
         'subCheckResults' => SubCheckResult::class,
     ];
 
-    /**
-     * @var int
-     */
-    public $id;
+    public int $id;
 
-    /**
-     * @var string
-     */
-    public $message;
+    public string $message;
 
-    /**
-     * @var int
-     */
-    public $binaryId;
+    public int $binaryId;
 
-    /**
-     * @var string
-     */
-    public $creationDate;
+    public string $creationDate;
 
-    /**
-     * @var Type
-     */
-    public $type;
+    public Type $type;
 
-    /**
-     * @var SubCheckResult[]
-     */
-    public $subCheckResults;
+    public array $subCheckResults;
 }

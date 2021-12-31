@@ -20,6 +20,7 @@ class XmlPluginReader extends XmlReaderBase
         /** @var DOMElement $pluginData */
         $pluginData = $xpath->query('//plugin')->item(0);
         $info = [];
+        $info['changelog'] = [];
 
         if ($label = self::parseTranslatableNodeList($xpath->query('//plugin/label'))) {
             $info['label'] = $label;
@@ -36,13 +37,17 @@ class XmlPluginReader extends XmlReaderBase
         }
         /** @var DOMElement $changelog */
         foreach ($pluginData->getElementsByTagName('changelog') as $changelog) {
+            /** @var string $version */
             $version = $changelog->getAttribute('version');
             /** @var DOMElement $changes */
             foreach ($changelog->getElementsByTagName('changes') as $changes) {
+                /** @var string $lang */
                 $lang = $changes->getAttribute('lang') ?: 'en';
                 $info['changelog'][$version][$lang][] = $changes->nodeValue;
             }
         }
+
+        /** @var DOMElement $compatibility */
         $compatibility = $xpath->query('//plugin/compatibility')->item(0);
         if ($compatibility !== null) {
             $info['compatibility'] = [

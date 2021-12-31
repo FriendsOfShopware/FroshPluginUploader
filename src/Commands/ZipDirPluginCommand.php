@@ -14,6 +14,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/** @noinspection PhpUnused */
 class ZipDirPluginCommand extends Command
 {
     private PluginZip $pluginZip;

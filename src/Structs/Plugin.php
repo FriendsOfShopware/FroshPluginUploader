@@ -1,4 +1,7 @@
 <?php
+/** @noinspection PhpMissingFieldTypeInspection */
+/** @noinspection PhpMissingFieldTypeInspection */
+/** @noinspection PhpMissingFieldTypeInspection */
 declare(strict_types=1);
 
 namespace FroshPluginUploader\Structs;
@@ -18,12 +21,8 @@ class Plugin extends Struct
         'standardLocale' => StandardLocale::class,
         'license' => License::class,
         'infos' => Infos::class,
-        'priceModels' => PriceModels::class,
-        'variants' => Variants::class,
         'storeAvailabilities' => StoreAvailabilities::class,
         'categories' => Categories::class,
-        'addons' => Addons::class,
-        'demos' => Demos::class,
         'latestBinary' => Binary::class,
         'localizations' => Localizations::class,
         'certification' => Certification::class,
@@ -64,20 +63,11 @@ class Plugin extends Struct
     /** @var Infos[] */
     public $infos;
 
-    /** @var PriceModels */
-    public $priceModels;
-
-    /** @var Variants */
-    public $variants;
-
     /** @var StoreAvailabilities[] */
     public $storeAvailabilities;
 
     /** @var Categories[] */
     public $categories;
-
-    /** @var Addons */
-    public $addons;
 
     /** @var bool */
     public $useContactForm;
@@ -102,9 +92,6 @@ class Plugin extends Struct
 
     /** @var string */
     public $examplePageUrl;
-
-    /** @var Demos */
-    public $demos;
 
     /** @var Localizations[] */
     public $localizations;

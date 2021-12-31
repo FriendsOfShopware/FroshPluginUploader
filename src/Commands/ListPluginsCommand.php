@@ -12,6 +12,7 @@ use Symfony\Component\Console\Helper\TableStyle;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/** @noinspection PhpUnused */
 class ListPluginsCommand extends Command
 {
     private Client $client;

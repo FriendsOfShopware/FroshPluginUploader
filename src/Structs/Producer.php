@@ -1,4 +1,6 @@
 <?php
+/** @noinspection PhpMissingFieldTypeInspection */
+/** @noinspection PhpMissingFieldTypeInspection */
 declare(strict_types=1);
 
 namespace FroshPluginUploader\Structs;
