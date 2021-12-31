@@ -63,12 +63,12 @@ class UploadPluginCommand extends Command
         $zip->extractTo($tmpFolder);
 
         $plugin = PluginFinder::findPluginByZipFile($tmpFolder);
-        $storePlugin = $this->client->Producer()->getPlugin($plugin->getName());
+        $producerPlugin = $this->client->Producer()->getPlugin($plugin->getName());
 
         $pluginInput = new UploadPluginInput(
             $zipPath,
             $plugin,
-            $storePlugin,
+            $producerPlugin,
             $input->getOption('skipCodeReview'),
             $input->getOption('skipCodeReviewResult')
         );

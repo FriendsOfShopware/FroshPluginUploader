@@ -17,6 +17,7 @@ class CodeReviewFormatterTest extends TestCase
         $codeReview = new CodeReview();
         $codeReview->type = new Type();
         $codeReview->type->id = 1;
+        $codeReview->type->name = 'foo';
         $codeReview->type->description = 'failed';
         $codeReview->subCheckResults = [];
 

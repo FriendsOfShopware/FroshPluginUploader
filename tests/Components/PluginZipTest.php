@@ -44,6 +44,7 @@ class PluginZipTest extends TestCase
         $path = dirname(__DIR__) . '/fixtures/plugins/ShopwarePlatformPluginComposer';
 
         exec('cd ' . $path . '; git init; git add .');
+        exec('cd ' . $path . '; git init; git branch -m master');
         exec('cd ' . $path . '; git config user.name Test');
         exec('cd ' . $path . '; git config user.email test@test.de');
         exec('cd ' . $path . '; git commit -m "Test"');
