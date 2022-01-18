@@ -5,10 +5,9 @@
 [![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/FriendsOfShopware/FroshPluginUploader.svg)](https://github.com/FriendsOfShopware/FroshPluginUploader/pulls)
 [![Slack](https://img.shields.io/badge/chat-on%20slack-%23ECB22E)](https://slack.shopware.com?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
+# This tool is abandoned and will only receive bug fixes. Please move to https://github.com/FriendsOfShopware/shopware-cli
+
 Tool for uploading new plugin releases to Shopware Store.
-
-**This Tool works only for the new plugin system, Shopware Platform and app system.**
-
 Required Environment variables:
 
 | Name             	 | Default 	 | Description                                                         	 |
