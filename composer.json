@@ -35,7 +35,7 @@
     "composer/semver": "^3.3",
     "composer/spdx-licenses": "^1.5",
     "php-parallel-lint/php-var-dump-check": "^0.5.0",
-    "knplabs/github-api": "^3.4",
+    "knplabs/github-api": "^3.6",
     "http-interop/http-factory-guzzle": "^1.2",
     "league/commonmark": "^2.2",
     "laravel-zero/phar-updater": "^1.1"
