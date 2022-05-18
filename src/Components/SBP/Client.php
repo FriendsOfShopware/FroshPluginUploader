@@ -129,7 +129,7 @@ class Client
     {
         $options = [
             'base_uri' => $_SERVER['API_ENDPOINT'] ?? 'https://api.shopware.com',
-            'timeout' => 30.0,
+            'timeout' => 60.0,
         ];
 
         if ($token) {
