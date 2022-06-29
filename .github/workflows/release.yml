@@ -82,7 +82,7 @@ jobs:
           sed -i -e "s/__PHAR_SHA_SUM__/$(sha256sum ../frosh-plugin-upload.phar|cut -f1 -d' '|tr -d $'\n')/g" PKGBUILD
 
       - name: Publish to the AUR
-        uses: KSXGitHub/github-actions-deploy-aur@v2.2.5
+        uses: KSXGitHub/github-actions-deploy-aur@v2.3.0
         with:
           pkgname: php-sw-frosh-plugin-uploader
           pkgbuild: ./aur-package/PKGBUILD
